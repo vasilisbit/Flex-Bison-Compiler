@@ -1,4 +1,4 @@
 myParser: project.l project.y
-	bison -d project.y
+	bison -d -v -Wcounterexamples project.y
 	flex project.l
 	cc -o $@ myParser project.tab.c lex.yy.c -lfl
