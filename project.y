@@ -56,7 +56,7 @@ extern char *yytext;
 %%
 
 program: /* nothing */
-    | class_declaration program
+    | class_declaration none_or_newlines program
     | statement none_or_newlines program
     ;
 
@@ -94,7 +94,7 @@ method_body: /* nothing */
 
 statement: /* nothing */ 
     | assignment_statement SEMICOLON none_or_newlines statement
-    | method_call SEMICOLON none_or_newlines statement
+    | method_call none_or_newlines statement
     | if_statement none_or_newlines statement
     | do_while_statement none_or_newlines statement 
     | for_statement none_or_newlines statement
@@ -116,7 +116,7 @@ assignment_statement: ID ASSIGN expression
     | STRING ID ASSIGN string_expression
     ;
 
-method_call: ID LP none_or_newlines none_or_multiple_arguments none_or_newlines RP
+method_call: ID LP none_or_newlines none_or_multiple_arguments none_or_newlines RP SEMICOLON
     ;
 
 none_or_multiple_arguments: /* nothing */
@@ -208,11 +208,11 @@ any_character: SQ_ANYCHAR_SQ
 object_creation: CLASS_ID ID ASSIGN NEW CLASS_ID LP RP SEMICOLON
     ;
 
-member_access: ID DOT member_access_body
+member_access: ID DOT member_access_body none_or_newlines
     ;
 
 member_access_body: ID SEMICOLON
-    | method_call SEMICOLON
+    | method_call
     ;
 
 operations: integer_operations

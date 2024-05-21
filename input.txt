@@ -1,1 +1,10 @@
-5864675357654356474747474747433.33333333336766767d;
+public class Test {
+    public void main() {
+    }
+}
+
+public class Test2 {
+    public void main() {
+        int x = 0;
+    }
+}
