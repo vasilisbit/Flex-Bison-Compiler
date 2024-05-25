@@ -1,3 +1,8 @@
+Nonterminals useless in grammar
+
+    string_expression
+
+
 Terminals unused in grammar
 
     ANY_CHARACTER
@@ -9,12 +14,12 @@ Terminals unused in grammar
     RSB
 
 
-State 0 conflicts: 25 shift/reduce, 1 reduce/reduce
-State 8 conflicts: 1 shift/reduce
-State 9 conflicts: 1 shift/reduce
-State 10 conflicts: 1 shift/reduce
-State 11 conflicts: 1 shift/reduce
-State 12 conflicts: 1 shift/reduce
+Rules useless in grammar
+
+  122 string_expression: text
+
+
+State 0 conflicts: 25 shift/reduce, 2 reduce/reduce
 State 27 conflicts: 1 shift/reduce
 State 28 conflicts: 1 shift/reduce
 State 29 conflicts: 1 shift/reduce
@@ -29,54 +34,61 @@ State 38 conflicts: 1 shift/reduce
 State 39 conflicts: 1 shift/reduce
 State 43 conflicts: 1 shift/reduce
 State 56 conflicts: 1 shift/reduce
-State 70 conflicts: 1 shift/reduce
-State 76 conflicts: 1 shift/reduce
-State 77 conflicts: 25 shift/reduce, 1 reduce/reduce
-State 78 conflicts: 24 shift/reduce
-State 79 conflicts: 24 shift/reduce
-State 80 conflicts: 25 shift/reduce, 1 reduce/reduce
-State 81 conflicts: 1 shift/reduce
-State 82 conflicts: 24 shift/reduce
-State 83 conflicts: 24 shift/reduce
-State 84 conflicts: 24 shift/reduce
-State 85 conflicts: 24 shift/reduce
-State 86 conflicts: 24 shift/reduce
-State 87 conflicts: 24 shift/reduce
-State 88 conflicts: 24 shift/reduce
-State 89 conflicts: 24 shift/reduce
-State 90 conflicts: 1 shift/reduce
-State 106 conflicts: 24 shift/reduce
-State 123 conflicts: 1 shift/reduce
-State 127 conflicts: 1 shift/reduce
-State 146 conflicts: 24 shift/reduce
-State 155 conflicts: 24 shift/reduce
-State 161 conflicts: 1 shift/reduce
-State 170 conflicts: 25 shift/reduce, 2 reduce/reduce
-State 192 conflicts: 1 shift/reduce
-State 194 conflicts: 1 shift/reduce
-State 200 conflicts: 1 shift/reduce
-State 202 conflicts: 1 shift/reduce
-State 209 conflicts: 25 shift/reduce, 2 reduce/reduce
-State 217 conflicts: 25 shift/reduce, 2 reduce/reduce
-State 219 conflicts: 25 shift/reduce, 2 reduce/reduce
-State 238 conflicts: 1 shift/reduce
+State 63 conflicts: 1 shift/reduce
+State 69 conflicts: 1 shift/reduce
+State 70 conflicts: 25 shift/reduce, 2 reduce/reduce
+State 71 conflicts: 24 shift/reduce, 1 reduce/reduce
+State 72 conflicts: 24 shift/reduce, 1 reduce/reduce
+State 73 conflicts: 25 shift/reduce, 2 reduce/reduce
+State 74 conflicts: 1 shift/reduce
+State 75 conflicts: 24 shift/reduce, 1 reduce/reduce
+State 76 conflicts: 24 shift/reduce, 1 reduce/reduce
+State 77 conflicts: 24 shift/reduce, 1 reduce/reduce
+State 78 conflicts: 24 shift/reduce, 1 reduce/reduce
+State 79 conflicts: 24 shift/reduce, 1 reduce/reduce
+State 80 conflicts: 24 shift/reduce, 1 reduce/reduce
+State 81 conflicts: 24 shift/reduce, 1 reduce/reduce
+State 82 conflicts: 24 shift/reduce, 1 reduce/reduce
+State 83 conflicts: 1 shift/reduce
+State 99 conflicts: 24 shift/reduce, 1 reduce/reduce
+State 111 conflicts: 1 shift/reduce
+State 114 conflicts: 1 shift/reduce
+State 118 conflicts: 1 shift/reduce
+State 128 conflicts: 24 shift/reduce, 1 reduce/reduce
+State 137 conflicts: 24 shift/reduce, 1 reduce/reduce
+State 143 conflicts: 1 shift/reduce
+State 153 conflicts: 25 shift/reduce, 3 reduce/reduce
+State 164 conflicts: 1 shift/reduce
+State 166 conflicts: 1 shift/reduce
+State 173 conflicts: 1 shift/reduce
+State 175 conflicts: 1 shift/reduce
+State 183 conflicts: 25 shift/reduce, 3 reduce/reduce
+State 191 conflicts: 25 shift/reduce, 3 reduce/reduce
+State 193 conflicts: 25 shift/reduce, 3 reduce/reduce
+State 212 conflicts: 1 shift/reduce
+State 223 conflicts: 1 shift/reduce
+State 226 conflicts: 1 shift/reduce
+State 229 conflicts: 1 shift/reduce
+State 233 conflicts: 1 shift/reduce
+State 234 conflicts: 1 shift/reduce
+State 237 conflicts: 1 shift/reduce
+State 238 conflicts: 24 shift/reduce, 3 reduce/reduce
+State 249 conflicts: 24 shift/reduce, 3 reduce/reduce
+State 251 conflicts: 1 shift/reduce
 State 252 conflicts: 1 shift/reduce
-State 255 conflicts: 1 shift/reduce
-State 259 conflicts: 1 shift/reduce
-State 260 conflicts: 1 shift/reduce
-State 263 conflicts: 1 shift/reduce
-State 264 conflicts: 24 shift/reduce, 2 reduce/reduce
-State 275 conflicts: 24 shift/reduce, 2 reduce/reduce
-State 277 conflicts: 1 shift/reduce
-State 278 conflicts: 1 shift/reduce
-State 279 conflicts: 1 shift/reduce
-State 283 conflicts: 1 shift/reduce
-State 288 conflicts: 24 shift/reduce, 2 reduce/reduce
+State 253 conflicts: 1 shift/reduce
+State 257 conflicts: 1 shift/reduce
+State 262 conflicts: 24 shift/reduce, 3 reduce/reduce
+State 264 conflicts: 1 shift/reduce
+State 265 conflicts: 1 shift/reduce
+State 274 conflicts: 1 shift/reduce
+State 276 conflicts: 1 shift/reduce
+State 280 conflicts: 1 shift/reduce
+State 285 conflicts: 1 shift/reduce
 State 291 conflicts: 1 shift/reduce
-State 300 conflicts: 1 shift/reduce
-State 306 conflicts: 1 shift/reduce
-State 317 conflicts: 1 shift/reduce
-State 319 conflicts: 1 shift/reduce
+State 293 conflicts: 1 shift/reduce
+State 294 conflicts: 1 shift/reduce
+State 296 conflicts: 1 shift/reduce
 
 
 Grammar
@@ -126,209 +138,203 @@ Grammar
    32          | method_declaration none_or_newlines statement
    33          | object_creation none_or_newlines statement
 
-   34 assignment_statement: ID ASSIGN expression
-   35                     | INTEGER ID ASSIGN integer_expression
-   36                     | CHAR ID ASSIGN any_character
-   37                     | DOUBLE ID ASSIGN double_expression
-   38                     | BOOLEAN ID ASSIGN boolean_expression
-   39                     | STRING ID ASSIGN string_expression
+   34 assignment_statement: data_type ID ASSIGN expression
 
-   40 method_call: ID LP none_or_newlines none_or_multiple_arguments none_or_newlines RP SEMICOLON
+   35 method_call: ID LP none_or_newlines none_or_multiple_arguments none_or_newlines RP SEMICOLON
 
-   41 none_or_multiple_arguments: ε
-   42                           | expression arguments
+   36 none_or_multiple_arguments: ε
+   37                           | expression arguments
 
-   43 arguments: ε
-   44          | COMMA none_or_newlines expression arguments
+   38 arguments: ε
+   39          | COMMA none_or_newlines expression arguments
 
-   45 if_statement: IF LP none_or_newlines expression none_or_newlines RP LCB none_or_newlines statement none_or_newlines RCB none_or_newlines none_or_multiple_elif none_or_newlines none_or_one_else
+   40 if_statement: IF LP none_or_newlines expression none_or_newlines RP LCB none_or_newlines statement none_or_newlines RCB none_or_newlines none_or_multiple_elif none_or_newlines none_or_one_else
 
-   46 none_or_multiple_elif: ε
-   47                      | ELIF LP expression RP LCB none_or_newlines statement none_or_newlines RCB none_or_multiple_elif
+   41 none_or_multiple_elif: ε
+   42                      | ELIF LP expression RP LCB none_or_newlines statement none_or_newlines RCB none_or_multiple_elif
 
-   48 none_or_one_else: ε
-   49                 | ELSE LCB none_or_newlines statement none_or_newlines RCB
+   43 none_or_one_else: ε
+   44                 | ELSE LCB none_or_newlines statement none_or_newlines RCB
 
-   50 do_while_statement: DO LCB none_or_newlines statement none_or_newlines RCB WHILE LP none_or_newlines expression none_or_newlines RP SEMICOLON
+   45 do_while_statement: DO LCB none_or_newlines statement none_or_newlines RCB WHILE LP none_or_newlines expression none_or_newlines RP SEMICOLON
 
-   51 for_statement: FOR LP none_or_newlines first_and_third_loop_statement SEMICOLON none_or_newlines second_loop_statement SEMICOLON none_or_newlines first_and_third_loop_statement none_or_newlines RP LCB none_or_newlines statement none_or_newlines RCB
+   46 for_statement: FOR LP none_or_newlines first_and_third_loop_statement SEMICOLON none_or_newlines second_loop_statement SEMICOLON none_or_newlines first_and_third_loop_statement none_or_newlines RP LCB none_or_newlines statement none_or_newlines RCB
 
-   52 first_and_third_loop_statement: ε
-   53                               | assignment_statement
+   47 first_and_third_loop_statement: ε
+   48                               | assignment_statement
 
-   54 second_loop_statement: ε
-   55                      | expression
+   49 second_loop_statement: ε
+   50                      | expression
 
-   56 switch_statement: SWITCH LP none_or_newlines expression none_or_newlines RP LCB none_or_newlines one_or_more_cases none_or_newlines default_case none_or_newlines RCB
+   51 switch_statement: SWITCH LP none_or_newlines expression none_or_newlines RP LCB none_or_newlines one_or_more_cases none_or_newlines default_case none_or_newlines RCB
 
-   57 default_case: ε
-   58             | DEFAULT COLON none_or_newlines statement
+   52 default_case: ε
+   53             | DEFAULT COLON none_or_newlines statement
 
-   59 one_or_more_cases: cases none_or_newlines multiple_cases
+   54 one_or_more_cases: cases none_or_newlines multiple_cases
 
-   60 multiple_cases: ε
-   61               | cases none_or_newlines multiple_cases
+   55 multiple_cases: ε
+   56               | cases none_or_newlines multiple_cases
 
-   62 cases: CASE case_expression COLON none_or_newlines statement
+   57 cases: CASE case_expression COLON none_or_newlines statement
 
-   63 case_expression: CONST
-   64                | any_character
-   65                | text
+   58 case_expression: CONST
+   59                | any_character
+   60                | text
 
-   66 return_statement: RETURN expression SEMICOLON
+   61 return_statement: RETURN expression SEMICOLON
 
-   67 break_statement: BREAK SEMICOLON
+   62 break_statement: BREAK SEMICOLON
 
-   68 print_statement: PRINT LP text single_or_multiple_variables RP SEMICOLON
+   63 print_statement: PRINT LP text single_or_multiple_variables RP SEMICOLON
 
-   69 single_or_multiple_variables: ε
-   70                             | COMMA ID single_or_multiple_variables
+   64 single_or_multiple_variables: ε
+   65                             | COMMA ID single_or_multiple_variables
 
-   71 expression: integer_expression
-   72           | any_character
-   73           | double_expression
-   74           | boolean_expression
-   75           | text
-   76           | ID
-   77           | method_call
-   78           | operations
-   79           | member_access
-   80           | LP expression RP
+   66 expression: integer_expression
+   67           | any_character
+   68           | double_expression
+   69           | boolean_expression
+   70           | text
+   71           | ID
+   72           | method_call
+   73           | operations
+   74           | member_access
+   75           | LP expression RP
 
-   81 text: DQ_STRING_DQ
+   76 text: DQ_STRING_DQ
 
-   82 any_character: SQ_ANYCHAR_SQ
+   77 any_character: SQ_ANYCHAR_SQ
 
-   83 object_creation: CLASS_ID ID ASSIGN NEW CLASS_ID LP RP SEMICOLON
+   78 object_creation: CLASS_ID ID ASSIGN NEW CLASS_ID LP RP SEMICOLON
 
-   84 member_access: ID DOT member_access_body none_or_newlines
+   79 member_access: ID DOT member_access_body none_or_newlines
 
-   85 member_access_body: ID SEMICOLON
-   86                   | method_call
+   80 member_access_body: ID SEMICOLON
+   81                   | method_call
 
-   87 operations: integer_operations
-   88           | char_operations
-   89           | double_operations
-   90           | boolean_operations
+   82 operations: integer_operations
+   83           | char_operations
+   84           | double_operations
+   85           | boolean_operations
 
-   91 integer_operations: integer_expression relational_arithmetic_operations integer_expression
+   86 integer_operations: integer_expression relational_arithmetic_operations integer_expression
 
-   92 char_operations: any_character relational_arithmetic_operations any_character
+   87 char_operations: any_character relational_arithmetic_operations any_character
 
-   93 double_operations: double_expression relational_arithmetic_operations double_expression
+   88 double_operations: double_expression relational_arithmetic_operations double_expression
 
-   94 boolean_operations: boolean_expression logical_operators boolean_expression
+   89 boolean_operations: boolean_expression logical_operators boolean_expression
 
-   95 relational_arithmetic_operations: arithmetic_operators
-   96                                 | relational_operators
+   90 relational_arithmetic_operations: arithmetic_operators
+   91                                 | relational_operators
 
-   97 arithmetic_operators: ADD
-   98                     | SUB
-   99                     | MUL
-  100                     | DIV
-  101                     | MOD
-  102                     | POW
+   92 arithmetic_operators: ADD
+   93                     | SUB
+   94                     | MUL
+   95                     | DIV
+   96                     | MOD
+   97                     | POW
 
-  103 relational_operators: EQ
-  104                     | NEQ
-  105                     | LT
-  106                     | GT
-  107                     | LE
-  108                     | GE
+   98 relational_operators: EQ
+   99                     | NEQ
+  100                     | LT
+  101                     | GT
+  102                     | LE
+  103                     | GE
 
-  109 logical_operators: AND
-  110                  | OR
-  111                  | NOT
+  104 logical_operators: AND
+  105                  | OR
+  106                  | NOT
 
-  112 access_modifier: PUBLIC
-  113                | PRIVATE
+  107 access_modifier: PUBLIC
+  108                | PRIVATE
 
-  114 data_type: INTEGER
-  115          | CHAR
-  116          | DOUBLE
-  117          | BOOLEAN
-  118          | STRING
-  119          | VOID
+  109 data_type: ε
+  110          | INTEGER
+  111          | CHAR
+  112          | DOUBLE
+  113          | BOOLEAN
+  114          | STRING
+  115          | VOID
 
-  120 integer_expression: CONST
+  116 integer_expression: CONST
 
-  121 double_expression: DOUBLE_CONST
+  117 double_expression: DOUBLE_CONST
 
-  122 boolean_expression: TRUE
-  123                   | FALSE
+  118 boolean_expression: TRUE
+  119                   | FALSE
 
-  124 string_expression: text
-
-  125 none_or_newlines: ε
-  126                 | NEWLINE none_or_newlines
+  120 none_or_newlines: ε
+  121                 | NEWLINE none_or_newlines
 
 
 Terminals, with rules where they appear
 
     $end (0) 0
     error (256)
-    CONST <ival> (258) 63 120
-    ID <sval> (259) 9 10 11 12 17 34 35 36 37 38 39 40 70 76 83 84 85
-    CLASS_ID <sval> (260) 4 5 83
+    CONST <ival> (258) 58 116
+    ID <sval> (259) 9 10 11 12 17 34 35 65 71 78 79 80
+    CLASS_ID <sval> (260) 4 5 78
     ANY_CHARACTER <cval> (261)
-    DOUBLE_CONST <dval> (262) 121
+    DOUBLE_CONST <dval> (262) 117
     VAR (263)
-    NEWLINE (264) 126
+    NEWLINE (264) 121
     CLASS (265) 4 5
-    PUBLIC (266) 112
-    PRIVATE (267) 113
-    INTEGER (268) 35 114
-    CHAR (269) 36 115
-    DOUBLE (270) 37 116
-    BOOLEAN (271) 38 117
-    STRING (272) 39 118
-    VOID (273) 119
-    NEW (274) 83
-    RETURN (275) 66
-    IF (276) 45
-    ELIF (277) 47
-    ELSE (278) 49
-    SWITCH (279) 56
-    CASE (280) 62
-    DEFAULT (281) 58
-    WHILE (282) 50
-    DO (283) 50
-    FOR (284) 51
-    BREAK (285) 67
-    TRUE (286) 122
-    FALSE (287) 123
-    PRINT (288) 68
-    SQ_ANYCHAR_SQ (289) 82
-    DQ_STRING_DQ (290) 81
-    SEMICOLON (291) 9 10 21 30 40 50 51 66 67 68 83 85
-    COMMA (292) 16 44 70
-    DOT (293) 84
+    PUBLIC (266) 107
+    PRIVATE (267) 108
+    INTEGER (268) 110
+    CHAR (269) 111
+    DOUBLE (270) 112
+    BOOLEAN (271) 113
+    STRING (272) 114
+    VOID (273) 115
+    NEW (274) 78
+    RETURN (275) 61
+    IF (276) 40
+    ELIF (277) 42
+    ELSE (278) 44
+    SWITCH (279) 51
+    CASE (280) 57
+    DEFAULT (281) 53
+    WHILE (282) 45
+    DO (283) 45
+    FOR (284) 46
+    BREAK (285) 62
+    TRUE (286) 118
+    FALSE (287) 119
+    PRINT (288) 63
+    SQ_ANYCHAR_SQ (289) 77
+    DQ_STRING_DQ (290) 76
+    SEMICOLON (291) 9 10 21 30 35 45 46 61 62 63 78 80
+    COMMA (292) 16 39 65
+    DOT (293) 79
     QUESTION (294)
-    COLON (295) 58 62
+    COLON (295) 53 57
     DQ (296)
     SQ (297)
-    ADD (298) 97
-    SUB (299) 98
-    MUL (300) 99
-    DIV (301) 100
-    MOD (302) 101
-    POW (303) 102
-    LP (304) 11 12 40 45 47 50 51 56 68 80 83
-    RP (305) 11 12 40 45 47 50 51 56 68 80 83
+    ADD (298) 92
+    SUB (299) 93
+    MUL (300) 94
+    DIV (301) 95
+    MOD (302) 96
+    POW (303) 97
+    LP (304) 11 12 35 40 42 45 46 51 63 75 78
+    RP (305) 11 12 35 40 42 45 46 51 63 75 78
     LSB (306)
     RSB (307)
-    LCB (308) 4 5 11 12 45 47 49 50 51 56
-    RCB (309) 4 5 11 12 45 47 49 50 51 56
-    ASSIGN (310) 34 35 36 37 38 39 83
-    EQ (311) 103
-    NEQ (312) 104
-    LT (313) 105
-    GT (314) 106
-    LE (315) 107
-    GE (316) 108
-    AND (317) 109
-    OR (318) 110
-    NOT (319) 111
+    LCB (308) 4 5 11 12 40 42 44 45 46 51
+    RCB (309) 4 5 11 12 40 42 44 45 46 51
+    ASSIGN (310) 34 78
+    EQ (311) 98
+    NEQ (312) 99
+    LT (313) 100
+    GT (314) 101
+    LE (315) 102
+    GE (316) 103
+    AND (317) 104
+    OR (318) 105
+    NOT (319) 106
 
 
 Nonterminals, with rules where they appear
@@ -364,136 +370,133 @@ Nonterminals, with rules where they appear
         on right: 11 12 19
     statement (75)
         on left: 20 21 22 23 24 25 26 27 28 29 30 31 32 33
-        on right: 3 8 19 21 22 23 24 25 26 27 28 29 30 31 32 33 45 47 49 50 51 58 62
+        on right: 3 8 19 21 22 23 24 25 26 27 28 29 30 31 32 33 40 42 44 45 46 53 57
     assignment_statement (76)
-        on left: 34 35 36 37 38 39
-        on right: 21 53
+        on left: 34
+        on right: 21 48
     method_call (77)
-        on left: 40
-        on right: 22 77 86
+        on left: 35
+        on right: 22 72 81
     none_or_multiple_arguments (78)
-        on left: 41 42
-        on right: 40
+        on left: 36 37
+        on right: 35
     arguments (79)
-        on left: 43 44
-        on right: 42 44
+        on left: 38 39
+        on right: 37 39
     if_statement (80)
-        on left: 45
+        on left: 40
         on right: 23
     none_or_multiple_elif (81)
-        on left: 46 47
-        on right: 45 47
+        on left: 41 42
+        on right: 40 42
     none_or_one_else (82)
-        on left: 48 49
-        on right: 45
+        on left: 43 44
+        on right: 40
     do_while_statement (83)
-        on left: 50
+        on left: 45
         on right: 24
     for_statement (84)
-        on left: 51
+        on left: 46
         on right: 25
     first_and_third_loop_statement (85)
-        on left: 52 53
-        on right: 51
+        on left: 47 48
+        on right: 46
     second_loop_statement (86)
-        on left: 54 55
-        on right: 51
+        on left: 49 50
+        on right: 46
     switch_statement (87)
-        on left: 56
+        on left: 51
         on right: 26
     default_case (88)
-        on left: 57 58
-        on right: 56
+        on left: 52 53
+        on right: 51
     one_or_more_cases (89)
-        on left: 59
-        on right: 56
+        on left: 54
+        on right: 51
     multiple_cases (90)
-        on left: 60 61
-        on right: 59 61
+        on left: 55 56
+        on right: 54 56
     cases (91)
-        on left: 62
-        on right: 59 61
+        on left: 57
+        on right: 54 56
     case_expression (92)
-        on left: 63 64 65
-        on right: 62
+        on left: 58 59 60
+        on right: 57
     return_statement (93)
-        on left: 66
+        on left: 61
         on right: 27
     break_statement (94)
-        on left: 67
+        on left: 62
         on right: 28
     print_statement (95)
-        on left: 68
+        on left: 63
         on right: 29
     single_or_multiple_variables (96)
-        on left: 69 70
-        on right: 68 70
+        on left: 64 65
+        on right: 63 65
     expression (97)
-        on left: 71 72 73 74 75 76 77 78 79 80
-        on right: 30 34 42 44 45 47 50 55 56 66 80
+        on left: 66 67 68 69 70 71 72 73 74 75
+        on right: 30 34 37 39 40 42 45 50 51 61 75
     text (98)
-        on left: 81
-        on right: 65 68 75 124
+        on left: 76
+        on right: 60 63 70
     any_character (99)
-        on left: 82
-        on right: 36 64 72 92
+        on left: 77
+        on right: 59 67 87
     object_creation (100)
-        on left: 83
+        on left: 78
         on right: 33
     member_access (101)
-        on left: 84
-        on right: 79
+        on left: 79
+        on right: 74
     member_access_body (102)
-        on left: 85 86
-        on right: 84
+        on left: 80 81
+        on right: 79
     operations (103)
-        on left: 87 88 89 90
-        on right: 78
+        on left: 82 83 84 85
+        on right: 73
     integer_operations (104)
-        on left: 91
-        on right: 87
+        on left: 86
+        on right: 82
     char_operations (105)
-        on left: 92
-        on right: 88
+        on left: 87
+        on right: 83
     double_operations (106)
-        on left: 93
-        on right: 89
+        on left: 88
+        on right: 84
     boolean_operations (107)
-        on left: 94
-        on right: 90
+        on left: 89
+        on right: 85
     relational_arithmetic_operations (108)
-        on left: 95 96
-        on right: 91 92 93
+        on left: 90 91
+        on right: 86 87 88
     arithmetic_operators (109)
-        on left: 97 98 99 100 101 102
-        on right: 95
+        on left: 92 93 94 95 96 97
+        on right: 90
     relational_operators (110)
-        on left: 103 104 105 106 107 108
-        on right: 96
+        on left: 98 99 100 101 102 103
+        on right: 91
     logical_operators (111)
-        on left: 109 110 111
-        on right: 94
+        on left: 104 105 106
+        on right: 89
     access_modifier (112)
-        on left: 112 113
+        on left: 107 108
         on right: 4 10 11
     data_type (113)
-        on left: 114 115 116 117 118 119
-        on right: 9 10 11 12 17
+        on left: 109 110 111 112 113 114 115
+        on right: 9 10 11 12 17 34
     integer_expression (114)
-        on left: 120
-        on right: 35 71 91
+        on left: 116
+        on right: 66 86
     double_expression (115)
-        on left: 121
-        on right: 37 73 93
+        on left: 117
+        on right: 68 88
     boolean_expression (116)
-        on left: 122 123
-        on right: 38 74 94
-    string_expression (117)
-        on left: 124
-        on right: 39
-    none_or_newlines (118)
-        on left: 125 126
-        on right: 2 3 4 5 7 8 11 12 16 19 21 22 23 24 25 26 27 28 29 30 31 32 33 40 44 45 47 49 50 51 56 58 59 61 62 84 126
+        on left: 118 119
+        on right: 69 89
+    none_or_newlines (117)
+        on left: 120 121
+        on right: 2 3 4 5 7 8 11 12 16 19 21 22 23 24 25 26 27 28 29 30 31 32 33 35 39 40 42 44 45 46 51 53 54 56 57 79 121
 
 
 State 0
@@ -530,6 +533,7 @@ State 0
     $end           [reduce using rule 20 (statement)]
     CONST          [reduce using rule 20 (statement)]
     ID             [reduce using rule 20 (statement)]
+    ID             [reduce using rule 109 (data_type)]
     CLASS_ID       [reduce using rule 20 (statement)]
     DOUBLE_CONST   [reduce using rule 20 (statement)]
     NEWLINE        reduce using rule 20 (statement)
@@ -589,123 +593,106 @@ State 0
 
 State 1
 
-  120 integer_expression: CONST •
+  116 integer_expression: CONST •
 
-    $default  reduce using rule 120 (integer_expression)
+    $default  reduce using rule 116 (integer_expression)
 
 
 State 2
 
-   34 assignment_statement: ID • ASSIGN expression
-   40 method_call: ID • LP none_or_newlines none_or_multiple_arguments none_or_newlines RP SEMICOLON
-   76 expression: ID •
-   84 member_access: ID • DOT member_access_body none_or_newlines
+   35 method_call: ID • LP none_or_newlines none_or_multiple_arguments none_or_newlines RP SEMICOLON
+   71 expression: ID •
+   79 member_access: ID • DOT member_access_body none_or_newlines
 
-    DOT     shift, and go to state 55
-    LP      shift, and go to state 56
-    ASSIGN  shift, and go to state 57
+    DOT  shift, and go to state 55
+    LP   shift, and go to state 56
 
-    $default  reduce using rule 76 (expression)
+    $default  reduce using rule 71 (expression)
 
 
 State 3
 
-   83 object_creation: CLASS_ID • ID ASSIGN NEW CLASS_ID LP RP SEMICOLON
+   78 object_creation: CLASS_ID • ID ASSIGN NEW CLASS_ID LP RP SEMICOLON
 
-    ID  shift, and go to state 58
+    ID  shift, and go to state 57
 
 
 State 4
 
-  121 double_expression: DOUBLE_CONST •
+  117 double_expression: DOUBLE_CONST •
 
-    $default  reduce using rule 121 (double_expression)
+    $default  reduce using rule 117 (double_expression)
 
 
 State 5
 
     5 class_declaration: CLASS • CLASS_ID LCB none_or_newlines class_body none_or_newlines RCB
 
-    CLASS_ID  shift, and go to state 59
+    CLASS_ID  shift, and go to state 58
 
 
 State 6
 
-  112 access_modifier: PUBLIC •
+  107 access_modifier: PUBLIC •
 
-    $default  reduce using rule 112 (access_modifier)
+    $default  reduce using rule 107 (access_modifier)
 
 
 State 7
 
-  113 access_modifier: PRIVATE •
+  108 access_modifier: PRIVATE •
 
-    $default  reduce using rule 113 (access_modifier)
+    $default  reduce using rule 108 (access_modifier)
 
 
 State 8
 
-   35 assignment_statement: INTEGER • ID ASSIGN integer_expression
-  114 data_type: INTEGER •
+  110 data_type: INTEGER •
 
-    ID  shift, and go to state 60
-
-    ID  [reduce using rule 114 (data_type)]
+    $default  reduce using rule 110 (data_type)
 
 
 State 9
 
-   36 assignment_statement: CHAR • ID ASSIGN any_character
-  115 data_type: CHAR •
+  111 data_type: CHAR •
 
-    ID  shift, and go to state 61
-
-    ID  [reduce using rule 115 (data_type)]
+    $default  reduce using rule 111 (data_type)
 
 
 State 10
 
-   37 assignment_statement: DOUBLE • ID ASSIGN double_expression
-  116 data_type: DOUBLE •
+  112 data_type: DOUBLE •
 
-    ID  shift, and go to state 62
-
-    ID  [reduce using rule 116 (data_type)]
+    $default  reduce using rule 112 (data_type)
 
 
 State 11
 
-   38 assignment_statement: BOOLEAN • ID ASSIGN boolean_expression
-  117 data_type: BOOLEAN •
+  113 data_type: BOOLEAN •
 
-    ID  shift, and go to state 63
-
-    ID  [reduce using rule 117 (data_type)]
+    $default  reduce using rule 113 (data_type)
 
 
 State 12
 
-   39 assignment_statement: STRING • ID ASSIGN string_expression
-  118 data_type: STRING •
+  114 data_type: STRING •
 
-    ID  shift, and go to state 64
-
-    ID  [reduce using rule 118 (data_type)]
+    $default  reduce using rule 114 (data_type)
 
 
 State 13
 
-  119 data_type: VOID •
+  115 data_type: VOID •
 
-    $default  reduce using rule 119 (data_type)
+    $default  reduce using rule 115 (data_type)
 
 
 State 14
 
-   66 return_statement: RETURN • expression SEMICOLON
+   61 return_statement: RETURN • expression SEMICOLON
 
     CONST          shift, and go to state 1
-    ID             shift, and go to state 65
+    ID             shift, and go to state 2
     DOUBLE_CONST   shift, and go to state 4
     TRUE           shift, and go to state 20
     FALSE          shift, and go to state 21
@@ -713,8 +700,8 @@ State 14
     DQ_STRING_DQ   shift, and go to state 24
     LP             shift, and go to state 25
 
-    method_call         go to state 66
-    expression          go to state 67
+    method_call         go to state 59
+    expression          go to state 60
     text                go to state 41
     any_character       go to state 42
     member_access       go to state 44
@@ -730,80 +717,80 @@ State 14
 
 State 15
 
-   45 if_statement: IF • LP none_or_newlines expression none_or_newlines RP LCB none_or_newlines statement none_or_newlines RCB none_or_newlines none_or_multiple_elif none_or_newlines none_or_one_else
+   40 if_statement: IF • LP none_or_newlines expression none_or_newlines RP LCB none_or_newlines statement none_or_newlines RCB none_or_newlines none_or_multiple_elif none_or_newlines none_or_one_else
 
-    LP  shift, and go to state 68
+    LP  shift, and go to state 61
 
 
 State 16
 
-   56 switch_statement: SWITCH • LP none_or_newlines expression none_or_newlines RP LCB none_or_newlines one_or_more_cases none_or_newlines default_case none_or_newlines RCB
+   51 switch_statement: SWITCH • LP none_or_newlines expression none_or_newlines RP LCB none_or_newlines one_or_more_cases none_or_newlines default_case none_or_newlines RCB
 
-    LP  shift, and go to state 69
+    LP  shift, and go to state 62
 
 
 State 17
 
-   50 do_while_statement: DO • LCB none_or_newlines statement none_or_newlines RCB WHILE LP none_or_newlines expression none_or_newlines RP SEMICOLON
+   45 do_while_statement: DO • LCB none_or_newlines statement none_or_newlines RCB WHILE LP none_or_newlines expression none_or_newlines RP SEMICOLON
 
-    LCB  shift, and go to state 70
+    LCB  shift, and go to state 63
 
 
 State 18
 
-   51 for_statement: FOR • LP none_or_newlines first_and_third_loop_statement SEMICOLON none_or_newlines second_loop_statement SEMICOLON none_or_newlines first_and_third_loop_statement none_or_newlines RP LCB none_or_newlines statement none_or_newlines RCB
+   46 for_statement: FOR • LP none_or_newlines first_and_third_loop_statement SEMICOLON none_or_newlines second_loop_statement SEMICOLON none_or_newlines first_and_third_loop_statement none_or_newlines RP LCB none_or_newlines statement none_or_newlines RCB
 
-    LP  shift, and go to state 71
+    LP  shift, and go to state 64
 
 
 State 19
 
-   67 break_statement: BREAK • SEMICOLON
+   62 break_statement: BREAK • SEMICOLON
 
-    SEMICOLON  shift, and go to state 72
+    SEMICOLON  shift, and go to state 65
 
 
 State 20
 
-  122 boolean_expression: TRUE •
+  118 boolean_expression: TRUE •
 
-    $default  reduce using rule 122 (boolean_expression)
+    $default  reduce using rule 118 (boolean_expression)
 
 
 State 21
 
-  123 boolean_expression: FALSE •
+  119 boolean_expression: FALSE •
 
-    $default  reduce using rule 123 (boolean_expression)
+    $default  reduce using rule 119 (boolean_expression)
 
 
 State 22
 
-   68 print_statement: PRINT • LP text single_or_multiple_variables RP SEMICOLON
+   63 print_statement: PRINT • LP text single_or_multiple_variables RP SEMICOLON
 
-    LP  shift, and go to state 73
+    LP  shift, and go to state 66
 
 
 State 23
 
-   82 any_character: SQ_ANYCHAR_SQ •
+   77 any_character: SQ_ANYCHAR_SQ •
 
-    $default  reduce using rule 82 (any_character)
+    $default  reduce using rule 77 (any_character)
 
 
 State 24
 
-   81 text: DQ_STRING_DQ •
+   76 text: DQ_STRING_DQ •
 
-    $default  reduce using rule 81 (text)
+    $default  reduce using rule 76 (text)
 
 
 State 25
 
-   80 expression: LP • expression RP
+   75 expression: LP • expression RP
 
     CONST          shift, and go to state 1
-    ID             shift, and go to state 65
+    ID             shift, and go to state 2
     DOUBLE_CONST   shift, and go to state 4
     TRUE           shift, and go to state 20
     FALSE          shift, and go to state 21
@@ -811,8 +798,8 @@ State 25
     DQ_STRING_DQ   shift, and go to state 24
     LP             shift, and go to state 25
 
-    method_call         go to state 66
-    expression          go to state 74
+    method_call         go to state 59
+    expression          go to state 67
     text                go to state 41
     any_character       go to state 42
     member_access       go to state 44
@@ -830,253 +817,253 @@ State 26
 
     0 $accept: program • $end
 
-    $end  shift, and go to state 75
+    $end  shift, and go to state 68
 
 
 State 27
 
     2 program: class_declaration • none_or_newlines program
 
-    NEWLINE  shift, and go to state 76
+    NEWLINE  shift, and go to state 69
 
-    NEWLINE   [reduce using rule 125 (none_or_newlines)]
-    $default  reduce using rule 125 (none_or_newlines)
+    NEWLINE   [reduce using rule 120 (none_or_newlines)]
+    $default  reduce using rule 120 (none_or_newlines)
 
-    none_or_newlines  go to state 77
+    none_or_newlines  go to state 70
 
 
 State 28
 
    31 statement: variable_declaration • none_or_newlines statement
 
-    NEWLINE  shift, and go to state 76
+    NEWLINE  shift, and go to state 69
 
-    NEWLINE   [reduce using rule 125 (none_or_newlines)]
-    $default  reduce using rule 125 (none_or_newlines)
+    NEWLINE   [reduce using rule 120 (none_or_newlines)]
+    $default  reduce using rule 120 (none_or_newlines)
 
-    none_or_newlines  go to state 78
+    none_or_newlines  go to state 71
 
 
 State 29
 
    32 statement: method_declaration • none_or_newlines statement
 
-    NEWLINE  shift, and go to state 76
+    NEWLINE  shift, and go to state 69
 
-    NEWLINE   [reduce using rule 125 (none_or_newlines)]
-    $default  reduce using rule 125 (none_or_newlines)
+    NEWLINE   [reduce using rule 120 (none_or_newlines)]
+    $default  reduce using rule 120 (none_or_newlines)
 
-    none_or_newlines  go to state 79
+    none_or_newlines  go to state 72
 
 
 State 30
 
     3 program: statement • none_or_newlines program
 
-    NEWLINE  shift, and go to state 76
+    NEWLINE  shift, and go to state 69
 
-    NEWLINE   [reduce using rule 125 (none_or_newlines)]
-    $default  reduce using rule 125 (none_or_newlines)
+    NEWLINE   [reduce using rule 120 (none_or_newlines)]
+    $default  reduce using rule 120 (none_or_newlines)
 
-    none_or_newlines  go to state 80
+    none_or_newlines  go to state 73
 
 
 State 31
 
    21 statement: assignment_statement • SEMICOLON none_or_newlines statement
 
-    SEMICOLON  shift, and go to state 81
+    SEMICOLON  shift, and go to state 74
 
 
 State 32
 
    22 statement: method_call • none_or_newlines statement
-   77 expression: method_call •
+   72 expression: method_call •
 
-    NEWLINE  shift, and go to state 76
+    NEWLINE  shift, and go to state 69
 
-    NEWLINE    [reduce using rule 125 (none_or_newlines)]
-    SEMICOLON  reduce using rule 77 (expression)
-    $default   reduce using rule 125 (none_or_newlines)
+    NEWLINE    [reduce using rule 120 (none_or_newlines)]
+    SEMICOLON  reduce using rule 72 (expression)
+    $default   reduce using rule 120 (none_or_newlines)
 
-    none_or_newlines  go to state 82
+    none_or_newlines  go to state 75
 
 
 State 33
 
    23 statement: if_statement • none_or_newlines statement
 
-    NEWLINE  shift, and go to state 76
+    NEWLINE  shift, and go to state 69
 
-    NEWLINE   [reduce using rule 125 (none_or_newlines)]
-    $default  reduce using rule 125 (none_or_newlines)
+    NEWLINE   [reduce using rule 120 (none_or_newlines)]
+    $default  reduce using rule 120 (none_or_newlines)
 
-    none_or_newlines  go to state 83
+    none_or_newlines  go to state 76
 
 
 State 34
 
    24 statement: do_while_statement • none_or_newlines statement
 
-    NEWLINE  shift, and go to state 76
+    NEWLINE  shift, and go to state 69
 
-    NEWLINE   [reduce using rule 125 (none_or_newlines)]
-    $default  reduce using rule 125 (none_or_newlines)
+    NEWLINE   [reduce using rule 120 (none_or_newlines)]
+    $default  reduce using rule 120 (none_or_newlines)
 
-    none_or_newlines  go to state 84
+    none_or_newlines  go to state 77
 
 
 State 35
 
    25 statement: for_statement • none_or_newlines statement
 
-    NEWLINE  shift, and go to state 76
+    NEWLINE  shift, and go to state 69
 
-    NEWLINE   [reduce using rule 125 (none_or_newlines)]
-    $default  reduce using rule 125 (none_or_newlines)
+    NEWLINE   [reduce using rule 120 (none_or_newlines)]
+    $default  reduce using rule 120 (none_or_newlines)
 
-    none_or_newlines  go to state 85
+    none_or_newlines  go to state 78
 
 
 State 36
 
    26 statement: switch_statement • none_or_newlines statement
 
-    NEWLINE  shift, and go to state 76
+    NEWLINE  shift, and go to state 69
 
-    NEWLINE   [reduce using rule 125 (none_or_newlines)]
-    $default  reduce using rule 125 (none_or_newlines)
+    NEWLINE   [reduce using rule 120 (none_or_newlines)]
+    $default  reduce using rule 120 (none_or_newlines)
 
-    none_or_newlines  go to state 86
+    none_or_newlines  go to state 79
 
 
 State 37
 
    27 statement: return_statement • none_or_newlines statement
 
-    NEWLINE  shift, and go to state 76
+    NEWLINE  shift, and go to state 69
 
-    NEWLINE   [reduce using rule 125 (none_or_newlines)]
-    $default  reduce using rule 125 (none_or_newlines)
+    NEWLINE   [reduce using rule 120 (none_or_newlines)]
+    $default  reduce using rule 120 (none_or_newlines)
 
-    none_or_newlines  go to state 87
+    none_or_newlines  go to state 80
 
 
 State 38
 
    28 statement: break_statement • none_or_newlines statement
 
-    NEWLINE  shift, and go to state 76
+    NEWLINE  shift, and go to state 69
 
-    NEWLINE   [reduce using rule 125 (none_or_newlines)]
-    $default  reduce using rule 125 (none_or_newlines)
+    NEWLINE   [reduce using rule 120 (none_or_newlines)]
+    $default  reduce using rule 120 (none_or_newlines)
 
-    none_or_newlines  go to state 88
+    none_or_newlines  go to state 81
 
 
 State 39
 
    29 statement: print_statement • none_or_newlines statement
 
-    NEWLINE  shift, and go to state 76
+    NEWLINE  shift, and go to state 69
 
-    NEWLINE   [reduce using rule 125 (none_or_newlines)]
-    $default  reduce using rule 125 (none_or_newlines)
+    NEWLINE   [reduce using rule 120 (none_or_newlines)]
+    $default  reduce using rule 120 (none_or_newlines)
 
-    none_or_newlines  go to state 89
+    none_or_newlines  go to state 82
 
 
 State 40
 
    30 statement: expression • SEMICOLON none_or_newlines statement
 
-    SEMICOLON  shift, and go to state 90
+    SEMICOLON  shift, and go to state 83
 
 
 State 41
 
-   75 expression: text •
+   70 expression: text •
 
-    $default  reduce using rule 75 (expression)
+    $default  reduce using rule 70 (expression)
 
 
 State 42
 
-   72 expression: any_character •
-   92 char_operations: any_character • relational_arithmetic_operations any_character
+   67 expression: any_character •
+   87 char_operations: any_character • relational_arithmetic_operations any_character
 
-    ADD  shift, and go to state 91
-    SUB  shift, and go to state 92
-    MUL  shift, and go to state 93
-    DIV  shift, and go to state 94
-    MOD  shift, and go to state 95
-    POW  shift, and go to state 96
-    EQ   shift, and go to state 97
-    NEQ  shift, and go to state 98
-    LT   shift, and go to state 99
-    GT   shift, and go to state 100
-    LE   shift, and go to state 101
-    GE   shift, and go to state 102
+    ADD  shift, and go to state 84
+    SUB  shift, and go to state 85
+    MUL  shift, and go to state 86
+    DIV  shift, and go to state 87
+    MOD  shift, and go to state 88
+    POW  shift, and go to state 89
+    EQ   shift, and go to state 90
+    NEQ  shift, and go to state 91
+    LT   shift, and go to state 92
+    GT   shift, and go to state 93
+    LE   shift, and go to state 94
+    GE   shift, and go to state 95
 
-    $default  reduce using rule 72 (expression)
+    $default  reduce using rule 67 (expression)
 
-    relational_arithmetic_operations  go to state 103
-    arithmetic_operators              go to state 104
-    relational_operators              go to state 105
+    relational_arithmetic_operations  go to state 96
+    arithmetic_operators              go to state 97
+    relational_operators              go to state 98
 
 
 State 43
 
    33 statement: object_creation • none_or_newlines statement
 
-    NEWLINE  shift, and go to state 76
+    NEWLINE  shift, and go to state 69
 
-    NEWLINE   [reduce using rule 125 (none_or_newlines)]
-    $default  reduce using rule 125 (none_or_newlines)
+    NEWLINE   [reduce using rule 120 (none_or_newlines)]
+    $default  reduce using rule 120 (none_or_newlines)
 
-    none_or_newlines  go to state 106
+    none_or_newlines  go to state 99
 
 
 State 44
 
-   79 expression: member_access •
+   74 expression: member_access •
 
-    $default  reduce using rule 79 (expression)
+    $default  reduce using rule 74 (expression)
 
 
 State 45
 
-   78 expression: operations •
+   73 expression: operations •
 
-    $default  reduce using rule 78 (expression)
+    $default  reduce using rule 73 (expression)
 
 
 State 46
 
-   87 operations: integer_operations •
+   82 operations: integer_operations •
 
-    $default  reduce using rule 87 (operations)
+    $default  reduce using rule 82 (operations)
 
 
 State 47
 
-   88 operations: char_operations •
+   83 operations: char_operations •
 
-    $default  reduce using rule 88 (operations)
+    $default  reduce using rule 83 (operations)
 
 
 State 48
 
-   89 operations: double_operations •
+   84 operations: double_operations •
 
-    $default  reduce using rule 89 (operations)
+    $default  reduce using rule 84 (operations)
 
 
 State 49
 
-   90 operations: boolean_operations •
+   85 operations: boolean_operations •
 
-    $default  reduce using rule 90 (operations)
+    $default  reduce using rule 85 (operations)
 
 
 State 50
@@ -1085,302 +1072,230 @@ State 50
    10 variable_declaration: access_modifier • data_type ID SEMICOLON
    11 method_declaration: access_modifier • data_type ID LP none_or_newlines none_or_multiple_parameters none_or_newlines RP LCB none_or_newlines method_body none_or_newlines RCB
 
-    CLASS    shift, and go to state 107
-    INTEGER  shift, and go to state 108
-    CHAR     shift, and go to state 109
-    DOUBLE   shift, and go to state 110
-    BOOLEAN  shift, and go to state 111
-    STRING   shift, and go to state 112
+    CLASS    shift, and go to state 100
+    INTEGER  shift, and go to state 8
+    CHAR     shift, and go to state 9
+    DOUBLE   shift, and go to state 10
+    BOOLEAN  shift, and go to state 11
+    STRING   shift, and go to state 12
     VOID     shift, and go to state 13
 
-    data_type  go to state 113
+    $default  reduce using rule 109 (data_type)
+
+    data_type  go to state 101
 
 
 State 51
 
     9 variable_declaration: data_type • ID SEMICOLON
    12 method_declaration: data_type • ID LP none_or_newlines none_or_multiple_parameters none_or_newlines RP LCB none_or_newlines method_body none_or_newlines RCB
+   34 assignment_statement: data_type • ID ASSIGN expression
 
-    ID  shift, and go to state 114
+    ID  shift, and go to state 102
 
 
 State 52
 
-   71 expression: integer_expression •
-   91 integer_operations: integer_expression • relational_arithmetic_operations integer_expression
+   66 expression: integer_expression •
+   86 integer_operations: integer_expression • relational_arithmetic_operations integer_expression
 
-    ADD  shift, and go to state 91
-    SUB  shift, and go to state 92
-    MUL  shift, and go to state 93
-    DIV  shift, and go to state 94
-    MOD  shift, and go to state 95
-    POW  shift, and go to state 96
-    EQ   shift, and go to state 97
-    NEQ  shift, and go to state 98
-    LT   shift, and go to state 99
-    GT   shift, and go to state 100
-    LE   shift, and go to state 101
-    GE   shift, and go to state 102
+    ADD  shift, and go to state 84
+    SUB  shift, and go to state 85
+    MUL  shift, and go to state 86
+    DIV  shift, and go to state 87
+    MOD  shift, and go to state 88
+    POW  shift, and go to state 89
+    EQ   shift, and go to state 90
+    NEQ  shift, and go to state 91
+    LT   shift, and go to state 92
+    GT   shift, and go to state 93
+    LE   shift, and go to state 94
+    GE   shift, and go to state 95
 
-    $default  reduce using rule 71 (expression)
+    $default  reduce using rule 66 (expression)
 
-    relational_arithmetic_operations  go to state 115
-    arithmetic_operators              go to state 104
-    relational_operators              go to state 105
+    relational_arithmetic_operations  go to state 103
+    arithmetic_operators              go to state 97
+    relational_operators              go to state 98
 
 
 State 53
 
-   73 expression: double_expression •
-   93 double_operations: double_expression • relational_arithmetic_operations double_expression
+   68 expression: double_expression •
+   88 double_operations: double_expression • relational_arithmetic_operations double_expression
 
-    ADD  shift, and go to state 91
-    SUB  shift, and go to state 92
-    MUL  shift, and go to state 93
-    DIV  shift, and go to state 94
-    MOD  shift, and go to state 95
-    POW  shift, and go to state 96
-    EQ   shift, and go to state 97
-    NEQ  shift, and go to state 98
-    LT   shift, and go to state 99
-    GT   shift, and go to state 100
-    LE   shift, and go to state 101
-    GE   shift, and go to state 102
+    ADD  shift, and go to state 84
+    SUB  shift, and go to state 85
+    MUL  shift, and go to state 86
+    DIV  shift, and go to state 87
+    MOD  shift, and go to state 88
+    POW  shift, and go to state 89
+    EQ   shift, and go to state 90
+    NEQ  shift, and go to state 91
+    LT   shift, and go to state 92
+    GT   shift, and go to state 93
+    LE   shift, and go to state 94
+    GE   shift, and go to state 95
 
-    $default  reduce using rule 73 (expression)
+    $default  reduce using rule 68 (expression)
 
-    relational_arithmetic_operations  go to state 116
-    arithmetic_operators              go to state 104
-    relational_operators              go to state 105
+    relational_arithmetic_operations  go to state 104
+    arithmetic_operators              go to state 97
+    relational_operators              go to state 98
 
 
 State 54
 
-   74 expression: boolean_expression •
-   94 boolean_operations: boolean_expression • logical_operators boolean_expression
+   69 expression: boolean_expression •
+   89 boolean_operations: boolean_expression • logical_operators boolean_expression
 
-    AND  shift, and go to state 117
-    OR   shift, and go to state 118
-    NOT  shift, and go to state 119
+    AND  shift, and go to state 105
+    OR   shift, and go to state 106
+    NOT  shift, and go to state 107
 
-    $default  reduce using rule 74 (expression)
+    $default  reduce using rule 69 (expression)
 
-    logical_operators  go to state 120
+    logical_operators  go to state 108
 
 
 State 55
 
-   84 member_access: ID DOT • member_access_body none_or_newlines
+   79 member_access: ID DOT • member_access_body none_or_newlines
 
-    ID  shift, and go to state 121
+    ID  shift, and go to state 109
 
-    method_call         go to state 122
-    member_access_body  go to state 123
+    method_call         go to state 110
+    member_access_body  go to state 111
 
 
 State 56
 
-   40 method_call: ID LP • none_or_newlines none_or_multiple_arguments none_or_newlines RP SEMICOLON
+   35 method_call: ID LP • none_or_newlines none_or_multiple_arguments none_or_newlines RP SEMICOLON
 
-    NEWLINE  shift, and go to state 76
+    NEWLINE  shift, and go to state 69
 
-    NEWLINE   [reduce using rule 125 (none_or_newlines)]
-    $default  reduce using rule 125 (none_or_newlines)
+    NEWLINE   [reduce using rule 120 (none_or_newlines)]
+    $default  reduce using rule 120 (none_or_newlines)
 
-    none_or_newlines  go to state 124
+    none_or_newlines  go to state 112
 
 
 State 57
 
-   34 assignment_statement: ID ASSIGN • expression
+   78 object_creation: CLASS_ID ID • ASSIGN NEW CLASS_ID LP RP SEMICOLON
 
-    CONST          shift, and go to state 1
-    ID             shift, and go to state 65
-    DOUBLE_CONST   shift, and go to state 4
-    TRUE           shift, and go to state 20
-    FALSE          shift, and go to state 21
-    SQ_ANYCHAR_SQ  shift, and go to state 23
-    DQ_STRING_DQ   shift, and go to state 24
-    LP             shift, and go to state 25
-
-    method_call         go to state 66
-    expression          go to state 125
-    text                go to state 41
-    any_character       go to state 42
-    member_access       go to state 44
-    operations          go to state 45
-    integer_operations  go to state 46
-    char_operations     go to state 47
-    double_operations   go to state 48
-    boolean_operations  go to state 49
-    integer_expression  go to state 52
-    double_expression   go to state 53
-    boolean_expression  go to state 54
+    ASSIGN  shift, and go to state 113
 
 
 State 58
 
-   83 object_creation: CLASS_ID ID • ASSIGN NEW CLASS_ID LP RP SEMICOLON
+    5 class_declaration: CLASS CLASS_ID • LCB none_or_newlines class_body none_or_newlines RCB
 
-    ASSIGN  shift, and go to state 126
+    LCB  shift, and go to state 114
 
 
 State 59
 
-    5 class_declaration: CLASS CLASS_ID • LCB none_or_newlines class_body none_or_newlines RCB
+   72 expression: method_call •
 
-    LCB  shift, and go to state 127
+    $default  reduce using rule 72 (expression)
 
 
 State 60
 
-   35 assignment_statement: INTEGER ID • ASSIGN integer_expression
+   61 return_statement: RETURN expression • SEMICOLON
 
-    ASSIGN  shift, and go to state 128
+    SEMICOLON  shift, and go to state 115
 
 
 State 61
 
-   36 assignment_statement: CHAR ID • ASSIGN any_character
+   40 if_statement: IF LP • none_or_newlines expression none_or_newlines RP LCB none_or_newlines statement none_or_newlines RCB none_or_newlines none_or_multiple_elif none_or_newlines none_or_one_else
 
-    ASSIGN  shift, and go to state 129
+    NEWLINE  shift, and go to state 69
+
+    $default  reduce using rule 120 (none_or_newlines)
+
+    none_or_newlines  go to state 116
 
 
 State 62
 
-   37 assignment_statement: DOUBLE ID • ASSIGN double_expression
+   51 switch_statement: SWITCH LP • none_or_newlines expression none_or_newlines RP LCB none_or_newlines one_or_more_cases none_or_newlines default_case none_or_newlines RCB
 
-    ASSIGN  shift, and go to state 130
+    NEWLINE  shift, and go to state 69
+
+    $default  reduce using rule 120 (none_or_newlines)
+
+    none_or_newlines  go to state 117
 
 
 State 63
 
-   38 assignment_statement: BOOLEAN ID • ASSIGN boolean_expression
+   45 do_while_statement: DO LCB • none_or_newlines statement none_or_newlines RCB WHILE LP none_or_newlines expression none_or_newlines RP SEMICOLON
 
-    ASSIGN  shift, and go to state 131
+    NEWLINE  shift, and go to state 69
+
+    NEWLINE   [reduce using rule 120 (none_or_newlines)]
+    $default  reduce using rule 120 (none_or_newlines)
+
+    none_or_newlines  go to state 118
 
 
 State 64
 
-   39 assignment_statement: STRING ID • ASSIGN string_expression
+   46 for_statement: FOR LP • none_or_newlines first_and_third_loop_statement SEMICOLON none_or_newlines second_loop_statement SEMICOLON none_or_newlines first_and_third_loop_statement none_or_newlines RP LCB none_or_newlines statement none_or_newlines RCB
 
-    ASSIGN  shift, and go to state 132
+    NEWLINE  shift, and go to state 69
+
+    $default  reduce using rule 120 (none_or_newlines)
+
+    none_or_newlines  go to state 119
 
 
 State 65
 
-   40 method_call: ID • LP none_or_newlines none_or_multiple_arguments none_or_newlines RP SEMICOLON
-   76 expression: ID •
-   84 member_access: ID • DOT member_access_body none_or_newlines
+   62 break_statement: BREAK SEMICOLON •
 
-    DOT  shift, and go to state 55
-    LP   shift, and go to state 56
-
-    $default  reduce using rule 76 (expression)
+    $default  reduce using rule 62 (break_statement)
 
 
 State 66
 
-   77 expression: method_call •
+   63 print_statement: PRINT LP • text single_or_multiple_variables RP SEMICOLON
 
-    $default  reduce using rule 77 (expression)
+    DQ_STRING_DQ  shift, and go to state 24
+
+    text  go to state 120
 
 
 State 67
 
-   66 return_statement: RETURN expression • SEMICOLON
+   75 expression: LP expression • RP
 
-    SEMICOLON  shift, and go to state 133
+    RP  shift, and go to state 121
 
 
 State 68
-
-   45 if_statement: IF LP • none_or_newlines expression none_or_newlines RP LCB none_or_newlines statement none_or_newlines RCB none_or_newlines none_or_multiple_elif none_or_newlines none_or_one_else
-
-    NEWLINE  shift, and go to state 76
-
-    $default  reduce using rule 125 (none_or_newlines)
-
-    none_or_newlines  go to state 134
-
-
-State 69
-
-   56 switch_statement: SWITCH LP • none_or_newlines expression none_or_newlines RP LCB none_or_newlines one_or_more_cases none_or_newlines default_case none_or_newlines RCB
-
-    NEWLINE  shift, and go to state 76
-
-    $default  reduce using rule 125 (none_or_newlines)
-
-    none_or_newlines  go to state 135
-
-
-State 70
-
-   50 do_while_statement: DO LCB • none_or_newlines statement none_or_newlines RCB WHILE LP none_or_newlines expression none_or_newlines RP SEMICOLON
-
-    NEWLINE  shift, and go to state 76
-
-    NEWLINE   [reduce using rule 125 (none_or_newlines)]
-    $default  reduce using rule 125 (none_or_newlines)
-
-    none_or_newlines  go to state 136
-
-
-State 71
-
-   51 for_statement: FOR LP • none_or_newlines first_and_third_loop_statement SEMICOLON none_or_newlines second_loop_statement SEMICOLON none_or_newlines first_and_third_loop_statement none_or_newlines RP LCB none_or_newlines statement none_or_newlines RCB
-
-    NEWLINE  shift, and go to state 76
-
-    $default  reduce using rule 125 (none_or_newlines)
-
-    none_or_newlines  go to state 137
-
-
-State 72
-
-   67 break_statement: BREAK SEMICOLON •
-
-    $default  reduce using rule 67 (break_statement)
-
-
-State 73
-
-   68 print_statement: PRINT LP • text single_or_multiple_variables RP SEMICOLON
-
-    DQ_STRING_DQ  shift, and go to state 24
-
-    text  go to state 138
-
-
-State 74
-
-   80 expression: LP expression • RP
-
-    RP  shift, and go to state 139
-
-
-State 75
 
     0 $accept: program $end •
 
     $default  accept
 
 
-State 76
+State 69
 
-  126 none_or_newlines: NEWLINE • none_or_newlines
+  121 none_or_newlines: NEWLINE • none_or_newlines
 
-    NEWLINE  shift, and go to state 76
+    NEWLINE  shift, and go to state 69
 
-    NEWLINE   [reduce using rule 125 (none_or_newlines)]
-    $default  reduce using rule 125 (none_or_newlines)
+    NEWLINE   [reduce using rule 120 (none_or_newlines)]
+    $default  reduce using rule 120 (none_or_newlines)
 
-    none_or_newlines  go to state 140
+    none_or_newlines  go to state 122
 
 
-State 77
+State 70
 
     2 program: class_declaration none_or_newlines • program
 
@@ -1414,6 +1329,7 @@ State 77
     $end           [reduce using rule 20 (statement)]
     CONST          [reduce using rule 20 (statement)]
     ID             [reduce using rule 20 (statement)]
+    ID             [reduce using rule 109 (data_type)]
     CLASS_ID       [reduce using rule 20 (statement)]
     DOUBLE_CONST   [reduce using rule 20 (statement)]
     NEWLINE        reduce using rule 20 (statement)
@@ -1440,7 +1356,7 @@ State 77
     LP             [reduce using rule 20 (statement)]
     $default       reduce using rule 1 (program)
 
-    program               go to state 141
+    program               go to state 123
     class_declaration     go to state 27
     variable_declaration  go to state 28
     method_declaration    go to state 29
@@ -1471,7 +1387,7 @@ State 77
     boolean_expression    go to state 54
 
 
-State 78
+State 71
 
    31 statement: variable_declaration none_or_newlines • statement
 
@@ -1502,6 +1418,7 @@ State 78
 
     CONST          [reduce using rule 20 (statement)]
     ID             [reduce using rule 20 (statement)]
+    ID             [reduce using rule 109 (data_type)]
     CLASS_ID       [reduce using rule 20 (statement)]
     DOUBLE_CONST   [reduce using rule 20 (statement)]
     PUBLIC         [reduce using rule 20 (statement)]
@@ -1528,7 +1445,7 @@ State 78
 
     variable_declaration  go to state 28
     method_declaration    go to state 29
-    statement             go to state 142
+    statement             go to state 124
     assignment_statement  go to state 31
     method_call           go to state 32
     if_statement          go to state 33
@@ -1548,14 +1465,14 @@ State 78
     char_operations       go to state 47
     double_operations     go to state 48
     boolean_operations    go to state 49
-    access_modifier       go to state 143
+    access_modifier       go to state 125
     data_type             go to state 51
     integer_expression    go to state 52
     double_expression     go to state 53
     boolean_expression    go to state 54
 
 
-State 79
+State 72
 
    32 statement: method_declaration none_or_newlines • statement
 
@@ -1586,6 +1503,7 @@ State 79
 
     CONST          [reduce using rule 20 (statement)]
     ID             [reduce using rule 20 (statement)]
+    ID             [reduce using rule 109 (data_type)]
     CLASS_ID       [reduce using rule 20 (statement)]
     DOUBLE_CONST   [reduce using rule 20 (statement)]
     PUBLIC         [reduce using rule 20 (statement)]
@@ -1612,7 +1530,7 @@ State 79
 
     variable_declaration  go to state 28
     method_declaration    go to state 29
-    statement             go to state 144
+    statement             go to state 126
     assignment_statement  go to state 31
     method_call           go to state 32
     if_statement          go to state 33
@@ -1632,14 +1550,14 @@ State 79
     char_operations       go to state 47
     double_operations     go to state 48
     boolean_operations    go to state 49
-    access_modifier       go to state 143
+    access_modifier       go to state 125
     data_type             go to state 51
     integer_expression    go to state 52
     double_expression     go to state 53
     boolean_expression    go to state 54
 
 
-State 80
+State 73
 
     3 program: statement none_or_newlines • program
 
@@ -1673,6 +1591,7 @@ State 80
     $end           [reduce using rule 20 (statement)]
     CONST          [reduce using rule 20 (statement)]
     ID             [reduce using rule 20 (statement)]
+    ID             [reduce using rule 109 (data_type)]
     CLASS_ID       [reduce using rule 20 (statement)]
     DOUBLE_CONST   [reduce using rule 20 (statement)]
     NEWLINE        reduce using rule 20 (statement)
@@ -1699,7 +1618,7 @@ State 80
     LP             [reduce using rule 20 (statement)]
     $default       reduce using rule 1 (program)
 
-    program               go to state 145
+    program               go to state 127
     class_declaration     go to state 27
     variable_declaration  go to state 28
     method_declaration    go to state 29
@@ -1730,19 +1649,19 @@ State 80
     boolean_expression    go to state 54
 
 
-State 81
+State 74
 
    21 statement: assignment_statement SEMICOLON • none_or_newlines statement
 
-    NEWLINE  shift, and go to state 76
+    NEWLINE  shift, and go to state 69
 
-    NEWLINE   [reduce using rule 125 (none_or_newlines)]
-    $default  reduce using rule 125 (none_or_newlines)
+    NEWLINE   [reduce using rule 120 (none_or_newlines)]
+    $default  reduce using rule 120 (none_or_newlines)
 
-    none_or_newlines  go to state 146
+    none_or_newlines  go to state 128
 
 
-State 82
+State 75
 
    22 statement: method_call none_or_newlines • statement
 
@@ -1773,6 +1692,7 @@ State 82
 
     CONST          [reduce using rule 20 (statement)]
     ID             [reduce using rule 20 (statement)]
+    ID             [reduce using rule 109 (data_type)]
     CLASS_ID       [reduce using rule 20 (statement)]
     DOUBLE_CONST   [reduce using rule 20 (statement)]
     PUBLIC         [reduce using rule 20 (statement)]
@@ -1799,7 +1719,7 @@ State 82
 
     variable_declaration  go to state 28
     method_declaration    go to state 29
-    statement             go to state 147
+    statement             go to state 129
     assignment_statement  go to state 31
     method_call           go to state 32
     if_statement          go to state 33
@@ -1819,14 +1739,14 @@ State 82
     char_operations       go to state 47
     double_operations     go to state 48
     boolean_operations    go to state 49
-    access_modifier       go to state 143
+    access_modifier       go to state 125
     data_type             go to state 51
     integer_expression    go to state 52
     double_expression     go to state 53
     boolean_expression    go to state 54
 
 
-State 83
+State 76
 
    23 statement: if_statement none_or_newlines • statement
 
@@ -1857,6 +1777,7 @@ State 83
 
     CONST          [reduce using rule 20 (statement)]
     ID             [reduce using rule 20 (statement)]
+    ID             [reduce using rule 109 (data_type)]
     CLASS_ID       [reduce using rule 20 (statement)]
     DOUBLE_CONST   [reduce using rule 20 (statement)]
     PUBLIC         [reduce using rule 20 (statement)]
@@ -1883,7 +1804,7 @@ State 83
 
     variable_declaration  go to state 28
     method_declaration    go to state 29
-    statement             go to state 148
+    statement             go to state 130
     assignment_statement  go to state 31
     method_call           go to state 32
     if_statement          go to state 33
@@ -1903,14 +1824,14 @@ State 83
     char_operations       go to state 47
     double_operations     go to state 48
     boolean_operations    go to state 49
-    access_modifier       go to state 143
+    access_modifier       go to state 125
     data_type             go to state 51
     integer_expression    go to state 52
     double_expression     go to state 53
     boolean_expression    go to state 54
 
 
-State 84
+State 77
 
    24 statement: do_while_statement none_or_newlines • statement
 
@@ -1941,6 +1862,7 @@ State 84
 
     CONST          [reduce using rule 20 (statement)]
     ID             [reduce using rule 20 (statement)]
+    ID             [reduce using rule 109 (data_type)]
     CLASS_ID       [reduce using rule 20 (statement)]
     DOUBLE_CONST   [reduce using rule 20 (statement)]
     PUBLIC         [reduce using rule 20 (statement)]
@@ -1967,7 +1889,7 @@ State 84
 
     variable_declaration  go to state 28
     method_declaration    go to state 29
-    statement             go to state 149
+    statement             go to state 131
     assignment_statement  go to state 31
     method_call           go to state 32
     if_statement          go to state 33
@@ -1987,14 +1909,14 @@ State 84
     char_operations       go to state 47
     double_operations     go to state 48
     boolean_operations    go to state 49
-    access_modifier       go to state 143
+    access_modifier       go to state 125
     data_type             go to state 51
     integer_expression    go to state 52
     double_expression     go to state 53
     boolean_expression    go to state 54
 
 
-State 85
+State 78
 
    25 statement: for_statement none_or_newlines • statement
 
@@ -2025,6 +1947,7 @@ State 85
 
     CONST          [reduce using rule 20 (statement)]
     ID             [reduce using rule 20 (statement)]
+    ID             [reduce using rule 109 (data_type)]
     CLASS_ID       [reduce using rule 20 (statement)]
     DOUBLE_CONST   [reduce using rule 20 (statement)]
     PUBLIC         [reduce using rule 20 (statement)]
@@ -2051,7 +1974,7 @@ State 85
 
     variable_declaration  go to state 28
     method_declaration    go to state 29
-    statement             go to state 150
+    statement             go to state 132
     assignment_statement  go to state 31
     method_call           go to state 32
     if_statement          go to state 33
@@ -2071,14 +1994,14 @@ State 85
     char_operations       go to state 47
     double_operations     go to state 48
     boolean_operations    go to state 49
-    access_modifier       go to state 143
+    access_modifier       go to state 125
     data_type             go to state 51
     integer_expression    go to state 52
     double_expression     go to state 53
     boolean_expression    go to state 54
 
 
-State 86
+State 79
 
    26 statement: switch_statement none_or_newlines • statement
 
@@ -2109,6 +2032,7 @@ State 86
 
     CONST          [reduce using rule 20 (statement)]
     ID             [reduce using rule 20 (statement)]
+    ID             [reduce using rule 109 (data_type)]
     CLASS_ID       [reduce using rule 20 (statement)]
     DOUBLE_CONST   [reduce using rule 20 (statement)]
     PUBLIC         [reduce using rule 20 (statement)]
@@ -2135,7 +2059,7 @@ State 86
 
     variable_declaration  go to state 28
     method_declaration    go to state 29
-    statement             go to state 151
+    statement             go to state 133
     assignment_statement  go to state 31
     method_call           go to state 32
     if_statement          go to state 33
@@ -2155,14 +2079,14 @@ State 86
     char_operations       go to state 47
     double_operations     go to state 48
     boolean_operations    go to state 49
-    access_modifier       go to state 143
+    access_modifier       go to state 125
     data_type             go to state 51
     integer_expression    go to state 52
     double_expression     go to state 53
     boolean_expression    go to state 54
 
 
-State 87
+State 80
 
    27 statement: return_statement none_or_newlines • statement
 
@@ -2193,6 +2117,7 @@ State 87
 
     CONST          [reduce using rule 20 (statement)]
     ID             [reduce using rule 20 (statement)]
+    ID             [reduce using rule 109 (data_type)]
     CLASS_ID       [reduce using rule 20 (statement)]
     DOUBLE_CONST   [reduce using rule 20 (statement)]
     PUBLIC         [reduce using rule 20 (statement)]
@@ -2219,7 +2144,7 @@ State 87
 
     variable_declaration  go to state 28
     method_declaration    go to state 29
-    statement             go to state 152
+    statement             go to state 134
     assignment_statement  go to state 31
     method_call           go to state 32
     if_statement          go to state 33
@@ -2239,14 +2164,14 @@ State 87
     char_operations       go to state 47
     double_operations     go to state 48
     boolean_operations    go to state 49
-    access_modifier       go to state 143
+    access_modifier       go to state 125
     data_type             go to state 51
     integer_expression    go to state 52
     double_expression     go to state 53
     boolean_expression    go to state 54
 
 
-State 88
+State 81
 
    28 statement: break_statement none_or_newlines • statement
 
@@ -2277,6 +2202,7 @@ State 88
 
     CONST          [reduce using rule 20 (statement)]
     ID             [reduce using rule 20 (statement)]
+    ID             [reduce using rule 109 (data_type)]
     CLASS_ID       [reduce using rule 20 (statement)]
     DOUBLE_CONST   [reduce using rule 20 (statement)]
     PUBLIC         [reduce using rule 20 (statement)]
@@ -2303,7 +2229,7 @@ State 88
 
     variable_declaration  go to state 28
     method_declaration    go to state 29
-    statement             go to state 153
+    statement             go to state 135
     assignment_statement  go to state 31
     method_call           go to state 32
     if_statement          go to state 33
@@ -2323,14 +2249,14 @@ State 88
     char_operations       go to state 47
     double_operations     go to state 48
     boolean_operations    go to state 49
-    access_modifier       go to state 143
+    access_modifier       go to state 125
     data_type             go to state 51
     integer_expression    go to state 52
     double_expression     go to state 53
     boolean_expression    go to state 54
 
 
-State 89
+State 82
 
    29 statement: print_statement none_or_newlines • statement
 
@@ -2361,6 +2287,7 @@ State 89
 
     CONST          [reduce using rule 20 (statement)]
     ID             [reduce using rule 20 (statement)]
+    ID             [reduce using rule 109 (data_type)]
     CLASS_ID       [reduce using rule 20 (statement)]
     DOUBLE_CONST   [reduce using rule 20 (statement)]
     PUBLIC         [reduce using rule 20 (statement)]
@@ -2387,7 +2314,7 @@ State 89
 
     variable_declaration  go to state 28
     method_declaration    go to state 29
-    statement             go to state 154
+    statement             go to state 136
     assignment_statement  go to state 31
     method_call           go to state 32
     if_statement          go to state 33
@@ -2407,133 +2334,133 @@ State 89
     char_operations       go to state 47
     double_operations     go to state 48
     boolean_operations    go to state 49
-    access_modifier       go to state 143
+    access_modifier       go to state 125
     data_type             go to state 51
     integer_expression    go to state 52
     double_expression     go to state 53
     boolean_expression    go to state 54
 
 
-State 90
+State 83
 
    30 statement: expression SEMICOLON • none_or_newlines statement
 
-    NEWLINE  shift, and go to state 76
+    NEWLINE  shift, and go to state 69
 
-    NEWLINE   [reduce using rule 125 (none_or_newlines)]
-    $default  reduce using rule 125 (none_or_newlines)
+    NEWLINE   [reduce using rule 120 (none_or_newlines)]
+    $default  reduce using rule 120 (none_or_newlines)
 
-    none_or_newlines  go to state 155
+    none_or_newlines  go to state 137
 
 
-State 91
+State 84
 
-   97 arithmetic_operators: ADD •
+   92 arithmetic_operators: ADD •
+
+    $default  reduce using rule 92 (arithmetic_operators)
+
+
+State 85
+
+   93 arithmetic_operators: SUB •
+
+    $default  reduce using rule 93 (arithmetic_operators)
+
+
+State 86
+
+   94 arithmetic_operators: MUL •
+
+    $default  reduce using rule 94 (arithmetic_operators)
+
+
+State 87
+
+   95 arithmetic_operators: DIV •
+
+    $default  reduce using rule 95 (arithmetic_operators)
+
+
+State 88
+
+   96 arithmetic_operators: MOD •
+
+    $default  reduce using rule 96 (arithmetic_operators)
+
+
+State 89
+
+   97 arithmetic_operators: POW •
 
     $default  reduce using rule 97 (arithmetic_operators)
 
 
+State 90
+
+   98 relational_operators: EQ •
+
+    $default  reduce using rule 98 (relational_operators)
+
+
+State 91
+
+   99 relational_operators: NEQ •
+
+    $default  reduce using rule 99 (relational_operators)
+
+
 State 92
 
-   98 arithmetic_operators: SUB •
+  100 relational_operators: LT •
 
-    $default  reduce using rule 98 (arithmetic_operators)
+    $default  reduce using rule 100 (relational_operators)
 
 
 State 93
 
-   99 arithmetic_operators: MUL •
+  101 relational_operators: GT •
 
-    $default  reduce using rule 99 (arithmetic_operators)
+    $default  reduce using rule 101 (relational_operators)
 
 
 State 94
 
-  100 arithmetic_operators: DIV •
+  102 relational_operators: LE •
 
-    $default  reduce using rule 100 (arithmetic_operators)
+    $default  reduce using rule 102 (relational_operators)
 
 
 State 95
 
-  101 arithmetic_operators: MOD •
-
-    $default  reduce using rule 101 (arithmetic_operators)
-
-
-State 96
-
-  102 arithmetic_operators: POW •
-
-    $default  reduce using rule 102 (arithmetic_operators)
-
-
-State 97
-
-  103 relational_operators: EQ •
+  103 relational_operators: GE •
 
     $default  reduce using rule 103 (relational_operators)
 
 
-State 98
+State 96
 
-  104 relational_operators: NEQ •
-
-    $default  reduce using rule 104 (relational_operators)
-
-
-State 99
-
-  105 relational_operators: LT •
-
-    $default  reduce using rule 105 (relational_operators)
-
-
-State 100
-
-  106 relational_operators: GT •
-
-    $default  reduce using rule 106 (relational_operators)
-
-
-State 101
-
-  107 relational_operators: LE •
-
-    $default  reduce using rule 107 (relational_operators)
-
-
-State 102
-
-  108 relational_operators: GE •
-
-    $default  reduce using rule 108 (relational_operators)
-
-
-State 103
-
-   92 char_operations: any_character relational_arithmetic_operations • any_character
+   87 char_operations: any_character relational_arithmetic_operations • any_character
 
     SQ_ANYCHAR_SQ  shift, and go to state 23
 
-    any_character  go to state 156
+    any_character  go to state 138
 
 
-State 104
+State 97
 
-   95 relational_arithmetic_operations: arithmetic_operators •
+   90 relational_arithmetic_operations: arithmetic_operators •
 
-    $default  reduce using rule 95 (relational_arithmetic_operations)
-
-
-State 105
-
-   96 relational_arithmetic_operations: relational_operators •
-
-    $default  reduce using rule 96 (relational_arithmetic_operations)
+    $default  reduce using rule 90 (relational_arithmetic_operations)
 
 
-State 106
+State 98
+
+   91 relational_arithmetic_operations: relational_operators •
+
+    $default  reduce using rule 91 (relational_arithmetic_operations)
+
+
+State 99
 
    33 statement: object_creation none_or_newlines • statement
 
@@ -2564,6 +2491,7 @@ State 106
 
     CONST          [reduce using rule 20 (statement)]
     ID             [reduce using rule 20 (statement)]
+    ID             [reduce using rule 109 (data_type)]
     CLASS_ID       [reduce using rule 20 (statement)]
     DOUBLE_CONST   [reduce using rule 20 (statement)]
     PUBLIC         [reduce using rule 20 (statement)]
@@ -2590,7 +2518,7 @@ State 106
 
     variable_declaration  go to state 28
     method_declaration    go to state 29
-    statement             go to state 157
+    statement             go to state 139
     assignment_statement  go to state 31
     method_call           go to state 32
     if_statement          go to state 33
@@ -2610,155 +2538,122 @@ State 106
     char_operations       go to state 47
     double_operations     go to state 48
     boolean_operations    go to state 49
-    access_modifier       go to state 143
+    access_modifier       go to state 125
     data_type             go to state 51
     integer_expression    go to state 52
     double_expression     go to state 53
     boolean_expression    go to state 54
 
 
-State 107
+State 100
 
     4 class_declaration: access_modifier CLASS • CLASS_ID LCB none_or_newlines class_body none_or_newlines RCB
 
-    CLASS_ID  shift, and go to state 158
+    CLASS_ID  shift, and go to state 140
 
 
-State 108
-
-  114 data_type: INTEGER •
-
-    $default  reduce using rule 114 (data_type)
-
-
-State 109
-
-  115 data_type: CHAR •
-
-    $default  reduce using rule 115 (data_type)
-
-
-State 110
-
-  116 data_type: DOUBLE •
-
-    $default  reduce using rule 116 (data_type)
-
-
-State 111
-
-  117 data_type: BOOLEAN •
-
-    $default  reduce using rule 117 (data_type)
-
-
-State 112
-
-  118 data_type: STRING •
-
-    $default  reduce using rule 118 (data_type)
-
-
-State 113
+State 101
 
    10 variable_declaration: access_modifier data_type • ID SEMICOLON
    11 method_declaration: access_modifier data_type • ID LP none_or_newlines none_or_multiple_parameters none_or_newlines RP LCB none_or_newlines method_body none_or_newlines RCB
 
-    ID  shift, and go to state 159
+    ID  shift, and go to state 141
 
 
-State 114
+State 102
 
     9 variable_declaration: data_type ID • SEMICOLON
    12 method_declaration: data_type ID • LP none_or_newlines none_or_multiple_parameters none_or_newlines RP LCB none_or_newlines method_body none_or_newlines RCB
+   34 assignment_statement: data_type ID • ASSIGN expression
 
-    SEMICOLON  shift, and go to state 160
-    LP         shift, and go to state 161
+    SEMICOLON  shift, and go to state 142
+    LP         shift, and go to state 143
+    ASSIGN     shift, and go to state 144
 
 
-State 115
+State 103
 
-   91 integer_operations: integer_expression relational_arithmetic_operations • integer_expression
+   86 integer_operations: integer_expression relational_arithmetic_operations • integer_expression
 
     CONST  shift, and go to state 1
 
-    integer_expression  go to state 162
+    integer_expression  go to state 145
 
 
-State 116
+State 104
 
-   93 double_operations: double_expression relational_arithmetic_operations • double_expression
+   88 double_operations: double_expression relational_arithmetic_operations • double_expression
 
     DOUBLE_CONST  shift, and go to state 4
 
-    double_expression  go to state 163
+    double_expression  go to state 146
 
 
-State 117
+State 105
 
-  109 logical_operators: AND •
+  104 logical_operators: AND •
 
-    $default  reduce using rule 109 (logical_operators)
-
-
-State 118
-
-  110 logical_operators: OR •
-
-    $default  reduce using rule 110 (logical_operators)
+    $default  reduce using rule 104 (logical_operators)
 
 
-State 119
+State 106
 
-  111 logical_operators: NOT •
+  105 logical_operators: OR •
 
-    $default  reduce using rule 111 (logical_operators)
+    $default  reduce using rule 105 (logical_operators)
 
 
-State 120
+State 107
 
-   94 boolean_operations: boolean_expression logical_operators • boolean_expression
+  106 logical_operators: NOT •
+
+    $default  reduce using rule 106 (logical_operators)
+
+
+State 108
+
+   89 boolean_operations: boolean_expression logical_operators • boolean_expression
 
     TRUE   shift, and go to state 20
     FALSE  shift, and go to state 21
 
-    boolean_expression  go to state 164
+    boolean_expression  go to state 147
 
 
-State 121
+State 109
 
-   40 method_call: ID • LP none_or_newlines none_or_multiple_arguments none_or_newlines RP SEMICOLON
-   85 member_access_body: ID • SEMICOLON
+   35 method_call: ID • LP none_or_newlines none_or_multiple_arguments none_or_newlines RP SEMICOLON
+   80 member_access_body: ID • SEMICOLON
 
-    SEMICOLON  shift, and go to state 165
+    SEMICOLON  shift, and go to state 148
     LP         shift, and go to state 56
 
 
-State 122
+State 110
 
-   86 member_access_body: method_call •
+   81 member_access_body: method_call •
 
-    $default  reduce using rule 86 (member_access_body)
-
-
-State 123
-
-   84 member_access: ID DOT member_access_body • none_or_newlines
-
-    NEWLINE  shift, and go to state 76
-
-    NEWLINE   [reduce using rule 125 (none_or_newlines)]
-    $default  reduce using rule 125 (none_or_newlines)
-
-    none_or_newlines  go to state 166
+    $default  reduce using rule 81 (member_access_body)
 
 
-State 124
+State 111
 
-   40 method_call: ID LP none_or_newlines • none_or_multiple_arguments none_or_newlines RP SEMICOLON
+   79 member_access: ID DOT member_access_body • none_or_newlines
+
+    NEWLINE  shift, and go to state 69
+
+    NEWLINE   [reduce using rule 120 (none_or_newlines)]
+    $default  reduce using rule 120 (none_or_newlines)
+
+    none_or_newlines  go to state 149
+
+
+State 112
+
+   35 method_call: ID LP none_or_newlines • none_or_multiple_arguments none_or_newlines RP SEMICOLON
 
     CONST          shift, and go to state 1
-    ID             shift, and go to state 65
+    ID             shift, and go to state 2
     DOUBLE_CONST   shift, and go to state 4
     TRUE           shift, and go to state 20
     FALSE          shift, and go to state 21
@@ -2766,11 +2661,11 @@ State 124
     DQ_STRING_DQ   shift, and go to state 24
     LP             shift, and go to state 25
 
-    $default  reduce using rule 41 (none_or_multiple_arguments)
+    $default  reduce using rule 36 (none_or_multiple_arguments)
 
-    method_call                 go to state 66
-    none_or_multiple_arguments  go to state 167
-    expression                  go to state 168
+    method_call                 go to state 59
+    none_or_multiple_arguments  go to state 150
+    expression                  go to state 151
     text                        go to state 41
     any_character               go to state 42
     member_access               go to state 44
@@ -2784,92 +2679,38 @@ State 124
     boolean_expression          go to state 54
 
 
-State 125
+State 113
 
-   34 assignment_statement: ID ASSIGN expression •
+   78 object_creation: CLASS_ID ID ASSIGN • NEW CLASS_ID LP RP SEMICOLON
 
-    $default  reduce using rule 34 (assignment_statement)
-
-
-State 126
-
-   83 object_creation: CLASS_ID ID ASSIGN • NEW CLASS_ID LP RP SEMICOLON
-
-    NEW  shift, and go to state 169
+    NEW  shift, and go to state 152
 
 
-State 127
+State 114
 
     5 class_declaration: CLASS CLASS_ID LCB • none_or_newlines class_body none_or_newlines RCB
 
-    NEWLINE  shift, and go to state 76
+    NEWLINE  shift, and go to state 69
 
-    NEWLINE   [reduce using rule 125 (none_or_newlines)]
-    $default  reduce using rule 125 (none_or_newlines)
+    NEWLINE   [reduce using rule 120 (none_or_newlines)]
+    $default  reduce using rule 120 (none_or_newlines)
 
-    none_or_newlines  go to state 170
-
-
-State 128
-
-   35 assignment_statement: INTEGER ID ASSIGN • integer_expression
-
-    CONST  shift, and go to state 1
-
-    integer_expression  go to state 171
+    none_or_newlines  go to state 153
 
 
-State 129
+State 115
 
-   36 assignment_statement: CHAR ID ASSIGN • any_character
+   61 return_statement: RETURN expression SEMICOLON •
 
-    SQ_ANYCHAR_SQ  shift, and go to state 23
-
-    any_character  go to state 172
+    $default  reduce using rule 61 (return_statement)
 
 
-State 130
+State 116
 
-   37 assignment_statement: DOUBLE ID ASSIGN • double_expression
-
-    DOUBLE_CONST  shift, and go to state 4
-
-    double_expression  go to state 173
-
-
-State 131
-
-   38 assignment_statement: BOOLEAN ID ASSIGN • boolean_expression
-
-    TRUE   shift, and go to state 20
-    FALSE  shift, and go to state 21
-
-    boolean_expression  go to state 174
-
-
-State 132
-
-   39 assignment_statement: STRING ID ASSIGN • string_expression
-
-    DQ_STRING_DQ  shift, and go to state 24
-
-    text               go to state 175
-    string_expression  go to state 176
-
-
-State 133
-
-   66 return_statement: RETURN expression SEMICOLON •
-
-    $default  reduce using rule 66 (return_statement)
-
-
-State 134
-
-   45 if_statement: IF LP none_or_newlines • expression none_or_newlines RP LCB none_or_newlines statement none_or_newlines RCB none_or_newlines none_or_multiple_elif none_or_newlines none_or_one_else
+   40 if_statement: IF LP none_or_newlines • expression none_or_newlines RP LCB none_or_newlines statement none_or_newlines RCB none_or_newlines none_or_multiple_elif none_or_newlines none_or_one_else
 
     CONST          shift, and go to state 1
-    ID             shift, and go to state 65
+    ID             shift, and go to state 2
     DOUBLE_CONST   shift, and go to state 4
     TRUE           shift, and go to state 20
     FALSE          shift, and go to state 21
@@ -2877,8 +2718,8 @@ State 134
     DQ_STRING_DQ   shift, and go to state 24
     LP             shift, and go to state 25
 
-    method_call         go to state 66
-    expression          go to state 177
+    method_call         go to state 59
+    expression          go to state 154
     text                go to state 41
     any_character       go to state 42
     member_access       go to state 44
@@ -2892,12 +2733,12 @@ State 134
     boolean_expression  go to state 54
 
 
-State 135
+State 117
 
-   56 switch_statement: SWITCH LP none_or_newlines • expression none_or_newlines RP LCB none_or_newlines one_or_more_cases none_or_newlines default_case none_or_newlines RCB
+   51 switch_statement: SWITCH LP none_or_newlines • expression none_or_newlines RP LCB none_or_newlines one_or_more_cases none_or_newlines default_case none_or_newlines RCB
 
     CONST          shift, and go to state 1
-    ID             shift, and go to state 65
+    ID             shift, and go to state 2
     DOUBLE_CONST   shift, and go to state 4
     TRUE           shift, and go to state 20
     FALSE          shift, and go to state 21
@@ -2905,8 +2746,8 @@ State 135
     DQ_STRING_DQ   shift, and go to state 24
     LP             shift, and go to state 25
 
-    method_call         go to state 66
-    expression          go to state 178
+    method_call         go to state 59
+    expression          go to state 155
     text                go to state 41
     any_character       go to state 42
     member_access       go to state 44
@@ -2920,9 +2761,9 @@ State 135
     boolean_expression  go to state 54
 
 
-State 136
+State 118
 
-   50 do_while_statement: DO LCB none_or_newlines • statement none_or_newlines RCB WHILE LP none_or_newlines expression none_or_newlines RP SEMICOLON
+   45 do_while_statement: DO LCB none_or_newlines • statement none_or_newlines RCB WHILE LP none_or_newlines expression none_or_newlines RP SEMICOLON
 
     CONST          shift, and go to state 1
     ID             shift, and go to state 2
@@ -2949,11 +2790,12 @@ State 136
     DQ_STRING_DQ   shift, and go to state 24
     LP             shift, and go to state 25
 
+    ID        [reduce using rule 109 (data_type)]
     $default  reduce using rule 20 (statement)
 
     variable_declaration  go to state 28
     method_declaration    go to state 29
-    statement             go to state 179
+    statement             go to state 156
     assignment_statement  go to state 31
     method_call           go to state 32
     if_statement          go to state 33
@@ -2973,99 +2815,103 @@ State 136
     char_operations       go to state 47
     double_operations     go to state 48
     boolean_operations    go to state 49
-    access_modifier       go to state 143
+    access_modifier       go to state 125
     data_type             go to state 51
     integer_expression    go to state 52
     double_expression     go to state 53
     boolean_expression    go to state 54
 
 
-State 137
+State 119
 
-   51 for_statement: FOR LP none_or_newlines • first_and_third_loop_statement SEMICOLON none_or_newlines second_loop_statement SEMICOLON none_or_newlines first_and_third_loop_statement none_or_newlines RP LCB none_or_newlines statement none_or_newlines RCB
+   46 for_statement: FOR LP none_or_newlines • first_and_third_loop_statement SEMICOLON none_or_newlines second_loop_statement SEMICOLON none_or_newlines first_and_third_loop_statement none_or_newlines RP LCB none_or_newlines statement none_or_newlines RCB
 
-    ID       shift, and go to state 180
-    INTEGER  shift, and go to state 181
-    CHAR     shift, and go to state 182
-    DOUBLE   shift, and go to state 183
-    BOOLEAN  shift, and go to state 184
-    STRING   shift, and go to state 185
+    INTEGER  shift, and go to state 8
+    CHAR     shift, and go to state 9
+    DOUBLE   shift, and go to state 10
+    BOOLEAN  shift, and go to state 11
+    STRING   shift, and go to state 12
+    VOID     shift, and go to state 13
 
-    $default  reduce using rule 52 (first_and_third_loop_statement)
+    ID        reduce using rule 109 (data_type)
+    $default  reduce using rule 47 (first_and_third_loop_statement)
 
-    assignment_statement            go to state 186
-    first_and_third_loop_statement  go to state 187
-
-
-State 138
-
-   68 print_statement: PRINT LP text • single_or_multiple_variables RP SEMICOLON
-
-    COMMA  shift, and go to state 188
-
-    $default  reduce using rule 69 (single_or_multiple_variables)
-
-    single_or_multiple_variables  go to state 189
+    assignment_statement            go to state 157
+    first_and_third_loop_statement  go to state 158
+    data_type                       go to state 159
 
 
-State 139
+State 120
 
-   80 expression: LP expression RP •
+   63 print_statement: PRINT LP text • single_or_multiple_variables RP SEMICOLON
 
-    $default  reduce using rule 80 (expression)
+    COMMA  shift, and go to state 160
 
+    $default  reduce using rule 64 (single_or_multiple_variables)
 
-State 140
-
-  126 none_or_newlines: NEWLINE none_or_newlines •
-
-    $default  reduce using rule 126 (none_or_newlines)
+    single_or_multiple_variables  go to state 161
 
 
-State 141
+State 121
+
+   75 expression: LP expression RP •
+
+    $default  reduce using rule 75 (expression)
+
+
+State 122
+
+  121 none_or_newlines: NEWLINE none_or_newlines •
+
+    $default  reduce using rule 121 (none_or_newlines)
+
+
+State 123
 
     2 program: class_declaration none_or_newlines program •
 
     $default  reduce using rule 2 (program)
 
 
-State 142
+State 124
 
    31 statement: variable_declaration none_or_newlines statement •
 
     $default  reduce using rule 31 (statement)
 
 
-State 143
+State 125
 
    10 variable_declaration: access_modifier • data_type ID SEMICOLON
    11 method_declaration: access_modifier • data_type ID LP none_or_newlines none_or_multiple_parameters none_or_newlines RP LCB none_or_newlines method_body none_or_newlines RCB
 
-    INTEGER  shift, and go to state 108
-    CHAR     shift, and go to state 109
-    DOUBLE   shift, and go to state 110
-    BOOLEAN  shift, and go to state 111
-    STRING   shift, and go to state 112
+    INTEGER  shift, and go to state 8
+    CHAR     shift, and go to state 9
+    DOUBLE   shift, and go to state 10
+    BOOLEAN  shift, and go to state 11
+    STRING   shift, and go to state 12
     VOID     shift, and go to state 13
 
-    data_type  go to state 113
+    $default  reduce using rule 109 (data_type)
+
+    data_type  go to state 101
 
 
-State 144
+State 126
 
    32 statement: method_declaration none_or_newlines statement •
 
     $default  reduce using rule 32 (statement)
 
 
-State 145
+State 127
 
     3 program: statement none_or_newlines program •
 
     $default  reduce using rule 3 (program)
 
 
-State 146
+State 128
 
    21 statement: assignment_statement SEMICOLON none_or_newlines • statement
 
@@ -3096,6 +2942,7 @@ State 146
 
     CONST          [reduce using rule 20 (statement)]
     ID             [reduce using rule 20 (statement)]
+    ID             [reduce using rule 109 (data_type)]
     CLASS_ID       [reduce using rule 20 (statement)]
     DOUBLE_CONST   [reduce using rule 20 (statement)]
     PUBLIC         [reduce using rule 20 (statement)]
@@ -3122,7 +2969,7 @@ State 146
 
     variable_declaration  go to state 28
     method_declaration    go to state 29
-    statement             go to state 190
+    statement             go to state 162
     assignment_statement  go to state 31
     method_call           go to state 32
     if_statement          go to state 33
@@ -3142,70 +2989,70 @@ State 146
     char_operations       go to state 47
     double_operations     go to state 48
     boolean_operations    go to state 49
-    access_modifier       go to state 143
+    access_modifier       go to state 125
     data_type             go to state 51
     integer_expression    go to state 52
     double_expression     go to state 53
     boolean_expression    go to state 54
 
 
-State 147
+State 129
 
    22 statement: method_call none_or_newlines statement •
 
     $default  reduce using rule 22 (statement)
 
 
-State 148
+State 130
 
    23 statement: if_statement none_or_newlines statement •
 
     $default  reduce using rule 23 (statement)
 
 
-State 149
+State 131
 
    24 statement: do_while_statement none_or_newlines statement •
 
     $default  reduce using rule 24 (statement)
 
 
-State 150
+State 132
 
    25 statement: for_statement none_or_newlines statement •
 
     $default  reduce using rule 25 (statement)
 
 
-State 151
+State 133
 
    26 statement: switch_statement none_or_newlines statement •
 
     $default  reduce using rule 26 (statement)
 
 
-State 152
+State 134
 
    27 statement: return_statement none_or_newlines statement •
 
     $default  reduce using rule 27 (statement)
 
 
-State 153
+State 135
 
    28 statement: break_statement none_or_newlines statement •
 
     $default  reduce using rule 28 (statement)
 
 
-State 154
+State 136
 
    29 statement: print_statement none_or_newlines statement •
 
     $default  reduce using rule 29 (statement)
 
 
-State 155
+State 137
 
    30 statement: expression SEMICOLON none_or_newlines • statement
 
@@ -3236,6 +3083,7 @@ State 155
 
     CONST          [reduce using rule 20 (statement)]
     ID             [reduce using rule 20 (statement)]
+    ID             [reduce using rule 109 (data_type)]
     CLASS_ID       [reduce using rule 20 (statement)]
     DOUBLE_CONST   [reduce using rule 20 (statement)]
     PUBLIC         [reduce using rule 20 (statement)]
@@ -3262,7 +3110,7 @@ State 155
 
     variable_declaration  go to state 28
     method_declaration    go to state 29
-    statement             go to state 191
+    statement             go to state 163
     assignment_statement  go to state 31
     method_call           go to state 32
     if_statement          go to state 33
@@ -3282,127 +3130,155 @@ State 155
     char_operations       go to state 47
     double_operations     go to state 48
     boolean_operations    go to state 49
-    access_modifier       go to state 143
+    access_modifier       go to state 125
     data_type             go to state 51
     integer_expression    go to state 52
     double_expression     go to state 53
     boolean_expression    go to state 54
 
 
-State 156
+State 138
 
-   92 char_operations: any_character relational_arithmetic_operations any_character •
+   87 char_operations: any_character relational_arithmetic_operations any_character •
 
-    $default  reduce using rule 92 (char_operations)
+    $default  reduce using rule 87 (char_operations)
 
 
-State 157
+State 139
 
    33 statement: object_creation none_or_newlines statement •
 
     $default  reduce using rule 33 (statement)
 
 
-State 158
+State 140
 
     4 class_declaration: access_modifier CLASS CLASS_ID • LCB none_or_newlines class_body none_or_newlines RCB
 
-    LCB  shift, and go to state 192
+    LCB  shift, and go to state 164
 
 
-State 159
+State 141
 
    10 variable_declaration: access_modifier data_type ID • SEMICOLON
    11 method_declaration: access_modifier data_type ID • LP none_or_newlines none_or_multiple_parameters none_or_newlines RP LCB none_or_newlines method_body none_or_newlines RCB
 
-    SEMICOLON  shift, and go to state 193
-    LP         shift, and go to state 194
+    SEMICOLON  shift, and go to state 165
+    LP         shift, and go to state 166
 
 
-State 160
+State 142
 
     9 variable_declaration: data_type ID SEMICOLON •
 
     $default  reduce using rule 9 (variable_declaration)
 
 
-State 161
+State 143
 
    12 method_declaration: data_type ID LP • none_or_newlines none_or_multiple_parameters none_or_newlines RP LCB none_or_newlines method_body none_or_newlines RCB
 
-    NEWLINE  shift, and go to state 76
+    NEWLINE  shift, and go to state 69
 
-    NEWLINE   [reduce using rule 125 (none_or_newlines)]
-    $default  reduce using rule 125 (none_or_newlines)
+    NEWLINE   [reduce using rule 120 (none_or_newlines)]
+    $default  reduce using rule 120 (none_or_newlines)
 
-    none_or_newlines  go to state 195
-
-
-State 162
-
-   91 integer_operations: integer_expression relational_arithmetic_operations integer_expression •
-
-    $default  reduce using rule 91 (integer_operations)
+    none_or_newlines  go to state 167
 
 
-State 163
+State 144
 
-   93 double_operations: double_expression relational_arithmetic_operations double_expression •
+   34 assignment_statement: data_type ID ASSIGN • expression
 
-    $default  reduce using rule 93 (double_operations)
+    CONST          shift, and go to state 1
+    ID             shift, and go to state 2
+    DOUBLE_CONST   shift, and go to state 4
+    TRUE           shift, and go to state 20
+    FALSE          shift, and go to state 21
+    SQ_ANYCHAR_SQ  shift, and go to state 23
+    DQ_STRING_DQ   shift, and go to state 24
+    LP             shift, and go to state 25
 
-
-State 164
-
-   94 boolean_operations: boolean_expression logical_operators boolean_expression •
-
-    $default  reduce using rule 94 (boolean_operations)
-
-
-State 165
-
-   85 member_access_body: ID SEMICOLON •
-
-    $default  reduce using rule 85 (member_access_body)
-
-
-State 166
-
-   84 member_access: ID DOT member_access_body none_or_newlines •
-
-    $default  reduce using rule 84 (member_access)
-
-
-State 167
-
-   40 method_call: ID LP none_or_newlines none_or_multiple_arguments • none_or_newlines RP SEMICOLON
-
-    NEWLINE  shift, and go to state 76
-
-    $default  reduce using rule 125 (none_or_newlines)
-
-    none_or_newlines  go to state 196
+    method_call         go to state 59
+    expression          go to state 168
+    text                go to state 41
+    any_character       go to state 42
+    member_access       go to state 44
+    operations          go to state 45
+    integer_operations  go to state 46
+    char_operations     go to state 47
+    double_operations   go to state 48
+    boolean_operations  go to state 49
+    integer_expression  go to state 52
+    double_expression   go to state 53
+    boolean_expression  go to state 54
 
 
-State 168
+State 145
 
-   42 none_or_multiple_arguments: expression • arguments
+   86 integer_operations: integer_expression relational_arithmetic_operations integer_expression •
 
-    COMMA  shift, and go to state 197
-
-    $default  reduce using rule 43 (arguments)
-
-    arguments  go to state 198
+    $default  reduce using rule 86 (integer_operations)
 
 
-State 169
+State 146
 
-   83 object_creation: CLASS_ID ID ASSIGN NEW • CLASS_ID LP RP SEMICOLON
+   88 double_operations: double_expression relational_arithmetic_operations double_expression •
 
-    CLASS_ID  shift, and go to state 199
+    $default  reduce using rule 88 (double_operations)
 
 
-State 170
+State 147
+
+   89 boolean_operations: boolean_expression logical_operators boolean_expression •
+
+    $default  reduce using rule 89 (boolean_operations)
+
+
+State 148
+
+   80 member_access_body: ID SEMICOLON •
+
+    $default  reduce using rule 80 (member_access_body)
+
+
+State 149
+
+   79 member_access: ID DOT member_access_body none_or_newlines •
+
+    $default  reduce using rule 79 (member_access)
+
+
+State 150
+
+   35 method_call: ID LP none_or_newlines none_or_multiple_arguments • none_or_newlines RP SEMICOLON
+
+    NEWLINE  shift, and go to state 69
+
+    $default  reduce using rule 120 (none_or_newlines)
+
+    none_or_newlines  go to state 169
+
+
+State 151
+
+   37 none_or_multiple_arguments: expression • arguments
+
+    COMMA  shift, and go to state 170
+
+    $default  reduce using rule 38 (arguments)
+
+    arguments  go to state 171
+
+
+State 152
+
+   78 object_creation: CLASS_ID ID ASSIGN NEW • CLASS_ID LP RP SEMICOLON
+
+    CLASS_ID  shift, and go to state 172
+
+
+State 153
 
     5 class_declaration: CLASS CLASS_ID LCB none_or_newlines • class_body none_or_newlines RCB
 
@@ -3434,6 +3310,7 @@ State 170
 
     CONST          [reduce using rule 20 (statement)]
     ID             [reduce using rule 20 (statement)]
+    ID             [reduce using rule 109 (data_type)]
     CLASS_ID       [reduce using rule 20 (statement)]
     DOUBLE_CONST   [reduce using rule 20 (statement)]
     NEWLINE        reduce using rule 6 (class_body)
@@ -3463,11 +3340,11 @@ State 170
     RCB            [reduce using rule 20 (statement)]
     $default       reduce using rule 6 (class_body)
 
-    class_declaration     go to state 200
-    class_body            go to state 201
+    class_declaration     go to state 173
+    class_body            go to state 174
     variable_declaration  go to state 28
     method_declaration    go to state 29
-    statement             go to state 202
+    statement             go to state 175
     assignment_statement  go to state 31
     method_call           go to state 32
     if_statement          go to state 33
@@ -3494,332 +3371,270 @@ State 170
     boolean_expression    go to state 54
 
 
-State 171
+State 154
 
-   35 assignment_statement: INTEGER ID ASSIGN integer_expression •
+   40 if_statement: IF LP none_or_newlines expression • none_or_newlines RP LCB none_or_newlines statement none_or_newlines RCB none_or_newlines none_or_multiple_elif none_or_newlines none_or_one_else
 
-    $default  reduce using rule 35 (assignment_statement)
+    NEWLINE  shift, and go to state 69
 
+    $default  reduce using rule 120 (none_or_newlines)
 
-State 172
+    none_or_newlines  go to state 176
 
-   36 assignment_statement: CHAR ID ASSIGN any_character •
 
-    $default  reduce using rule 36 (assignment_statement)
+State 155
 
+   51 switch_statement: SWITCH LP none_or_newlines expression • none_or_newlines RP LCB none_or_newlines one_or_more_cases none_or_newlines default_case none_or_newlines RCB
 
-State 173
+    NEWLINE  shift, and go to state 69
 
-   37 assignment_statement: DOUBLE ID ASSIGN double_expression •
+    $default  reduce using rule 120 (none_or_newlines)
 
-    $default  reduce using rule 37 (assignment_statement)
+    none_or_newlines  go to state 177
 
 
-State 174
+State 156
 
-   38 assignment_statement: BOOLEAN ID ASSIGN boolean_expression •
+   45 do_while_statement: DO LCB none_or_newlines statement • none_or_newlines RCB WHILE LP none_or_newlines expression none_or_newlines RP SEMICOLON
 
-    $default  reduce using rule 38 (assignment_statement)
+    NEWLINE  shift, and go to state 69
 
+    $default  reduce using rule 120 (none_or_newlines)
 
-State 175
+    none_or_newlines  go to state 178
 
-  124 string_expression: text •
 
-    $default  reduce using rule 124 (string_expression)
+State 157
 
+   48 first_and_third_loop_statement: assignment_statement •
 
-State 176
+    $default  reduce using rule 48 (first_and_third_loop_statement)
 
-   39 assignment_statement: STRING ID ASSIGN string_expression •
 
-    $default  reduce using rule 39 (assignment_statement)
+State 158
 
+   46 for_statement: FOR LP none_or_newlines first_and_third_loop_statement • SEMICOLON none_or_newlines second_loop_statement SEMICOLON none_or_newlines first_and_third_loop_statement none_or_newlines RP LCB none_or_newlines statement none_or_newlines RCB
 
-State 177
+    SEMICOLON  shift, and go to state 179
 
-   45 if_statement: IF LP none_or_newlines expression • none_or_newlines RP LCB none_or_newlines statement none_or_newlines RCB none_or_newlines none_or_multiple_elif none_or_newlines none_or_one_else
 
-    NEWLINE  shift, and go to state 76
+State 159
 
-    $default  reduce using rule 125 (none_or_newlines)
+   34 assignment_statement: data_type • ID ASSIGN expression
 
-    none_or_newlines  go to state 203
+    ID  shift, and go to state 180
 
 
-State 178
+State 160
 
-   56 switch_statement: SWITCH LP none_or_newlines expression • none_or_newlines RP LCB none_or_newlines one_or_more_cases none_or_newlines default_case none_or_newlines RCB
+   65 single_or_multiple_variables: COMMA • ID single_or_multiple_variables
 
-    NEWLINE  shift, and go to state 76
+    ID  shift, and go to state 181
 
-    $default  reduce using rule 125 (none_or_newlines)
 
-    none_or_newlines  go to state 204
+State 161
 
+   63 print_statement: PRINT LP text single_or_multiple_variables • RP SEMICOLON
 
-State 179
+    RP  shift, and go to state 182
 
-   50 do_while_statement: DO LCB none_or_newlines statement • none_or_newlines RCB WHILE LP none_or_newlines expression none_or_newlines RP SEMICOLON
 
-    NEWLINE  shift, and go to state 76
-
-    $default  reduce using rule 125 (none_or_newlines)
-
-    none_or_newlines  go to state 205
-
-
-State 180
-
-   34 assignment_statement: ID • ASSIGN expression
-
-    ASSIGN  shift, and go to state 57
-
-
-State 181
-
-   35 assignment_statement: INTEGER • ID ASSIGN integer_expression
-
-    ID  shift, and go to state 60
-
-
-State 182
-
-   36 assignment_statement: CHAR • ID ASSIGN any_character
-
-    ID  shift, and go to state 61
-
-
-State 183
-
-   37 assignment_statement: DOUBLE • ID ASSIGN double_expression
-
-    ID  shift, and go to state 62
-
-
-State 184
-
-   38 assignment_statement: BOOLEAN • ID ASSIGN boolean_expression
-
-    ID  shift, and go to state 63
-
-
-State 185
-
-   39 assignment_statement: STRING • ID ASSIGN string_expression
-
-    ID  shift, and go to state 64
-
-
-State 186
-
-   53 first_and_third_loop_statement: assignment_statement •
-
-    $default  reduce using rule 53 (first_and_third_loop_statement)
-
-
-State 187
-
-   51 for_statement: FOR LP none_or_newlines first_and_third_loop_statement • SEMICOLON none_or_newlines second_loop_statement SEMICOLON none_or_newlines first_and_third_loop_statement none_or_newlines RP LCB none_or_newlines statement none_or_newlines RCB
-
-    SEMICOLON  shift, and go to state 206
-
-
-State 188
-
-   70 single_or_multiple_variables: COMMA • ID single_or_multiple_variables
-
-    ID  shift, and go to state 207
-
-
-State 189
-
-   68 print_statement: PRINT LP text single_or_multiple_variables • RP SEMICOLON
-
-    RP  shift, and go to state 208
-
-
-State 190
+State 162
 
    21 statement: assignment_statement SEMICOLON none_or_newlines statement •
 
     $default  reduce using rule 21 (statement)
 
 
-State 191
+State 163
 
    30 statement: expression SEMICOLON none_or_newlines statement •
 
     $default  reduce using rule 30 (statement)
 
 
-State 192
+State 164
 
     4 class_declaration: access_modifier CLASS CLASS_ID LCB • none_or_newlines class_body none_or_newlines RCB
 
-    NEWLINE  shift, and go to state 76
+    NEWLINE  shift, and go to state 69
 
-    NEWLINE   [reduce using rule 125 (none_or_newlines)]
-    $default  reduce using rule 125 (none_or_newlines)
+    NEWLINE   [reduce using rule 120 (none_or_newlines)]
+    $default  reduce using rule 120 (none_or_newlines)
 
-    none_or_newlines  go to state 209
+    none_or_newlines  go to state 183
 
 
-State 193
+State 165
 
    10 variable_declaration: access_modifier data_type ID SEMICOLON •
 
     $default  reduce using rule 10 (variable_declaration)
 
 
-State 194
+State 166
 
    11 method_declaration: access_modifier data_type ID LP • none_or_newlines none_or_multiple_parameters none_or_newlines RP LCB none_or_newlines method_body none_or_newlines RCB
 
-    NEWLINE  shift, and go to state 76
+    NEWLINE  shift, and go to state 69
 
-    NEWLINE   [reduce using rule 125 (none_or_newlines)]
-    $default  reduce using rule 125 (none_or_newlines)
+    NEWLINE   [reduce using rule 120 (none_or_newlines)]
+    $default  reduce using rule 120 (none_or_newlines)
 
-    none_or_newlines  go to state 210
+    none_or_newlines  go to state 184
 
 
-State 195
+State 167
 
    12 method_declaration: data_type ID LP none_or_newlines • none_or_multiple_parameters none_or_newlines RP LCB none_or_newlines method_body none_or_newlines RCB
 
-    INTEGER  shift, and go to state 108
-    CHAR     shift, and go to state 109
-    DOUBLE   shift, and go to state 110
-    BOOLEAN  shift, and go to state 111
-    STRING   shift, and go to state 112
+    INTEGER  shift, and go to state 8
+    CHAR     shift, and go to state 9
+    DOUBLE   shift, and go to state 10
+    BOOLEAN  shift, and go to state 11
+    STRING   shift, and go to state 12
     VOID     shift, and go to state 13
 
+    ID        reduce using rule 109 (data_type)
     $default  reduce using rule 13 (none_or_multiple_parameters)
 
-    none_or_multiple_parameters  go to state 211
-    parameter                    go to state 212
-    data_type                    go to state 213
+    none_or_multiple_parameters  go to state 185
+    parameter                    go to state 186
+    data_type                    go to state 187
 
 
-State 196
+State 168
 
-   40 method_call: ID LP none_or_newlines none_or_multiple_arguments none_or_newlines • RP SEMICOLON
+   34 assignment_statement: data_type ID ASSIGN expression •
 
-    RP  shift, and go to state 214
-
-
-State 197
-
-   44 arguments: COMMA • none_or_newlines expression arguments
-
-    NEWLINE  shift, and go to state 76
-
-    $default  reduce using rule 125 (none_or_newlines)
-
-    none_or_newlines  go to state 215
+    $default  reduce using rule 34 (assignment_statement)
 
 
-State 198
+State 169
 
-   42 none_or_multiple_arguments: expression arguments •
+   35 method_call: ID LP none_or_newlines none_or_multiple_arguments none_or_newlines • RP SEMICOLON
 
-    $default  reduce using rule 42 (none_or_multiple_arguments)
-
-
-State 199
-
-   83 object_creation: CLASS_ID ID ASSIGN NEW CLASS_ID • LP RP SEMICOLON
-
-    LP  shift, and go to state 216
+    RP  shift, and go to state 188
 
 
-State 200
+State 170
+
+   39 arguments: COMMA • none_or_newlines expression arguments
+
+    NEWLINE  shift, and go to state 69
+
+    $default  reduce using rule 120 (none_or_newlines)
+
+    none_or_newlines  go to state 189
+
+
+State 171
+
+   37 none_or_multiple_arguments: expression arguments •
+
+    $default  reduce using rule 37 (none_or_multiple_arguments)
+
+
+State 172
+
+   78 object_creation: CLASS_ID ID ASSIGN NEW CLASS_ID • LP RP SEMICOLON
+
+    LP  shift, and go to state 190
+
+
+State 173
 
     7 class_body: class_declaration • none_or_newlines class_body
 
-    NEWLINE  shift, and go to state 76
+    NEWLINE  shift, and go to state 69
 
-    NEWLINE   [reduce using rule 125 (none_or_newlines)]
-    $default  reduce using rule 125 (none_or_newlines)
+    NEWLINE   [reduce using rule 120 (none_or_newlines)]
+    $default  reduce using rule 120 (none_or_newlines)
 
-    none_or_newlines  go to state 217
+    none_or_newlines  go to state 191
 
 
-State 201
+State 174
 
     5 class_declaration: CLASS CLASS_ID LCB none_or_newlines class_body • none_or_newlines RCB
 
-    NEWLINE  shift, and go to state 76
+    NEWLINE  shift, and go to state 69
 
-    $default  reduce using rule 125 (none_or_newlines)
+    $default  reduce using rule 120 (none_or_newlines)
 
-    none_or_newlines  go to state 218
+    none_or_newlines  go to state 192
 
 
-State 202
+State 175
 
     8 class_body: statement • none_or_newlines class_body
 
-    NEWLINE  shift, and go to state 76
+    NEWLINE  shift, and go to state 69
 
-    NEWLINE   [reduce using rule 125 (none_or_newlines)]
-    $default  reduce using rule 125 (none_or_newlines)
+    NEWLINE   [reduce using rule 120 (none_or_newlines)]
+    $default  reduce using rule 120 (none_or_newlines)
 
-    none_or_newlines  go to state 219
-
-
-State 203
-
-   45 if_statement: IF LP none_or_newlines expression none_or_newlines • RP LCB none_or_newlines statement none_or_newlines RCB none_or_newlines none_or_multiple_elif none_or_newlines none_or_one_else
-
-    RP  shift, and go to state 220
+    none_or_newlines  go to state 193
 
 
-State 204
+State 176
 
-   56 switch_statement: SWITCH LP none_or_newlines expression none_or_newlines • RP LCB none_or_newlines one_or_more_cases none_or_newlines default_case none_or_newlines RCB
+   40 if_statement: IF LP none_or_newlines expression none_or_newlines • RP LCB none_or_newlines statement none_or_newlines RCB none_or_newlines none_or_multiple_elif none_or_newlines none_or_one_else
 
-    RP  shift, and go to state 221
-
-
-State 205
-
-   50 do_while_statement: DO LCB none_or_newlines statement none_or_newlines • RCB WHILE LP none_or_newlines expression none_or_newlines RP SEMICOLON
-
-    RCB  shift, and go to state 222
+    RP  shift, and go to state 194
 
 
-State 206
+State 177
 
-   51 for_statement: FOR LP none_or_newlines first_and_third_loop_statement SEMICOLON • none_or_newlines second_loop_statement SEMICOLON none_or_newlines first_and_third_loop_statement none_or_newlines RP LCB none_or_newlines statement none_or_newlines RCB
+   51 switch_statement: SWITCH LP none_or_newlines expression none_or_newlines • RP LCB none_or_newlines one_or_more_cases none_or_newlines default_case none_or_newlines RCB
 
-    NEWLINE  shift, and go to state 76
-
-    $default  reduce using rule 125 (none_or_newlines)
-
-    none_or_newlines  go to state 223
+    RP  shift, and go to state 195
 
 
-State 207
+State 178
 
-   70 single_or_multiple_variables: COMMA ID • single_or_multiple_variables
+   45 do_while_statement: DO LCB none_or_newlines statement none_or_newlines • RCB WHILE LP none_or_newlines expression none_or_newlines RP SEMICOLON
 
-    COMMA  shift, and go to state 188
-
-    $default  reduce using rule 69 (single_or_multiple_variables)
-
-    single_or_multiple_variables  go to state 224
+    RCB  shift, and go to state 196
 
 
-State 208
+State 179
 
-   68 print_statement: PRINT LP text single_or_multiple_variables RP • SEMICOLON
+   46 for_statement: FOR LP none_or_newlines first_and_third_loop_statement SEMICOLON • none_or_newlines second_loop_statement SEMICOLON none_or_newlines first_and_third_loop_statement none_or_newlines RP LCB none_or_newlines statement none_or_newlines RCB
 
-    SEMICOLON  shift, and go to state 225
+    NEWLINE  shift, and go to state 69
+
+    $default  reduce using rule 120 (none_or_newlines)
+
+    none_or_newlines  go to state 197
 
 
-State 209
+State 180
+
+   34 assignment_statement: data_type ID • ASSIGN expression
+
+    ASSIGN  shift, and go to state 144
+
+
+State 181
+
+   65 single_or_multiple_variables: COMMA ID • single_or_multiple_variables
+
+    COMMA  shift, and go to state 160
+
+    $default  reduce using rule 64 (single_or_multiple_variables)
+
+    single_or_multiple_variables  go to state 198
+
+
+State 182
+
+   63 print_statement: PRINT LP text single_or_multiple_variables RP • SEMICOLON
+
+    SEMICOLON  shift, and go to state 199
+
+
+State 183
 
     4 class_declaration: access_modifier CLASS CLASS_ID LCB none_or_newlines • class_body none_or_newlines RCB
 
@@ -3851,6 +3666,7 @@ State 209
 
     CONST          [reduce using rule 20 (statement)]
     ID             [reduce using rule 20 (statement)]
+    ID             [reduce using rule 109 (data_type)]
     CLASS_ID       [reduce using rule 20 (statement)]
     DOUBLE_CONST   [reduce using rule 20 (statement)]
     NEWLINE        reduce using rule 6 (class_body)
@@ -3880,11 +3696,11 @@ State 209
     RCB            [reduce using rule 20 (statement)]
     $default       reduce using rule 6 (class_body)
 
-    class_declaration     go to state 200
-    class_body            go to state 226
+    class_declaration     go to state 173
+    class_body            go to state 200
     variable_declaration  go to state 28
     method_declaration    go to state 29
-    statement             go to state 202
+    statement             go to state 175
     assignment_statement  go to state 31
     method_call           go to state 32
     if_statement          go to state 33
@@ -3911,66 +3727,67 @@ State 209
     boolean_expression    go to state 54
 
 
-State 210
+State 184
 
    11 method_declaration: access_modifier data_type ID LP none_or_newlines • none_or_multiple_parameters none_or_newlines RP LCB none_or_newlines method_body none_or_newlines RCB
 
-    INTEGER  shift, and go to state 108
-    CHAR     shift, and go to state 109
-    DOUBLE   shift, and go to state 110
-    BOOLEAN  shift, and go to state 111
-    STRING   shift, and go to state 112
+    INTEGER  shift, and go to state 8
+    CHAR     shift, and go to state 9
+    DOUBLE   shift, and go to state 10
+    BOOLEAN  shift, and go to state 11
+    STRING   shift, and go to state 12
     VOID     shift, and go to state 13
 
+    ID        reduce using rule 109 (data_type)
     $default  reduce using rule 13 (none_or_multiple_parameters)
 
-    none_or_multiple_parameters  go to state 227
-    parameter                    go to state 212
-    data_type                    go to state 213
+    none_or_multiple_parameters  go to state 201
+    parameter                    go to state 186
+    data_type                    go to state 187
 
 
-State 211
+State 185
 
    12 method_declaration: data_type ID LP none_or_newlines none_or_multiple_parameters • none_or_newlines RP LCB none_or_newlines method_body none_or_newlines RCB
 
-    NEWLINE  shift, and go to state 76
+    NEWLINE  shift, and go to state 69
 
-    $default  reduce using rule 125 (none_or_newlines)
+    $default  reduce using rule 120 (none_or_newlines)
 
-    none_or_newlines  go to state 228
+    none_or_newlines  go to state 202
 
 
-State 212
+State 186
 
    14 none_or_multiple_parameters: parameter • parameters
 
-    COMMA  shift, and go to state 229
+    COMMA  shift, and go to state 203
 
     $default  reduce using rule 15 (parameters)
 
-    parameters  go to state 230
+    parameters  go to state 204
 
 
-State 213
+State 187
 
    17 parameter: data_type • ID
 
-    ID  shift, and go to state 231
+    ID  shift, and go to state 205
 
 
-State 214
+State 188
 
-   40 method_call: ID LP none_or_newlines none_or_multiple_arguments none_or_newlines RP • SEMICOLON
+   35 method_call: ID LP none_or_newlines none_or_multiple_arguments none_or_newlines RP • SEMICOLON
 
-    SEMICOLON  shift, and go to state 232
+    SEMICOLON  shift, and go to state 206
 
 
-State 215
+State 189
 
-   44 arguments: COMMA none_or_newlines • expression arguments
+   39 arguments: COMMA none_or_newlines • expression arguments
 
     CONST          shift, and go to state 1
-    ID             shift, and go to state 65
+    ID             shift, and go to state 2
     DOUBLE_CONST   shift, and go to state 4
     TRUE           shift, and go to state 20
     FALSE          shift, and go to state 21
@@ -3978,8 +3795,8 @@ State 215
     DQ_STRING_DQ   shift, and go to state 24
     LP             shift, and go to state 25
 
-    method_call         go to state 66
-    expression          go to state 233
+    method_call         go to state 59
+    expression          go to state 207
     text                go to state 41
     any_character       go to state 42
     member_access       go to state 44
@@ -3993,14 +3810,14 @@ State 215
     boolean_expression  go to state 54
 
 
-State 216
+State 190
 
-   83 object_creation: CLASS_ID ID ASSIGN NEW CLASS_ID LP • RP SEMICOLON
+   78 object_creation: CLASS_ID ID ASSIGN NEW CLASS_ID LP • RP SEMICOLON
 
-    RP  shift, and go to state 234
+    RP  shift, and go to state 208
 
 
-State 217
+State 191
 
     7 class_body: class_declaration none_or_newlines • class_body
 
@@ -4032,6 +3849,7 @@ State 217
 
     CONST          [reduce using rule 20 (statement)]
     ID             [reduce using rule 20 (statement)]
+    ID             [reduce using rule 109 (data_type)]
     CLASS_ID       [reduce using rule 20 (statement)]
     DOUBLE_CONST   [reduce using rule 20 (statement)]
     NEWLINE        reduce using rule 6 (class_body)
@@ -4061,11 +3879,11 @@ State 217
     RCB            [reduce using rule 20 (statement)]
     $default       reduce using rule 6 (class_body)
 
-    class_declaration     go to state 200
-    class_body            go to state 235
+    class_declaration     go to state 173
+    class_body            go to state 209
     variable_declaration  go to state 28
     method_declaration    go to state 29
-    statement             go to state 202
+    statement             go to state 175
     assignment_statement  go to state 31
     method_call           go to state 32
     if_statement          go to state 33
@@ -4092,14 +3910,14 @@ State 217
     boolean_expression    go to state 54
 
 
-State 218
+State 192
 
     5 class_declaration: CLASS CLASS_ID LCB none_or_newlines class_body none_or_newlines • RCB
 
-    RCB  shift, and go to state 236
+    RCB  shift, and go to state 210
 
 
-State 219
+State 193
 
     8 class_body: statement none_or_newlines • class_body
 
@@ -4131,6 +3949,7 @@ State 219
 
     CONST          [reduce using rule 20 (statement)]
     ID             [reduce using rule 20 (statement)]
+    ID             [reduce using rule 109 (data_type)]
     CLASS_ID       [reduce using rule 20 (statement)]
     DOUBLE_CONST   [reduce using rule 20 (statement)]
     NEWLINE        reduce using rule 6 (class_body)
@@ -4160,11 +3979,11 @@ State 219
     RCB            [reduce using rule 20 (statement)]
     $default       reduce using rule 6 (class_body)
 
-    class_declaration     go to state 200
-    class_body            go to state 237
+    class_declaration     go to state 173
+    class_body            go to state 211
     variable_declaration  go to state 28
     method_declaration    go to state 29
-    statement             go to state 202
+    statement             go to state 175
     assignment_statement  go to state 31
     method_call           go to state 32
     if_statement          go to state 33
@@ -4191,33 +4010,33 @@ State 219
     boolean_expression    go to state 54
 
 
-State 220
+State 194
 
-   45 if_statement: IF LP none_or_newlines expression none_or_newlines RP • LCB none_or_newlines statement none_or_newlines RCB none_or_newlines none_or_multiple_elif none_or_newlines none_or_one_else
+   40 if_statement: IF LP none_or_newlines expression none_or_newlines RP • LCB none_or_newlines statement none_or_newlines RCB none_or_newlines none_or_multiple_elif none_or_newlines none_or_one_else
 
-    LCB  shift, and go to state 238
-
-
-State 221
-
-   56 switch_statement: SWITCH LP none_or_newlines expression none_or_newlines RP • LCB none_or_newlines one_or_more_cases none_or_newlines default_case none_or_newlines RCB
-
-    LCB  shift, and go to state 239
+    LCB  shift, and go to state 212
 
 
-State 222
+State 195
 
-   50 do_while_statement: DO LCB none_or_newlines statement none_or_newlines RCB • WHILE LP none_or_newlines expression none_or_newlines RP SEMICOLON
+   51 switch_statement: SWITCH LP none_or_newlines expression none_or_newlines RP • LCB none_or_newlines one_or_more_cases none_or_newlines default_case none_or_newlines RCB
 
-    WHILE  shift, and go to state 240
+    LCB  shift, and go to state 213
 
 
-State 223
+State 196
 
-   51 for_statement: FOR LP none_or_newlines first_and_third_loop_statement SEMICOLON none_or_newlines • second_loop_statement SEMICOLON none_or_newlines first_and_third_loop_statement none_or_newlines RP LCB none_or_newlines statement none_or_newlines RCB
+   45 do_while_statement: DO LCB none_or_newlines statement none_or_newlines RCB • WHILE LP none_or_newlines expression none_or_newlines RP SEMICOLON
+
+    WHILE  shift, and go to state 214
+
+
+State 197
+
+   46 for_statement: FOR LP none_or_newlines first_and_third_loop_statement SEMICOLON none_or_newlines • second_loop_statement SEMICOLON none_or_newlines first_and_third_loop_statement none_or_newlines RP LCB none_or_newlines statement none_or_newlines RCB
 
     CONST          shift, and go to state 1
-    ID             shift, and go to state 65
+    ID             shift, and go to state 2
     DOUBLE_CONST   shift, and go to state 4
     TRUE           shift, and go to state 20
     FALSE          shift, and go to state 21
@@ -4225,11 +4044,11 @@ State 223
     DQ_STRING_DQ   shift, and go to state 24
     LP             shift, and go to state 25
 
-    $default  reduce using rule 54 (second_loop_statement)
+    $default  reduce using rule 49 (second_loop_statement)
 
-    method_call            go to state 66
-    second_loop_statement  go to state 241
-    expression             go to state 242
+    method_call            go to state 59
+    second_loop_statement  go to state 215
+    expression             go to state 216
     text                   go to state 41
     any_character          go to state 42
     member_access          go to state 44
@@ -4243,217 +4062,219 @@ State 223
     boolean_expression     go to state 54
 
 
-State 224
+State 198
 
-   70 single_or_multiple_variables: COMMA ID single_or_multiple_variables •
+   65 single_or_multiple_variables: COMMA ID single_or_multiple_variables •
 
-    $default  reduce using rule 70 (single_or_multiple_variables)
-
-
-State 225
-
-   68 print_statement: PRINT LP text single_or_multiple_variables RP SEMICOLON •
-
-    $default  reduce using rule 68 (print_statement)
+    $default  reduce using rule 65 (single_or_multiple_variables)
 
 
-State 226
+State 199
+
+   63 print_statement: PRINT LP text single_or_multiple_variables RP SEMICOLON •
+
+    $default  reduce using rule 63 (print_statement)
+
+
+State 200
 
     4 class_declaration: access_modifier CLASS CLASS_ID LCB none_or_newlines class_body • none_or_newlines RCB
 
-    NEWLINE  shift, and go to state 76
+    NEWLINE  shift, and go to state 69
 
-    $default  reduce using rule 125 (none_or_newlines)
+    $default  reduce using rule 120 (none_or_newlines)
 
-    none_or_newlines  go to state 243
+    none_or_newlines  go to state 217
 
 
-State 227
+State 201
 
    11 method_declaration: access_modifier data_type ID LP none_or_newlines none_or_multiple_parameters • none_or_newlines RP LCB none_or_newlines method_body none_or_newlines RCB
 
-    NEWLINE  shift, and go to state 76
+    NEWLINE  shift, and go to state 69
 
-    $default  reduce using rule 125 (none_or_newlines)
+    $default  reduce using rule 120 (none_or_newlines)
 
-    none_or_newlines  go to state 244
+    none_or_newlines  go to state 218
 
 
-State 228
+State 202
 
    12 method_declaration: data_type ID LP none_or_newlines none_or_multiple_parameters none_or_newlines • RP LCB none_or_newlines method_body none_or_newlines RCB
 
-    RP  shift, and go to state 245
+    RP  shift, and go to state 219
 
 
-State 229
+State 203
 
    16 parameters: COMMA • none_or_newlines parameter parameters
 
-    NEWLINE  shift, and go to state 76
+    NEWLINE  shift, and go to state 69
 
-    $default  reduce using rule 125 (none_or_newlines)
+    $default  reduce using rule 120 (none_or_newlines)
 
-    none_or_newlines  go to state 246
+    none_or_newlines  go to state 220
 
 
-State 230
+State 204
 
    14 none_or_multiple_parameters: parameter parameters •
 
     $default  reduce using rule 14 (none_or_multiple_parameters)
 
 
-State 231
+State 205
 
    17 parameter: data_type ID •
 
     $default  reduce using rule 17 (parameter)
 
 
-State 232
+State 206
 
-   40 method_call: ID LP none_or_newlines none_or_multiple_arguments none_or_newlines RP SEMICOLON •
+   35 method_call: ID LP none_or_newlines none_or_multiple_arguments none_or_newlines RP SEMICOLON •
 
-    $default  reduce using rule 40 (method_call)
-
-
-State 233
-
-   44 arguments: COMMA none_or_newlines expression • arguments
-
-    COMMA  shift, and go to state 197
-
-    $default  reduce using rule 43 (arguments)
-
-    arguments  go to state 247
+    $default  reduce using rule 35 (method_call)
 
 
-State 234
+State 207
 
-   83 object_creation: CLASS_ID ID ASSIGN NEW CLASS_ID LP RP • SEMICOLON
+   39 arguments: COMMA none_or_newlines expression • arguments
 
-    SEMICOLON  shift, and go to state 248
+    COMMA  shift, and go to state 170
+
+    $default  reduce using rule 38 (arguments)
+
+    arguments  go to state 221
 
 
-State 235
+State 208
+
+   78 object_creation: CLASS_ID ID ASSIGN NEW CLASS_ID LP RP • SEMICOLON
+
+    SEMICOLON  shift, and go to state 222
+
+
+State 209
 
     7 class_body: class_declaration none_or_newlines class_body •
 
     $default  reduce using rule 7 (class_body)
 
 
-State 236
+State 210
 
     5 class_declaration: CLASS CLASS_ID LCB none_or_newlines class_body none_or_newlines RCB •
 
     $default  reduce using rule 5 (class_declaration)
 
 
-State 237
+State 211
 
     8 class_body: statement none_or_newlines class_body •
 
     $default  reduce using rule 8 (class_body)
 
 
-State 238
+State 212
 
-   45 if_statement: IF LP none_or_newlines expression none_or_newlines RP LCB • none_or_newlines statement none_or_newlines RCB none_or_newlines none_or_multiple_elif none_or_newlines none_or_one_else
+   40 if_statement: IF LP none_or_newlines expression none_or_newlines RP LCB • none_or_newlines statement none_or_newlines RCB none_or_newlines none_or_multiple_elif none_or_newlines none_or_one_else
 
-    NEWLINE  shift, and go to state 76
+    NEWLINE  shift, and go to state 69
 
-    NEWLINE   [reduce using rule 125 (none_or_newlines)]
-    $default  reduce using rule 125 (none_or_newlines)
+    NEWLINE   [reduce using rule 120 (none_or_newlines)]
+    $default  reduce using rule 120 (none_or_newlines)
 
-    none_or_newlines  go to state 249
-
-
-State 239
-
-   56 switch_statement: SWITCH LP none_or_newlines expression none_or_newlines RP LCB • none_or_newlines one_or_more_cases none_or_newlines default_case none_or_newlines RCB
-
-    NEWLINE  shift, and go to state 76
-
-    $default  reduce using rule 125 (none_or_newlines)
-
-    none_or_newlines  go to state 250
+    none_or_newlines  go to state 223
 
 
-State 240
+State 213
 
-   50 do_while_statement: DO LCB none_or_newlines statement none_or_newlines RCB WHILE • LP none_or_newlines expression none_or_newlines RP SEMICOLON
+   51 switch_statement: SWITCH LP none_or_newlines expression none_or_newlines RP LCB • none_or_newlines one_or_more_cases none_or_newlines default_case none_or_newlines RCB
 
-    LP  shift, and go to state 251
+    NEWLINE  shift, and go to state 69
 
+    $default  reduce using rule 120 (none_or_newlines)
 
-State 241
-
-   51 for_statement: FOR LP none_or_newlines first_and_third_loop_statement SEMICOLON none_or_newlines second_loop_statement • SEMICOLON none_or_newlines first_and_third_loop_statement none_or_newlines RP LCB none_or_newlines statement none_or_newlines RCB
-
-    SEMICOLON  shift, and go to state 252
+    none_or_newlines  go to state 224
 
 
-State 242
+State 214
 
-   55 second_loop_statement: expression •
+   45 do_while_statement: DO LCB none_or_newlines statement none_or_newlines RCB WHILE • LP none_or_newlines expression none_or_newlines RP SEMICOLON
 
-    $default  reduce using rule 55 (second_loop_statement)
+    LP  shift, and go to state 225
 
 
-State 243
+State 215
+
+   46 for_statement: FOR LP none_or_newlines first_and_third_loop_statement SEMICOLON none_or_newlines second_loop_statement • SEMICOLON none_or_newlines first_and_third_loop_statement none_or_newlines RP LCB none_or_newlines statement none_or_newlines RCB
+
+    SEMICOLON  shift, and go to state 226
+
+
+State 216
+
+   50 second_loop_statement: expression •
+
+    $default  reduce using rule 50 (second_loop_statement)
+
+
+State 217
 
     4 class_declaration: access_modifier CLASS CLASS_ID LCB none_or_newlines class_body none_or_newlines • RCB
 
-    RCB  shift, and go to state 253
+    RCB  shift, and go to state 227
 
 
-State 244
+State 218
 
    11 method_declaration: access_modifier data_type ID LP none_or_newlines none_or_multiple_parameters none_or_newlines • RP LCB none_or_newlines method_body none_or_newlines RCB
 
-    RP  shift, and go to state 254
+    RP  shift, and go to state 228
 
 
-State 245
+State 219
 
    12 method_declaration: data_type ID LP none_or_newlines none_or_multiple_parameters none_or_newlines RP • LCB none_or_newlines method_body none_or_newlines RCB
 
-    LCB  shift, and go to state 255
+    LCB  shift, and go to state 229
 
 
-State 246
+State 220
 
    16 parameters: COMMA none_or_newlines • parameter parameters
 
-    INTEGER  shift, and go to state 108
-    CHAR     shift, and go to state 109
-    DOUBLE   shift, and go to state 110
-    BOOLEAN  shift, and go to state 111
-    STRING   shift, and go to state 112
+    INTEGER  shift, and go to state 8
+    CHAR     shift, and go to state 9
+    DOUBLE   shift, and go to state 10
+    BOOLEAN  shift, and go to state 11
+    STRING   shift, and go to state 12
     VOID     shift, and go to state 13
 
-    parameter  go to state 256
-    data_type  go to state 213
+    $default  reduce using rule 109 (data_type)
+
+    parameter  go to state 230
+    data_type  go to state 187
 
 
-State 247
+State 221
 
-   44 arguments: COMMA none_or_newlines expression arguments •
+   39 arguments: COMMA none_or_newlines expression arguments •
 
-    $default  reduce using rule 44 (arguments)
-
-
-State 248
-
-   83 object_creation: CLASS_ID ID ASSIGN NEW CLASS_ID LP RP SEMICOLON •
-
-    $default  reduce using rule 83 (object_creation)
+    $default  reduce using rule 39 (arguments)
 
 
-State 249
+State 222
 
-   45 if_statement: IF LP none_or_newlines expression none_or_newlines RP LCB none_or_newlines • statement none_or_newlines RCB none_or_newlines none_or_multiple_elif none_or_newlines none_or_one_else
+   78 object_creation: CLASS_ID ID ASSIGN NEW CLASS_ID LP RP SEMICOLON •
+
+    $default  reduce using rule 78 (object_creation)
+
+
+State 223
+
+   40 if_statement: IF LP none_or_newlines expression none_or_newlines RP LCB none_or_newlines • statement none_or_newlines RCB none_or_newlines none_or_multiple_elif none_or_newlines none_or_one_else
 
     CONST          shift, and go to state 1
     ID             shift, and go to state 2
@@ -4480,11 +4301,12 @@ State 249
     DQ_STRING_DQ   shift, and go to state 24
     LP             shift, and go to state 25
 
+    ID        [reduce using rule 109 (data_type)]
     $default  reduce using rule 20 (statement)
 
     variable_declaration  go to state 28
     method_declaration    go to state 29
-    statement             go to state 257
+    statement             go to state 231
     assignment_statement  go to state 31
     method_call           go to state 32
     if_statement          go to state 33
@@ -4504,137 +4326,137 @@ State 249
     char_operations       go to state 47
     double_operations     go to state 48
     boolean_operations    go to state 49
-    access_modifier       go to state 143
+    access_modifier       go to state 125
     data_type             go to state 51
     integer_expression    go to state 52
     double_expression     go to state 53
     boolean_expression    go to state 54
 
 
-State 250
+State 224
 
-   56 switch_statement: SWITCH LP none_or_newlines expression none_or_newlines RP LCB none_or_newlines • one_or_more_cases none_or_newlines default_case none_or_newlines RCB
+   51 switch_statement: SWITCH LP none_or_newlines expression none_or_newlines RP LCB none_or_newlines • one_or_more_cases none_or_newlines default_case none_or_newlines RCB
 
-    CASE  shift, and go to state 258
+    CASE  shift, and go to state 232
 
-    one_or_more_cases  go to state 259
-    cases              go to state 260
-
-
-State 251
-
-   50 do_while_statement: DO LCB none_or_newlines statement none_or_newlines RCB WHILE LP • none_or_newlines expression none_or_newlines RP SEMICOLON
-
-    NEWLINE  shift, and go to state 76
-
-    $default  reduce using rule 125 (none_or_newlines)
-
-    none_or_newlines  go to state 261
+    one_or_more_cases  go to state 233
+    cases              go to state 234
 
 
-State 252
+State 225
 
-   51 for_statement: FOR LP none_or_newlines first_and_third_loop_statement SEMICOLON none_or_newlines second_loop_statement SEMICOLON • none_or_newlines first_and_third_loop_statement none_or_newlines RP LCB none_or_newlines statement none_or_newlines RCB
+   45 do_while_statement: DO LCB none_or_newlines statement none_or_newlines RCB WHILE LP • none_or_newlines expression none_or_newlines RP SEMICOLON
 
-    NEWLINE  shift, and go to state 76
+    NEWLINE  shift, and go to state 69
 
-    NEWLINE   [reduce using rule 125 (none_or_newlines)]
-    $default  reduce using rule 125 (none_or_newlines)
+    $default  reduce using rule 120 (none_or_newlines)
 
-    none_or_newlines  go to state 262
+    none_or_newlines  go to state 235
 
 
-State 253
+State 226
+
+   46 for_statement: FOR LP none_or_newlines first_and_third_loop_statement SEMICOLON none_or_newlines second_loop_statement SEMICOLON • none_or_newlines first_and_third_loop_statement none_or_newlines RP LCB none_or_newlines statement none_or_newlines RCB
+
+    NEWLINE  shift, and go to state 69
+
+    NEWLINE   [reduce using rule 120 (none_or_newlines)]
+    $default  reduce using rule 120 (none_or_newlines)
+
+    none_or_newlines  go to state 236
+
+
+State 227
 
     4 class_declaration: access_modifier CLASS CLASS_ID LCB none_or_newlines class_body none_or_newlines RCB •
 
     $default  reduce using rule 4 (class_declaration)
 
 
-State 254
+State 228
 
    11 method_declaration: access_modifier data_type ID LP none_or_newlines none_or_multiple_parameters none_or_newlines RP • LCB none_or_newlines method_body none_or_newlines RCB
 
-    LCB  shift, and go to state 263
+    LCB  shift, and go to state 237
 
 
-State 255
+State 229
 
    12 method_declaration: data_type ID LP none_or_newlines none_or_multiple_parameters none_or_newlines RP LCB • none_or_newlines method_body none_or_newlines RCB
 
-    NEWLINE  shift, and go to state 76
+    NEWLINE  shift, and go to state 69
 
-    NEWLINE   [reduce using rule 125 (none_or_newlines)]
-    $default  reduce using rule 125 (none_or_newlines)
+    NEWLINE   [reduce using rule 120 (none_or_newlines)]
+    $default  reduce using rule 120 (none_or_newlines)
 
-    none_or_newlines  go to state 264
+    none_or_newlines  go to state 238
 
 
-State 256
+State 230
 
    16 parameters: COMMA none_or_newlines parameter • parameters
 
-    COMMA  shift, and go to state 229
+    COMMA  shift, and go to state 203
 
     $default  reduce using rule 15 (parameters)
 
-    parameters  go to state 265
+    parameters  go to state 239
 
 
-State 257
+State 231
 
-   45 if_statement: IF LP none_or_newlines expression none_or_newlines RP LCB none_or_newlines statement • none_or_newlines RCB none_or_newlines none_or_multiple_elif none_or_newlines none_or_one_else
+   40 if_statement: IF LP none_or_newlines expression none_or_newlines RP LCB none_or_newlines statement • none_or_newlines RCB none_or_newlines none_or_multiple_elif none_or_newlines none_or_one_else
 
-    NEWLINE  shift, and go to state 76
+    NEWLINE  shift, and go to state 69
 
-    $default  reduce using rule 125 (none_or_newlines)
+    $default  reduce using rule 120 (none_or_newlines)
 
-    none_or_newlines  go to state 266
+    none_or_newlines  go to state 240
 
 
-State 258
+State 232
 
-   62 cases: CASE • case_expression COLON none_or_newlines statement
+   57 cases: CASE • case_expression COLON none_or_newlines statement
 
-    CONST          shift, and go to state 267
+    CONST          shift, and go to state 241
     SQ_ANYCHAR_SQ  shift, and go to state 23
     DQ_STRING_DQ   shift, and go to state 24
 
-    case_expression  go to state 268
-    text             go to state 269
-    any_character    go to state 270
+    case_expression  go to state 242
+    text             go to state 243
+    any_character    go to state 244
 
 
-State 259
+State 233
 
-   56 switch_statement: SWITCH LP none_or_newlines expression none_or_newlines RP LCB none_or_newlines one_or_more_cases • none_or_newlines default_case none_or_newlines RCB
+   51 switch_statement: SWITCH LP none_or_newlines expression none_or_newlines RP LCB none_or_newlines one_or_more_cases • none_or_newlines default_case none_or_newlines RCB
 
-    NEWLINE  shift, and go to state 76
+    NEWLINE  shift, and go to state 69
 
-    NEWLINE   [reduce using rule 125 (none_or_newlines)]
-    $default  reduce using rule 125 (none_or_newlines)
+    NEWLINE   [reduce using rule 120 (none_or_newlines)]
+    $default  reduce using rule 120 (none_or_newlines)
 
-    none_or_newlines  go to state 271
-
-
-State 260
-
-   59 one_or_more_cases: cases • none_or_newlines multiple_cases
-
-    NEWLINE  shift, and go to state 76
-
-    NEWLINE   [reduce using rule 125 (none_or_newlines)]
-    $default  reduce using rule 125 (none_or_newlines)
-
-    none_or_newlines  go to state 272
+    none_or_newlines  go to state 245
 
 
-State 261
+State 234
 
-   50 do_while_statement: DO LCB none_or_newlines statement none_or_newlines RCB WHILE LP none_or_newlines • expression none_or_newlines RP SEMICOLON
+   54 one_or_more_cases: cases • none_or_newlines multiple_cases
+
+    NEWLINE  shift, and go to state 69
+
+    NEWLINE   [reduce using rule 120 (none_or_newlines)]
+    $default  reduce using rule 120 (none_or_newlines)
+
+    none_or_newlines  go to state 246
+
+
+State 235
+
+   45 do_while_statement: DO LCB none_or_newlines statement none_or_newlines RCB WHILE LP none_or_newlines • expression none_or_newlines RP SEMICOLON
 
     CONST          shift, and go to state 1
-    ID             shift, and go to state 65
+    ID             shift, and go to state 2
     DOUBLE_CONST   shift, and go to state 4
     TRUE           shift, and go to state 20
     FALSE          shift, and go to state 21
@@ -4642,8 +4464,8 @@ State 261
     DQ_STRING_DQ   shift, and go to state 24
     LP             shift, and go to state 25
 
-    method_call         go to state 66
-    expression          go to state 273
+    method_call         go to state 59
+    expression          go to state 247
     text                go to state 41
     any_character       go to state 42
     member_access       go to state 44
@@ -4657,36 +4479,38 @@ State 261
     boolean_expression  go to state 54
 
 
-State 262
+State 236
 
-   51 for_statement: FOR LP none_or_newlines first_and_third_loop_statement SEMICOLON none_or_newlines second_loop_statement SEMICOLON none_or_newlines • first_and_third_loop_statement none_or_newlines RP LCB none_or_newlines statement none_or_newlines RCB
+   46 for_statement: FOR LP none_or_newlines first_and_third_loop_statement SEMICOLON none_or_newlines second_loop_statement SEMICOLON none_or_newlines • first_and_third_loop_statement none_or_newlines RP LCB none_or_newlines statement none_or_newlines RCB
 
-    ID       shift, and go to state 180
-    INTEGER  shift, and go to state 181
-    CHAR     shift, and go to state 182
-    DOUBLE   shift, and go to state 183
-    BOOLEAN  shift, and go to state 184
-    STRING   shift, and go to state 185
+    INTEGER  shift, and go to state 8
+    CHAR     shift, and go to state 9
+    DOUBLE   shift, and go to state 10
+    BOOLEAN  shift, and go to state 11
+    STRING   shift, and go to state 12
+    VOID     shift, and go to state 13
 
-    $default  reduce using rule 52 (first_and_third_loop_statement)
+    ID        reduce using rule 109 (data_type)
+    $default  reduce using rule 47 (first_and_third_loop_statement)
 
-    assignment_statement            go to state 186
-    first_and_third_loop_statement  go to state 274
+    assignment_statement            go to state 157
+    first_and_third_loop_statement  go to state 248
+    data_type                       go to state 159
 
 
-State 263
+State 237
 
    11 method_declaration: access_modifier data_type ID LP none_or_newlines none_or_multiple_parameters none_or_newlines RP LCB • none_or_newlines method_body none_or_newlines RCB
 
-    NEWLINE  shift, and go to state 76
+    NEWLINE  shift, and go to state 69
 
-    NEWLINE   [reduce using rule 125 (none_or_newlines)]
-    $default  reduce using rule 125 (none_or_newlines)
+    NEWLINE   [reduce using rule 120 (none_or_newlines)]
+    $default  reduce using rule 120 (none_or_newlines)
 
-    none_or_newlines  go to state 275
+    none_or_newlines  go to state 249
 
 
-State 264
+State 238
 
    12 method_declaration: data_type ID LP none_or_newlines none_or_multiple_parameters none_or_newlines RP LCB none_or_newlines • method_body none_or_newlines RCB
 
@@ -4717,6 +4541,7 @@ State 264
 
     CONST          [reduce using rule 20 (statement)]
     ID             [reduce using rule 20 (statement)]
+    ID             [reduce using rule 109 (data_type)]
     CLASS_ID       [reduce using rule 20 (statement)]
     DOUBLE_CONST   [reduce using rule 20 (statement)]
     NEWLINE        reduce using rule 18 (method_body)
@@ -4747,8 +4572,8 @@ State 264
 
     variable_declaration  go to state 28
     method_declaration    go to state 29
-    method_body           go to state 276
-    statement             go to state 277
+    method_body           go to state 250
+    statement             go to state 251
     assignment_statement  go to state 31
     method_call           go to state 32
     if_statement          go to state 33
@@ -4768,101 +4593,101 @@ State 264
     char_operations       go to state 47
     double_operations     go to state 48
     boolean_operations    go to state 49
-    access_modifier       go to state 143
+    access_modifier       go to state 125
     data_type             go to state 51
     integer_expression    go to state 52
     double_expression     go to state 53
     boolean_expression    go to state 54
 
 
-State 265
+State 239
 
    16 parameters: COMMA none_or_newlines parameter parameters •
 
     $default  reduce using rule 16 (parameters)
 
 
-State 266
+State 240
 
-   45 if_statement: IF LP none_or_newlines expression none_or_newlines RP LCB none_or_newlines statement none_or_newlines • RCB none_or_newlines none_or_multiple_elif none_or_newlines none_or_one_else
+   40 if_statement: IF LP none_or_newlines expression none_or_newlines RP LCB none_or_newlines statement none_or_newlines • RCB none_or_newlines none_or_multiple_elif none_or_newlines none_or_one_else
 
-    RCB  shift, and go to state 278
-
-
-State 267
-
-   63 case_expression: CONST •
-
-    $default  reduce using rule 63 (case_expression)
+    RCB  shift, and go to state 252
 
 
-State 268
+State 241
 
-   62 cases: CASE case_expression • COLON none_or_newlines statement
+   58 case_expression: CONST •
 
-    COLON  shift, and go to state 279
-
-
-State 269
-
-   65 case_expression: text •
-
-    $default  reduce using rule 65 (case_expression)
+    $default  reduce using rule 58 (case_expression)
 
 
-State 270
+State 242
 
-   64 case_expression: any_character •
+   57 cases: CASE case_expression • COLON none_or_newlines statement
 
-    $default  reduce using rule 64 (case_expression)
-
-
-State 271
-
-   56 switch_statement: SWITCH LP none_or_newlines expression none_or_newlines RP LCB none_or_newlines one_or_more_cases none_or_newlines • default_case none_or_newlines RCB
-
-    DEFAULT  shift, and go to state 280
-
-    $default  reduce using rule 57 (default_case)
-
-    default_case  go to state 281
+    COLON  shift, and go to state 253
 
 
-State 272
+State 243
 
-   59 one_or_more_cases: cases none_or_newlines • multiple_cases
+   60 case_expression: text •
 
-    CASE  shift, and go to state 258
-
-    $default  reduce using rule 60 (multiple_cases)
-
-    multiple_cases  go to state 282
-    cases           go to state 283
+    $default  reduce using rule 60 (case_expression)
 
 
-State 273
+State 244
 
-   50 do_while_statement: DO LCB none_or_newlines statement none_or_newlines RCB WHILE LP none_or_newlines expression • none_or_newlines RP SEMICOLON
+   59 case_expression: any_character •
 
-    NEWLINE  shift, and go to state 76
-
-    $default  reduce using rule 125 (none_or_newlines)
-
-    none_or_newlines  go to state 284
+    $default  reduce using rule 59 (case_expression)
 
 
-State 274
+State 245
 
-   51 for_statement: FOR LP none_or_newlines first_and_third_loop_statement SEMICOLON none_or_newlines second_loop_statement SEMICOLON none_or_newlines first_and_third_loop_statement • none_or_newlines RP LCB none_or_newlines statement none_or_newlines RCB
+   51 switch_statement: SWITCH LP none_or_newlines expression none_or_newlines RP LCB none_or_newlines one_or_more_cases none_or_newlines • default_case none_or_newlines RCB
 
-    NEWLINE  shift, and go to state 76
+    DEFAULT  shift, and go to state 254
 
-    $default  reduce using rule 125 (none_or_newlines)
+    $default  reduce using rule 52 (default_case)
 
-    none_or_newlines  go to state 285
+    default_case  go to state 255
 
 
-State 275
+State 246
+
+   54 one_or_more_cases: cases none_or_newlines • multiple_cases
+
+    CASE  shift, and go to state 232
+
+    $default  reduce using rule 55 (multiple_cases)
+
+    multiple_cases  go to state 256
+    cases           go to state 257
+
+
+State 247
+
+   45 do_while_statement: DO LCB none_or_newlines statement none_or_newlines RCB WHILE LP none_or_newlines expression • none_or_newlines RP SEMICOLON
+
+    NEWLINE  shift, and go to state 69
+
+    $default  reduce using rule 120 (none_or_newlines)
+
+    none_or_newlines  go to state 258
+
+
+State 248
+
+   46 for_statement: FOR LP none_or_newlines first_and_third_loop_statement SEMICOLON none_or_newlines second_loop_statement SEMICOLON none_or_newlines first_and_third_loop_statement • none_or_newlines RP LCB none_or_newlines statement none_or_newlines RCB
+
+    NEWLINE  shift, and go to state 69
+
+    $default  reduce using rule 120 (none_or_newlines)
+
+    none_or_newlines  go to state 259
+
+
+State 249
 
    11 method_declaration: access_modifier data_type ID LP none_or_newlines none_or_multiple_parameters none_or_newlines RP LCB none_or_newlines • method_body none_or_newlines RCB
 
@@ -4893,6 +4718,7 @@ State 275
 
     CONST          [reduce using rule 20 (statement)]
     ID             [reduce using rule 20 (statement)]
+    ID             [reduce using rule 109 (data_type)]
     CLASS_ID       [reduce using rule 20 (statement)]
     DOUBLE_CONST   [reduce using rule 20 (statement)]
     NEWLINE        reduce using rule 18 (method_body)
@@ -4923,8 +4749,8 @@ State 275
 
     variable_declaration  go to state 28
     method_declaration    go to state 29
-    method_body           go to state 286
-    statement             go to state 277
+    method_body           go to state 260
+    statement             go to state 251
     assignment_statement  go to state 31
     method_call           go to state 32
     if_statement          go to state 33
@@ -4944,130 +4770,130 @@ State 275
     char_operations       go to state 47
     double_operations     go to state 48
     boolean_operations    go to state 49
-    access_modifier       go to state 143
+    access_modifier       go to state 125
     data_type             go to state 51
     integer_expression    go to state 52
     double_expression     go to state 53
     boolean_expression    go to state 54
 
 
-State 276
+State 250
 
    12 method_declaration: data_type ID LP none_or_newlines none_or_multiple_parameters none_or_newlines RP LCB none_or_newlines method_body • none_or_newlines RCB
 
-    NEWLINE  shift, and go to state 76
+    NEWLINE  shift, and go to state 69
 
-    $default  reduce using rule 125 (none_or_newlines)
+    $default  reduce using rule 120 (none_or_newlines)
 
-    none_or_newlines  go to state 287
+    none_or_newlines  go to state 261
 
 
-State 277
+State 251
 
    19 method_body: statement • none_or_newlines method_body
 
-    NEWLINE  shift, and go to state 76
+    NEWLINE  shift, and go to state 69
 
-    NEWLINE   [reduce using rule 125 (none_or_newlines)]
-    $default  reduce using rule 125 (none_or_newlines)
+    NEWLINE   [reduce using rule 120 (none_or_newlines)]
+    $default  reduce using rule 120 (none_or_newlines)
 
-    none_or_newlines  go to state 288
-
-
-State 278
-
-   45 if_statement: IF LP none_or_newlines expression none_or_newlines RP LCB none_or_newlines statement none_or_newlines RCB • none_or_newlines none_or_multiple_elif none_or_newlines none_or_one_else
-
-    NEWLINE  shift, and go to state 76
-
-    NEWLINE   [reduce using rule 125 (none_or_newlines)]
-    $default  reduce using rule 125 (none_or_newlines)
-
-    none_or_newlines  go to state 289
+    none_or_newlines  go to state 262
 
 
-State 279
+State 252
 
-   62 cases: CASE case_expression COLON • none_or_newlines statement
+   40 if_statement: IF LP none_or_newlines expression none_or_newlines RP LCB none_or_newlines statement none_or_newlines RCB • none_or_newlines none_or_multiple_elif none_or_newlines none_or_one_else
 
-    NEWLINE  shift, and go to state 76
+    NEWLINE  shift, and go to state 69
 
-    NEWLINE   [reduce using rule 125 (none_or_newlines)]
-    $default  reduce using rule 125 (none_or_newlines)
+    NEWLINE   [reduce using rule 120 (none_or_newlines)]
+    $default  reduce using rule 120 (none_or_newlines)
 
-    none_or_newlines  go to state 290
-
-
-State 280
-
-   58 default_case: DEFAULT • COLON none_or_newlines statement
-
-    COLON  shift, and go to state 291
+    none_or_newlines  go to state 263
 
 
-State 281
+State 253
 
-   56 switch_statement: SWITCH LP none_or_newlines expression none_or_newlines RP LCB none_or_newlines one_or_more_cases none_or_newlines default_case • none_or_newlines RCB
+   57 cases: CASE case_expression COLON • none_or_newlines statement
 
-    NEWLINE  shift, and go to state 76
+    NEWLINE  shift, and go to state 69
 
-    $default  reduce using rule 125 (none_or_newlines)
+    NEWLINE   [reduce using rule 120 (none_or_newlines)]
+    $default  reduce using rule 120 (none_or_newlines)
 
-    none_or_newlines  go to state 292
-
-
-State 282
-
-   59 one_or_more_cases: cases none_or_newlines multiple_cases •
-
-    $default  reduce using rule 59 (one_or_more_cases)
+    none_or_newlines  go to state 264
 
 
-State 283
+State 254
 
-   61 multiple_cases: cases • none_or_newlines multiple_cases
+   53 default_case: DEFAULT • COLON none_or_newlines statement
 
-    NEWLINE  shift, and go to state 76
-
-    NEWLINE   [reduce using rule 125 (none_or_newlines)]
-    $default  reduce using rule 125 (none_or_newlines)
-
-    none_or_newlines  go to state 293
+    COLON  shift, and go to state 265
 
 
-State 284
+State 255
 
-   50 do_while_statement: DO LCB none_or_newlines statement none_or_newlines RCB WHILE LP none_or_newlines expression none_or_newlines • RP SEMICOLON
+   51 switch_statement: SWITCH LP none_or_newlines expression none_or_newlines RP LCB none_or_newlines one_or_more_cases none_or_newlines default_case • none_or_newlines RCB
 
-    RP  shift, and go to state 294
+    NEWLINE  shift, and go to state 69
 
+    $default  reduce using rule 120 (none_or_newlines)
 
-State 285
-
-   51 for_statement: FOR LP none_or_newlines first_and_third_loop_statement SEMICOLON none_or_newlines second_loop_statement SEMICOLON none_or_newlines first_and_third_loop_statement none_or_newlines • RP LCB none_or_newlines statement none_or_newlines RCB
-
-    RP  shift, and go to state 295
+    none_or_newlines  go to state 266
 
 
-State 286
+State 256
+
+   54 one_or_more_cases: cases none_or_newlines multiple_cases •
+
+    $default  reduce using rule 54 (one_or_more_cases)
+
+
+State 257
+
+   56 multiple_cases: cases • none_or_newlines multiple_cases
+
+    NEWLINE  shift, and go to state 69
+
+    NEWLINE   [reduce using rule 120 (none_or_newlines)]
+    $default  reduce using rule 120 (none_or_newlines)
+
+    none_or_newlines  go to state 267
+
+
+State 258
+
+   45 do_while_statement: DO LCB none_or_newlines statement none_or_newlines RCB WHILE LP none_or_newlines expression none_or_newlines • RP SEMICOLON
+
+    RP  shift, and go to state 268
+
+
+State 259
+
+   46 for_statement: FOR LP none_or_newlines first_and_third_loop_statement SEMICOLON none_or_newlines second_loop_statement SEMICOLON none_or_newlines first_and_third_loop_statement none_or_newlines • RP LCB none_or_newlines statement none_or_newlines RCB
+
+    RP  shift, and go to state 269
+
+
+State 260
 
    11 method_declaration: access_modifier data_type ID LP none_or_newlines none_or_multiple_parameters none_or_newlines RP LCB none_or_newlines method_body • none_or_newlines RCB
 
-    NEWLINE  shift, and go to state 76
+    NEWLINE  shift, and go to state 69
 
-    $default  reduce using rule 125 (none_or_newlines)
+    $default  reduce using rule 120 (none_or_newlines)
 
-    none_or_newlines  go to state 296
+    none_or_newlines  go to state 270
 
 
-State 287
+State 261
 
    12 method_declaration: data_type ID LP none_or_newlines none_or_multiple_parameters none_or_newlines RP LCB none_or_newlines method_body none_or_newlines • RCB
 
-    RCB  shift, and go to state 297
+    RCB  shift, and go to state 271
 
 
-State 288
+State 262
 
    19 method_body: statement none_or_newlines • method_body
 
@@ -5098,6 +4924,7 @@ State 288
 
     CONST          [reduce using rule 20 (statement)]
     ID             [reduce using rule 20 (statement)]
+    ID             [reduce using rule 109 (data_type)]
     CLASS_ID       [reduce using rule 20 (statement)]
     DOUBLE_CONST   [reduce using rule 20 (statement)]
     NEWLINE        reduce using rule 18 (method_body)
@@ -5128,8 +4955,8 @@ State 288
 
     variable_declaration  go to state 28
     method_declaration    go to state 29
-    method_body           go to state 298
-    statement             go to state 277
+    method_body           go to state 272
+    statement             go to state 251
     assignment_statement  go to state 31
     method_call           go to state 32
     if_statement          go to state 33
@@ -5149,27 +4976,27 @@ State 288
     char_operations       go to state 47
     double_operations     go to state 48
     boolean_operations    go to state 49
-    access_modifier       go to state 143
+    access_modifier       go to state 125
     data_type             go to state 51
     integer_expression    go to state 52
     double_expression     go to state 53
     boolean_expression    go to state 54
 
 
-State 289
+State 263
 
-   45 if_statement: IF LP none_or_newlines expression none_or_newlines RP LCB none_or_newlines statement none_or_newlines RCB none_or_newlines • none_or_multiple_elif none_or_newlines none_or_one_else
+   40 if_statement: IF LP none_or_newlines expression none_or_newlines RP LCB none_or_newlines statement none_or_newlines RCB none_or_newlines • none_or_multiple_elif none_or_newlines none_or_one_else
 
-    ELIF  shift, and go to state 299
+    ELIF  shift, and go to state 273
 
-    $default  reduce using rule 46 (none_or_multiple_elif)
+    $default  reduce using rule 41 (none_or_multiple_elif)
 
-    none_or_multiple_elif  go to state 300
+    none_or_multiple_elif  go to state 274
 
 
-State 290
+State 264
 
-   62 cases: CASE case_expression COLON none_or_newlines • statement
+   57 cases: CASE case_expression COLON none_or_newlines • statement
 
     CONST          shift, and go to state 1
     ID             shift, and go to state 2
@@ -5196,11 +5023,12 @@ State 290
     DQ_STRING_DQ   shift, and go to state 24
     LP             shift, and go to state 25
 
+    ID        [reduce using rule 109 (data_type)]
     $default  reduce using rule 20 (statement)
 
     variable_declaration  go to state 28
     method_declaration    go to state 29
-    statement             go to state 301
+    statement             go to state 275
     assignment_statement  go to state 31
     method_call           go to state 32
     if_statement          go to state 33
@@ -5220,108 +5048,108 @@ State 290
     char_operations       go to state 47
     double_operations     go to state 48
     boolean_operations    go to state 49
-    access_modifier       go to state 143
+    access_modifier       go to state 125
     data_type             go to state 51
     integer_expression    go to state 52
     double_expression     go to state 53
     boolean_expression    go to state 54
 
 
-State 291
+State 265
 
-   58 default_case: DEFAULT COLON • none_or_newlines statement
+   53 default_case: DEFAULT COLON • none_or_newlines statement
 
-    NEWLINE  shift, and go to state 76
+    NEWLINE  shift, and go to state 69
 
-    NEWLINE   [reduce using rule 125 (none_or_newlines)]
-    $default  reduce using rule 125 (none_or_newlines)
+    NEWLINE   [reduce using rule 120 (none_or_newlines)]
+    $default  reduce using rule 120 (none_or_newlines)
 
-    none_or_newlines  go to state 302
-
-
-State 292
-
-   56 switch_statement: SWITCH LP none_or_newlines expression none_or_newlines RP LCB none_or_newlines one_or_more_cases none_or_newlines default_case none_or_newlines • RCB
-
-    RCB  shift, and go to state 303
+    none_or_newlines  go to state 276
 
 
-State 293
+State 266
 
-   61 multiple_cases: cases none_or_newlines • multiple_cases
+   51 switch_statement: SWITCH LP none_or_newlines expression none_or_newlines RP LCB none_or_newlines one_or_more_cases none_or_newlines default_case none_or_newlines • RCB
 
-    CASE  shift, and go to state 258
-
-    $default  reduce using rule 60 (multiple_cases)
-
-    multiple_cases  go to state 304
-    cases           go to state 283
+    RCB  shift, and go to state 277
 
 
-State 294
+State 267
 
-   50 do_while_statement: DO LCB none_or_newlines statement none_or_newlines RCB WHILE LP none_or_newlines expression none_or_newlines RP • SEMICOLON
+   56 multiple_cases: cases none_or_newlines • multiple_cases
 
-    SEMICOLON  shift, and go to state 305
+    CASE  shift, and go to state 232
 
+    $default  reduce using rule 55 (multiple_cases)
 
-State 295
-
-   51 for_statement: FOR LP none_or_newlines first_and_third_loop_statement SEMICOLON none_or_newlines second_loop_statement SEMICOLON none_or_newlines first_and_third_loop_statement none_or_newlines RP • LCB none_or_newlines statement none_or_newlines RCB
-
-    LCB  shift, and go to state 306
+    multiple_cases  go to state 278
+    cases           go to state 257
 
 
-State 296
+State 268
+
+   45 do_while_statement: DO LCB none_or_newlines statement none_or_newlines RCB WHILE LP none_or_newlines expression none_or_newlines RP • SEMICOLON
+
+    SEMICOLON  shift, and go to state 279
+
+
+State 269
+
+   46 for_statement: FOR LP none_or_newlines first_and_third_loop_statement SEMICOLON none_or_newlines second_loop_statement SEMICOLON none_or_newlines first_and_third_loop_statement none_or_newlines RP • LCB none_or_newlines statement none_or_newlines RCB
+
+    LCB  shift, and go to state 280
+
+
+State 270
 
    11 method_declaration: access_modifier data_type ID LP none_or_newlines none_or_multiple_parameters none_or_newlines RP LCB none_or_newlines method_body none_or_newlines • RCB
 
-    RCB  shift, and go to state 307
+    RCB  shift, and go to state 281
 
 
-State 297
+State 271
 
    12 method_declaration: data_type ID LP none_or_newlines none_or_multiple_parameters none_or_newlines RP LCB none_or_newlines method_body none_or_newlines RCB •
 
     $default  reduce using rule 12 (method_declaration)
 
 
-State 298
+State 272
 
    19 method_body: statement none_or_newlines method_body •
 
     $default  reduce using rule 19 (method_body)
 
 
-State 299
+State 273
 
-   47 none_or_multiple_elif: ELIF • LP expression RP LCB none_or_newlines statement none_or_newlines RCB none_or_multiple_elif
+   42 none_or_multiple_elif: ELIF • LP expression RP LCB none_or_newlines statement none_or_newlines RCB none_or_multiple_elif
 
-    LP  shift, and go to state 308
-
-
-State 300
-
-   45 if_statement: IF LP none_or_newlines expression none_or_newlines RP LCB none_or_newlines statement none_or_newlines RCB none_or_newlines none_or_multiple_elif • none_or_newlines none_or_one_else
-
-    NEWLINE  shift, and go to state 76
-
-    NEWLINE   [reduce using rule 125 (none_or_newlines)]
-    $default  reduce using rule 125 (none_or_newlines)
-
-    none_or_newlines  go to state 309
+    LP  shift, and go to state 282
 
 
-State 301
+State 274
 
-   62 cases: CASE case_expression COLON none_or_newlines statement •
+   40 if_statement: IF LP none_or_newlines expression none_or_newlines RP LCB none_or_newlines statement none_or_newlines RCB none_or_newlines none_or_multiple_elif • none_or_newlines none_or_one_else
 
-    $default  reduce using rule 62 (cases)
+    NEWLINE  shift, and go to state 69
+
+    NEWLINE   [reduce using rule 120 (none_or_newlines)]
+    $default  reduce using rule 120 (none_or_newlines)
+
+    none_or_newlines  go to state 283
 
 
-State 302
+State 275
 
-   58 default_case: DEFAULT COLON none_or_newlines • statement
+   57 cases: CASE case_expression COLON none_or_newlines statement •
+
+    $default  reduce using rule 57 (cases)
+
+
+State 276
+
+   53 default_case: DEFAULT COLON none_or_newlines • statement
 
     CONST          shift, and go to state 1
     ID             shift, and go to state 2
@@ -5348,11 +5176,12 @@ State 302
     DQ_STRING_DQ   shift, and go to state 24
     LP             shift, and go to state 25
 
+    ID        [reduce using rule 109 (data_type)]
     $default  reduce using rule 20 (statement)
 
     variable_declaration  go to state 28
     method_declaration    go to state 29
-    statement             go to state 310
+    statement             go to state 284
     assignment_statement  go to state 31
     method_call           go to state 32
     if_statement          go to state 33
@@ -5372,59 +5201,59 @@ State 302
     char_operations       go to state 47
     double_operations     go to state 48
     boolean_operations    go to state 49
-    access_modifier       go to state 143
+    access_modifier       go to state 125
     data_type             go to state 51
     integer_expression    go to state 52
     double_expression     go to state 53
     boolean_expression    go to state 54
 
 
-State 303
+State 277
 
-   56 switch_statement: SWITCH LP none_or_newlines expression none_or_newlines RP LCB none_or_newlines one_or_more_cases none_or_newlines default_case none_or_newlines RCB •
+   51 switch_statement: SWITCH LP none_or_newlines expression none_or_newlines RP LCB none_or_newlines one_or_more_cases none_or_newlines default_case none_or_newlines RCB •
 
-    $default  reduce using rule 56 (switch_statement)
-
-
-State 304
-
-   61 multiple_cases: cases none_or_newlines multiple_cases •
-
-    $default  reduce using rule 61 (multiple_cases)
+    $default  reduce using rule 51 (switch_statement)
 
 
-State 305
+State 278
 
-   50 do_while_statement: DO LCB none_or_newlines statement none_or_newlines RCB WHILE LP none_or_newlines expression none_or_newlines RP SEMICOLON •
+   56 multiple_cases: cases none_or_newlines multiple_cases •
 
-    $default  reduce using rule 50 (do_while_statement)
-
-
-State 306
-
-   51 for_statement: FOR LP none_or_newlines first_and_third_loop_statement SEMICOLON none_or_newlines second_loop_statement SEMICOLON none_or_newlines first_and_third_loop_statement none_or_newlines RP LCB • none_or_newlines statement none_or_newlines RCB
-
-    NEWLINE  shift, and go to state 76
-
-    NEWLINE   [reduce using rule 125 (none_or_newlines)]
-    $default  reduce using rule 125 (none_or_newlines)
-
-    none_or_newlines  go to state 311
+    $default  reduce using rule 56 (multiple_cases)
 
 
-State 307
+State 279
+
+   45 do_while_statement: DO LCB none_or_newlines statement none_or_newlines RCB WHILE LP none_or_newlines expression none_or_newlines RP SEMICOLON •
+
+    $default  reduce using rule 45 (do_while_statement)
+
+
+State 280
+
+   46 for_statement: FOR LP none_or_newlines first_and_third_loop_statement SEMICOLON none_or_newlines second_loop_statement SEMICOLON none_or_newlines first_and_third_loop_statement none_or_newlines RP LCB • none_or_newlines statement none_or_newlines RCB
+
+    NEWLINE  shift, and go to state 69
+
+    NEWLINE   [reduce using rule 120 (none_or_newlines)]
+    $default  reduce using rule 120 (none_or_newlines)
+
+    none_or_newlines  go to state 285
+
+
+State 281
 
    11 method_declaration: access_modifier data_type ID LP none_or_newlines none_or_multiple_parameters none_or_newlines RP LCB none_or_newlines method_body none_or_newlines RCB •
 
     $default  reduce using rule 11 (method_declaration)
 
 
-State 308
+State 282
 
-   47 none_or_multiple_elif: ELIF LP • expression RP LCB none_or_newlines statement none_or_newlines RCB none_or_multiple_elif
+   42 none_or_multiple_elif: ELIF LP • expression RP LCB none_or_newlines statement none_or_newlines RCB none_or_multiple_elif
 
     CONST          shift, and go to state 1
-    ID             shift, and go to state 65
+    ID             shift, and go to state 2
     DOUBLE_CONST   shift, and go to state 4
     TRUE           shift, and go to state 20
     FALSE          shift, and go to state 21
@@ -5432,8 +5261,8 @@ State 308
     DQ_STRING_DQ   shift, and go to state 24
     LP             shift, and go to state 25
 
-    method_call         go to state 66
-    expression          go to state 312
+    method_call         go to state 59
+    expression          go to state 286
     text                go to state 41
     any_character       go to state 42
     member_access       go to state 44
@@ -5447,157 +5276,27 @@ State 308
     boolean_expression  go to state 54
 
 
-State 309
+State 283
 
-   45 if_statement: IF LP none_or_newlines expression none_or_newlines RP LCB none_or_newlines statement none_or_newlines RCB none_or_newlines none_or_multiple_elif none_or_newlines • none_or_one_else
+   40 if_statement: IF LP none_or_newlines expression none_or_newlines RP LCB none_or_newlines statement none_or_newlines RCB none_or_newlines none_or_multiple_elif none_or_newlines • none_or_one_else
 
-    ELSE  shift, and go to state 313
+    ELSE  shift, and go to state 287
 
-    $default  reduce using rule 48 (none_or_one_else)
+    $default  reduce using rule 43 (none_or_one_else)
 
-    none_or_one_else  go to state 314
-
-
-State 310
-
-   58 default_case: DEFAULT COLON none_or_newlines statement •
-
-    $default  reduce using rule 58 (default_case)
+    none_or_one_else  go to state 288
 
 
-State 311
+State 284
 
-   51 for_statement: FOR LP none_or_newlines first_and_third_loop_statement SEMICOLON none_or_newlines second_loop_statement SEMICOLON none_or_newlines first_and_third_loop_statement none_or_newlines RP LCB none_or_newlines • statement none_or_newlines RCB
+   53 default_case: DEFAULT COLON none_or_newlines statement •
 
-    CONST          shift, and go to state 1
-    ID             shift, and go to state 2
-    CLASS_ID       shift, and go to state 3
-    DOUBLE_CONST   shift, and go to state 4
-    PUBLIC         shift, and go to state 6
-    PRIVATE        shift, and go to state 7
-    INTEGER        shift, and go to state 8
-    CHAR           shift, and go to state 9
-    DOUBLE         shift, and go to state 10
-    BOOLEAN        shift, and go to state 11
-    STRING         shift, and go to state 12
-    VOID           shift, and go to state 13
-    RETURN         shift, and go to state 14
-    IF             shift, and go to state 15
-    SWITCH         shift, and go to state 16
-    DO             shift, and go to state 17
-    FOR            shift, and go to state 18
-    BREAK          shift, and go to state 19
-    TRUE           shift, and go to state 20
-    FALSE          shift, and go to state 21
-    PRINT          shift, and go to state 22
-    SQ_ANYCHAR_SQ  shift, and go to state 23
-    DQ_STRING_DQ   shift, and go to state 24
-    LP             shift, and go to state 25
-
-    $default  reduce using rule 20 (statement)
-
-    variable_declaration  go to state 28
-    method_declaration    go to state 29
-    statement             go to state 315
-    assignment_statement  go to state 31
-    method_call           go to state 32
-    if_statement          go to state 33
-    do_while_statement    go to state 34
-    for_statement         go to state 35
-    switch_statement      go to state 36
-    return_statement      go to state 37
-    break_statement       go to state 38
-    print_statement       go to state 39
-    expression            go to state 40
-    text                  go to state 41
-    any_character         go to state 42
-    object_creation       go to state 43
-    member_access         go to state 44
-    operations            go to state 45
-    integer_operations    go to state 46
-    char_operations       go to state 47
-    double_operations     go to state 48
-    boolean_operations    go to state 49
-    access_modifier       go to state 143
-    data_type             go to state 51
-    integer_expression    go to state 52
-    double_expression     go to state 53
-    boolean_expression    go to state 54
+    $default  reduce using rule 53 (default_case)
 
 
-State 312
+State 285
 
-   47 none_or_multiple_elif: ELIF LP expression • RP LCB none_or_newlines statement none_or_newlines RCB none_or_multiple_elif
-
-    RP  shift, and go to state 316
-
-
-State 313
-
-   49 none_or_one_else: ELSE • LCB none_or_newlines statement none_or_newlines RCB
-
-    LCB  shift, and go to state 317
-
-
-State 314
-
-   45 if_statement: IF LP none_or_newlines expression none_or_newlines RP LCB none_or_newlines statement none_or_newlines RCB none_or_newlines none_or_multiple_elif none_or_newlines none_or_one_else •
-
-    $default  reduce using rule 45 (if_statement)
-
-
-State 315
-
-   51 for_statement: FOR LP none_or_newlines first_and_third_loop_statement SEMICOLON none_or_newlines second_loop_statement SEMICOLON none_or_newlines first_and_third_loop_statement none_or_newlines RP LCB none_or_newlines statement • none_or_newlines RCB
-
-    NEWLINE  shift, and go to state 76
-
-    $default  reduce using rule 125 (none_or_newlines)
-
-    none_or_newlines  go to state 318
-
-
-State 316
-
-   47 none_or_multiple_elif: ELIF LP expression RP • LCB none_or_newlines statement none_or_newlines RCB none_or_multiple_elif
-
-    LCB  shift, and go to state 319
-
-
-State 317
-
-   49 none_or_one_else: ELSE LCB • none_or_newlines statement none_or_newlines RCB
-
-    NEWLINE  shift, and go to state 76
-
-    NEWLINE   [reduce using rule 125 (none_or_newlines)]
-    $default  reduce using rule 125 (none_or_newlines)
-
-    none_or_newlines  go to state 320
-
-
-State 318
-
-   51 for_statement: FOR LP none_or_newlines first_and_third_loop_statement SEMICOLON none_or_newlines second_loop_statement SEMICOLON none_or_newlines first_and_third_loop_statement none_or_newlines RP LCB none_or_newlines statement none_or_newlines • RCB
-
-    RCB  shift, and go to state 321
-
-
-State 319
-
-   47 none_or_multiple_elif: ELIF LP expression RP LCB • none_or_newlines statement none_or_newlines RCB none_or_multiple_elif
-
-    NEWLINE  shift, and go to state 76
-
-    NEWLINE   [reduce using rule 125 (none_or_newlines)]
-    $default  reduce using rule 125 (none_or_newlines)
-
-    none_or_newlines  go to state 322
-
-
-State 320
-
-   49 none_or_one_else: ELSE LCB none_or_newlines • statement none_or_newlines RCB
+   46 for_statement: FOR LP none_or_newlines first_and_third_loop_statement SEMICOLON none_or_newlines second_loop_statement SEMICOLON none_or_newlines first_and_third_loop_statement none_or_newlines RP LCB none_or_newlines • statement none_or_newlines RCB
 
     CONST          shift, and go to state 1
     ID             shift, and go to state 2
@@ -5624,11 +5323,12 @@ State 320
     DQ_STRING_DQ   shift, and go to state 24
     LP             shift, and go to state 25
 
+    ID        [reduce using rule 109 (data_type)]
     $default  reduce using rule 20 (statement)
 
     variable_declaration  go to state 28
     method_declaration    go to state 29
-    statement             go to state 323
+    statement             go to state 289
     assignment_statement  go to state 31
     method_call           go to state 32
     if_statement          go to state 33
@@ -5648,23 +5348,86 @@ State 320
     char_operations       go to state 47
     double_operations     go to state 48
     boolean_operations    go to state 49
-    access_modifier       go to state 143
+    access_modifier       go to state 125
     data_type             go to state 51
     integer_expression    go to state 52
     double_expression     go to state 53
     boolean_expression    go to state 54
 
 
-State 321
+State 286
 
-   51 for_statement: FOR LP none_or_newlines first_and_third_loop_statement SEMICOLON none_or_newlines second_loop_statement SEMICOLON none_or_newlines first_and_third_loop_statement none_or_newlines RP LCB none_or_newlines statement none_or_newlines RCB •
+   42 none_or_multiple_elif: ELIF LP expression • RP LCB none_or_newlines statement none_or_newlines RCB none_or_multiple_elif
 
-    $default  reduce using rule 51 (for_statement)
+    RP  shift, and go to state 290
 
 
-State 322
+State 287
 
-   47 none_or_multiple_elif: ELIF LP expression RP LCB none_or_newlines • statement none_or_newlines RCB none_or_multiple_elif
+   44 none_or_one_else: ELSE • LCB none_or_newlines statement none_or_newlines RCB
+
+    LCB  shift, and go to state 291
+
+
+State 288
+
+   40 if_statement: IF LP none_or_newlines expression none_or_newlines RP LCB none_or_newlines statement none_or_newlines RCB none_or_newlines none_or_multiple_elif none_or_newlines none_or_one_else •
+
+    $default  reduce using rule 40 (if_statement)
+
+
+State 289
+
+   46 for_statement: FOR LP none_or_newlines first_and_third_loop_statement SEMICOLON none_or_newlines second_loop_statement SEMICOLON none_or_newlines first_and_third_loop_statement none_or_newlines RP LCB none_or_newlines statement • none_or_newlines RCB
+
+    NEWLINE  shift, and go to state 69
+
+    $default  reduce using rule 120 (none_or_newlines)
+
+    none_or_newlines  go to state 292
+
+
+State 290
+
+   42 none_or_multiple_elif: ELIF LP expression RP • LCB none_or_newlines statement none_or_newlines RCB none_or_multiple_elif
+
+    LCB  shift, and go to state 293
+
+
+State 291
+
+   44 none_or_one_else: ELSE LCB • none_or_newlines statement none_or_newlines RCB
+
+    NEWLINE  shift, and go to state 69
+
+    NEWLINE   [reduce using rule 120 (none_or_newlines)]
+    $default  reduce using rule 120 (none_or_newlines)
+
+    none_or_newlines  go to state 294
+
+
+State 292
+
+   46 for_statement: FOR LP none_or_newlines first_and_third_loop_statement SEMICOLON none_or_newlines second_loop_statement SEMICOLON none_or_newlines first_and_third_loop_statement none_or_newlines RP LCB none_or_newlines statement none_or_newlines • RCB
+
+    RCB  shift, and go to state 295
+
+
+State 293
+
+   42 none_or_multiple_elif: ELIF LP expression RP LCB • none_or_newlines statement none_or_newlines RCB none_or_multiple_elif
+
+    NEWLINE  shift, and go to state 69
+
+    NEWLINE   [reduce using rule 120 (none_or_newlines)]
+    $default  reduce using rule 120 (none_or_newlines)
+
+    none_or_newlines  go to state 296
+
+
+State 294
+
+   44 none_or_one_else: ELSE LCB none_or_newlines • statement none_or_newlines RCB
 
     CONST          shift, and go to state 1
     ID             shift, and go to state 2
@@ -5691,11 +5454,12 @@ State 322
     DQ_STRING_DQ   shift, and go to state 24
     LP             shift, and go to state 25
 
+    ID        [reduce using rule 109 (data_type)]
     $default  reduce using rule 20 (statement)
 
     variable_declaration  go to state 28
     method_declaration    go to state 29
-    statement             go to state 324
+    statement             go to state 297
     assignment_statement  go to state 31
     method_call           go to state 32
     if_statement          go to state 33
@@ -5715,69 +5479,137 @@ State 322
     char_operations       go to state 47
     double_operations     go to state 48
     boolean_operations    go to state 49
-    access_modifier       go to state 143
+    access_modifier       go to state 125
     data_type             go to state 51
     integer_expression    go to state 52
     double_expression     go to state 53
     boolean_expression    go to state 54
 
 
-State 323
+State 295
 
-   49 none_or_one_else: ELSE LCB none_or_newlines statement • none_or_newlines RCB
+   46 for_statement: FOR LP none_or_newlines first_and_third_loop_statement SEMICOLON none_or_newlines second_loop_statement SEMICOLON none_or_newlines first_and_third_loop_statement none_or_newlines RP LCB none_or_newlines statement none_or_newlines RCB •
 
-    NEWLINE  shift, and go to state 76
-
-    $default  reduce using rule 125 (none_or_newlines)
-
-    none_or_newlines  go to state 325
+    $default  reduce using rule 46 (for_statement)
 
 
-State 324
+State 296
 
-   47 none_or_multiple_elif: ELIF LP expression RP LCB none_or_newlines statement • none_or_newlines RCB none_or_multiple_elif
+   42 none_or_multiple_elif: ELIF LP expression RP LCB none_or_newlines • statement none_or_newlines RCB none_or_multiple_elif
 
-    NEWLINE  shift, and go to state 76
+    CONST          shift, and go to state 1
+    ID             shift, and go to state 2
+    CLASS_ID       shift, and go to state 3
+    DOUBLE_CONST   shift, and go to state 4
+    PUBLIC         shift, and go to state 6
+    PRIVATE        shift, and go to state 7
+    INTEGER        shift, and go to state 8
+    CHAR           shift, and go to state 9
+    DOUBLE         shift, and go to state 10
+    BOOLEAN        shift, and go to state 11
+    STRING         shift, and go to state 12
+    VOID           shift, and go to state 13
+    RETURN         shift, and go to state 14
+    IF             shift, and go to state 15
+    SWITCH         shift, and go to state 16
+    DO             shift, and go to state 17
+    FOR            shift, and go to state 18
+    BREAK          shift, and go to state 19
+    TRUE           shift, and go to state 20
+    FALSE          shift, and go to state 21
+    PRINT          shift, and go to state 22
+    SQ_ANYCHAR_SQ  shift, and go to state 23
+    DQ_STRING_DQ   shift, and go to state 24
+    LP             shift, and go to state 25
 
-    $default  reduce using rule 125 (none_or_newlines)
+    ID        [reduce using rule 109 (data_type)]
+    $default  reduce using rule 20 (statement)
 
-    none_or_newlines  go to state 326
-
-
-State 325
-
-   49 none_or_one_else: ELSE LCB none_or_newlines statement none_or_newlines • RCB
-
-    RCB  shift, and go to state 327
-
-
-State 326
-
-   47 none_or_multiple_elif: ELIF LP expression RP LCB none_or_newlines statement none_or_newlines • RCB none_or_multiple_elif
-
-    RCB  shift, and go to state 328
-
-
-State 327
-
-   49 none_or_one_else: ELSE LCB none_or_newlines statement none_or_newlines RCB •
-
-    $default  reduce using rule 49 (none_or_one_else)
-
-
-State 328
-
-   47 none_or_multiple_elif: ELIF LP expression RP LCB none_or_newlines statement none_or_newlines RCB • none_or_multiple_elif
-
-    ELIF  shift, and go to state 299
-
-    $default  reduce using rule 46 (none_or_multiple_elif)
-
-    none_or_multiple_elif  go to state 329
+    variable_declaration  go to state 28
+    method_declaration    go to state 29
+    statement             go to state 298
+    assignment_statement  go to state 31
+    method_call           go to state 32
+    if_statement          go to state 33
+    do_while_statement    go to state 34
+    for_statement         go to state 35
+    switch_statement      go to state 36
+    return_statement      go to state 37
+    break_statement       go to state 38
+    print_statement       go to state 39
+    expression            go to state 40
+    text                  go to state 41
+    any_character         go to state 42
+    object_creation       go to state 43
+    member_access         go to state 44
+    operations            go to state 45
+    integer_operations    go to state 46
+    char_operations       go to state 47
+    double_operations     go to state 48
+    boolean_operations    go to state 49
+    access_modifier       go to state 125
+    data_type             go to state 51
+    integer_expression    go to state 52
+    double_expression     go to state 53
+    boolean_expression    go to state 54
 
 
-State 329
+State 297
 
-   47 none_or_multiple_elif: ELIF LP expression RP LCB none_or_newlines statement none_or_newlines RCB none_or_multiple_elif •
+   44 none_or_one_else: ELSE LCB none_or_newlines statement • none_or_newlines RCB
 
-    $default  reduce using rule 47 (none_or_multiple_elif)
+    NEWLINE  shift, and go to state 69
+
+    $default  reduce using rule 120 (none_or_newlines)
+
+    none_or_newlines  go to state 299
+
+
+State 298
+
+   42 none_or_multiple_elif: ELIF LP expression RP LCB none_or_newlines statement • none_or_newlines RCB none_or_multiple_elif
+
+    NEWLINE  shift, and go to state 69
+
+    $default  reduce using rule 120 (none_or_newlines)
+
+    none_or_newlines  go to state 300
+
+
+State 299
+
+   44 none_or_one_else: ELSE LCB none_or_newlines statement none_or_newlines • RCB
+
+    RCB  shift, and go to state 301
+
+
+State 300
+
+   42 none_or_multiple_elif: ELIF LP expression RP LCB none_or_newlines statement none_or_newlines • RCB none_or_multiple_elif
+
+    RCB  shift, and go to state 302
+
+
+State 301
+
+   44 none_or_one_else: ELSE LCB none_or_newlines statement none_or_newlines RCB •
+
+    $default  reduce using rule 44 (none_or_one_else)
+
+
+State 302
+
+   42 none_or_multiple_elif: ELIF LP expression RP LCB none_or_newlines statement none_or_newlines RCB • none_or_multiple_elif
+
+    ELIF  shift, and go to state 273
+
+    $default  reduce using rule 41 (none_or_multiple_elif)
+
+    none_or_multiple_elif  go to state 303
+
+
+State 303
+
+   42 none_or_multiple_elif: ELIF LP expression RP LCB none_or_newlines statement none_or_newlines RCB none_or_multiple_elif •
+
+    $default  reduce using rule 42 (none_or_multiple_elif)

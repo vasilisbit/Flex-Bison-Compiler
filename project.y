@@ -108,12 +108,7 @@ statement: /* nothing */
     | object_creation none_or_newlines statement
     ;
 
-assignment_statement: ID ASSIGN expression
-    | INTEGER ID ASSIGN integer_expression
-    | CHAR ID ASSIGN any_character
-    | DOUBLE ID ASSIGN double_expression
-    | BOOLEAN ID ASSIGN boolean_expression
-    | STRING ID ASSIGN string_expression
+assignment_statement: data_type ID ASSIGN expression
     ;
 
 method_call: ID LP none_or_newlines none_or_multiple_arguments none_or_newlines RP SEMICOLON
@@ -262,7 +257,8 @@ access_modifier: PUBLIC
     | PRIVATE
     ;
 
-data_type: INTEGER
+data_type: /* nothing */
+    | INTEGER
     | CHAR
     | DOUBLE
     | BOOLEAN
