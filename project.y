@@ -69,8 +69,18 @@ class_body: /* nothing */
     | statement none_or_newlines class_body
     ;
 
-variable_declaration: data_type ID SEMICOLON
-    | access_modifier data_type ID SEMICOLON
+identifier_list: ID
+    | ID COMMA identifier_list
+    ;
+
+assignment_list: ID ASSIGN expression
+    | ID ASSIGN expression COMMA assignment_list
+    ;
+
+variable_declaration: data_type identifier_list
+    | access_modifier data_type identifier_list
+    | access_modifier data_type assignment_list
+    | data_type assignment_list
     ;
 
 method_declaration: access_modifier data_type ID LP none_or_newlines none_or_multiple_parameters none_or_newlines RP LCB none_or_newlines method_body none_or_newlines RCB
@@ -92,8 +102,7 @@ method_body: /* nothing */
     | statement none_or_newlines method_body
     ;
 
-statement: /* nothing */ 
-    | assignment_statement SEMICOLON none_or_newlines statement
+statement: /* nothing */
     | method_call none_or_newlines statement
     | if_statement none_or_newlines statement
     | do_while_statement none_or_newlines statement 
@@ -103,7 +112,7 @@ statement: /* nothing */
     | break_statement none_or_newlines statement
     | print_statement none_or_newlines statement
     | expression SEMICOLON none_or_newlines statement
-    | variable_declaration none_or_newlines statement
+    | variable_declaration SEMICOLON none_or_newlines statement
     | method_declaration none_or_newlines statement
     | object_creation none_or_newlines statement
     ;

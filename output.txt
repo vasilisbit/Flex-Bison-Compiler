@@ -1,11 +1,1 @@
-public class Test {
-    public void main() {
-        int x;
-    }
-}
-
-public class Test2 {
-    public void main() {
-        int x = true;
-    }
-}
+double x,y,z;
