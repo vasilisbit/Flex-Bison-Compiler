@@ -2,12 +2,34 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <math.h>
+#include <string.h>
 void yyerror(const char *s);
 extern FILE *yyin;
 extern FILE *yyout;
 extern int yylex();
 extern int yylineno;
 extern char *yytext;
+
+typedef enum {
+    INTEGER_TYPE,
+    CHAR_TYPE,
+    DOUBLE_TYPE,
+    BOOLEAN_TYPE,
+    STRING_TYPE,
+    VOID_TYPE
+} DATA_TYPE;
+
+typedef struct symbol{
+    char *name;
+    int type; // 0 for variable, 1 for method
+    DATA_TYPE data_type;
+} symbol;
+
+symbol *symbol_table[1000];
+int symbol_count = 0;
+
+symbol* lookup(char *name);
+void insert(char *name, int type, DATA_TYPE data_type);
 %}
 
 %union {
@@ -73,18 +95,39 @@ identifier_list: ID
     | ID COMMA identifier_list
     ;
 
-assignment_list: ID ASSIGN expression
-    | ID ASSIGN expression COMMA assignment_list
+assignment_list: ID ASSIGN expression {
+        insert($1, 0);
+    }
+    | ID ASSIGN expression COMMA assignment_list {
+        insert($1, 0);
+    }
     ;
 
-variable_declaration: data_type identifier_list
-    | access_modifier data_type identifier_list
+variable_declaration: data_type identifier_list {
+        insert($2, 0, $1);
+    }
+    | access_modifier data_type identifier_list {
+        insert($3, 0, $2);
+    }
     | access_modifier data_type assignment_list
     | data_type assignment_list
+    | assignment_list
     ;
 
-method_declaration: access_modifier data_type ID LP none_or_newlines none_or_multiple_parameters none_or_newlines RP LCB none_or_newlines method_body none_or_newlines RCB
-    | data_type ID LP none_or_newlines none_or_multiple_parameters none_or_newlines RP LCB none_or_newlines method_body none_or_newlines RCB
+variable_reference: ID {
+    symbol *sym = lookup($1);
+    if (!sym || sym->type != 0) {  // 0 for variable
+        yyerror("Variable not declared");
+        YYERROR;
+    }
+}
+
+method_declaration: access_modifier data_type ID LP none_or_newlines none_or_multiple_parameters none_or_newlines RP LCB none_or_newlines method_body none_or_newlines RCB {
+        insert($3, 1);
+    }
+    | data_type ID LP none_or_newlines none_or_multiple_parameters none_or_newlines RP LCB none_or_newlines method_body none_or_newlines RCB {
+        insert($2, 1);
+    }
     ;
 
 none_or_multiple_parameters: /* nothing */
@@ -115,12 +158,29 @@ statement: /* nothing */
     | variable_declaration SEMICOLON none_or_newlines statement
     | method_declaration none_or_newlines statement
     | object_creation none_or_newlines statement
+    | variable_reference SEMICOLON none_or_newlines statement
     ;
 
-assignment_statement: data_type ID ASSIGN expression
+assignment_statement: data_type ID ASSIGN expression {
+        symbol *sym = lookup($2);
+        if (!sym) {
+            yyerror("Variable not declared");
+            YYERROR;
+        }
+        if (sym->data_type != $1) {
+            yyerror("Data type mismatch");
+            YYERROR;
+        }
+    }
     ;
 
-method_call: ID LP none_or_newlines none_or_multiple_arguments none_or_newlines RP SEMICOLON
+method_call: ID LP none_or_newlines none_or_multiple_arguments none_or_newlines RP SEMICOLON {
+        symbol *sym = lookup($1);
+        if (!sym || sym->type != 1) {  // 1 for method
+            yyerror("Method not declared");
+            YYERROR;
+        }
+    }
     ;
 
 none_or_multiple_arguments: /* nothing */
@@ -191,16 +251,16 @@ single_or_multiple_variables: /* nothing */
     | COMMA ID single_or_multiple_variables
     ;
 
-expression: integer_expression
-    | any_character
-    | double_expression
-    | boolean_expression
-    | text
-    | ID
-    | method_call
-    | operations
-    | member_access
-    | LP expression RP
+expression: integer_expression { $$ = INTEGER_TYPE; }
+    | any_character { $$ = CHAR_TYPE; }
+    | double_expression { $$ = DOUBLE_TYPE; }
+    | boolean_expression { $$ = BOOLEAN_TYPE; }
+    | text { $$ = STRING_TYPE; }
+    | variable_reference { $$ = lookup($1)->data_type; }
+    | method_call { $$ = lookup($1)->data_type; }
+    | operations { $$ = $1; }  // assuming operations returns a DATA_TYPE
+    | member_access { $$ = $1; }  // assuming member_access returns a DATA_TYPE
+    | LP expression RP { $$ = $2; }
     ;
 
 text: DQ_STRING_DQ
@@ -266,13 +326,12 @@ access_modifier: PUBLIC
     | PRIVATE
     ;
 
-data_type: /* nothing */
-    | INTEGER
-    | CHAR
-    | DOUBLE
-    | BOOLEAN
-    | STRING
-    | VOID
+data_type: INTEGER { $$ = INTEGER_TYPE; }
+    | CHAR { $$ = CHAR_TYPE; }
+    | DOUBLE { $$ = DOUBLE_TYPE; }
+    | BOOLEAN { $$ = BOOLEAN_TYPE; }
+    | STRING { $$ = STRING_TYPE; }
+    | VOID { $$ = VOID_TYPE; }
     ;
 
 integer_expression: CONST
@@ -293,6 +352,23 @@ none_or_newlines: /* nothing */
     ;
     
 %%
+
+symbol* lookup(char *name) {
+    for (int i = 0; i < symbol_count; i++) {
+        if (strcmp(symbol_table[i]->name, name) == 0) {
+            return symbol_table[i];
+        }
+    }
+    return NULL;
+}
+
+void insert(char *name, int type) {
+    symbol *sym = malloc(sizeof(symbol));
+    sym->name = strdup(name);
+    sym->type = type;
+    sym->data_type = data_type;
+    symbol_table[symbol_count++] = sym;
+}
 
 void yyerror(const char *s) {
     fprintf(stderr, "Error on line %d: %s recognised at the token '%s'\n", yylineno, s, yytext);
