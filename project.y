@@ -23,6 +23,7 @@ typedef struct symbol{
     char *name;
     int type; // 0 for variable, 1 for method
     DATA_TYPE data_type;
+    void *value;
 } symbol;
 
 symbol *symbol_table[1000];
@@ -75,6 +76,11 @@ void insert(char *name, int type, DATA_TYPE data_type);
 %token EQ NEQ LT GT LE GE
 %token AND OR NOT
 
+%type <sval> expression
+%type <ival> operations member_access
+%type <sval> ID
+%type <ival> data_type
+
 %%
 
 program: /* nothing */
@@ -96,10 +102,30 @@ identifier_list: ID
     ;
 
 assignment_list: ID ASSIGN expression {
-        insert($1, 0);
+        symbol *existing = lookup($1);
+        if (existing != NULL) {
+            if (existing->type != 0) {
+                yyerror("Variable already declared as method");
+                YYERROR;
+            } else {
+                existing->value = (void*)$3;
+            }
+        } else {
+            insert($1, 0, (DATA_TYPE)$3);
+            }
     }
     | ID ASSIGN expression COMMA assignment_list {
-        insert($1, 0);
+        symbol *existing = lookup($1);
+        if (existing != NULL) {
+            if (existing->type != 0) {
+                yyerror("Variable already declared as method");
+                YYERROR;
+            } else {
+                existing->value = (void*)$3;
+            }
+        } else {
+            insert($1, 0, (DATA_TYPE)$3);
+            }
     }
     ;
 
@@ -362,12 +388,18 @@ symbol* lookup(char *name) {
     return NULL;
 }
 
-void insert(char *name, int type) {
+void insert(char *name, int type, void *value) {
     symbol *sym = malloc(sizeof(symbol));
     sym->name = strdup(name);
     sym->type = type;
     sym->data_type = data_type;
     symbol_table[symbol_count++] = sym;
+    sym->value = value;
+
+    if((type == INTEGER_TYPE && sym->value != (int*)value) || (type == CHAR_TYPE && sym->value != (char*)value) || (type == DOUBLE_TYPE && sym->value != (double*)value) || (type == BOOLEAN_TYPE && sym->value != (bool*)value) || (type == STRING_TYPE && sym->value != (char*)value)) {
+        yyerror("Data type mismatch");
+        YYERROR;
+    }
 }
 
 void yyerror(const char *s) {
