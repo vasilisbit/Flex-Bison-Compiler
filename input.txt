@@ -1,2 +1,75 @@
-int x = 10, y = 20;
-x = 1.2;
+// Class declaration with access modifier
+public class MyClass {
+    // Empty class body
+}
+
+// Class declaration without access modifier
+class MyClass {
+    // Class declaration inside class body
+    public class InnerClass {
+        // Statement inside class body
+        int x = 10;
+    }
+}
+
+// Variable declaration
+int x, y, z;
+
+// Variable declaration with assignment
+int x = 10, y = 20, z = 30;
+
+// Method declaration
+public int sum(int a, int b) {
+    return a + b;
+}
+
+// If statement
+if (x > y) {
+    x = y;
+} else if (y > z) {
+    y = z;
+} else {
+    z = x;
+}
+
+// Do-while statement
+do {
+    x = x - 1;
+} while (x > 0);
+
+// For statement
+for (int i = 0; i < 10; i = i + 1) {
+    x = x + i;
+}
+
+// Switch statement
+switch (x) {
+    case 1:
+        y = 1;
+        break;
+    case 2:
+        y = 2;
+        break;
+    default:
+        y = 0;
+}
+
+// Return statement
+return x;
+
+// Break statement
+break;
+
+// Print statement
+out.print("x = ", x);
+
+// Expression
+x = y + z;
+
+// Relational expression
+if (x == y) {
+    z = 1;
+}
+
+// Object creation
+MyClass obj = new MyClass();

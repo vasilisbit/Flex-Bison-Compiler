@@ -9,28 +9,6 @@ extern FILE *yyout;
 extern int yylex();
 extern int yylineno;
 extern char *yytext;
-
-typedef enum {
-    INTEGER_TYPE,
-    CHAR_TYPE,
-    DOUBLE_TYPE,
-    BOOLEAN_TYPE,
-    STRING_TYPE,
-    VOID_TYPE
-} DATA_TYPE;
-
-typedef struct symbol{
-    char *name;
-    int type; // 0 for variable, 1 for method
-    DATA_TYPE data_type;
-    void *value;
-} symbol;
-
-symbol *symbol_table[1000];
-int symbol_count = 0;
-
-symbol* lookup(char *name);
-void insert(char *name, int type, DATA_TYPE data_type);
 %}
 
 %union {
@@ -76,11 +54,6 @@ void insert(char *name, int type, DATA_TYPE data_type);
 %token EQ NEQ LT GT LE GE
 %token AND OR NOT
 
-%type <sval> expression
-%type <ival> operations member_access
-%type <sval> ID
-%type <ival> data_type
-
 %%
 
 program: /* nothing */
@@ -101,59 +74,31 @@ identifier_list: ID
     | ID COMMA identifier_list
     ;
 
-assignment_list: ID ASSIGN expression {
-        symbol *existing = lookup($1);
-        if (existing != NULL) {
-            if (existing->type != 0) {
-                yyerror("Variable already declared as method");
-                YYERROR;
-            } else {
-                existing->value = (void*)$3;
-            }
-        } else {
-            insert($1, 0, (DATA_TYPE)$3);
-            }
-    }
-    | ID ASSIGN expression COMMA assignment_list {
-        symbol *existing = lookup($1);
-        if (existing != NULL) {
-            if (existing->type != 0) {
-                yyerror("Variable already declared as method");
-                YYERROR;
-            } else {
-                existing->value = (void*)$3;
-            }
-        } else {
-            insert($1, 0, (DATA_TYPE)$3);
-            }
-    }
+assignment_list: ID ASSIGN exp
+    | ID ASSIGN exp COMMA assignment_list
+    | ID ASSIGN DQ_STRING_DQ
+    | ID ASSIGN DQ_STRING_DQ COMMA assignment_list
+    | ID ASSIGN variable_reference
+    | ID ASSIGN variable_reference COMMA assignment_list
+    | ID ASSIGN method_call
+    | ID ASSIGN method_call COMMA assignment_list
+    | ID ASSIGN object_creation
+    | ID ASSIGN object_creation COMMA assignment_list
     ;
 
-variable_declaration: data_type identifier_list {
-        insert($2, 0, $1);
-    }
-    | access_modifier data_type identifier_list {
-        insert($3, 0, $2);
-    }
+variable_declaration: data_type identifier_list
+    | access_modifier data_type identifier_list
     | access_modifier data_type assignment_list
     | data_type assignment_list
     | assignment_list
     ;
 
-variable_reference: ID {
-    symbol *sym = lookup($1);
-    if (!sym || sym->type != 0) {  // 0 for variable
-        yyerror("Variable not declared");
-        YYERROR;
-    }
-}
+variable_reference: ID
+    ;
 
-method_declaration: access_modifier data_type ID LP none_or_newlines none_or_multiple_parameters none_or_newlines RP LCB none_or_newlines method_body none_or_newlines RCB {
-        insert($3, 1);
-    }
-    | data_type ID LP none_or_newlines none_or_multiple_parameters none_or_newlines RP LCB none_or_newlines method_body none_or_newlines RCB {
-        insert($2, 1);
-    }
+
+method_declaration: access_modifier data_type ID LP none_or_newlines none_or_multiple_parameters none_or_newlines RP LCB none_or_newlines method_body none_or_newlines RCB
+    | data_type ID LP none_or_newlines none_or_multiple_parameters none_or_newlines RP LCB none_or_newlines method_body none_or_newlines RCB
     ;
 
 none_or_multiple_parameters: /* nothing */
@@ -174,61 +119,57 @@ method_body: /* nothing */
 statement: /* nothing */
     | method_call none_or_newlines statement
     | if_statement none_or_newlines statement
-    | do_while_statement none_or_newlines statement 
+    | do_while_statement none_or_newlines statement
     | for_statement none_or_newlines statement
     | switch_statement none_or_newlines statement
     | return_statement none_or_newlines statement
     | break_statement none_or_newlines statement
     | print_statement none_or_newlines statement
-    | expression SEMICOLON none_or_newlines statement
+    | exp SEMICOLON none_or_newlines statement
+    | relational_exp SEMICOLON none_or_newlines statement
+    | DQ_STRING_DQ SEMICOLON none_or_newlines statement
     | variable_declaration SEMICOLON none_or_newlines statement
     | method_declaration none_or_newlines statement
     | object_creation none_or_newlines statement
     | variable_reference SEMICOLON none_or_newlines statement
     ;
 
-assignment_statement: data_type ID ASSIGN expression {
-        symbol *sym = lookup($2);
-        if (!sym) {
-            yyerror("Variable not declared");
-            YYERROR;
-        }
-        if (sym->data_type != $1) {
-            yyerror("Data type mismatch");
-            YYERROR;
-        }
-    }
+assignment_statement: data_type ID ASSIGN exp
+    | data_type ID ASSIGN variable_reference
     ;
 
-method_call: ID LP none_or_newlines none_or_multiple_arguments none_or_newlines RP SEMICOLON {
-        symbol *sym = lookup($1);
-        if (!sym || sym->type != 1) {  // 1 for method
-            yyerror("Method not declared");
-            YYERROR;
-        }
-    }
+method_call: ID LP none_or_newlines none_or_multiple_arguments none_or_newlines RP SEMICOLON
     ;
 
 none_or_multiple_arguments: /* nothing */
-    | expression arguments
+    | parameter arguments
+    | variable_reference arguments
     ;
 
 arguments: /* nothing */
-    | COMMA none_or_newlines expression arguments
+    | COMMA none_or_newlines parameter arguments
+    | COMMA none_or_newlines variable_reference arguments
     ;
 
-if_statement: IF LP none_or_newlines expression none_or_newlines RP LCB none_or_newlines statement none_or_newlines RCB none_or_newlines none_or_multiple_elif none_or_newlines none_or_one_else
+if_statement: IF LP none_or_newlines exp none_or_newlines RP LCB none_or_newlines statement none_or_newlines RCB none_or_newlines none_or_multiple_elif none_or_newlines none_or_one_else
+    | IF LP none_or_newlines relational_exp none_or_newlines RP LCB none_or_newlines statement none_or_newlines RCB none_or_newlines none_or_multiple_elif none_or_newlines none_or_one_else
+    | IF LP none_or_newlines variable_reference none_or_newlines RP LCB none_or_newlines statement none_or_newlines RCB none_or_newlines none_or_multiple_elif none_or_newlines none_or_one_else
+    | IF LP none_or_newlines method_call none_or_newlines RP LCB none_or_newlines statement none_or_newlines RCB none_or_newlines none_or_multiple_elif none_or_newlines none_or_one_else
     ;
 
 none_or_multiple_elif: /* nothing */
-    | ELIF LP expression RP LCB none_or_newlines statement none_or_newlines RCB none_or_multiple_elif
+    | ELIF LP exp RP LCB none_or_newlines statement none_or_newlines RCB none_or_multiple_elif
+    | ELIF LP relational_exp RP LCB none_or_newlines statement none_or_newlines RCB none_or_multiple_elif
+    | ELIF LP variable_reference RP LCB none_or_newlines statement none_or_newlines RCB none_or_multiple_elif
+    | ELIF LP method_call RP LCB none_or_newlines statement none_or_newlines RCB none_or_multiple_elif
     ;
 
 none_or_one_else: /* nothing */
     | ELSE LCB none_or_newlines statement none_or_newlines RCB
     ;
 
-do_while_statement: DO LCB none_or_newlines statement none_or_newlines RCB WHILE LP none_or_newlines expression none_or_newlines RP SEMICOLON
+do_while_statement: DO LCB none_or_newlines statement none_or_newlines RCB WHILE LP none_or_newlines relational_exp none_or_newlines RP SEMICOLON
+    | DO LCB none_or_newlines statement none_or_newlines RCB WHILE LP none_or_newlines variable_reference none_or_newlines RP SEMICOLON
     ;
 
 for_statement: FOR LP none_or_newlines first_and_third_loop_statement SEMICOLON none_or_newlines second_loop_statement SEMICOLON none_or_newlines first_and_third_loop_statement none_or_newlines RP LCB none_or_newlines statement none_or_newlines RCB
@@ -239,10 +180,11 @@ first_and_third_loop_statement: /* nothing */
     ;
 
 second_loop_statement: /* nothing */
-    | expression
+    | relational_exp
     ;
 
-switch_statement: SWITCH LP none_or_newlines expression none_or_newlines RP LCB none_or_newlines one_or_more_cases none_or_newlines default_case none_or_newlines RCB
+switch_statement: SWITCH LP none_or_newlines exp none_or_newlines RP LCB none_or_newlines one_or_more_cases none_or_newlines default_case none_or_newlines RCB
+    | SWITCH LP none_or_newlines SQ_ANYCHAR_SQ none_or_newlines RP LCB none_or_newlines one_or_more_cases none_or_newlines default_case none_or_newlines RCB
     ;
 
 default_case: /* nothing */
@@ -260,40 +202,68 @@ cases: CASE case_expression COLON none_or_newlines statement
     ;
 
 case_expression: CONST
-    | any_character
-    | text
+    | SQ_ANYCHAR_SQ
     ;
 
-return_statement: RETURN expression SEMICOLON
+return_statement: RETURN exp SEMICOLON
+    | RETURN variable_reference SEMICOLON
+    | RETURN method_call SEMICOLON
     ;
 
 break_statement: BREAK SEMICOLON
     ;
 
-print_statement: PRINT LP text single_or_multiple_variables RP SEMICOLON
+print_statement: PRINT LP DQ_STRING_DQ single_or_multiple_variables RP SEMICOLON
     ;
 
 single_or_multiple_variables: /* nothing */
     | COMMA ID single_or_multiple_variables
     ;
 
-expression: integer_expression { $$ = INTEGER_TYPE; }
-    | any_character { $$ = CHAR_TYPE; }
-    | double_expression { $$ = DOUBLE_TYPE; }
-    | boolean_expression { $$ = BOOLEAN_TYPE; }
-    | text { $$ = STRING_TYPE; }
-    | variable_reference { $$ = lookup($1)->data_type; }
-    | method_call { $$ = lookup($1)->data_type; }
-    | operations { $$ = $1; }  // assuming operations returns a DATA_TYPE
-    | member_access { $$ = $1; }  // assuming member_access returns a DATA_TYPE
-    | LP expression RP { $$ = $2; }
+exp: factor
+    | exp ADD factor
+    | exp SUB factor
     ;
 
-text: DQ_STRING_DQ
+factor: term
+    | factor MUL term
+    | factor DIV term
+    | factor MOD term
     ;
 
-any_character: SQ_ANYCHAR_SQ
-    ;  
+term: unary
+    | term POW unary
+    ;
+
+relational_exp: relational_factor
+    | relational_exp EQ relational_factor
+    | relational_exp NEQ relational_factor
+    | relational_exp LT relational_factor
+    | relational_exp GT relational_factor
+    | relational_exp LE relational_factor
+    | relational_exp GE relational_factor
+    ;
+
+relational_factor: logical_term
+    | relational_factor AND logical_term
+    | relational_factor OR logical_term
+    ;
+
+logical_term: unary
+    | NOT unary
+    ;
+
+unary: primary
+    | ADD primary
+    | SUB primary
+    ;
+
+primary: CONST
+    | DOUBLE_CONST
+    | variable_reference
+    | LP exp RP
+    | LP relational_exp RP
+    ;
 
 object_creation: CLASS_ID ID ASSIGN NEW CLASS_ID LP RP SEMICOLON
     ;
@@ -303,28 +273,6 @@ member_access: ID DOT member_access_body none_or_newlines
 
 member_access_body: ID SEMICOLON
     | method_call
-    ;
-
-operations: integer_operations
-    | char_operations
-    | double_operations
-    | boolean_operations
-    ;
-
-integer_operations: integer_expression relational_arithmetic_operations integer_expression
-    ;
-
-char_operations: any_character relational_arithmetic_operations any_character
-    ;
-
-double_operations: double_expression relational_arithmetic_operations double_expression
-    ;
-
-boolean_operations: boolean_expression logical_operators boolean_expression
-    ;
-
-relational_arithmetic_operations: arithmetic_operators
-    | relational_operators
     ;
 
 arithmetic_operators: ADD
@@ -352,12 +300,13 @@ access_modifier: PUBLIC
     | PRIVATE
     ;
 
-data_type: INTEGER { $$ = INTEGER_TYPE; }
-    | CHAR { $$ = CHAR_TYPE; }
-    | DOUBLE { $$ = DOUBLE_TYPE; }
-    | BOOLEAN { $$ = BOOLEAN_TYPE; }
-    | STRING { $$ = STRING_TYPE; }
-    | VOID { $$ = VOID_TYPE; }
+data_type: /* nothing */
+    | INTEGER
+    | CHAR
+    | DOUBLE
+    | BOOLEAN
+    | STRING
+    | VOID
     ;
 
 integer_expression: CONST
@@ -370,37 +319,14 @@ boolean_expression: TRUE
     | FALSE
     ;
 
-string_expression: text
+string_expression: DQ_STRING_DQ
     ;
 
 none_or_newlines: /* nothing */
     | NEWLINE none_or_newlines
     ;
-    
+
 %%
-
-symbol* lookup(char *name) {
-    for (int i = 0; i < symbol_count; i++) {
-        if (strcmp(symbol_table[i]->name, name) == 0) {
-            return symbol_table[i];
-        }
-    }
-    return NULL;
-}
-
-void insert(char *name, int type, void *value) {
-    symbol *sym = malloc(sizeof(symbol));
-    sym->name = strdup(name);
-    sym->type = type;
-    sym->data_type = data_type;
-    symbol_table[symbol_count++] = sym;
-    sym->value = value;
-
-    if((type == INTEGER_TYPE && sym->value != (int*)value) || (type == CHAR_TYPE && sym->value != (char*)value) || (type == DOUBLE_TYPE && sym->value != (double*)value) || (type == BOOLEAN_TYPE && sym->value != (bool*)value) || (type == STRING_TYPE && sym->value != (char*)value)) {
-        yyerror("Data type mismatch");
-        YYERROR;
-    }
-}
 
 void yyerror(const char *s) {
     fprintf(stderr, "Error on line %d: %s recognised at the token '%s'\n", yylineno, s, yytext);
