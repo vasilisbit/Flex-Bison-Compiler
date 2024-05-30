@@ -8,11 +8,15 @@
 //Defin a symbol table
 struct symbol {
     char *name;
+    char *type;
     bool isMethod;
+    bool isInitialized;
+    int scope;
 };
 
 struct symbol symbolTable[1000]
 int symbolCount = 0;
+int scope = 0;
 
 void yyerror(const char *s);
 extern FILE *yyin;
@@ -21,21 +25,61 @@ extern int yylex();
 extern int yylineno;
 extern char *yytext;
 
-//Function to add a symbol to the symbol table
+// Function to add a symbol to the symbol table
 void addSymbol(char *name, bool isMethod) {
     symbolTable[symbolCount].name = strdup(name);
+    symbolTable[symbolCount].type = strdup(type);
     symbolTable[symbolCount].isMethod = isMethod;
+    symbolTable[symbolCount].isInitialized = isInitialized;
+    symbolTable[symbolCount].scope = scope;
     symbolCount++;
 }
 
-//Function to check if a symbol is in the symbol table
+// Function to check if a symbol is in the symbol table
 bool symbolExists(char *name, bool isMethod) {
     for (int i = 0; i < symbolCount; i++) {
-        if (strcmp(symbolTable[i].name, name) == 0 && symbolTable[i].isMethod == isMethod) {
+        if (strcmp(symbolTable[i].name, name) == 0 && symbolTable[i].isMethod == isMethod && symbolTable[i].scope == scope) {
             return true;
         }
     }
     return false;
+}
+
+// Function to check if a variable has been initialized
+bool isInitialized(char *name) {
+    for (int i = 0; i < symbolCount; i++) {
+        if (strcmp(symbolTable[i].name, name) == 0 && symbolTable[i].scope == scope) {
+            return symbolTable[i].isInitialized;
+        }
+    }
+    return false;
+}
+
+// Function to set a variable as initialized
+void setInitialized(char *name) {
+    for (int i = 0; i < symbolCount; i++) {
+        if (strcmp(symbolTable[i].name, name) == 0 && symbolTable[i].scope == scope) {
+            symbolTable[i].isInitialized = true;
+        }
+    }
+}
+
+// Function to increase the scope
+void increaseScope() {
+    scope++;
+}
+
+// Function to decrease the scope
+void decreaseScope() {
+    scope--;
+    // Remove all symbols in the symbol table that are out of scope
+    for (int i = 0; i < symbolCount; i++) {
+        if (symbolTable[i].scope > scope) {
+            free(symbolTable[i].name);
+            free(symbolTable[i].type);
+            symbolCount--;
+        }
+    }
 }
 
 %}
@@ -116,21 +160,21 @@ assignment_list: ID ASSIGN exp
     ;
 
 // Modify your variable_declaration rule to add symbols to the symbol table
-variable_declaration: data_type identifier_list { addSymbol($2, false); }
-    | access_modifier data_type identifier_list { addSymbol($3, false); }
-    | access_modifier data_type assignment_list { addSymbol($3, false); }
-    | data_type assignment_list { addSymbol($2, false); }
-    | assignment_list { addSymbol($1, false); }
+variable_declaration: data_type identifier_list { addSymbol($2, $1, false, false); }
+    | access_modifier data_type identifier_list { addSymbol($3, $2, false, false); }
+    | access_modifier data_type assignment_list { addSymbol($3, $2, false, true); }
+    | data_type assignment_list { addSymbol($2, $1, false, true); }
+    | assignment_list { addSymbol($1, NULL, false, true); }
     ;
 
 // Modify your variable_reference rule to check symbols against the symbol table
-variable_reference: ID { if (!symbolExists($1, false)) { yyerror("Variable not declared"); } }
+variable_reference: ID { if (!symbolExists($1, false)) { yyerror("Variable not declared"); } else if (!isInitialized($1)) { yyerror("Variable not initialized"); } }
     ;
 
 
 // Modify your method_declaration rule to add symbols to the symbol table
-method_declaration: access_modifier data_type ID LP none_or_newlines none_or_multiple_parameters none_or_newlines RP LCB none_or_newlines method_body none_or_newlines RCB { addSymbol($3, true); }
-    | data_type ID LP none_or_newlines none_or_multiple_parameters none_or_newlines RP LCB none_or_newlines method_body none_or_newlines RCB { addSymbol($2, true); }
+method_declaration: access_modifier data_type ID LP none_or_newlines none_or_multiple_parameters none_or_newlines RP LCB none_or_newlines method_body none_or_newlines RCB { addSymbol($3, $2, true, true); }
+    | data_type ID LP none_or_newlines none_or_multiple_parameters none_or_newlines RP LCB none_or_newlines method_body none_or_newlines RCB { addSymbol($2, $1, true, true); }
     ;
 
 none_or_multiple_parameters: /* nothing */
