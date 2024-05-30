@@ -3,12 +3,41 @@
 #include <stdlib.h>
 #include <math.h>
 #include <string.h>
+#include <stdbool.h>
+
+//Defin a symbol table
+struct symbol {
+    char *name;
+    bool isMethod;
+};
+
+struct symbol symbolTable[1000]
+int symbolCount = 0;
+
 void yyerror(const char *s);
 extern FILE *yyin;
 extern FILE *yyout;
 extern int yylex();
 extern int yylineno;
 extern char *yytext;
+
+//Function to add a symbol to the symbol table
+void addSymbol(char *name, bool isMethod) {
+    symbolTable[symbolCount].name = strdup(name);
+    symbolTable[symbolCount].isMethod = isMethod;
+    symbolCount++;
+}
+
+//Function to check if a symbol is in the symbol table
+bool symbolExists(char *name, bool isMethod) {
+    for (int i = 0; i < symbolCount; i++) {
+        if (strcmp(symbolTable[i].name, name) == 0 && symbolTable[i].isMethod == isMethod) {
+            return true;
+        }
+    }
+    return false;
+}
+
 %}
 
 %union {
@@ -86,19 +115,22 @@ assignment_list: ID ASSIGN exp
     | ID ASSIGN object_creation COMMA assignment_list
     ;
 
-variable_declaration: data_type identifier_list
-    | access_modifier data_type identifier_list
-    | access_modifier data_type assignment_list
-    | data_type assignment_list
-    | assignment_list
+// Modify your variable_declaration rule to add symbols to the symbol table
+variable_declaration: data_type identifier_list { addSymbol($2, false); }
+    | access_modifier data_type identifier_list { addSymbol($3, false); }
+    | access_modifier data_type assignment_list { addSymbol($3, false); }
+    | data_type assignment_list { addSymbol($2, false); }
+    | assignment_list { addSymbol($1, false); }
     ;
 
-variable_reference: ID
+// Modify your variable_reference rule to check symbols against the symbol table
+variable_reference: ID { if (!symbolExists($1, false)) { yyerror("Variable not declared"); } }
     ;
 
 
-method_declaration: access_modifier data_type ID LP none_or_newlines none_or_multiple_parameters none_or_newlines RP LCB none_or_newlines method_body none_or_newlines RCB
-    | data_type ID LP none_or_newlines none_or_multiple_parameters none_or_newlines RP LCB none_or_newlines method_body none_or_newlines RCB
+// Modify your method_declaration rule to add symbols to the symbol table
+method_declaration: access_modifier data_type ID LP none_or_newlines none_or_multiple_parameters none_or_newlines RP LCB none_or_newlines method_body none_or_newlines RCB { addSymbol($3, true); }
+    | data_type ID LP none_or_newlines none_or_multiple_parameters none_or_newlines RP LCB none_or_newlines method_body none_or_newlines RCB { addSymbol($2, true); }
     ;
 
 none_or_multiple_parameters: /* nothing */
@@ -138,7 +170,8 @@ assignment_statement: data_type ID ASSIGN exp
     | data_type ID ASSIGN variable_reference
     ;
 
-method_call: ID LP none_or_newlines none_or_multiple_arguments none_or_newlines RP SEMICOLON
+// Modify your method_call rule to check symbols against the symbol table
+method_call: ID LP none_or_newlines none_or_multiple_arguments none_or_newlines RP SEMICOLON { if (!symbolExists($1, true)) { yyerror("Method not declared"); } }
     ;
 
 none_or_multiple_arguments: /* nothing */
