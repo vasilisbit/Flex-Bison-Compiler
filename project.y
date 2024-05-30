@@ -5,7 +5,7 @@
 #include <string.h>
 #include <stdbool.h>
 
-//Defin a symbol table
+// Define a symbol table
 struct symbol {
     char *name;
     char *type;
@@ -38,7 +38,7 @@ void addSymbol(char *name, char *type, bool isMethod, bool isInitialized) {
 // Function to check if a symbol is in the symbol table
 bool symbolExists(char *name, bool isMethod) {
     for (int i = 0; i < symbolCount; i++) {
-        if (strcmp(symbolTable[i].name, name) == 0 && symbolTable[i].isMethod == isMethod && symbolTable[i].scope == scope) {
+        if (strcmp(symbolTable[i].name, name) == 0 && symbolTable[i].isMethod == isMethod && symbolTable[i].scope <= scope) {
             return true;
         }
     }
@@ -48,7 +48,7 @@ bool symbolExists(char *name, bool isMethod) {
 // Function to check if a variable has been initialized
 bool isInitialized(char *name) {
     for (int i = 0; i < symbolCount; i++) {
-        if (strcmp(symbolTable[i].name, name) == 0 && symbolTable[i].scope == scope) {
+        if (strcmp(symbolTable[i].name, name) == 0 && symbolTable[i].scope <= scope) {
             return symbolTable[i].isInitialized;
         }
     }
