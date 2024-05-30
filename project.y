@@ -26,7 +26,7 @@ extern int yylineno;
 extern char *yytext;
 
 // Function to add a symbol to the symbol table
-void addSymbol(char *name, bool isMethod) {
+void addSymbol(char *name, char *type, bool isMethod, bool isInitialized) {
     symbolTable[symbolCount].name = strdup(name);
     symbolTable[symbolCount].type = strdup(type);
     symbolTable[symbolCount].isMethod = isMethod;
@@ -85,7 +85,7 @@ void decreaseScope() {
 // Function to get the type of a variable
 char* getType(char *name) {
     for (int i = 0; i < symbolCount; i++) {
-        if (strcmp(symbolTable[i].name, name) == 0 && symbolTale[i].scope == scope) {
+        if (strcmp(symbolTable[i].name, name) == 0 && symbolTable[i].scope == scope) {
             return symbolTable[i].type;
         }
     }
