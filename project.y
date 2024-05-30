@@ -82,6 +82,16 @@ void decreaseScope() {
     }
 }
 
+// Function to get the type of a variable
+char* getType(char *name) {
+    for (int i = 0; i < symbolCount; i++) {
+        if (strcmp(symbolTable[i].name, name) == 0 && symbolTale[i].scope == scope) {
+            return symbolTable[i].type;
+        }
+    }
+    return NULL;
+}
+
 %}
 
 %union {
@@ -147,16 +157,17 @@ identifier_list: ID
     | ID COMMA identifier_list
     ;
 
-assignment_list: ID ASSIGN exp
-    | ID ASSIGN exp COMMA assignment_list
-    | ID ASSIGN DQ_STRING_DQ
-    | ID ASSIGN DQ_STRING_DQ COMMA assignment_list
-    | ID ASSIGN variable_reference
-    | ID ASSIGN variable_reference COMMA assignment_list
-    | ID ASSIGN method_call
-    | ID ASSIGN method_call COMMA assignment_list
-    | ID ASSIGN object_creation
-    | ID ASSIGN object_creation COMMA assignment_list
+// Modify your assignment_list rule to check the type of the variable and the expression
+assignment_list: ID ASSIGN exp { if (strcmp(getType($1), "int") != 0) { yyerror("Type mismatch"); } setInitialized($1); }
+    | ID ASSIGN exp COMMA assignment_list { if (strcmp(getType($1), "int") != 0) { yyerror("Type mismatch"); } setInitialized($1); }
+    | ID ASSIGN DQ_STRING_DQ { if (strcmp(getType($1), "string") != 0) { yyerror("Type mismatch"); } setInitialized($1); }
+    | ID ASSIGN DQ_STRING_DQ COMMA assignment_list { if (strcmp(getType($1), "string") != 0) { yyerror("Type mismatch"); } setInitialized($1); }
+    | ID ASSIGN variable_reference { if (strcmp(getType($1), getType($3)) != 0) { yyerror("Type mismatch"); } setInitialized($1); }
+    | ID ASSIGN variable_reference COMMA assignment_list { if (strcmp(getType($1), getType($3)) != 0) { yyerror("Type mismatch"); } setInitialized($1); }
+    | ID ASSIGN method_call { if (strcmp(getType($1), "int") != 0) { yyerror("Type mismatch"); } setInitialized($1); }
+    | ID ASSIGN method_call COMMA assignment_list { if (strcmp(getType($1), "int") != 0) { yyerror("Type mismatch"); } setInitialized($1); }
+    | ID ASSIGN object_creation { if (strcmp(getType($1), "object") != 0) { yyerror("Type mismatch"); } setInitialized($1); }
+    | ID ASSIGN object_creation COMMA assignment_list { if (strcmp(getType($1), "object") != 0) { yyerror("Type mismatch"); } setInitialized($1); }
     ;
 
 // Modify your variable_declaration rule to add symbols to the symbol table
