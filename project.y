@@ -199,17 +199,20 @@ identifier_list: ID
     ;
 
 // Modify your assignment_list rule to check the type of the variable and the expression
-assignment_list: ID ASSIGN exp { if (strcmp(getType($1), "int") != 0) { yyerror("Type mismatch"); } setInitialized($1); }
-    | ID ASSIGN exp COMMA assignment_list { if (strcmp(getType($1), "int") != 0) { yyerror("Type mismatch"); } setInitialized($1); }
-    | ID ASSIGN DQ_STRING_DQ { if (strcmp(getType($1), "string") != 0) { yyerror("Type mismatch"); } setInitialized($1); }
-    | ID ASSIGN DQ_STRING_DQ COMMA assignment_list { if (strcmp(getType($1), "string") != 0) { yyerror("Type mismatch"); } setInitialized($1); }
-    | ID ASSIGN variable_reference { if (strcmp(getType($1), getType($3)) != 0) { yyerror("Type mismatch"); } setInitialized($1); }
-    | ID ASSIGN variable_reference COMMA assignment_list { if (strcmp(getType($1), getType($3)) != 0) { yyerror("Type mismatch"); } setInitialized($1); }
-    | ID ASSIGN method_call { if (strcmp(getType($1), "int") != 0) { yyerror("Type mismatch"); } setInitialized($1); }
-    | ID ASSIGN method_call COMMA assignment_list { if (strcmp(getType($1), "int") != 0) { yyerror("Type mismatch"); } setInitialized($1); }
-    | ID ASSIGN object_creation { if (strcmp(getType($1), "object") != 0) { yyerror("Type mismatch"); } setInitialized($1); }
-    | ID ASSIGN object_creation COMMA assignment_list { if (strcmp(getType($1), "object") != 0) { yyerror("Type mismatch"); } setInitialized($1); }
+assignment_list: ID ASSIGN exp { char* type = getType($1); if (type == NULL || strcmp(type, "int") != 0) { yyerror("Type mismatch"); } setInitialized($1); }
+    | ID ASSIGN exp COMMA assignment_list { char* type = getType($1); if (type == NULL || strcmp(type, "int") != 0) { yyerror("Type mismatch"); } setInitialized($1); }
+    | ID ASSIGN DQ_STRING_DQ { char* type = getType($1); if (type == NULL || strcmp(type, "string") != 0) { yyerror("Type mismatch"); } setInitialized($1); }
+    | ID ASSIGN DQ_STRING_DQ COMMA assignment_list { char* type = getType($1); if (type == NULL || strcmp(type, "string") != 0) { yyerror("Type mismatch"); } setInitialized($1); }
+    | ID ASSIGN variable_reference { char* type = getType($1); if (type == NULL || strcmp(type, getType($3)) != 0) { yyerror("Type mismatch"); } setInitialized($1); }
+    | ID ASSIGN variable_reference COMMA assignment_list { char* type = getType($1); if (type == NULL || strcmp(type, getType($3)) != 0) { yyerror("Type mismatch"); } setInitialized($1); }
+    | ID ASSIGN method_call { char* type = getType($1); if (type == NULL || strcmp(type, "int") != 0) { yyerror("Type mismatch"); } setInitialized($1); }
+    | ID ASSIGN method_call COMMA assignment_list { char* type = getType($1); if (type == NULL || strcmp(type, "int") != 0) { yyerror("Type mismatch"); } setInitialized($1); }
+    | ID ASSIGN object_creation { char* type = getType($1); if (type == NULL || strcmp(type, "object") != 0) { yyerror("Type mismatch"); } setInitialized($1); }
+    | ID ASSIGN object_creation COMMA assignment_list { char* type = getType($1); if (type == NULL || strcmp(type, "object") != 0) { yyerror("Type mismatch"); } setInitialized($1); }
     ;
+
+Remove the data type as a whole and put each type separately in the variable_declaration rule or assignment_list rule.
+
 
 // Modify your variable_declaration rule to add symbols to the symbol table
 variable_declaration: data_type identifier_list { addSymbol($2, $1, false, false); }

@@ -1659,61 +1659,61 @@ yyreduce:
 
   case 14: /* assignment_list: ID ASSIGN exp  */
 #line 202 "project.y"
-                               { if (strcmp(getType((yyvsp[-2].sval)), "int") != 0) { yyerror("Type mismatch"); } setInitialized((yyvsp[-2].sval)); }
+                               { char* type = getType((yyvsp[-2].sval)); if (type == NULL || strcmp(type, "int") != 0) { yyerror("Type mismatch"); } setInitialized((yyvsp[-2].sval)); }
 #line 1664 "project.tab.c"
     break;
 
   case 15: /* assignment_list: ID ASSIGN exp COMMA assignment_list  */
 #line 203 "project.y"
-                                          { if (strcmp(getType((yyvsp[-4].sval)), "int") != 0) { yyerror("Type mismatch"); } setInitialized((yyvsp[-4].sval)); }
+                                          { char* type = getType((yyvsp[-4].sval)); if (type == NULL || strcmp(type, "int") != 0) { yyerror("Type mismatch"); } setInitialized((yyvsp[-4].sval)); }
 #line 1670 "project.tab.c"
     break;
 
   case 16: /* assignment_list: ID ASSIGN DQ_STRING_DQ  */
 #line 204 "project.y"
-                             { if (strcmp(getType((yyvsp[-2].sval)), "string") != 0) { yyerror("Type mismatch"); } setInitialized((yyvsp[-2].sval)); }
+                             { char* type = getType((yyvsp[-2].sval)); if (type == NULL || strcmp(type, "string") != 0) { yyerror("Type mismatch"); } setInitialized((yyvsp[-2].sval)); }
 #line 1676 "project.tab.c"
     break;
 
   case 17: /* assignment_list: ID ASSIGN DQ_STRING_DQ COMMA assignment_list  */
 #line 205 "project.y"
-                                                   { if (strcmp(getType((yyvsp[-4].sval)), "string") != 0) { yyerror("Type mismatch"); } setInitialized((yyvsp[-4].sval)); }
+                                                   { char* type = getType((yyvsp[-4].sval)); if (type == NULL || strcmp(type, "string") != 0) { yyerror("Type mismatch"); } setInitialized((yyvsp[-4].sval)); }
 #line 1682 "project.tab.c"
     break;
 
   case 18: /* assignment_list: ID ASSIGN variable_reference  */
 #line 206 "project.y"
-                                   { if (strcmp(getType((yyvsp[-2].sval)), getType((yyvsp[0].sval))) != 0) { yyerror("Type mismatch"); } setInitialized((yyvsp[-2].sval)); }
+                                   { char* type = getType((yyvsp[-2].sval)); if (type == NULL || strcmp(type, getType((yyvsp[0].sval))) != 0) { yyerror("Type mismatch"); } setInitialized((yyvsp[-2].sval)); }
 #line 1688 "project.tab.c"
     break;
 
   case 19: /* assignment_list: ID ASSIGN variable_reference COMMA assignment_list  */
 #line 207 "project.y"
-                                                         { if (strcmp(getType((yyvsp[-4].sval)), getType((yyvsp[-2].sval))) != 0) { yyerror("Type mismatch"); } setInitialized((yyvsp[-4].sval)); }
+                                                         { char* type = getType((yyvsp[-4].sval)); if (type == NULL || strcmp(type, getType((yyvsp[-2].sval))) != 0) { yyerror("Type mismatch"); } setInitialized((yyvsp[-4].sval)); }
 #line 1694 "project.tab.c"
     break;
 
   case 20: /* assignment_list: ID ASSIGN method_call  */
 #line 208 "project.y"
-                            { if (strcmp(getType((yyvsp[-2].sval)), "int") != 0) { yyerror("Type mismatch"); } setInitialized((yyvsp[-2].sval)); }
+                            { char* type = getType((yyvsp[-2].sval)); if (type == NULL || strcmp(type, "int") != 0) { yyerror("Type mismatch"); } setInitialized((yyvsp[-2].sval)); }
 #line 1700 "project.tab.c"
     break;
 
   case 21: /* assignment_list: ID ASSIGN method_call COMMA assignment_list  */
 #line 209 "project.y"
-                                                  { if (strcmp(getType((yyvsp[-4].sval)), "int") != 0) { yyerror("Type mismatch"); } setInitialized((yyvsp[-4].sval)); }
+                                                  { char* type = getType((yyvsp[-4].sval)); if (type == NULL || strcmp(type, "int") != 0) { yyerror("Type mismatch"); } setInitialized((yyvsp[-4].sval)); }
 #line 1706 "project.tab.c"
     break;
 
   case 22: /* assignment_list: ID ASSIGN object_creation  */
 #line 210 "project.y"
-                                { if (strcmp(getType((yyvsp[-2].sval)), "object") != 0) { yyerror("Type mismatch"); } setInitialized((yyvsp[-2].sval)); }
+                                { char* type = getType((yyvsp[-2].sval)); if (type == NULL || strcmp(type, "object") != 0) { yyerror("Type mismatch"); } setInitialized((yyvsp[-2].sval)); }
 #line 1712 "project.tab.c"
     break;
 
   case 23: /* assignment_list: ID ASSIGN object_creation COMMA assignment_list  */
 #line 211 "project.y"
-                                                      { if (strcmp(getType((yyvsp[-4].sval)), "object") != 0) { yyerror("Type mismatch"); } setInitialized((yyvsp[-4].sval)); }
+                                                      { char* type = getType((yyvsp[-4].sval)); if (type == NULL || strcmp(type, "object") != 0) { yyerror("Type mismatch"); } setInitialized((yyvsp[-4].sval)); }
 #line 1718 "project.tab.c"
     break;
 
