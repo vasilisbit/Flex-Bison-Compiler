@@ -281,10 +281,10 @@ arguments: /* nothing */
     | COMMA none_or_newlines variable_reference arguments
     ;
 
-if_statement: IF LP none_or_newlines exp none_or_newlines RP { increaseScope(); } LCB none_or_newlines statement none_or_newlines RCB none_or_newlines none_or_multiple_elif none_or_newlines none_or_one_else { decreaseScope(); }
-    | IF LP none_or_newlines relational_exp none_or_newlines RP { increaseScope(); } LCB none_or_newlines statement none_or_newlines RCB none_or_newlines none_or_multiple_elif none_or_newlines none_or_one_else { decreaseScope(); }
-    | IF LP none_or_newlines variable_reference none_or_newlines RP { increaseScope(); } LCB none_or_newlines statement none_or_newlines RCB none_or_newlines none_or_multiple_elif none_or_newlines none_or_one_else { decreaseScope(); }
-    | IF LP none_or_newlines method_call none_or_newlines RP { increaseScope(); } LCB none_or_newlines statement none_or_newlines RCB none_or_newlines none_or_multiple_elif none_or_newlines none_or_one_else { decreaseScope(); }
+if_statement: IF LP none_or_newlines exp none_or_newlines RP LCB none_or_newlines statement none_or_newlines RCB none_or_newlines none_or_multiple_elif none_or_newlines none_or_one_else
+    | IF LP none_or_newlines relational_exp none_or_newlines RP LCB none_or_newlines statement none_or_newlines RCB none_or_newlines none_or_multiple_elif none_or_newlines none_or_one_else
+    | IF LP none_or_newlines variable_reference none_or_newlines RP LCB none_or_newlines statement none_or_newlines RCB none_or_newlines none_or_multiple_elif none_or_newlines none_or_one_else
+    | IF LP none_or_newlines method_call none_or_newlines RP LCB none_or_newlines statement none_or_newlines RCB none_or_newlines none_or_multiple_elif none_or_newlines none_or_one_else
     ;
 
 none_or_multiple_elif: /* nothing */
@@ -298,11 +298,11 @@ none_or_one_else: /* nothing */
     | ELSE LCB none_or_newlines statement none_or_newlines RCB
     ;
 
-do_while_statement: DO { increaseScope(); } LCB none_or_newlines statement none_or_newlines RCB WHILE LP none_or_newlines relational_exp none_or_newlines RP SEMICOLON { decreaseScope(); }
-    | DO { increaseScope(); } LCB none_or_newlines statement none_or_newlines RCB WHILE LP none_or_newlines variable_reference none_or_newlines RP SEMICOLON { decreaseScope(); }
+do_while_statement: DO LCB none_or_newlines statement none_or_newlines RCB WHILE LP none_or_newlines relational_exp none_or_newlines RP SEMICOLON
+    | DO LCB none_or_newlines statement none_or_newlines RCB WHILE LP none_or_newlines variable_reference none_or_newlines RP SEMICOLON
     ;
 
-for_statement: FOR LP none_or_newlines first_and_third_loop_statement SEMICOLON none_or_newlines second_loop_statement SEMICOLON none_or_newlines first_and_third_loop_statement none_or_newlines RP { increaseScope(); } LCB none_or_newlines statement none_or_newlines RCB { decreaseScope(); }
+for_statement: FOR LP none_or_newlines first_and_third_loop_statement SEMICOLON none_or_newlines second_loop_statement SEMICOLON none_or_newlines first_and_third_loop_statement none_or_newlines RP LCB none_or_newlines statement none_or_newlines RCB
     ;
 
 first_and_third_loop_statement: /* nothing */
@@ -313,8 +313,8 @@ second_loop_statement: /* nothing */
     | relational_exp
     ;
 
-switch_statement: SWITCH LP none_or_newlines exp none_or_newlines RP { increaseScope(); } LCB none_or_newlines one_or_more_cases none_or_newlines default_case none_or_newlines RCB { decreaseScope(); }
-    | SWITCH LP none_or_newlines SQ_ANYCHAR_SQ none_or_newlines RP { increaseScope(); } LCB none_or_newlines one_or_more_cases none_or_newlines default_case none_or_newlines RCB { decreaseScope(); }
+switch_statement: SWITCH LP none_or_newlines exp none_or_newlines RP  LCB none_or_newlines one_or_more_cases none_or_newlines default_case none_or_newlines RCB
+    | SWITCH LP none_or_newlines SQ_ANYCHAR_SQ none_or_newlines RP LCB none_or_newlines one_or_more_cases none_or_newlines default_case none_or_newlines RCB
     ;
 
 default_case: /* nothing */
@@ -405,27 +405,6 @@ member_access_body: ID SEMICOLON { if (!symbolExists($1, false)) { yyerror("Vari
     | method_call { if (!symbolExists($1, true)) { yyerror("Method not declared"); } }
     ;
 
-arithmetic_operators: ADD
-    | SUB
-    | MUL
-    | DIV
-    | MOD
-    | POW
-    ;
-
-relational_operators: EQ
-    | NEQ
-    | LT
-    | GT
-    | LE
-    | GE
-    ;
-
-logical_operators: AND
-    | OR
-    | NOT
-    ;
-
 access_modifier: PUBLIC
     | PRIVATE
     ;
@@ -437,19 +416,6 @@ data_type: /* nothing */ { $$ = ""; }
     | BOOLEAN { $$ = "boolean"; }
     | STRING { $$ = "string"; }
     | VOID { $$ = "void"; }
-    ;
-
-integer_expression: CONST
-    ;
-
-double_expression: DOUBLE_CONST
-    ;
-
-boolean_expression: TRUE
-    | FALSE
-    ;
-
-string_expression: DQ_STRING_DQ
     ;
 
 none_or_newlines: /* nothing */
