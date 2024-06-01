@@ -14,7 +14,7 @@ struct symbol {
     int scope;
 };
 
-struct symbol symbolTable[1000]
+struct symbol symbolTable[1000];
 int symbolCount = 0;
 int scope = 0;
 
@@ -27,6 +27,10 @@ extern char *yytext;
 
 // Function to add a symbol to the symbol table
 void addSymbol(char *name, char *type, bool isMethod, bool isInitialized) {
+    if (name == NULL || type == NULL) {
+        fprintf(stderr, "Error: Null pointer in addSymbol function\n");
+        exit(1);
+    }
     symbolTable[symbolCount].name = strdup(name);
     symbolTable[symbolCount].type = strdup(type);
     symbolTable[symbolCount].isMethod = isMethod;
@@ -37,8 +41,12 @@ void addSymbol(char *name, char *type, bool isMethod, bool isInitialized) {
 
 // Function to check if a symbol is in the symbol table
 bool symbolExists(char *name, bool isMethod) {
+    if (name == NULL) {
+        fprintf(stderr, "Error: Null pointer in symbolExists function\n");
+        exit(1);
+    }
     for (int i = 0; i < symbolCount; i++) {
-        if (strcmp(symbolTable[i].name, name) == 0 && symbolTable[i].isMethod == isMethod && symbolTable[i].scope <= scope) {
+        if (symbolTable[i].name != NULL && strcmp(symbolTable[i].name, name) == 0 && symbolTable[i].isMethod == isMethod && symbolTable[i].scope <= scope) {
             return true;
         }
     }
@@ -47,8 +55,12 @@ bool symbolExists(char *name, bool isMethod) {
 
 // Function to check if a variable has been initialized
 bool isInitialized(char *name) {
+    if (name == NULL) {
+        fprintf(stderr, "Error: Null pointer in isInitialized function\n");
+        exit(1);
+    }
     for (int i = 0; i < symbolCount; i++) {
-        if (strcmp(symbolTable[i].name, name) == 0 && symbolTable[i].scope <= scope) {
+        if (symbolTable[i].name != NULL && strcmp(symbolTable[i].name, name) == 0 && symbolTable[i].scope <= scope) {
             return symbolTable[i].isInitialized;
         }
     }
@@ -57,8 +69,12 @@ bool isInitialized(char *name) {
 
 // Function to set a variable as initialized
 void setInitialized(char *name) {
+    if (name == NULL) {
+        fprintf(stderr, "Error: Null pointer in setInitialized function\n");
+        exit(1);
+    }
     for (int i = 0; i < symbolCount; i++) {
-        if (strcmp(symbolTable[i].name, name) == 0 && symbolTable[i].scope == scope) {
+        if (symbolTable[i].name != NULL && strcmp(symbolTable[i].name, name) == 0 && symbolTable[i].scope == scope) {
             symbolTable[i].isInitialized = true;
         }
     }
@@ -73,19 +89,35 @@ void increaseScope() {
 void decreaseScope() {
     scope--;
     // Remove all symbols in the symbol table that are out of scope
-    for (int i = 0; i < symbolCount; i++) {
+    int i = 0;
+    while (i < symbolCount) {
         if (symbolTable[i].scope > scope) {
             free(symbolTable[i].name);
             free(symbolTable[i].type);
+            // Shift all elements to the left
+            for (int j = i; j < symbolCount - 1; j++) {
+                symbolTable[j] = symbolTable[j + 1];
+            }
             symbolCount--;
+        } else {
+            i++;
         }
+    }
+    // Free the memory allocated for the name and type of the last symbol
+    if (symbolCount > 0) {
+        free(symbolTable[symbolCount - 1].name);
+        free(symbolTable[symbolCount - 1].type);
     }
 }
 
 // Function to get the type of a variable
 char* getType(char *name) {
+    if (name == NULL) {
+        fprintf(stderr, "Error: Null pointer in getType function\n");
+        exit(1);
+    }
     for (int i = 0; i < symbolCount; i++) {
-        if (strcmp(symbolTable[i].name, name) == 0 && symbolTable[i].scope == scope) {
+        if (symbolTable[i].name != NULL && strcmp(symbolTable[i].name, name) == 0 && symbolTable[i].scope == scope) {
             return symbolTable[i].type;
         }
     }
@@ -137,6 +169,15 @@ char* getType(char *name) {
 %token EQ NEQ LT GT LE GE
 %token AND OR NOT
 
+%type <sval> data_type
+%type <sval> assignment_list
+%type <sval> variable_declaration
+%type <sval> member_access
+%type <sval> member_access_body
+%type <sval> variable_reference
+%type <sval> method_call
+%type <sval> identifier_list
+
 %%
 
 program: /* nothing */
@@ -144,8 +185,8 @@ program: /* nothing */
     | statement none_or_newlines program
     ;
 
-class_declaration: access_modifier CLASS CLASS_ID LCB none_or_newlines class_body none_or_newlines RCB
-    | CLASS CLASS_ID LCB none_or_newlines class_body none_or_newlines RCB
+class_declaration: access_modifier CLASS CLASS_ID LCB { increaseScope(); } none_or_newlines class_body none_or_newlines RCB { decreaseScope(); }
+    | CLASS CLASS_ID LCB { increaseScope(); } none_or_newlines class_body none_or_newlines RCB { decreaseScope(); }
     ;
 
 class_body: /* nothing */
@@ -184,8 +225,8 @@ variable_reference: ID { if (!symbolExists($1, false)) { yyerror("Variable not d
 
 
 // Modify your method_declaration rule to add symbols to the symbol table
-method_declaration: access_modifier data_type ID LP none_or_newlines none_or_multiple_parameters none_or_newlines RP LCB none_or_newlines method_body none_or_newlines RCB { addSymbol($3, $2, true, true); }
-    | data_type ID LP none_or_newlines none_or_multiple_parameters none_or_newlines RP LCB none_or_newlines method_body none_or_newlines RCB { addSymbol($2, $1, true, true); }
+method_declaration: access_modifier data_type ID LP none_or_newlines none_or_multiple_parameters none_or_newlines RP LCB { increaseScope(); } none_or_newlines method_body none_or_newlines RCB { addSymbol($3, $2, true, true); decreaseScope(); }
+    | data_type ID LP none_or_newlines none_or_multiple_parameters none_or_newlines RP LCB { increaseScope(); } none_or_newlines method_body none_or_newlines RCB { addSymbol($2, $1, true, true); decreaseScope(); }
     ;
 
 none_or_multiple_parameters: /* nothing */
@@ -219,6 +260,7 @@ statement: /* nothing */
     | method_declaration none_or_newlines statement
     | object_creation none_or_newlines statement
     | variable_reference SEMICOLON none_or_newlines statement
+    | member_access none_or_newlines statement
     ;
 
 assignment_statement: data_type ID ASSIGN exp
@@ -239,10 +281,10 @@ arguments: /* nothing */
     | COMMA none_or_newlines variable_reference arguments
     ;
 
-if_statement: IF LP none_or_newlines exp none_or_newlines RP LCB none_or_newlines statement none_or_newlines RCB none_or_newlines none_or_multiple_elif none_or_newlines none_or_one_else
-    | IF LP none_or_newlines relational_exp none_or_newlines RP LCB none_or_newlines statement none_or_newlines RCB none_or_newlines none_or_multiple_elif none_or_newlines none_or_one_else
-    | IF LP none_or_newlines variable_reference none_or_newlines RP LCB none_or_newlines statement none_or_newlines RCB none_or_newlines none_or_multiple_elif none_or_newlines none_or_one_else
-    | IF LP none_or_newlines method_call none_or_newlines RP LCB none_or_newlines statement none_or_newlines RCB none_or_newlines none_or_multiple_elif none_or_newlines none_or_one_else
+if_statement: IF LP none_or_newlines exp none_or_newlines RP { increaseScope(); } LCB none_or_newlines statement none_or_newlines RCB none_or_newlines none_or_multiple_elif none_or_newlines none_or_one_else { decreaseScope(); }
+    | IF LP none_or_newlines relational_exp none_or_newlines RP { increaseScope(); } LCB none_or_newlines statement none_or_newlines RCB none_or_newlines none_or_multiple_elif none_or_newlines none_or_one_else { decreaseScope(); }
+    | IF LP none_or_newlines variable_reference none_or_newlines RP { increaseScope(); } LCB none_or_newlines statement none_or_newlines RCB none_or_newlines none_or_multiple_elif none_or_newlines none_or_one_else { decreaseScope(); }
+    | IF LP none_or_newlines method_call none_or_newlines RP { increaseScope(); } LCB none_or_newlines statement none_or_newlines RCB none_or_newlines none_or_multiple_elif none_or_newlines none_or_one_else { decreaseScope(); }
     ;
 
 none_or_multiple_elif: /* nothing */
@@ -256,11 +298,11 @@ none_or_one_else: /* nothing */
     | ELSE LCB none_or_newlines statement none_or_newlines RCB
     ;
 
-do_while_statement: DO LCB none_or_newlines statement none_or_newlines RCB WHILE LP none_or_newlines relational_exp none_or_newlines RP SEMICOLON
-    | DO LCB none_or_newlines statement none_or_newlines RCB WHILE LP none_or_newlines variable_reference none_or_newlines RP SEMICOLON
+do_while_statement: DO { increaseScope(); } LCB none_or_newlines statement none_or_newlines RCB WHILE LP none_or_newlines relational_exp none_or_newlines RP SEMICOLON { decreaseScope(); }
+    | DO { increaseScope(); } LCB none_or_newlines statement none_or_newlines RCB WHILE LP none_or_newlines variable_reference none_or_newlines RP SEMICOLON { decreaseScope(); }
     ;
 
-for_statement: FOR LP none_or_newlines first_and_third_loop_statement SEMICOLON none_or_newlines second_loop_statement SEMICOLON none_or_newlines first_and_third_loop_statement none_or_newlines RP LCB none_or_newlines statement none_or_newlines RCB
+for_statement: FOR LP none_or_newlines first_and_third_loop_statement SEMICOLON none_or_newlines second_loop_statement SEMICOLON none_or_newlines first_and_third_loop_statement none_or_newlines RP { increaseScope(); } LCB none_or_newlines statement none_or_newlines RCB { decreaseScope(); }
     ;
 
 first_and_third_loop_statement: /* nothing */
@@ -271,8 +313,8 @@ second_loop_statement: /* nothing */
     | relational_exp
     ;
 
-switch_statement: SWITCH LP none_or_newlines exp none_or_newlines RP LCB none_or_newlines one_or_more_cases none_or_newlines default_case none_or_newlines RCB
-    | SWITCH LP none_or_newlines SQ_ANYCHAR_SQ none_or_newlines RP LCB none_or_newlines one_or_more_cases none_or_newlines default_case none_or_newlines RCB
+switch_statement: SWITCH LP none_or_newlines exp none_or_newlines RP { increaseScope(); } LCB none_or_newlines one_or_more_cases none_or_newlines default_case none_or_newlines RCB { decreaseScope(); }
+    | SWITCH LP none_or_newlines SQ_ANYCHAR_SQ none_or_newlines RP { increaseScope(); } LCB none_or_newlines one_or_more_cases none_or_newlines default_case none_or_newlines RCB { decreaseScope(); }
     ;
 
 default_case: /* nothing */
@@ -305,7 +347,7 @@ print_statement: PRINT LP DQ_STRING_DQ single_or_multiple_variables RP SEMICOLON
     ;
 
 single_or_multiple_variables: /* nothing */
-    | COMMA ID single_or_multiple_variables
+    | COMMA ID single_or_multiple_variables { if (!symbolExists($2, false)) { yyerror("Variable not declared"); } else if (!isInitialized($2)) { yyerror("Variable not initialized"); } }
     ;
 
 exp: factor
@@ -356,11 +398,11 @@ primary: CONST
 object_creation: CLASS_ID ID ASSIGN NEW CLASS_ID LP RP SEMICOLON
     ;
 
-member_access: ID DOT member_access_body none_or_newlines
+member_access: ID DOT member_access_body { if (!symbolExists($1, false)) { yyerror("Class not declared"); } if (!symbolExists($3, false)) { yyerror("Member not declared"); } } none_or_newlines
     ;
 
-member_access_body: ID SEMICOLON
-    | method_call
+member_access_body: ID SEMICOLON { if (!symbolExists($1, false)) { yyerror("Variable not declared"); } }
+    | method_call { if (!symbolExists($1, true)) { yyerror("Method not declared"); } }
     ;
 
 arithmetic_operators: ADD
@@ -388,13 +430,13 @@ access_modifier: PUBLIC
     | PRIVATE
     ;
 
-data_type: /* nothing */
-    | INTEGER
-    | CHAR
-    | DOUBLE
-    | BOOLEAN
-    | STRING
-    | VOID
+data_type: /* nothing */ { $$ = ""; }
+    | INTEGER { $$ = "int"; }
+    | CHAR { $$ = "char"; }
+    | DOUBLE { $$ = "double"; }
+    | BOOLEAN { $$ = "boolean"; }
+    | STRING { $$ = "string"; }
+    | VOID { $$ = "void"; }
     ;
 
 integer_expression: CONST
