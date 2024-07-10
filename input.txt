@@ -1,27 +1,4 @@
-// Correct variable declaration and method call
-public class TestClass {
-    int x = 10; // Correct variable declaration
-    int y = 20;
+public class MyClass {
 
-    public int sum(int a, int b) { // Correct method declaration
-        return a + b;
-    }
-
-    public void testMethod() {
-        int result = sum(x, y); // Correct method call
-    }
 }
-
-// Checking for scope
-public class ScopeTest {
-    private int x = 10; // Variable x has class scope
-
-    public void method1() {
-        int y = 20; // Variable y has method1 scope
-    }
-
-    public void method2() {
-        int z = x; // Correct usage, x is accessible here
-        // int w = y; // Incorrect usage, y is not accessible here
-    }
-}
+MyClass myObject = new MyClass();
