@@ -184,7 +184,7 @@ void decreaseScope() {
     // Remove all symbols in the symbol table that are out of scope
     int i = 0;
     while (i < symbolCount) {
-        if (symbolTable[i].scope > scope) {
+        if (symbolTable[i].scope > scope && !symbolTable[i].isClass) {
             free(symbolTable[i].name);
             free(symbolTable[i].type);
             // Shift all elements to the left
