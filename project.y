@@ -32,6 +32,15 @@ void addSymbol(char *name, char *type, bool isMethod, bool isInitialized, bool i
         fprintf(stderr, "Error: Null pointer in addSymbol function\n");
         exit(1);
     }
+
+    // Check for duplicate symbol in the current scope
+    for (int i = 0; i < symbolCount; i++) {
+        if (strcmp(symbolTable[i].name, name) == 0 && symbolTable[i].scope == scope) {
+            fprintf(stderr, "Error: Duplicate symbol '%s' declared in the current scope\n", name);
+            exit(1);
+        }
+    }
+
     symbolTable[symbolCount].name = strdup(name);
     symbolTable[symbolCount].type = strdup(type);
     symbolTable[symbolCount].isMethod = isMethod;
