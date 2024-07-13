@@ -434,27 +434,27 @@ Terminals, with rules where they appear
     COLON (295) 141 145
     DQ (296)
     SQ (297)
-    ADD (298) 156 177
-    SUB (299) 157 178
-    MUL (300) 159
-    DIV (301) 160
-    MOD (302) 161
-    POW (303) 163
-    LP (304) 84 86 113 120 127 130 131 132 138 139 152 181 182 184
-    RP (305) 84 86 113 120 127 130 131 132 138 139 152 181 182 184
-    LSB (306)
-    RSB (307)
-    LCB (308) 5 7 84 86 120 127 129 130 131 132 138 139
-    RCB (309) 5 7 84 86 120 127 129 130 131 132 138 139
-    ASSIGN (310) 37 38 39 40 41 42 43 44 45 46 47 48 49 50 51 52 61 62 63 64 65 66 67 68 69 70 71 72 73 74 75 76 111 112 184
-    EQ (311) 165
-    NEQ (312) 166
-    LT (313) 167
-    GT (314) 168
-    LE (315) 169
-    GE (316) 170
-    AND (317) 172
-    OR (318) 173
+    LP (298) 84 86 113 120 127 130 131 132 138 139 152 181 182 184
+    RP (299) 84 86 113 120 127 130 131 132 138 139 152 181 182 184
+    LSB (300)
+    RSB (301)
+    LCB (302) 5 7 84 86 120 127 129 130 131 132 138 139
+    RCB (303) 5 7 84 86 120 127 129 130 131 132 138 139
+    ASSIGN (304) 37 38 39 40 41 42 43 44 45 46 47 48 49 50 51 52 61 62 63 64 65 66 67 68 69 70 71 72 73 74 75 76 111 112 184
+    OR (305) 173
+    AND (306) 172
+    EQ (307) 165
+    NEQ (308) 166
+    LT (309) 167
+    LE (310) 169
+    GT (311) 168
+    GE (312) 170
+    ADD (313) 156 177
+    SUB (314) 157 178
+    MUL (315) 159
+    DIV (316) 160
+    MOD (317) 161
+    POW (318) 163
     NOT (319) 175
 
 
@@ -726,9 +726,9 @@ State 0
     BREAK         shift, and go to state 19
     PRINT         shift, and go to state 20
     DQ_STRING_DQ  shift, and go to state 21
-    ADD           shift, and go to state 22
-    SUB           shift, and go to state 23
-    LP            shift, and go to state 24
+    LP            shift, and go to state 22
+    ADD           shift, and go to state 23
+    SUB           shift, and go to state 24
     NOT           shift, and go to state 25
 
     $end          reduce using rule 1 (program)
@@ -756,9 +756,9 @@ State 0
     BREAK         [reduce using rule 94 (statement)]
     PRINT         [reduce using rule 94 (statement)]
     DQ_STRING_DQ  [reduce using rule 94 (statement)]
+    LP            [reduce using rule 94 (statement)]
     ADD           [reduce using rule 94 (statement)]
     SUB           [reduce using rule 94 (statement)]
-    LP            [reduce using rule 94 (statement)]
     NOT           [reduce using rule 94 (statement)]
     $default      reduce using rule 1 (program)
 
@@ -965,9 +965,9 @@ State 14
 
     CONST  shift, and go to state 1
     ID     shift, and go to state 88
-    ADD    shift, and go to state 22
-    SUB    shift, and go to state 23
-    LP     shift, and go to state 24
+    LP     shift, and go to state 22
+    ADD    shift, and go to state 23
+    SUB    shift, and go to state 24
 
     variable_reference  go to state 89
     method_call         go to state 90
@@ -1031,49 +1031,49 @@ State 21
 
 State 22
 
-  177 unary: ADD • primary
-
-    CONST  shift, and go to state 1
-    ID     shift, and go to state 100
-    LP     shift, and go to state 24
-
-    variable_reference  go to state 101
-    primary             go to state 102
-
-
-State 23
-
-  178 unary: SUB • primary
-
-    CONST  shift, and go to state 1
-    ID     shift, and go to state 100
-    LP     shift, and go to state 24
-
-    variable_reference  go to state 101
-    primary             go to state 103
-
-
-State 24
-
   181 primary: LP • exp RP
   182        | LP • relational_exp RP
 
     CONST  shift, and go to state 1
     ID     shift, and go to state 100
-    ADD    shift, and go to state 22
-    SUB    shift, and go to state 23
-    LP     shift, and go to state 24
+    LP     shift, and go to state 22
+    ADD    shift, and go to state 23
+    SUB    shift, and go to state 24
     NOT    shift, and go to state 25
 
     variable_reference  go to state 101
-    exp                 go to state 104
+    exp                 go to state 102
     factor              go to state 52
     term                go to state 53
-    relational_exp      go to state 105
+    relational_exp      go to state 103
     relational_factor   go to state 55
     logical_term        go to state 56
     unary               go to state 57
     primary             go to state 58
+
+
+State 23
+
+  177 unary: ADD • primary
+
+    CONST  shift, and go to state 1
+    ID     shift, and go to state 100
+    LP     shift, and go to state 22
+
+    variable_reference  go to state 101
+    primary             go to state 104
+
+
+State 24
+
+  178 unary: SUB • primary
+
+    CONST  shift, and go to state 1
+    ID     shift, and go to state 100
+    LP     shift, and go to state 22
+
+    variable_reference  go to state 101
+    primary             go to state 105
 
 
 State 25
@@ -1082,9 +1082,9 @@ State 25
 
     CONST  shift, and go to state 1
     ID     shift, and go to state 100
-    ADD    shift, and go to state 22
-    SUB    shift, and go to state 23
-    LP     shift, and go to state 24
+    LP     shift, and go to state 22
+    ADD    shift, and go to state 23
+    SUB    shift, and go to state 24
 
     variable_reference  go to state 101
     unary               go to state 106
@@ -1374,8 +1374,8 @@ State 54
     EQ         shift, and go to state 130
     NEQ        shift, and go to state 131
     LT         shift, and go to state 132
-    GT         shift, and go to state 133
-    LE         shift, and go to state 134
+    LE         shift, and go to state 133
+    GT         shift, and go to state 134
     GE         shift, and go to state 135
 
 
@@ -1385,8 +1385,8 @@ State 55
   172 relational_factor: relational_factor • AND logical_term
   173                  | relational_factor • OR logical_term
 
-    AND  shift, and go to state 136
-    OR   shift, and go to state 137
+    OR   shift, and go to state 136
+    AND  shift, and go to state 137
 
     $default  reduce using rule 164 (relational_exp)
 
@@ -1409,14 +1409,14 @@ State 57
     SEMICOLON  [reduce using rule 174 (logical_term)]
     RP         reduce using rule 162 (term)
     RP         [reduce using rule 174 (logical_term)]
+    OR         reduce using rule 174 (logical_term)
+    AND        reduce using rule 174 (logical_term)
     EQ         reduce using rule 174 (logical_term)
     NEQ        reduce using rule 174 (logical_term)
     LT         reduce using rule 174 (logical_term)
-    GT         reduce using rule 174 (logical_term)
     LE         reduce using rule 174 (logical_term)
+    GT         reduce using rule 174 (logical_term)
     GE         reduce using rule 174 (logical_term)
-    AND        reduce using rule 174 (logical_term)
-    OR         reduce using rule 174 (logical_term)
     $default   reduce using rule 162 (term)
 
 
@@ -1530,9 +1530,9 @@ State 65
     FALSE          shift, and go to state 152
     SQ_ANYCHAR_SQ  shift, and go to state 153
     DQ_STRING_DQ   shift, and go to state 154
-    ADD            shift, and go to state 22
-    SUB            shift, and go to state 23
-    LP             shift, and go to state 24
+    LP             shift, and go to state 22
+    ADD            shift, and go to state 23
+    SUB            shift, and go to state 24
 
     variable_reference  go to state 155
     method_call         go to state 156
@@ -1873,30 +1873,16 @@ State 101
 
 State 102
 
-  177 unary: ADD primary •
-
-    $default  reduce using rule 177 (unary)
-
-
-State 103
-
-  178 unary: SUB primary •
-
-    $default  reduce using rule 178 (unary)
-
-
-State 104
-
   156 exp: exp • ADD factor
   157    | exp • SUB factor
   181 primary: LP exp • RP
 
+    RP   shift, and go to state 182
     ADD  shift, and go to state 123
     SUB  shift, and go to state 124
-    RP   shift, and go to state 182
 
 
-State 105
+State 103
 
   165 relational_exp: relational_exp • EQ relational_factor
   166               | relational_exp • NEQ relational_factor
@@ -1910,9 +1896,23 @@ State 105
     EQ   shift, and go to state 130
     NEQ  shift, and go to state 131
     LT   shift, and go to state 132
-    GT   shift, and go to state 133
-    LE   shift, and go to state 134
+    LE   shift, and go to state 133
+    GT   shift, and go to state 134
     GE   shift, and go to state 135
+
+
+State 104
+
+  177 unary: ADD primary •
+
+    $default  reduce using rule 177 (unary)
+
+
+State 105
+
+  178 unary: SUB primary •
+
+    $default  reduce using rule 178 (unary)
 
 
 State 106
@@ -1966,9 +1966,9 @@ State 109
     BREAK         shift, and go to state 19
     PRINT         shift, and go to state 20
     DQ_STRING_DQ  shift, and go to state 21
-    ADD           shift, and go to state 22
-    SUB           shift, and go to state 23
-    LP            shift, and go to state 24
+    LP            shift, and go to state 22
+    ADD           shift, and go to state 23
+    SUB           shift, and go to state 24
     NOT           shift, and go to state 25
 
     $end          reduce using rule 1 (program)
@@ -1996,9 +1996,9 @@ State 109
     BREAK         [reduce using rule 94 (statement)]
     PRINT         [reduce using rule 94 (statement)]
     DQ_STRING_DQ  [reduce using rule 94 (statement)]
+    LP            [reduce using rule 94 (statement)]
     ADD           [reduce using rule 94 (statement)]
     SUB           [reduce using rule 94 (statement)]
-    LP            [reduce using rule 94 (statement)]
     NOT           [reduce using rule 94 (statement)]
     $default      reduce using rule 1 (program)
 
@@ -2089,9 +2089,9 @@ State 112
     BREAK         shift, and go to state 19
     PRINT         shift, and go to state 20
     DQ_STRING_DQ  shift, and go to state 21
-    ADD           shift, and go to state 22
-    SUB           shift, and go to state 23
-    LP            shift, and go to state 24
+    LP            shift, and go to state 22
+    ADD           shift, and go to state 23
+    SUB           shift, and go to state 24
     NOT           shift, and go to state 25
 
     CONST         [reduce using rule 94 (statement)]
@@ -2115,9 +2115,9 @@ State 112
     BREAK         [reduce using rule 94 (statement)]
     PRINT         [reduce using rule 94 (statement)]
     DQ_STRING_DQ  [reduce using rule 94 (statement)]
+    LP            [reduce using rule 94 (statement)]
     ADD           [reduce using rule 94 (statement)]
     SUB           [reduce using rule 94 (statement)]
-    LP            [reduce using rule 94 (statement)]
     NOT           [reduce using rule 94 (statement)]
     $default      reduce using rule 94 (statement)
 
@@ -2183,9 +2183,9 @@ State 113
     BREAK         shift, and go to state 19
     PRINT         shift, and go to state 20
     DQ_STRING_DQ  shift, and go to state 21
-    ADD           shift, and go to state 22
-    SUB           shift, and go to state 23
-    LP            shift, and go to state 24
+    LP            shift, and go to state 22
+    ADD           shift, and go to state 23
+    SUB           shift, and go to state 24
     NOT           shift, and go to state 25
 
     $end          reduce using rule 1 (program)
@@ -2213,9 +2213,9 @@ State 113
     BREAK         [reduce using rule 94 (statement)]
     PRINT         [reduce using rule 94 (statement)]
     DQ_STRING_DQ  [reduce using rule 94 (statement)]
+    LP            [reduce using rule 94 (statement)]
     ADD           [reduce using rule 94 (statement)]
     SUB           [reduce using rule 94 (statement)]
-    LP            [reduce using rule 94 (statement)]
     NOT           [reduce using rule 94 (statement)]
     $default      reduce using rule 1 (program)
 
@@ -2282,9 +2282,9 @@ State 114
     BREAK         shift, and go to state 19
     PRINT         shift, and go to state 20
     DQ_STRING_DQ  shift, and go to state 21
-    ADD           shift, and go to state 22
-    SUB           shift, and go to state 23
-    LP            shift, and go to state 24
+    LP            shift, and go to state 22
+    ADD           shift, and go to state 23
+    SUB           shift, and go to state 24
     NOT           shift, and go to state 25
 
     CONST         [reduce using rule 94 (statement)]
@@ -2308,9 +2308,9 @@ State 114
     BREAK         [reduce using rule 94 (statement)]
     PRINT         [reduce using rule 94 (statement)]
     DQ_STRING_DQ  [reduce using rule 94 (statement)]
+    LP            [reduce using rule 94 (statement)]
     ADD           [reduce using rule 94 (statement)]
     SUB           [reduce using rule 94 (statement)]
-    LP            [reduce using rule 94 (statement)]
     NOT           [reduce using rule 94 (statement)]
     $default      reduce using rule 94 (statement)
 
@@ -2375,9 +2375,9 @@ State 115
     BREAK         shift, and go to state 19
     PRINT         shift, and go to state 20
     DQ_STRING_DQ  shift, and go to state 21
-    ADD           shift, and go to state 22
-    SUB           shift, and go to state 23
-    LP            shift, and go to state 24
+    LP            shift, and go to state 22
+    ADD           shift, and go to state 23
+    SUB           shift, and go to state 24
     NOT           shift, and go to state 25
 
     CONST         [reduce using rule 94 (statement)]
@@ -2401,9 +2401,9 @@ State 115
     BREAK         [reduce using rule 94 (statement)]
     PRINT         [reduce using rule 94 (statement)]
     DQ_STRING_DQ  [reduce using rule 94 (statement)]
+    LP            [reduce using rule 94 (statement)]
     ADD           [reduce using rule 94 (statement)]
     SUB           [reduce using rule 94 (statement)]
-    LP            [reduce using rule 94 (statement)]
     NOT           [reduce using rule 94 (statement)]
     $default      reduce using rule 94 (statement)
 
@@ -2468,9 +2468,9 @@ State 116
     BREAK         shift, and go to state 19
     PRINT         shift, and go to state 20
     DQ_STRING_DQ  shift, and go to state 21
-    ADD           shift, and go to state 22
-    SUB           shift, and go to state 23
-    LP            shift, and go to state 24
+    LP            shift, and go to state 22
+    ADD           shift, and go to state 23
+    SUB           shift, and go to state 24
     NOT           shift, and go to state 25
 
     CONST         [reduce using rule 94 (statement)]
@@ -2494,9 +2494,9 @@ State 116
     BREAK         [reduce using rule 94 (statement)]
     PRINT         [reduce using rule 94 (statement)]
     DQ_STRING_DQ  [reduce using rule 94 (statement)]
+    LP            [reduce using rule 94 (statement)]
     ADD           [reduce using rule 94 (statement)]
     SUB           [reduce using rule 94 (statement)]
-    LP            [reduce using rule 94 (statement)]
     NOT           [reduce using rule 94 (statement)]
     $default      reduce using rule 94 (statement)
 
@@ -2561,9 +2561,9 @@ State 117
     BREAK         shift, and go to state 19
     PRINT         shift, and go to state 20
     DQ_STRING_DQ  shift, and go to state 21
-    ADD           shift, and go to state 22
-    SUB           shift, and go to state 23
-    LP            shift, and go to state 24
+    LP            shift, and go to state 22
+    ADD           shift, and go to state 23
+    SUB           shift, and go to state 24
     NOT           shift, and go to state 25
 
     CONST         [reduce using rule 94 (statement)]
@@ -2587,9 +2587,9 @@ State 117
     BREAK         [reduce using rule 94 (statement)]
     PRINT         [reduce using rule 94 (statement)]
     DQ_STRING_DQ  [reduce using rule 94 (statement)]
+    LP            [reduce using rule 94 (statement)]
     ADD           [reduce using rule 94 (statement)]
     SUB           [reduce using rule 94 (statement)]
-    LP            [reduce using rule 94 (statement)]
     NOT           [reduce using rule 94 (statement)]
     $default      reduce using rule 94 (statement)
 
@@ -2654,9 +2654,9 @@ State 118
     BREAK         shift, and go to state 19
     PRINT         shift, and go to state 20
     DQ_STRING_DQ  shift, and go to state 21
-    ADD           shift, and go to state 22
-    SUB           shift, and go to state 23
-    LP            shift, and go to state 24
+    LP            shift, and go to state 22
+    ADD           shift, and go to state 23
+    SUB           shift, and go to state 24
     NOT           shift, and go to state 25
 
     CONST         [reduce using rule 94 (statement)]
@@ -2680,9 +2680,9 @@ State 118
     BREAK         [reduce using rule 94 (statement)]
     PRINT         [reduce using rule 94 (statement)]
     DQ_STRING_DQ  [reduce using rule 94 (statement)]
+    LP            [reduce using rule 94 (statement)]
     ADD           [reduce using rule 94 (statement)]
     SUB           [reduce using rule 94 (statement)]
-    LP            [reduce using rule 94 (statement)]
     NOT           [reduce using rule 94 (statement)]
     $default      reduce using rule 94 (statement)
 
@@ -2747,9 +2747,9 @@ State 119
     BREAK         shift, and go to state 19
     PRINT         shift, and go to state 20
     DQ_STRING_DQ  shift, and go to state 21
-    ADD           shift, and go to state 22
-    SUB           shift, and go to state 23
-    LP            shift, and go to state 24
+    LP            shift, and go to state 22
+    ADD           shift, and go to state 23
+    SUB           shift, and go to state 24
     NOT           shift, and go to state 25
 
     CONST         [reduce using rule 94 (statement)]
@@ -2773,9 +2773,9 @@ State 119
     BREAK         [reduce using rule 94 (statement)]
     PRINT         [reduce using rule 94 (statement)]
     DQ_STRING_DQ  [reduce using rule 94 (statement)]
+    LP            [reduce using rule 94 (statement)]
     ADD           [reduce using rule 94 (statement)]
     SUB           [reduce using rule 94 (statement)]
-    LP            [reduce using rule 94 (statement)]
     NOT           [reduce using rule 94 (statement)]
     $default      reduce using rule 94 (statement)
 
@@ -2840,9 +2840,9 @@ State 120
     BREAK         shift, and go to state 19
     PRINT         shift, and go to state 20
     DQ_STRING_DQ  shift, and go to state 21
-    ADD           shift, and go to state 22
-    SUB           shift, and go to state 23
-    LP            shift, and go to state 24
+    LP            shift, and go to state 22
+    ADD           shift, and go to state 23
+    SUB           shift, and go to state 24
     NOT           shift, and go to state 25
 
     CONST         [reduce using rule 94 (statement)]
@@ -2866,9 +2866,9 @@ State 120
     BREAK         [reduce using rule 94 (statement)]
     PRINT         [reduce using rule 94 (statement)]
     DQ_STRING_DQ  [reduce using rule 94 (statement)]
+    LP            [reduce using rule 94 (statement)]
     ADD           [reduce using rule 94 (statement)]
     SUB           [reduce using rule 94 (statement)]
-    LP            [reduce using rule 94 (statement)]
     NOT           [reduce using rule 94 (statement)]
     $default      reduce using rule 94 (statement)
 
@@ -2933,9 +2933,9 @@ State 121
     BREAK         shift, and go to state 19
     PRINT         shift, and go to state 20
     DQ_STRING_DQ  shift, and go to state 21
-    ADD           shift, and go to state 22
-    SUB           shift, and go to state 23
-    LP            shift, and go to state 24
+    LP            shift, and go to state 22
+    ADD           shift, and go to state 23
+    SUB           shift, and go to state 24
     NOT           shift, and go to state 25
 
     CONST         [reduce using rule 94 (statement)]
@@ -2959,9 +2959,9 @@ State 121
     BREAK         [reduce using rule 94 (statement)]
     PRINT         [reduce using rule 94 (statement)]
     DQ_STRING_DQ  [reduce using rule 94 (statement)]
+    LP            [reduce using rule 94 (statement)]
     ADD           [reduce using rule 94 (statement)]
     SUB           [reduce using rule 94 (statement)]
-    LP            [reduce using rule 94 (statement)]
     NOT           [reduce using rule 94 (statement)]
     $default      reduce using rule 94 (statement)
 
@@ -3020,9 +3020,9 @@ State 123
 
     CONST  shift, and go to state 1
     ID     shift, and go to state 100
-    ADD    shift, and go to state 22
-    SUB    shift, and go to state 23
-    LP     shift, and go to state 24
+    LP     shift, and go to state 22
+    ADD    shift, and go to state 23
+    SUB    shift, and go to state 24
 
     variable_reference  go to state 101
     factor              go to state 200
@@ -3037,9 +3037,9 @@ State 124
 
     CONST  shift, and go to state 1
     ID     shift, and go to state 100
-    ADD    shift, and go to state 22
-    SUB    shift, and go to state 23
-    LP     shift, and go to state 24
+    LP     shift, and go to state 22
+    ADD    shift, and go to state 23
+    SUB    shift, and go to state 24
 
     variable_reference  go to state 101
     factor              go to state 201
@@ -3054,9 +3054,9 @@ State 125
 
     CONST  shift, and go to state 1
     ID     shift, and go to state 100
-    ADD    shift, and go to state 22
-    SUB    shift, and go to state 23
-    LP     shift, and go to state 24
+    LP     shift, and go to state 22
+    ADD    shift, and go to state 23
+    SUB    shift, and go to state 24
 
     variable_reference  go to state 101
     term                go to state 202
@@ -3070,9 +3070,9 @@ State 126
 
     CONST  shift, and go to state 1
     ID     shift, and go to state 100
-    ADD    shift, and go to state 22
-    SUB    shift, and go to state 23
-    LP     shift, and go to state 24
+    LP     shift, and go to state 22
+    ADD    shift, and go to state 23
+    SUB    shift, and go to state 24
 
     variable_reference  go to state 101
     term                go to state 203
@@ -3086,9 +3086,9 @@ State 127
 
     CONST  shift, and go to state 1
     ID     shift, and go to state 100
-    ADD    shift, and go to state 22
-    SUB    shift, and go to state 23
-    LP     shift, and go to state 24
+    LP     shift, and go to state 22
+    ADD    shift, and go to state 23
+    SUB    shift, and go to state 24
 
     variable_reference  go to state 101
     term                go to state 204
@@ -3102,9 +3102,9 @@ State 128
 
     CONST  shift, and go to state 1
     ID     shift, and go to state 100
-    ADD    shift, and go to state 22
-    SUB    shift, and go to state 23
-    LP     shift, and go to state 24
+    LP     shift, and go to state 22
+    ADD    shift, and go to state 23
+    SUB    shift, and go to state 24
 
     variable_reference  go to state 101
     unary               go to state 205
@@ -3129,9 +3129,9 @@ State 130
 
     CONST  shift, and go to state 1
     ID     shift, and go to state 100
-    ADD    shift, and go to state 22
-    SUB    shift, and go to state 23
-    LP     shift, and go to state 24
+    LP     shift, and go to state 22
+    ADD    shift, and go to state 23
+    SUB    shift, and go to state 24
     NOT    shift, and go to state 25
 
     variable_reference  go to state 101
@@ -3147,9 +3147,9 @@ State 131
 
     CONST  shift, and go to state 1
     ID     shift, and go to state 100
-    ADD    shift, and go to state 22
-    SUB    shift, and go to state 23
-    LP     shift, and go to state 24
+    LP     shift, and go to state 22
+    ADD    shift, and go to state 23
+    SUB    shift, and go to state 24
     NOT    shift, and go to state 25
 
     variable_reference  go to state 101
@@ -3165,9 +3165,9 @@ State 132
 
     CONST  shift, and go to state 1
     ID     shift, and go to state 100
-    ADD    shift, and go to state 22
-    SUB    shift, and go to state 23
-    LP     shift, and go to state 24
+    LP     shift, and go to state 22
+    ADD    shift, and go to state 23
+    SUB    shift, and go to state 24
     NOT    shift, and go to state 25
 
     variable_reference  go to state 101
@@ -3179,13 +3179,13 @@ State 132
 
 State 133
 
-  168 relational_exp: relational_exp GT • relational_factor
+  169 relational_exp: relational_exp LE • relational_factor
 
     CONST  shift, and go to state 1
     ID     shift, and go to state 100
-    ADD    shift, and go to state 22
-    SUB    shift, and go to state 23
-    LP     shift, and go to state 24
+    LP     shift, and go to state 22
+    ADD    shift, and go to state 23
+    SUB    shift, and go to state 24
     NOT    shift, and go to state 25
 
     variable_reference  go to state 101
@@ -3197,13 +3197,13 @@ State 133
 
 State 134
 
-  169 relational_exp: relational_exp LE • relational_factor
+  168 relational_exp: relational_exp GT • relational_factor
 
     CONST  shift, and go to state 1
     ID     shift, and go to state 100
-    ADD    shift, and go to state 22
-    SUB    shift, and go to state 23
-    LP     shift, and go to state 24
+    LP     shift, and go to state 22
+    ADD    shift, and go to state 23
+    SUB    shift, and go to state 24
     NOT    shift, and go to state 25
 
     variable_reference  go to state 101
@@ -3219,9 +3219,9 @@ State 135
 
     CONST  shift, and go to state 1
     ID     shift, and go to state 100
-    ADD    shift, and go to state 22
-    SUB    shift, and go to state 23
-    LP     shift, and go to state 24
+    LP     shift, and go to state 22
+    ADD    shift, and go to state 23
+    SUB    shift, and go to state 24
     NOT    shift, and go to state 25
 
     variable_reference  go to state 101
@@ -3233,13 +3233,13 @@ State 135
 
 State 136
 
-  172 relational_factor: relational_factor AND • logical_term
+  173 relational_factor: relational_factor OR • logical_term
 
     CONST  shift, and go to state 1
     ID     shift, and go to state 100
-    ADD    shift, and go to state 22
-    SUB    shift, and go to state 23
-    LP     shift, and go to state 24
+    LP     shift, and go to state 22
+    ADD    shift, and go to state 23
+    SUB    shift, and go to state 24
     NOT    shift, and go to state 25
 
     variable_reference  go to state 101
@@ -3250,13 +3250,13 @@ State 136
 
 State 137
 
-  173 relational_factor: relational_factor OR • logical_term
+  172 relational_factor: relational_factor AND • logical_term
 
     CONST  shift, and go to state 1
     ID     shift, and go to state 100
-    ADD    shift, and go to state 22
-    SUB    shift, and go to state 23
-    LP     shift, and go to state 24
+    LP     shift, and go to state 22
+    ADD    shift, and go to state 23
+    SUB    shift, and go to state 24
     NOT    shift, and go to state 25
 
     variable_reference  go to state 101
@@ -3289,9 +3289,9 @@ State 138
     BREAK         shift, and go to state 19
     PRINT         shift, and go to state 20
     DQ_STRING_DQ  shift, and go to state 21
-    ADD           shift, and go to state 22
-    SUB           shift, and go to state 23
-    LP            shift, and go to state 24
+    LP            shift, and go to state 22
+    ADD           shift, and go to state 23
+    SUB           shift, and go to state 24
     NOT           shift, and go to state 25
 
     CONST         [reduce using rule 94 (statement)]
@@ -3315,9 +3315,9 @@ State 138
     BREAK         [reduce using rule 94 (statement)]
     PRINT         [reduce using rule 94 (statement)]
     DQ_STRING_DQ  [reduce using rule 94 (statement)]
+    LP            [reduce using rule 94 (statement)]
     ADD           [reduce using rule 94 (statement)]
     SUB           [reduce using rule 94 (statement)]
-    LP            [reduce using rule 94 (statement)]
     NOT           [reduce using rule 94 (statement)]
     $default      reduce using rule 94 (statement)
 
@@ -3382,9 +3382,9 @@ State 139
     BREAK         shift, and go to state 19
     PRINT         shift, and go to state 20
     DQ_STRING_DQ  shift, and go to state 21
-    ADD           shift, and go to state 22
-    SUB           shift, and go to state 23
-    LP            shift, and go to state 24
+    LP            shift, and go to state 22
+    ADD           shift, and go to state 23
+    SUB           shift, and go to state 24
     NOT           shift, and go to state 25
 
     CONST         [reduce using rule 94 (statement)]
@@ -3408,9 +3408,9 @@ State 139
     BREAK         [reduce using rule 94 (statement)]
     PRINT         [reduce using rule 94 (statement)]
     DQ_STRING_DQ  [reduce using rule 94 (statement)]
+    LP            [reduce using rule 94 (statement)]
     ADD           [reduce using rule 94 (statement)]
     SUB           [reduce using rule 94 (statement)]
-    LP            [reduce using rule 94 (statement)]
     NOT           [reduce using rule 94 (statement)]
     $default      reduce using rule 94 (statement)
 
@@ -3693,9 +3693,9 @@ State 164
 
     CONST  shift, and go to state 1
     ID     shift, and go to state 100
-    ADD    shift, and go to state 22
-    SUB    shift, and go to state 23
-    LP     shift, and go to state 24
+    LP     shift, and go to state 22
+    ADD    shift, and go to state 23
+    SUB    shift, and go to state 24
 
     variable_reference  go to state 101
     exp                 go to state 249
@@ -3805,9 +3805,9 @@ State 176
     ID     shift, and go to state 88
     TRUE   shift, and go to state 151
     FALSE  shift, and go to state 152
-    ADD    shift, and go to state 22
-    SUB    shift, and go to state 23
-    LP     shift, and go to state 24
+    LP     shift, and go to state 22
+    ADD    shift, and go to state 23
+    SUB    shift, and go to state 24
     NOT    shift, and go to state 25
 
     variable_reference             go to state 262
@@ -3832,9 +3832,9 @@ State 177
     CONST          shift, and go to state 1
     ID             shift, and go to state 100
     SQ_ANYCHAR_SQ  shift, and go to state 268
-    ADD            shift, and go to state 22
-    SUB            shift, and go to state 23
-    LP             shift, and go to state 24
+    LP             shift, and go to state 22
+    ADD            shift, and go to state 23
+    SUB            shift, and go to state 24
 
     variable_reference  go to state 101
     exp                 go to state 269
@@ -3869,9 +3869,9 @@ State 178
     BREAK         shift, and go to state 19
     PRINT         shift, and go to state 20
     DQ_STRING_DQ  shift, and go to state 21
-    ADD           shift, and go to state 22
-    SUB           shift, and go to state 23
-    LP            shift, and go to state 24
+    LP            shift, and go to state 22
+    ADD           shift, and go to state 23
+    SUB           shift, and go to state 24
     NOT           shift, and go to state 25
 
     ID        [reduce using rule 193 (data_type)]
@@ -3985,9 +3985,9 @@ State 181
     BREAK         shift, and go to state 19
     PRINT         shift, and go to state 20
     DQ_STRING_DQ  shift, and go to state 21
-    ADD           shift, and go to state 22
-    SUB           shift, and go to state 23
-    LP            shift, and go to state 24
+    LP            shift, and go to state 22
+    ADD           shift, and go to state 23
+    SUB           shift, and go to state 24
     NOT           shift, and go to state 25
 
     CONST         [reduce using rule 94 (statement)]
@@ -4011,9 +4011,9 @@ State 181
     BREAK         [reduce using rule 94 (statement)]
     PRINT         [reduce using rule 94 (statement)]
     DQ_STRING_DQ  [reduce using rule 94 (statement)]
+    LP            [reduce using rule 94 (statement)]
     ADD           [reduce using rule 94 (statement)]
     SUB           [reduce using rule 94 (statement)]
-    LP            [reduce using rule 94 (statement)]
     NOT           [reduce using rule 94 (statement)]
     $default      reduce using rule 94 (statement)
 
@@ -4106,9 +4106,9 @@ State 186
     BREAK         shift, and go to state 19
     PRINT         shift, and go to state 20
     DQ_STRING_DQ  shift, and go to state 21
-    ADD           shift, and go to state 22
-    SUB           shift, and go to state 23
-    LP            shift, and go to state 24
+    LP            shift, and go to state 22
+    ADD           shift, and go to state 23
+    SUB           shift, and go to state 24
     NOT           shift, and go to state 25
 
     CONST         [reduce using rule 94 (statement)]
@@ -4132,9 +4132,9 @@ State 186
     BREAK         [reduce using rule 94 (statement)]
     PRINT         [reduce using rule 94 (statement)]
     DQ_STRING_DQ  [reduce using rule 94 (statement)]
+    LP            [reduce using rule 94 (statement)]
     ADD           [reduce using rule 94 (statement)]
     SUB           [reduce using rule 94 (statement)]
-    LP            [reduce using rule 94 (statement)]
     NOT           [reduce using rule 94 (statement)]
     $default      reduce using rule 94 (statement)
 
@@ -4199,9 +4199,9 @@ State 187
     BREAK         shift, and go to state 19
     PRINT         shift, and go to state 20
     DQ_STRING_DQ  shift, and go to state 21
-    ADD           shift, and go to state 22
-    SUB           shift, and go to state 23
-    LP            shift, and go to state 24
+    LP            shift, and go to state 22
+    ADD           shift, and go to state 23
+    SUB           shift, and go to state 24
     NOT           shift, and go to state 25
 
     CONST         [reduce using rule 94 (statement)]
@@ -4225,9 +4225,9 @@ State 187
     BREAK         [reduce using rule 94 (statement)]
     PRINT         [reduce using rule 94 (statement)]
     DQ_STRING_DQ  [reduce using rule 94 (statement)]
+    LP            [reduce using rule 94 (statement)]
     ADD           [reduce using rule 94 (statement)]
     SUB           [reduce using rule 94 (statement)]
-    LP            [reduce using rule 94 (statement)]
     NOT           [reduce using rule 94 (statement)]
     $default      reduce using rule 94 (statement)
 
@@ -4383,9 +4383,9 @@ State 199
     BREAK         shift, and go to state 19
     PRINT         shift, and go to state 20
     DQ_STRING_DQ  shift, and go to state 21
-    ADD           shift, and go to state 22
-    SUB           shift, and go to state 23
-    LP            shift, and go to state 24
+    LP            shift, and go to state 22
+    ADD           shift, and go to state 23
+    SUB           shift, and go to state 24
     NOT           shift, and go to state 25
 
     CONST         [reduce using rule 94 (statement)]
@@ -4409,9 +4409,9 @@ State 199
     BREAK         [reduce using rule 94 (statement)]
     PRINT         [reduce using rule 94 (statement)]
     DQ_STRING_DQ  [reduce using rule 94 (statement)]
+    LP            [reduce using rule 94 (statement)]
     ADD           [reduce using rule 94 (statement)]
     SUB           [reduce using rule 94 (statement)]
-    LP            [reduce using rule 94 (statement)]
     NOT           [reduce using rule 94 (statement)]
     $default      reduce using rule 94 (statement)
 
@@ -4541,9 +4541,9 @@ State 206
     BREAK         shift, and go to state 19
     PRINT         shift, and go to state 20
     DQ_STRING_DQ  shift, and go to state 21
-    ADD           shift, and go to state 22
-    SUB           shift, and go to state 23
-    LP            shift, and go to state 24
+    LP            shift, and go to state 22
+    ADD           shift, and go to state 23
+    SUB           shift, and go to state 24
     NOT           shift, and go to state 25
 
     CONST         [reduce using rule 94 (statement)]
@@ -4567,9 +4567,9 @@ State 206
     BREAK         [reduce using rule 94 (statement)]
     PRINT         [reduce using rule 94 (statement)]
     DQ_STRING_DQ  [reduce using rule 94 (statement)]
+    LP            [reduce using rule 94 (statement)]
     ADD           [reduce using rule 94 (statement)]
     SUB           [reduce using rule 94 (statement)]
-    LP            [reduce using rule 94 (statement)]
     NOT           [reduce using rule 94 (statement)]
     $default      reduce using rule 94 (statement)
 
@@ -4616,8 +4616,8 @@ State 207
   172 relational_factor: relational_factor • AND logical_term
   173                  | relational_factor • OR logical_term
 
-    AND  shift, and go to state 136
-    OR   shift, and go to state 137
+    OR   shift, and go to state 136
+    AND  shift, and go to state 137
 
     $default  reduce using rule 165 (relational_exp)
 
@@ -4635,8 +4635,8 @@ State 209
   172 relational_factor: relational_factor • AND logical_term
   173                  | relational_factor • OR logical_term
 
-    AND  shift, and go to state 136
-    OR   shift, and go to state 137
+    OR   shift, and go to state 136
+    AND  shift, and go to state 137
 
     $default  reduce using rule 166 (relational_exp)
 
@@ -4647,34 +4647,34 @@ State 210
   172 relational_factor: relational_factor • AND logical_term
   173                  | relational_factor • OR logical_term
 
-    AND  shift, and go to state 136
-    OR   shift, and go to state 137
+    OR   shift, and go to state 136
+    AND  shift, and go to state 137
 
     $default  reduce using rule 167 (relational_exp)
 
 
 State 211
 
-  168 relational_exp: relational_exp GT relational_factor •
-  172 relational_factor: relational_factor • AND logical_term
-  173                  | relational_factor • OR logical_term
-
-    AND  shift, and go to state 136
-    OR   shift, and go to state 137
-
-    $default  reduce using rule 168 (relational_exp)
-
-
-State 212
-
   169 relational_exp: relational_exp LE relational_factor •
   172 relational_factor: relational_factor • AND logical_term
   173                  | relational_factor • OR logical_term
 
-    AND  shift, and go to state 136
-    OR   shift, and go to state 137
+    OR   shift, and go to state 136
+    AND  shift, and go to state 137
 
     $default  reduce using rule 169 (relational_exp)
+
+
+State 212
+
+  168 relational_exp: relational_exp GT relational_factor •
+  172 relational_factor: relational_factor • AND logical_term
+  173                  | relational_factor • OR logical_term
+
+    OR   shift, and go to state 136
+    AND  shift, and go to state 137
+
+    $default  reduce using rule 168 (relational_exp)
 
 
 State 213
@@ -4683,24 +4683,24 @@ State 213
   172 relational_factor: relational_factor • AND logical_term
   173                  | relational_factor • OR logical_term
 
-    AND  shift, and go to state 136
-    OR   shift, and go to state 137
+    OR   shift, and go to state 136
+    AND  shift, and go to state 137
 
     $default  reduce using rule 170 (relational_exp)
 
 
 State 214
 
-  172 relational_factor: relational_factor AND logical_term •
+  173 relational_factor: relational_factor OR logical_term •
 
-    $default  reduce using rule 172 (relational_factor)
+    $default  reduce using rule 173 (relational_factor)
 
 
 State 215
 
-  173 relational_factor: relational_factor OR logical_term •
+  172 relational_factor: relational_factor AND logical_term •
 
-    $default  reduce using rule 173 (relational_factor)
+    $default  reduce using rule 172 (relational_factor)
 
 
 State 216
@@ -5165,8 +5165,8 @@ State 266
     EQ   shift, and go to state 130
     NEQ  shift, and go to state 131
     LT   shift, and go to state 132
-    GT   shift, and go to state 133
-    LE   shift, and go to state 134
+    LE   shift, and go to state 133
+    GT   shift, and go to state 134
     GE   shift, and go to state 135
 
     $default  reduce using rule 122 (if_elif_parenthesis_statement)
@@ -5586,9 +5586,9 @@ State 312
     BREAK         shift, and go to state 19
     PRINT         shift, and go to state 20
     DQ_STRING_DQ  shift, and go to state 21
-    ADD           shift, and go to state 22
-    SUB           shift, and go to state 23
-    LP            shift, and go to state 24
+    LP            shift, and go to state 22
+    ADD           shift, and go to state 23
+    SUB           shift, and go to state 24
     NOT           shift, and go to state 25
 
     CONST         [reduce using rule 94 (statement)]
@@ -5615,11 +5615,11 @@ State 312
     BREAK         [reduce using rule 94 (statement)]
     PRINT         [reduce using rule 94 (statement)]
     DQ_STRING_DQ  [reduce using rule 94 (statement)]
-    ADD           [reduce using rule 94 (statement)]
-    SUB           [reduce using rule 94 (statement)]
     LP            [reduce using rule 94 (statement)]
     RCB           reduce using rule 8 (class_body)
     RCB           [reduce using rule 94 (statement)]
+    ADD           [reduce using rule 94 (statement)]
+    SUB           [reduce using rule 94 (statement)]
     NOT           [reduce using rule 94 (statement)]
     $default      reduce using rule 8 (class_body)
 
@@ -5940,9 +5940,9 @@ State 340
 
     CONST  shift, and go to state 1
     ID     shift, and go to state 100
-    ADD    shift, and go to state 22
-    SUB    shift, and go to state 23
-    LP     shift, and go to state 24
+    LP     shift, and go to state 22
+    ADD    shift, and go to state 23
+    SUB    shift, and go to state 24
 
     variable_reference  go to state 101
     exp                 go to state 157
@@ -6095,9 +6095,9 @@ State 358
 
     CONST  shift, and go to state 1
     ID     shift, and go to state 100
-    ADD    shift, and go to state 22
-    SUB    shift, and go to state 23
-    LP     shift, and go to state 24
+    LP     shift, and go to state 22
+    ADD    shift, and go to state 23
+    SUB    shift, and go to state 24
     NOT    shift, and go to state 25
 
     $default  reduce using rule 136 (second_loop_statement)
@@ -6118,9 +6118,9 @@ State 359
 
     CONST  shift, and go to state 1
     ID     shift, and go to state 100
-    ADD    shift, and go to state 22
-    SUB    shift, and go to state 23
-    LP     shift, and go to state 24
+    LP     shift, and go to state 22
+    ADD    shift, and go to state 23
+    SUB    shift, and go to state 24
 
     variable_reference  go to state 382
     exp                 go to state 383
@@ -6169,9 +6169,9 @@ State 362
     BREAK         shift, and go to state 19
     PRINT         shift, and go to state 20
     DQ_STRING_DQ  shift, and go to state 21
-    ADD           shift, and go to state 22
-    SUB           shift, and go to state 23
-    LP            shift, and go to state 24
+    LP            shift, and go to state 22
+    ADD           shift, and go to state 23
+    SUB           shift, and go to state 24
     NOT           shift, and go to state 25
 
     CONST         [reduce using rule 94 (statement)]
@@ -6198,11 +6198,11 @@ State 362
     BREAK         [reduce using rule 94 (statement)]
     PRINT         [reduce using rule 94 (statement)]
     DQ_STRING_DQ  [reduce using rule 94 (statement)]
-    ADD           [reduce using rule 94 (statement)]
-    SUB           [reduce using rule 94 (statement)]
     LP            [reduce using rule 94 (statement)]
     RCB           reduce using rule 8 (class_body)
     RCB           [reduce using rule 94 (statement)]
+    ADD           [reduce using rule 94 (statement)]
+    SUB           [reduce using rule 94 (statement)]
     NOT           [reduce using rule 94 (statement)]
     $default      reduce using rule 8 (class_body)
 
@@ -6369,9 +6369,9 @@ State 373
     BREAK         shift, and go to state 19
     PRINT         shift, and go to state 20
     DQ_STRING_DQ  shift, and go to state 21
-    ADD           shift, and go to state 22
-    SUB           shift, and go to state 23
-    LP            shift, and go to state 24
+    LP            shift, and go to state 22
+    ADD           shift, and go to state 23
+    SUB           shift, and go to state 24
     NOT           shift, and go to state 25
 
     CONST         [reduce using rule 94 (statement)]
@@ -6398,11 +6398,11 @@ State 373
     BREAK         [reduce using rule 94 (statement)]
     PRINT         [reduce using rule 94 (statement)]
     DQ_STRING_DQ  [reduce using rule 94 (statement)]
-    ADD           [reduce using rule 94 (statement)]
-    SUB           [reduce using rule 94 (statement)]
     LP            [reduce using rule 94 (statement)]
     RCB           reduce using rule 8 (class_body)
     RCB           [reduce using rule 94 (statement)]
+    ADD           [reduce using rule 94 (statement)]
+    SUB           [reduce using rule 94 (statement)]
     NOT           [reduce using rule 94 (statement)]
     $default      reduce using rule 8 (class_body)
 
@@ -6477,9 +6477,9 @@ State 375
     BREAK         shift, and go to state 19
     PRINT         shift, and go to state 20
     DQ_STRING_DQ  shift, and go to state 21
-    ADD           shift, and go to state 22
-    SUB           shift, and go to state 23
-    LP            shift, and go to state 24
+    LP            shift, and go to state 22
+    ADD           shift, and go to state 23
+    SUB           shift, and go to state 24
     NOT           shift, and go to state 25
 
     CONST         [reduce using rule 94 (statement)]
@@ -6506,11 +6506,11 @@ State 375
     BREAK         [reduce using rule 94 (statement)]
     PRINT         [reduce using rule 94 (statement)]
     DQ_STRING_DQ  [reduce using rule 94 (statement)]
-    ADD           [reduce using rule 94 (statement)]
-    SUB           [reduce using rule 94 (statement)]
     LP            [reduce using rule 94 (statement)]
     RCB           reduce using rule 8 (class_body)
     RCB           [reduce using rule 94 (statement)]
+    ADD           [reduce using rule 94 (statement)]
+    SUB           [reduce using rule 94 (statement)]
     NOT           [reduce using rule 94 (statement)]
     $default      reduce using rule 8 (class_body)
 
@@ -6615,8 +6615,8 @@ State 381
     EQ   shift, and go to state 130
     NEQ  shift, and go to state 131
     LT   shift, and go to state 132
-    GT   shift, and go to state 133
-    LE   shift, and go to state 134
+    LE   shift, and go to state 133
+    GT   shift, and go to state 134
     GE   shift, and go to state 135
 
     $default  reduce using rule 137 (second_loop_statement)
@@ -6761,9 +6761,9 @@ State 395
     BREAK         shift, and go to state 19
     PRINT         shift, and go to state 20
     DQ_STRING_DQ  shift, and go to state 21
-    ADD           shift, and go to state 22
-    SUB           shift, and go to state 23
-    LP            shift, and go to state 24
+    LP            shift, and go to state 22
+    ADD           shift, and go to state 23
+    SUB           shift, and go to state 24
     NOT           shift, and go to state 25
 
     ID        [reduce using rule 193 (data_type)]
@@ -6959,9 +6959,9 @@ State 410
 
     CONST  shift, and go to state 1
     ID     shift, and go to state 100
-    ADD    shift, and go to state 22
-    SUB    shift, and go to state 23
-    LP     shift, and go to state 24
+    LP     shift, and go to state 22
+    ADD    shift, and go to state 23
+    SUB    shift, and go to state 24
     NOT    shift, and go to state 25
 
     variable_reference  go to state 423
@@ -7136,8 +7136,8 @@ State 424
     EQ       shift, and go to state 130
     NEQ      shift, and go to state 131
     LT       shift, and go to state 132
-    GT       shift, and go to state 133
-    LE       shift, and go to state 134
+    LE       shift, and go to state 133
+    GT       shift, and go to state 134
     GE       shift, and go to state 135
 
     $default  reduce using rule 200 (none_or_newlines)
@@ -7192,9 +7192,9 @@ State 427
     BREAK         shift, and go to state 19
     PRINT         shift, and go to state 20
     DQ_STRING_DQ  shift, and go to state 21
-    ADD           shift, and go to state 22
-    SUB           shift, and go to state 23
-    LP            shift, and go to state 24
+    LP            shift, and go to state 22
+    ADD           shift, and go to state 23
+    SUB           shift, and go to state 24
     NOT           shift, and go to state 25
 
     CONST         [reduce using rule 94 (statement)]
@@ -7220,11 +7220,11 @@ State 427
     BREAK         [reduce using rule 94 (statement)]
     PRINT         [reduce using rule 94 (statement)]
     DQ_STRING_DQ  [reduce using rule 94 (statement)]
-    ADD           [reduce using rule 94 (statement)]
-    SUB           [reduce using rule 94 (statement)]
     LP            [reduce using rule 94 (statement)]
     RCB           reduce using rule 92 (method_body)
     RCB           [reduce using rule 94 (statement)]
+    ADD           [reduce using rule 94 (statement)]
+    SUB           [reduce using rule 94 (statement)]
     NOT           [reduce using rule 94 (statement)]
     $default      reduce using rule 92 (method_body)
 
@@ -7390,9 +7390,9 @@ State 439
     BREAK         shift, and go to state 19
     PRINT         shift, and go to state 20
     DQ_STRING_DQ  shift, and go to state 21
-    ADD           shift, and go to state 22
-    SUB           shift, and go to state 23
-    LP            shift, and go to state 24
+    LP            shift, and go to state 22
+    ADD           shift, and go to state 23
+    SUB           shift, and go to state 24
     NOT           shift, and go to state 25
 
     CONST         [reduce using rule 94 (statement)]
@@ -7418,11 +7418,11 @@ State 439
     BREAK         [reduce using rule 94 (statement)]
     PRINT         [reduce using rule 94 (statement)]
     DQ_STRING_DQ  [reduce using rule 94 (statement)]
-    ADD           [reduce using rule 94 (statement)]
-    SUB           [reduce using rule 94 (statement)]
     LP            [reduce using rule 94 (statement)]
     RCB           reduce using rule 92 (method_body)
     RCB           [reduce using rule 94 (statement)]
+    ADD           [reduce using rule 94 (statement)]
+    SUB           [reduce using rule 94 (statement)]
     NOT           [reduce using rule 94 (statement)]
     $default      reduce using rule 92 (method_body)
 
@@ -7522,9 +7522,9 @@ State 443
     BREAK         shift, and go to state 19
     PRINT         shift, and go to state 20
     DQ_STRING_DQ  shift, and go to state 21
-    ADD           shift, and go to state 22
-    SUB           shift, and go to state 23
-    LP            shift, and go to state 24
+    LP            shift, and go to state 22
+    ADD           shift, and go to state 23
+    SUB           shift, and go to state 24
     NOT           shift, and go to state 25
 
     ID        [reduce using rule 193 (data_type)]
@@ -7668,9 +7668,9 @@ State 453
     BREAK         shift, and go to state 19
     PRINT         shift, and go to state 20
     DQ_STRING_DQ  shift, and go to state 21
-    ADD           shift, and go to state 22
-    SUB           shift, and go to state 23
-    LP            shift, and go to state 24
+    LP            shift, and go to state 22
+    ADD           shift, and go to state 23
+    SUB           shift, and go to state 24
     NOT           shift, and go to state 25
 
     CONST         [reduce using rule 94 (statement)]
@@ -7696,11 +7696,11 @@ State 453
     BREAK         [reduce using rule 94 (statement)]
     PRINT         [reduce using rule 94 (statement)]
     DQ_STRING_DQ  [reduce using rule 94 (statement)]
-    ADD           [reduce using rule 94 (statement)]
-    SUB           [reduce using rule 94 (statement)]
     LP            [reduce using rule 94 (statement)]
     RCB           reduce using rule 92 (method_body)
     RCB           [reduce using rule 94 (statement)]
+    ADD           [reduce using rule 94 (statement)]
+    SUB           [reduce using rule 94 (statement)]
     NOT           [reduce using rule 94 (statement)]
     $default      reduce using rule 92 (method_body)
 
@@ -7792,9 +7792,9 @@ State 457
     BREAK         shift, and go to state 19
     PRINT         shift, and go to state 20
     DQ_STRING_DQ  shift, and go to state 21
-    ADD           shift, and go to state 22
-    SUB           shift, and go to state 23
-    LP            shift, and go to state 24
+    LP            shift, and go to state 22
+    ADD           shift, and go to state 23
+    SUB           shift, and go to state 24
     NOT           shift, and go to state 25
 
     ID        [reduce using rule 193 (data_type)]
@@ -7913,9 +7913,9 @@ State 467
     ID     shift, and go to state 88
     TRUE   shift, and go to state 151
     FALSE  shift, and go to state 152
-    ADD    shift, and go to state 22
-    SUB    shift, and go to state 23
-    LP     shift, and go to state 24
+    LP     shift, and go to state 22
+    ADD    shift, and go to state 23
+    SUB    shift, and go to state 24
     NOT    shift, and go to state 25
 
     variable_reference             go to state 262
@@ -7974,9 +7974,9 @@ State 470
     BREAK         shift, and go to state 19
     PRINT         shift, and go to state 20
     DQ_STRING_DQ  shift, and go to state 21
-    ADD           shift, and go to state 22
-    SUB           shift, and go to state 23
-    LP            shift, and go to state 24
+    LP            shift, and go to state 22
+    ADD           shift, and go to state 23
+    SUB           shift, and go to state 24
     NOT           shift, and go to state 25
 
     ID        [reduce using rule 193 (data_type)]
@@ -8120,9 +8120,9 @@ State 480
     BREAK         shift, and go to state 19
     PRINT         shift, and go to state 20
     DQ_STRING_DQ  shift, and go to state 21
-    ADD           shift, and go to state 22
-    SUB           shift, and go to state 23
-    LP            shift, and go to state 24
+    LP            shift, and go to state 22
+    ADD           shift, and go to state 23
+    SUB           shift, and go to state 24
     NOT           shift, and go to state 25
 
     ID        [reduce using rule 193 (data_type)]
@@ -8196,9 +8196,9 @@ State 482
     BREAK         shift, and go to state 19
     PRINT         shift, and go to state 20
     DQ_STRING_DQ  shift, and go to state 21
-    ADD           shift, and go to state 22
-    SUB           shift, and go to state 23
-    LP            shift, and go to state 24
+    LP            shift, and go to state 22
+    ADD           shift, and go to state 23
+    SUB           shift, and go to state 24
     NOT           shift, and go to state 25
 
     ID        [reduce using rule 193 (data_type)]

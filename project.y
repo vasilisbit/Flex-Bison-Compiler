@@ -52,7 +52,7 @@ void addSymbol(char *name, char *type, bool isMethod, bool isInitialized, bool i
     // Print the symbol table
     printf("Symbol table:\n");
     for (int i = 0; i < symbolCount; i++) {
-        printf("Name: %s, Type: %s, isMethod: %d, isInitialized: %d, Scope: %d\n, isClass: %d\n",
+        printf("Name: %s, Type: %s, isMethod: %d, isInitialized: %d, Scope: %d\n, isClass: %d\n\n",
                symbolTable[i].name, symbolTable[i].type, symbolTable[i].isMethod,
                symbolTable[i].isInitialized, symbolTable[i].scope, symbolTable[i].isClass);
     }
@@ -191,15 +191,18 @@ char* getType(char *name) {
 %token DOT
 %token QUESTION COLON
 %token DQ SQ
-%left ADD SUB
-%left MUL DIV MOD
-%left POW
 %token LP RP
 %token LSB RSB
 %token LCB RCB
 %token ASSIGN
-%token EQ NEQ LT GT LE GE
-%token AND OR NOT
+%left OR
+%left AND
+%left EQ NEQ
+%left LT LE GT GE
+%left ADD SUB
+%left MUL DIV MOD
+%right POW
+%right NOT
 
 %type <sval> data_type
 %type <sval> assignment_list_int
@@ -585,7 +588,7 @@ int main(int argc, char **argv) {
     yyout = fopen("output.txt", "w");
 
     if (yyparse() == 0) {
-        printf("Program is syntactically correct.\n");
+        printf("Program is syntactically correct.\n\n");
         char ch;
         rewind(f); // Reset the file pointer to the beginning for reading
         while ((ch = fgetc(f)) != EOF) {

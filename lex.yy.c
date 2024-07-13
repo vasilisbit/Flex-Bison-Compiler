@@ -1234,11 +1234,11 @@ YY_RULE_SETUP
 case 70:
 YY_RULE_SETUP
 #line 101 "project.l"
-{ printf("Unknown token: %s\n", yytext); }
+{ fprintf(stderr, "Error at line %d: Unexpected character '%s'\n", yylineno, yytext); }
 	YY_BREAK
 case 71:
 YY_RULE_SETUP
-#line 103 "project.l"
+#line 102 "project.l"
 ECHO;
 	YY_BREAK
 #line 1244 "lex.yy.c"
@@ -2258,5 +2258,5 @@ void yyfree (void * ptr )
 
 #define YYTABLES_NAME "yytables"
 
-#line 103 "project.l"
+#line 102 "project.l"
 
