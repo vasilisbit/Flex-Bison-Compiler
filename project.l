@@ -98,6 +98,5 @@ any_character [A-Za-z0-9_!@#\$%\^&\*\(\)-+=\|\\:;\"'<>,\.\?/~`\[\]\{\} ]
 {id} { yylval.sval = strdup(yytext); return ID; }
 {const} { yylval.ival = atoi(yytext); return CONST; }
 {any_character} { yylval.cval = strdup(yytext); return ANY_CHARACTER; }
-. { printf("Unknown token: %s\n", yytext); }
-
+. { fprintf(stderr, "Error at line %d: Unexpected character '%s'\n", yylineno, yytext); }
 %%
