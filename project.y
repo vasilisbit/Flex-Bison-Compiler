@@ -187,7 +187,6 @@ char* getValue(char *name) {
 
 %token <ival> CONST
 %token <sval> ID CLASS_ID
-%token <cval> ANY_CHARACTER
 %token <dval> DOUBLE_CONST
 %token <cval> SQ_ANYCHAR_SQ
 %token <sval> DQ_STRING_DQ
@@ -210,8 +209,7 @@ char* getValue(char *name) {
 %token SEMICOLON
 %token COMMA
 %token DOT
-%token QUESTION COLON
-%token DQ SQ
+%token COLON
 %token LP RP
 %token LSB RSB
 %token LCB RCB
