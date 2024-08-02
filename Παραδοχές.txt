@@ -7,8 +7,10 @@
 
 int x = 2;
 double y = 2.1d;
-x = x + y; 
+x = x + y;
 
 Κανει το y int
 
 Δεν δεχεται δυο variable references με double
+
+double στρογγυλοποιηση στο 6ο ψηφιο μετα κομμα
