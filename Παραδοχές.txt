@@ -1,1 +1,14 @@
+Εχει οριστει int, μετα του προσθετουμε double
+Εχει οριστει double, μετα του προσθετουμε int
+Οριζουμε νεα μεταβλητη int, που της προσθετουμε doulbe και double/int
+Οριζουμε νεα μεταβλητη double, που της προσθετουμε int και double/int
+
+
+
+int x = 2;
+double y = 2.1d;
+x = x + y; 
+
+Κανει το y int
+
 Δεν δεχεται δυο variable references με double
