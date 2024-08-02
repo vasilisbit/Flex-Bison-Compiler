@@ -1,0 +1,157 @@
+The language to be analyzed is a fictional object-oriented programming language. The programs in this language are organized into classes, as specified below.
+
+**Language Specifications**
+- Each program in the language consists of one or more classes. A class can be nested within another class.
+
+- The identifiers of the language consist of letters (A…Z, a…z), digits (0…9), and the special underscore character _. An identifier cannot start with a digit. The language is case sensitive.
+
+- Each class follows the format:
+  public class <class_name> {
+      optional variable declaration
+      optional method declaration
+  }
+  The name of each class starts with an uppercase letter.
+
+  For example:
+  public class A {
+      public void method1() {
+          out.println("Hello world!");
+      }
+  }
+
+- The following identifiers are reserved and cannot be used as regular identifiers: int, char, double, boolean, String, class, new, return, void, if, else, while, do, for, switch, case, default, break, true, false, public, private.
+
+- The primitive data types supported by the language are int, char, double, and boolean.
+  - The int data type is used to declare/create integer variables.
+  - The char data type is used to declare/create variables consisting of a single character or special character (e.g., newline character) enclosed in single quotes. For example, ‘a’, ‘b’, ‘9’, ‘\n’.
+  - The double data type is used to declare/create floating-point variables. Each value of this type must end with the character d, e.g., 5.99d, 6.0d, 123545.23436d.
+  - The boolean data type is used to declare/create logical variables and can exclusively take the values true or false.
+
+- The language also supports the non-primitive data type String, which is used to declare a sequence of characters enclosed in double quotes. For example:
+  "Hello123$"
+  "This is a valid str1ng"
+  "this is 'valid' too"
+
+- Variable declarations follow this format:
+  [<modifier>] <data_type> <variable_name>;
+  where the allowable data types are those previously presented. Optionally, a variable can be declared as public or private (modifier term). For example:
+  int var1;
+  private double var2;
+
+- The creation of an object of a class follows this format:
+  <class_name> <object_name> = new <class_name>();
+
+- Access to class members (variable, method) follows this format:
+  <object_name>.<class_member_name>;
+
+- Method definitions follow the Java definition method. In the body of any method, there is an optional variable declaration followed by statements (the allowable statements of the language are presented below). A method can be public or private. A method may or may not return a value. A method can take none, one, or multiple arguments. Fully present and document the method definition in your grammar.
+
+- A variable or method that is public is accessible by objects of all classes. A variable or method that is private is accessible only by objects of the class in which it is defined.
+
+- The other allowable program statements of the language are:
+
+  - **Assignment statements**  
+    They have the form `<variable> = <expression>;`, where the expression can be a literal or a compound expression composed of literals, variables, and parentheses, method calls, or class object creation. The method call follows the Java logic. Additionally, the compound expression can be any arithmetic expression involving the operations +, -, *, /.
+
+  - **Loop statements**  
+    There are two kinds of loop statements. The first kind has the following format:
+    do {
+        //program statements
+    } while (condition);
+    where condition is any logical expression containing the comparison operators >, <, ==, !=, and the logical operators && and ||.
+
+    The second kind has the following format:
+    for (expression1; expression2; expression3) {
+        //program statements
+    }
+    where expression1 concerns the initialization of the loop variable (e.g., int i = 0), expression2 is a logical expression defining the loop execution condition (e.g., i < 10), and expression3 is an assignment statement modifying the loop variable's value (e.g., i = i + 15).
+
+  - **Control statements**  
+    There are two kinds of control statements. The first kind has the following format:
+    if (condition1) {
+        // program statements
+    } else if (condition2) {
+        // program statements
+    } else if (condition3) {
+        // program statements
+    }
+    ...
+    else {
+        // program statements
+    }
+    The else if and else blocks are optional.
+
+    The second kind has the following format:
+    switch (expression) {
+      case expression:
+          // program statements
+      case expression:
+          // program statements
+      ...
+      default:
+          // program statements
+    }
+    The default choice is optional.
+
+  - **Screen print statement**  
+    It has the form `out.print(“text”[,var]);`  
+    (That is, text within "" and immediately after optionally a variable or variables)
+
+  - **Return from method statement**  
+    The return statement is used to return from a method. When it is a method that returns a type, the return is followed by an expression and ;.
+
+  - **Loop termination statement**  
+    It has the form `break;`
+
+- Comments are supported at any point in the code. These can be of two forms:
+  - **Single-line comments:** Single-line comments start with //. Anything following the // until the line change is considered a comment and ignored.
+  - **Multi-line comments:** Multi-line comments are defined with the sequence /* … */. Anything contained within /* … */ (including line changes) is considered a comment and ignored.
+
+- Unless explicitly stated otherwise, spaces and newline characters are not part of the language and play no role in syntax.
+
+### Questions
+
+#### 1. (60%)
+
+a. Provide the syntactic definition of the language's grammar in BNF.
+
+b. Using the Flex and Bison programs, implement a lexical and syntactic analyzer that takes a file written in the pseudolanguage described above as input and checks in one pass if the program is syntactically correct. Your program should be called from the command line as follows:
+prompt> myParser.exe file_name
+and should return the program itself on the screen and a diagnostic message about whether it was correctly written or an appropriate error message (the line where the error occurs must be shown and the analysis must stop there).
+
+#### 2. (10%)
+
+Modify your analyzer so that:
+a. Value assignment upon variable declaration is recognized. This has the form:
+[<modifier>] <data_type> <variable> = <expression>;
+For example:
+int var1 = 12;
+public String my_str = “H3ll0”;
+
+b. The declaration of multiple variables of the same type in one line is recognized. This has the form:
+<data_type> <variable> = <expression> , <variable> = <expression>, <variable> = <expression>, …;
+or
+<data_type> <variable> , <variable> , <variable>, …;
+For example:
+int x = 15, y = 16, z = 17;
+double x, y, z;
+
+Present the updated BNF.
+
+#### 3. (20%)
+
+a. Make the necessary changes to your code to check for the correct declaration of variables used anywhere in the program. Additionally, ensure that any called methods are defined. Otherwise, the analysis process should stop with an appropriate error message in each case.
+
+b. Make the necessary changes to your code to perform scope checking when using variables and methods.
+
+c. Extend your code so that, if an arithmetic expression is assigned to a variable, the result of the expression is calculated - following the precedence rules - and an additional message with the variable name and the value assigned to it is displayed on the screen. 
+
+The arithmetic expression can include numbers, parentheses, and variables that must have received values in previous statements - otherwise, the analysis process should stop with an appropriate error message.
+
+Note: if this question is implemented, your deliverables should include test files that confirm this functionality.
+
+#### 4. (10%)
+
+Make the necessary changes to your program so that in case of an error, the program execution does not stop but continues and all possible errors are recognized until the end of the input file.
+
+Note: if this question is implemented, your deliverables should include both the files concerning the case of stopping the analysis upon detecting an error and the files concerning finding all errors.

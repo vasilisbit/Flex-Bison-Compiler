@@ -1,15 +1,1 @@
-papia.y: warning: 16 shift/reduce conflicts [-Wconflicts-sr]
-papia.y: warning: 4 reduce/reduce conflicts [-Wconflicts-rr]
-papia.y: note: rerun with option '-Wcounterexamples' to generate conflict counterexamples
-papia.y:62.7-26: warning: rule useless in parser due to conflicts [-Wother]
-   62 |     | variable_declaration
-      |       ^~~~~~~~~~~~~~~~~~~~
-papia.y:63.7-24: warning: rule useless in parser due to conflicts [-Wother]
-   63 |     | method_declaration
-      |       ^~~~~~~~~~~~~~~~~~
-papia.y:87.7-26: warning: rule useless in parser due to conflicts [-Wother]
-   87 |     | variable_declaration
-      |       ^~~~~~~~~~~~~~~~~~~~
-papia.y:88.7-15: warning: rule useless in parser due to conflicts [-Wother]
-   88 |     | statement
-      |       ^~~~~~~~~
+Check exp rule for conflicts

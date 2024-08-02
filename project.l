@@ -91,7 +91,7 @@ any_character [A-Za-z0-9_!@#\$%\^&\*\(\)-+=\|\\:;\"'<>,\.\?/~`\[\]\{\} ]
 "private" { return PRIVATE; }
 "out.print" { return PRINT; }
 
-[0-9]+"."[0-9]+"d" { yylval.dval = atof(yytext); return DOUBLE_CONST; }
+[0-9]+\.[0-9]+[d] { yylval.dval = atof(yytext); return DOUBLE_CONST; }
 "\'"[^'\n]"\'" { yylval.sval = strdup(yytext); return SQ_ANYCHAR_SQ; }
 "\""[^"\n]*"\"" { yylval.sval = strdup(yytext); return DQ_STRING_DQ; }
 {class_ID} { yylval.sval = strdup(yytext); return CLASS_ID; }

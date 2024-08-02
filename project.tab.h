@@ -59,34 +59,34 @@ extern int yydebug;
     CLASS_ID = 260,                /* CLASS_ID  */
     ANY_CHARACTER = 261,           /* ANY_CHARACTER  */
     DOUBLE_CONST = 262,            /* DOUBLE_CONST  */
-    VAR = 263,                     /* VAR  */
-    NEWLINE = 264,                 /* NEWLINE  */
-    CLASS = 265,                   /* CLASS  */
-    PUBLIC = 266,                  /* PUBLIC  */
-    PRIVATE = 267,                 /* PRIVATE  */
-    INTEGER = 268,                 /* INTEGER  */
-    CHAR = 269,                    /* CHAR  */
-    DOUBLE = 270,                  /* DOUBLE  */
-    BOOLEAN = 271,                 /* BOOLEAN  */
-    STRING = 272,                  /* STRING  */
-    VOID = 273,                    /* VOID  */
-    NEW = 274,                     /* NEW  */
-    RETURN = 275,                  /* RETURN  */
-    IF = 276,                      /* IF  */
-    ELIF = 277,                    /* ELIF  */
-    ELSE = 278,                    /* ELSE  */
-    SWITCH = 279,                  /* SWITCH  */
-    CASE = 280,                    /* CASE  */
-    DEFAULT = 281,                 /* DEFAULT  */
-    WHILE = 282,                   /* WHILE  */
-    DO = 283,                      /* DO  */
-    FOR = 284,                     /* FOR  */
-    BREAK = 285,                   /* BREAK  */
-    TRUE = 286,                    /* TRUE  */
-    FALSE = 287,                   /* FALSE  */
-    PRINT = 288,                   /* PRINT  */
-    SQ_ANYCHAR_SQ = 289,           /* SQ_ANYCHAR_SQ  */
-    DQ_STRING_DQ = 290,            /* DQ_STRING_DQ  */
+    SQ_ANYCHAR_SQ = 263,           /* SQ_ANYCHAR_SQ  */
+    DQ_STRING_DQ = 264,            /* DQ_STRING_DQ  */
+    VAR = 265,                     /* VAR  */
+    NEWLINE = 266,                 /* NEWLINE  */
+    CLASS = 267,                   /* CLASS  */
+    PUBLIC = 268,                  /* PUBLIC  */
+    PRIVATE = 269,                 /* PRIVATE  */
+    INTEGER = 270,                 /* INTEGER  */
+    CHAR = 271,                    /* CHAR  */
+    DOUBLE = 272,                  /* DOUBLE  */
+    BOOLEAN = 273,                 /* BOOLEAN  */
+    STRING = 274,                  /* STRING  */
+    VOID = 275,                    /* VOID  */
+    NEW = 276,                     /* NEW  */
+    RETURN = 277,                  /* RETURN  */
+    IF = 278,                      /* IF  */
+    ELIF = 279,                    /* ELIF  */
+    ELSE = 280,                    /* ELSE  */
+    SWITCH = 281,                  /* SWITCH  */
+    CASE = 282,                    /* CASE  */
+    DEFAULT = 283,                 /* DEFAULT  */
+    WHILE = 284,                   /* WHILE  */
+    DO = 285,                      /* DO  */
+    FOR = 286,                     /* FOR  */
+    BREAK = 287,                   /* BREAK  */
+    TRUE = 288,                    /* TRUE  */
+    FALSE = 289,                   /* FALSE  */
+    PRINT = 290,                   /* PRINT  */
     SEMICOLON = 291,               /* SEMICOLON  */
     COMMA = 292,                   /* COMMA  */
     DOT = 293,                     /* DOT  */
@@ -124,7 +124,7 @@ extern int yydebug;
 #if ! defined YYSTYPE && ! defined YYSTYPE_IS_DECLARED
 union YYSTYPE
 {
-#line 161 "project.y"
+#line 181 "project.y"
 
     int    ival;
     char   *cval;
