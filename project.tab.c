@@ -820,22 +820,22 @@ static const yytype_int16 yyrline[] =
      297,   298,   299,   300,   301,   302,   303,   304,   307,   313,
      319,   320,   323,   324,   327,   333,   340,   341,   344,   349,
      355,   359,   364,   365,   368,   369,   370,   371,   372,   373,
-     374,   375,   378,   390,   403,   412,   422,   431,   441,   453,
-     466,   475,   485,   495,   506,   515,   525,   534,   545,   546,
-     547,   548,   549,   553,   563,   577,   592,   592,   596,   596,
-     601,   602,   605,   606,   609,   612,   613,   616,   617,   618,
-     619,   620,   621,   622,   623,   624,   625,   626,   627,   628,
-     629,   630,   631,   632,   635,   636,   640,   646,   647,   648,
-     651,   652,   653,   656,   659,   660,   661,   662,   663,   666,
-     667,   670,   671,   674,   675,   678,   681,   682,   683,   686,
-     687,   690,   691,   694,   695,   698,   701,   702,   705,   708,
-     709,   712,   713,   714,   717,   720,   723,   724,   732,   733,
-     737,   738,   739,   742,   743,   744,   751,   758,   766,   767,
-     771,   772,   773,   776,   777,   778,   785,   792,   800,   801,
-     804,   805,   806,   807,   808,   809,   810,   813,   814,   815,
-     818,   819,   820,   823,   824,   825,   828,   829,   832,   833,
-     836,   836,   845,   845,   854,   859,   865,   866,   869,   870,
-     873,   874,   875,   876,   877,   878,   879,   882,   883
+     374,   375,   378,   389,   401,   409,   418,   426,   435,   446,
+     458,   466,   475,   484,   494,   502,   511,   519,   529,   530,
+     531,   532,   533,   537,   547,   557,   568,   568,   572,   572,
+     577,   578,   581,   582,   585,   588,   589,   592,   593,   594,
+     595,   596,   597,   598,   599,   600,   601,   602,   603,   604,
+     605,   606,   607,   608,   611,   612,   616,   622,   623,   624,
+     627,   628,   629,   632,   635,   636,   637,   638,   639,   642,
+     643,   646,   647,   650,   651,   654,   657,   658,   659,   662,
+     663,   666,   667,   670,   671,   674,   677,   678,   681,   684,
+     685,   688,   689,   690,   693,   696,   699,   700,   708,   709,
+     713,   714,   715,   718,   719,   720,   727,   734,   742,   743,
+     747,   748,   749,   752,   753,   754,   761,   768,   776,   777,
+     780,   781,   782,   783,   784,   785,   786,   789,   790,   791,
+     794,   795,   796,   799,   800,   801,   804,   805,   808,   809,
+     812,   812,   821,   821,   830,   835,   841,   842,   845,   846,
+     849,   850,   851,   852,   853,   854,   855,   858,   859
 };
 #endif
 
@@ -2006,7 +2006,6 @@ yyreduce:
     char* type = getType((yyvsp[-2].sval));
     if (type == NULL || strcmp(type, "int") != 0) {
         yyerror("Type mismatch");
-        exit(1);
     } else {
         char valueStr[32];
         sprintf(valueStr, "%d", (yyvsp[0].ival));
@@ -2014,16 +2013,15 @@ yyreduce:
         printf("Variable %s assigned with value %d\n\n", (yyvsp[-2].sval), (yyvsp[0].ival));
     }
 }
-#line 2018 "project.tab.c"
+#line 2017 "project.tab.c"
     break;
 
   case 63: /* assignment_list_int_declared: ID ASSIGN exp_int COMMA assignment_list_int_declared  */
-#line 390 "project.y"
+#line 389 "project.y"
                                                            {
     char* type = getType((yyvsp[-4].sval));
     if (type == NULL || strcmp(type, "int") != 0) {
         yyerror("Type mismatch");
-        exit(1);
     } else {
         char valueStr[32];
         sprintf(valueStr, "%d", valueStr);
@@ -2031,72 +2029,67 @@ yyreduce:
         printf("Variable %s assigned with value %d\n\n", (yyvsp[-4].sval), (yyvsp[-2].ival));
     }
 }
-#line 2035 "project.tab.c"
+#line 2033 "project.tab.c"
     break;
 
   case 64: /* assignment_list_string_declared: ID ASSIGN DQ_STRING_DQ  */
-#line 403 "project.y"
+#line 401 "project.y"
                                                         {
     char* type = getType((yyvsp[-2].sval));
     if (type == NULL || strcmp(type, "string") != 0) {
         yyerror("Type mismatch");
-        exit(1);
     } else {
         setInitialized((yyvsp[-2].sval), (yyvsp[0].sval));
     }
 }
-#line 2049 "project.tab.c"
+#line 2046 "project.tab.c"
     break;
 
   case 65: /* assignment_list_string_declared: ID ASSIGN DQ_STRING_DQ COMMA assignment_list_string  */
-#line 412 "project.y"
+#line 409 "project.y"
                                                           {
     char* type = getType((yyvsp[-4].sval));
     if (type == NULL || strcmp(type, "string") != 0) {
         yyerror("Type mismatch");
-        exit(1);
     } else {
         setInitialized((yyvsp[-4].sval), (yyvsp[-2].sval));
     }
 }
-#line 2063 "project.tab.c"
+#line 2059 "project.tab.c"
     break;
 
   case 66: /* assignment_list_char_declared: ID ASSIGN SQ_ANYCHAR_SQ  */
-#line 422 "project.y"
+#line 418 "project.y"
                                                        {
     char* type = getType((yyvsp[-2].sval));
     if (type == NULL || strcmp(type, "char") != 0) {
         yyerror("Type mismatch");
-        exit(1);
     } else {
         setInitialized((yyvsp[-2].sval), (yyvsp[0].cval));
     }
 }
-#line 2077 "project.tab.c"
+#line 2072 "project.tab.c"
     break;
 
   case 67: /* assignment_list_char_declared: ID ASSIGN SQ_ANYCHAR_SQ COMMA assignment_list_char  */
-#line 431 "project.y"
+#line 426 "project.y"
                                                          {
     char* type = getType((yyvsp[-4].sval));
     if (type == NULL || strcmp(type, "char") != 0) {
         yyerror("Type mismatch");
-        exit(1);
     } else {
         setInitialized((yyvsp[-4].sval), (yyvsp[-2].cval));
     }
 }
-#line 2091 "project.tab.c"
+#line 2085 "project.tab.c"
     break;
 
   case 68: /* assignment_list_double_declared: ID ASSIGN exp_double  */
-#line 441 "project.y"
+#line 435 "project.y"
                                                       {
     char* type = getType((yyvsp[-2].sval));
     if (type == NULL || strcmp(type, "double") != 0) {
         yyerror("Type mismatch");
-        exit(1);
     } else {
         char valueStr[64];
         sprintf(valueStr, "%f", (yyvsp[0].dval));
@@ -2104,16 +2097,15 @@ yyreduce:
         printf("Variable %s assigned with value %f\n\n", (yyvsp[-2].sval), (yyvsp[0].dval));
     }
 }
-#line 2108 "project.tab.c"
+#line 2101 "project.tab.c"
     break;
 
   case 69: /* assignment_list_double_declared: ID ASSIGN exp_double COMMA assignment_list_double  */
-#line 453 "project.y"
+#line 446 "project.y"
                                                         {
     char* type = getType((yyvsp[-4].sval));
     if (type == NULL || strcmp(type, "double") != 0) {
         yyerror("Type mismatch");
-        exit(1);
     } else {
         char valueStr[64];
         sprintf(valueStr, "%f", (yyvsp[-2].dval));
@@ -2121,125 +2113,117 @@ yyreduce:
         printf("Variable %s assigned with value %f\n\n", (yyvsp[-4].sval), (yyvsp[-2].dval));
     }
 }
-#line 2125 "project.tab.c"
+#line 2117 "project.tab.c"
     break;
 
   case 70: /* assignment_list_boolean_declared: ID ASSIGN boolean  */
-#line 466 "project.y"
+#line 458 "project.y"
                                                     {
     char* type = getType((yyvsp[-2].sval));
     if (type == NULL || strcmp(type, "boolean") != 0) {
         yyerror("Type mismatch");
-        exit(1);
     } else {
         setInitialized((yyvsp[-2].sval), (yyvsp[0].sval));
     }
 }
-#line 2139 "project.tab.c"
+#line 2130 "project.tab.c"
     break;
 
   case 71: /* assignment_list_boolean_declared: ID ASSIGN boolean COMMA assignment_list_boolean  */
-#line 475 "project.y"
+#line 466 "project.y"
                                                       {
     char* type = getType((yyvsp[-4].sval));
     if (type == NULL || strcmp(type, "boolean") != 0) {
         yyerror("Type mismatch");
-        exit(1);
     } else {
         setInitialized((yyvsp[-4].sval), (yyvsp[-2].sval));
     }
 }
-#line 2153 "project.tab.c"
+#line 2143 "project.tab.c"
     break;
 
   case 72: /* assignment_list_variable_declared: ID ASSIGN variable_reference  */
-#line 485 "project.y"
+#line 475 "project.y"
                                                                 {
     char* type = getType((yyvsp[-2].sval));
     char* value = getValue((yyvsp[0].sval));
     if (type == NULL || strcmp(type, getType((yyvsp[0].sval))) != 0) {
         yyerror("Type mismatch");
-        exit(1);
     } else {
         setInitialized((yyvsp[-2].sval), value);
     }
 }
-#line 2168 "project.tab.c"
+#line 2157 "project.tab.c"
     break;
 
   case 73: /* assignment_list_variable_declared: ID ASSIGN variable_reference COMMA assignment_list_variable  */
-#line 495 "project.y"
+#line 484 "project.y"
                                                                   {
     char* type = getType((yyvsp[-4].sval));
     char* value = getValue((yyvsp[-2].sval));
     if (type == NULL || strcmp(type, getType((yyvsp[-2].sval))) != 0) {
         yyerror("Type mismatch");
-        exit(1);
     } else {
         setInitialized((yyvsp[-4].sval), value);
     }
 }
-#line 2183 "project.tab.c"
+#line 2171 "project.tab.c"
     break;
 
   case 74: /* assignment_list_method_declared: ID ASSIGN method_call  */
-#line 506 "project.y"
+#line 494 "project.y"
                                                        {
     char* type = getType((yyvsp[-2].sval));
     if (type == NULL || strcmp(type, getType((yyvsp[0].sval))) != 0) {
         yyerror("Type mismatch");
-        exit(1);
     } else {
         setInitialized((yyvsp[-2].sval), NULL);
+    }
+}
+#line 2184 "project.tab.c"
+    break;
+
+  case 75: /* assignment_list_method_declared: ID ASSIGN method_call COMMA assignment_list_method  */
+#line 502 "project.y"
+                                                         {
+    char* type = getType((yyvsp[-4].sval));
+    if (type == NULL || strcmp(type, getType((yyvsp[-2].sval))) != 0) {
+        yyerror("Type mismatch");
+    } else {
+        setInitialized((yyvsp[-4].sval), NULL);
     }
 }
 #line 2197 "project.tab.c"
     break;
 
-  case 75: /* assignment_list_method_declared: ID ASSIGN method_call COMMA assignment_list_method  */
-#line 515 "project.y"
-                                                         {
-    char* type = getType((yyvsp[-4].sval));
-    if (type == NULL || strcmp(type, getType((yyvsp[-2].sval))) != 0) {
-        yyerror("Type mismatch");
-        exit(1);
-    } else {
-        setInitialized((yyvsp[-4].sval), NULL);
-    }
-}
-#line 2211 "project.tab.c"
-    break;
-
   case 76: /* assignment_list_object_declared: ID ASSIGN NEW CLASS_ID  */
-#line 525 "project.y"
+#line 511 "project.y"
                                                         {
     char* type = getType((yyvsp[-3].sval));
     if (type == NULL || strcmp(type, (yyvsp[0].sval)) != 0) {
         yyerror("Type mismatch");
-        exit(1);
     } else {
         setInitialized((yyvsp[-3].sval), NULL);
     }
 }
-#line 2225 "project.tab.c"
+#line 2210 "project.tab.c"
     break;
 
   case 77: /* assignment_list_object_declared: ID ASSIGN NEW CLASS_ID COMMA assignment_list_object  */
-#line 534 "project.y"
+#line 519 "project.y"
                                                           {
     char* type = getType((yyvsp[-5].sval));
     if (type == NULL || strcmp(type, (yyvsp[-2].sval)) != 0) {
         yyerror("Type mismatch");
-        exit(1);
     } else {
         setInitialized((yyvsp[-5].sval), NULL);
     }
 }
-#line 2239 "project.tab.c"
+#line 2223 "project.tab.c"
     break;
 
   case 83: /* variable_reference: ID  */
-#line 553 "project.y"
+#line 537 "project.y"
                        {
     if (!symbolExists((yyvsp[0].sval), false, false)) {
         yyerror("Variable not declared");
@@ -2249,93 +2233,85 @@ yyreduce:
         (yyval.sval) = getValue((yyvsp[0].sval));
     }
 }
-#line 2253 "project.tab.c"
+#line 2237 "project.tab.c"
     break;
 
   case 84: /* variable_reference_int: ID  */
-#line 563 "project.y"
+#line 547 "project.y"
                            {
     if (!symbolExists((yyvsp[0].sval), false, false)) {
         yyerror("Variable not declared");
     } else if (!isInitialized((yyvsp[0].sval))) {
         yyerror("Variable not initialized");
     } else {
-        if (strcmp(getType((yyvsp[0].sval)), "double") == 0) {
-            (yyval.ival) = (int) atof(getValue((yyvsp[0].sval)));
-        } else {
-            (yyval.ival) = atoi(getValue((yyvsp[0].sval)));
-        }
+        (yyval.ival) = atoi(getValue((yyvsp[0].sval)));
     }
 }
-#line 2271 "project.tab.c"
+#line 2251 "project.tab.c"
     break;
 
   case 85: /* variable_reference_double: ID  */
-#line 577 "project.y"
+#line 557 "project.y"
                               {
     if (!symbolExists((yyvsp[0].sval), false, false)) {
         yyerror("Variable not declared");
     } else if (!isInitialized((yyvsp[0].sval))) {
         yyerror("Variable not initialized");
     } else {
-        if (strcmp(getType((yyvsp[0].sval)), "int") == 0) {
-            (yyval.dval) = (double) atoi(getValue((yyvsp[0].sval)));
-        } else {
-            (yyval.dval) = atof(getValue((yyvsp[0].sval)));
-        }
+        (yyval.dval) = atof(getValue((yyvsp[0].sval)));
     }
 }
-#line 2289 "project.tab.c"
+#line 2265 "project.tab.c"
     break;
 
   case 86: /* $@3: %empty  */
-#line 592 "project.y"
+#line 568 "project.y"
                                                     { increaseScope(); }
-#line 2295 "project.tab.c"
+#line 2271 "project.tab.c"
     break;
 
   case 87: /* method_declaration: access_modifier data_type ID LP $@3 none_or_newlines none_or_multiple_parameters none_or_newlines RP LCB none_or_newlines method_body none_or_newlines RCB  */
-#line 592 "project.y"
+#line 568 "project.y"
                                                                                                                                                                                                 {
     addSymbol("sum", (yyvsp[-12].sval), true, true, false, NULL);
     decreaseScope();
 }
-#line 2304 "project.tab.c"
+#line 2280 "project.tab.c"
     break;
 
   case 88: /* $@4: %empty  */
-#line 596 "project.y"
+#line 572 "project.y"
                       { increaseScope(); }
-#line 2310 "project.tab.c"
+#line 2286 "project.tab.c"
     break;
 
   case 89: /* method_declaration: data_type ID LP $@4 none_or_newlines none_or_multiple_parameters none_or_newlines RP LCB none_or_newlines method_body none_or_newlines RCB  */
-#line 596 "project.y"
+#line 572 "project.y"
                                                                                                                                                                   {
     addSymbol((yyvsp[-11].sval), (yyvsp[-12].sval), true, true, false, NULL);
     decreaseScope();
 }
-#line 2319 "project.tab.c"
+#line 2295 "project.tab.c"
     break;
 
   case 94: /* parameter: data_type ID  */
-#line 609 "project.y"
+#line 585 "project.y"
                         { addSymbol((yyvsp[0].sval), (yyvsp[-1].sval), false, true, false, NULL); }
-#line 2325 "project.tab.c"
+#line 2301 "project.tab.c"
     break;
 
   case 116: /* method_call: ID LP none_or_newlines none_or_multiple_arguments none_or_newlines RP SEMICOLON  */
-#line 640 "project.y"
+#line 616 "project.y"
                                                                                              {
     if (!symbolExists((yyvsp[-6].sval), true, false)) {
         yyerror("Method not declared");
     }
 }
-#line 2335 "project.tab.c"
+#line 2311 "project.tab.c"
     break;
 
   case 157: /* single_or_multiple_variables: COMMA ID single_or_multiple_variables  */
-#line 724 "project.y"
+#line 700 "project.y"
                                             {
     if (!symbolExists((yyvsp[-1].sval), false, false)) {
         yyerror("Variable not declared");
@@ -2343,41 +2319,41 @@ yyreduce:
         yyerror("Variable not initialized");
     }
 }
-#line 2347 "project.tab.c"
+#line 2323 "project.tab.c"
     break;
 
   case 160: /* exp_int: term_int  */
-#line 737 "project.y"
+#line 713 "project.y"
                   { (yyval.ival) = (yyvsp[0].ival); }
-#line 2353 "project.tab.c"
+#line 2329 "project.tab.c"
     break;
 
   case 161: /* exp_int: exp_int ADD term_int  */
-#line 738 "project.y"
+#line 714 "project.y"
                            { (yyval.ival) = (yyvsp[-2].ival) + (yyvsp[0].ival); }
-#line 2359 "project.tab.c"
+#line 2335 "project.tab.c"
     break;
 
   case 162: /* exp_int: exp_int SUB term_int  */
-#line 739 "project.y"
+#line 715 "project.y"
                            { (yyval.ival) = (yyvsp[-2].ival) - (yyvsp[0].ival); }
-#line 2365 "project.tab.c"
+#line 2341 "project.tab.c"
     break;
 
   case 163: /* term_int: factor_int  */
-#line 742 "project.y"
+#line 718 "project.y"
                      { (yyval.ival) = (yyvsp[0].ival);}
-#line 2371 "project.tab.c"
+#line 2347 "project.tab.c"
     break;
 
   case 164: /* term_int: term_int MUL factor_int  */
-#line 743 "project.y"
+#line 719 "project.y"
                               { (yyval.ival) = (yyvsp[-2].ival) * (yyvsp[0].ival); }
-#line 2377 "project.tab.c"
+#line 2353 "project.tab.c"
     break;
 
   case 165: /* term_int: term_int DIV factor_int  */
-#line 744 "project.y"
+#line 720 "project.y"
                               {
     if ((yyvsp[0].ival) == 0) {
         yyerror("Division by zero");
@@ -2385,11 +2361,11 @@ yyreduce:
         (yyval.ival) = (yyvsp[-2].ival) / (yyvsp[0].ival);
     }
 }
-#line 2389 "project.tab.c"
+#line 2365 "project.tab.c"
     break;
 
   case 166: /* term_int: term_int MOD factor_int  */
-#line 751 "project.y"
+#line 727 "project.y"
                               {
     if ((yyvsp[0].ival) == 0) {
         yyerror("Division by zero");
@@ -2397,11 +2373,11 @@ yyreduce:
         (yyval.ival) = fmod((yyvsp[-2].ival), (yyvsp[0].ival));
     }
 }
-#line 2401 "project.tab.c"
+#line 2377 "project.tab.c"
     break;
 
   case 167: /* term_int: term_int POW factor_int  */
-#line 758 "project.y"
+#line 734 "project.y"
                               {
     if ((yyvsp[0].ival) == 0) {
         yyerror("Exponentiation by zero");
@@ -2409,53 +2385,53 @@ yyreduce:
         (yyval.ival) = pow((yyvsp[-2].ival), (yyvsp[0].ival));
     }
 }
-#line 2413 "project.tab.c"
+#line 2389 "project.tab.c"
     break;
 
   case 168: /* factor_int: primary_int  */
-#line 766 "project.y"
+#line 742 "project.y"
                         { (yyval.ival) = (yyvsp[0].ival); }
-#line 2419 "project.tab.c"
+#line 2395 "project.tab.c"
     break;
 
   case 169: /* factor_int: LP exp_int RP  */
-#line 767 "project.y"
+#line 743 "project.y"
                     { (yyval.ival) = (yyvsp[-1].ival); }
-#line 2425 "project.tab.c"
+#line 2401 "project.tab.c"
     break;
 
   case 170: /* exp_double: term_double  */
-#line 771 "project.y"
+#line 747 "project.y"
                         { (yyval.dval) = (yyvsp[0].dval); }
-#line 2431 "project.tab.c"
+#line 2407 "project.tab.c"
     break;
 
   case 171: /* exp_double: exp_double ADD term_double  */
-#line 772 "project.y"
+#line 748 "project.y"
                                  { (yyval.dval) = (yyvsp[-2].dval) + (yyvsp[0].dval); }
-#line 2437 "project.tab.c"
+#line 2413 "project.tab.c"
     break;
 
   case 172: /* exp_double: exp_double SUB term_double  */
-#line 773 "project.y"
+#line 749 "project.y"
                                  { (yyval.dval) = (yyvsp[-2].dval) - (yyvsp[0].dval); }
-#line 2443 "project.tab.c"
+#line 2419 "project.tab.c"
     break;
 
   case 173: /* term_double: factor_double  */
-#line 776 "project.y"
+#line 752 "project.y"
                            { (yyval.dval) = (yyvsp[0].dval); }
-#line 2449 "project.tab.c"
+#line 2425 "project.tab.c"
     break;
 
   case 174: /* term_double: term_double MUL factor_double  */
-#line 777 "project.y"
+#line 753 "project.y"
                                     { (yyval.dval) = (yyvsp[-2].dval) * (yyvsp[0].dval); }
-#line 2455 "project.tab.c"
+#line 2431 "project.tab.c"
     break;
 
   case 175: /* term_double: term_double DIV factor_double  */
-#line 778 "project.y"
+#line 754 "project.y"
                                     {
     if ((yyvsp[0].dval) == 0) {
         yyerror("Division by zero");
@@ -2463,11 +2439,11 @@ yyreduce:
         (yyval.dval) = (yyvsp[-2].dval) / (yyvsp[0].dval);
     }
 }
-#line 2467 "project.tab.c"
+#line 2443 "project.tab.c"
     break;
 
   case 176: /* term_double: term_double MOD factor_double  */
-#line 785 "project.y"
+#line 761 "project.y"
                                     {
     if ((yyvsp[0].dval) == 0) {
         yyerror("Division by zero");
@@ -2475,11 +2451,11 @@ yyreduce:
         (yyval.dval) = fmod((yyvsp[-2].dval), (yyvsp[0].dval));
     }
 }
-#line 2479 "project.tab.c"
+#line 2455 "project.tab.c"
     break;
 
   case 177: /* term_double: term_double POW factor_double  */
-#line 792 "project.y"
+#line 768 "project.y"
                                     {
     if ((yyvsp[0].dval) == 0) {
         yyerror("Exponentiation by zero");
@@ -2487,65 +2463,65 @@ yyreduce:
         (yyval.dval) = pow((yyvsp[-2].dval), (yyvsp[0].dval));
     }
 }
-#line 2491 "project.tab.c"
+#line 2467 "project.tab.c"
     break;
 
   case 178: /* factor_double: primary_double  */
-#line 800 "project.y"
+#line 776 "project.y"
                               { (yyval.dval) = (yyvsp[0].dval); }
-#line 2497 "project.tab.c"
+#line 2473 "project.tab.c"
     break;
 
   case 179: /* factor_double: LP exp_double RP  */
-#line 801 "project.y"
+#line 777 "project.y"
                        { (yyval.dval) = (yyvsp[-1].dval); }
-#line 2503 "project.tab.c"
+#line 2479 "project.tab.c"
     break;
 
   case 193: /* unary: primary_int  */
-#line 823 "project.y"
+#line 799 "project.y"
                    { (yyval.ival) = (yyvsp[0].ival); }
-#line 2509 "project.tab.c"
+#line 2485 "project.tab.c"
     break;
 
   case 194: /* unary: ADD primary_int  */
-#line 824 "project.y"
+#line 800 "project.y"
                       { (yyval.ival) = (yyvsp[0].ival); }
-#line 2515 "project.tab.c"
+#line 2491 "project.tab.c"
     break;
 
   case 195: /* unary: SUB primary_int  */
-#line 825 "project.y"
+#line 801 "project.y"
                       { (yyval.ival) = -(yyvsp[0].ival); }
-#line 2521 "project.tab.c"
+#line 2497 "project.tab.c"
     break;
 
   case 196: /* primary_int: CONST  */
-#line 828 "project.y"
+#line 804 "project.y"
                    { (yyval.ival) = (yyvsp[0].ival); }
-#line 2527 "project.tab.c"
+#line 2503 "project.tab.c"
     break;
 
   case 197: /* primary_int: variable_reference_int  */
-#line 829 "project.y"
+#line 805 "project.y"
                              { (yyval.ival) = (yyvsp[0].ival); }
-#line 2533 "project.tab.c"
+#line 2509 "project.tab.c"
     break;
 
   case 198: /* primary_double: DOUBLE_CONST  */
-#line 832 "project.y"
+#line 808 "project.y"
                              { (yyval.dval) = (yyvsp[0].dval); }
-#line 2539 "project.tab.c"
+#line 2515 "project.tab.c"
     break;
 
   case 199: /* primary_double: variable_reference_double  */
-#line 833 "project.y"
+#line 809 "project.y"
                                 { (yyval.dval) = (yyvsp[0].dval); }
-#line 2545 "project.tab.c"
+#line 2521 "project.tab.c"
     break;
 
   case 200: /* $@5: %empty  */
-#line 836 "project.y"
+#line 812 "project.y"
                                                  {
     if (!symbolExists((yyvsp[-4].sval), false, true)) {
         yyerror("Class not declared");
@@ -2553,11 +2529,11 @@ yyreduce:
         addSymbol((yyvsp[-3].sval), (yyvsp[-4].sval), false, true, false, (yyvsp[0].sval));
     }
 }
-#line 2557 "project.tab.c"
+#line 2533 "project.tab.c"
     break;
 
   case 202: /* $@6: %empty  */
-#line 845 "project.y"
+#line 821 "project.y"
                                          {
     if (!symbolExists((yyvsp[-2].sval), false, true)) {
         yyerror("Class not declared");
@@ -2565,85 +2541,85 @@ yyreduce:
         yyerror("Member not declared");
     }
 }
-#line 2569 "project.tab.c"
+#line 2545 "project.tab.c"
     break;
 
   case 204: /* member_access_body: ID SEMICOLON  */
-#line 854 "project.y"
+#line 830 "project.y"
                                  {
     if (!symbolExists((yyvsp[-1].sval), false, false)) {
         yyerror("Variable not declared");
     }
 }
-#line 2579 "project.tab.c"
+#line 2555 "project.tab.c"
     break;
 
   case 205: /* member_access_body: method_call  */
-#line 859 "project.y"
+#line 835 "project.y"
                   {
     if (!symbolExists((yyvsp[0].sval), true, false)) {
         yyerror("Method not declared");
     }
 }
-#line 2589 "project.tab.c"
+#line 2565 "project.tab.c"
     break;
 
   case 208: /* boolean: TRUE  */
-#line 869 "project.y"
+#line 845 "project.y"
               { (yyval.sval) = "true"; }
-#line 2595 "project.tab.c"
+#line 2571 "project.tab.c"
     break;
 
   case 209: /* boolean: FALSE  */
-#line 870 "project.y"
+#line 846 "project.y"
             { (yyval.sval) = "false"; }
-#line 2601 "project.tab.c"
+#line 2577 "project.tab.c"
     break;
 
   case 210: /* data_type: %empty  */
-#line 873 "project.y"
+#line 849 "project.y"
                          { (yyval.sval) = ""; }
-#line 2607 "project.tab.c"
+#line 2583 "project.tab.c"
     break;
 
   case 211: /* data_type: INTEGER  */
-#line 874 "project.y"
+#line 850 "project.y"
               { (yyval.sval) = "int"; }
-#line 2613 "project.tab.c"
+#line 2589 "project.tab.c"
     break;
 
   case 212: /* data_type: CHAR  */
-#line 875 "project.y"
+#line 851 "project.y"
            { (yyval.sval) = "char"; }
-#line 2619 "project.tab.c"
+#line 2595 "project.tab.c"
     break;
 
   case 213: /* data_type: DOUBLE  */
-#line 876 "project.y"
+#line 852 "project.y"
              { (yyval.sval) = "double"; }
-#line 2625 "project.tab.c"
+#line 2601 "project.tab.c"
     break;
 
   case 214: /* data_type: BOOLEAN  */
-#line 877 "project.y"
+#line 853 "project.y"
               { (yyval.sval) = "boolean"; }
-#line 2631 "project.tab.c"
+#line 2607 "project.tab.c"
     break;
 
   case 215: /* data_type: STRING  */
-#line 878 "project.y"
+#line 854 "project.y"
              { (yyval.sval) = "string"; }
-#line 2637 "project.tab.c"
+#line 2613 "project.tab.c"
     break;
 
   case 216: /* data_type: VOID  */
-#line 879 "project.y"
+#line 855 "project.y"
            { (yyval.sval) = "void"; }
-#line 2643 "project.tab.c"
+#line 2619 "project.tab.c"
     break;
 
 
-#line 2647 "project.tab.c"
+#line 2623 "project.tab.c"
 
       default: break;
     }
@@ -2836,7 +2812,7 @@ yyreturnlab:
   return yyresult;
 }
 
-#line 886 "project.y"
+#line 862 "project.y"
 
 
 void yyerror(const char *s) {
