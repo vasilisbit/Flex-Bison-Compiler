@@ -12,7 +12,6 @@
 id [A-Za-z_][A-Za-z0-9_]*
 class_ID [A-Z_][A-Za-z0-9_]*
 const [0-9]+
-any_character [A-Za-z0-9_!@#\$%\^&\*\(\)-+=\|\\:;\"'<>,\.\?/~`\[\]\{\} ]
 
 %x COMMENT
 
@@ -41,10 +40,7 @@ any_character [A-Za-z0-9_!@#\$%\^&\*\(\)-+=\|\\:;\"'<>,\.\?/~`\[\]\{\} ]
 "]" { return RSB; }
 "{" { return LCB; }
 "}" { return RCB; }
-"?" { return QUESTION; }
 ":" { return COLON; }
-"\"" { return DQ; }
-"\'" { return SQ; }
 
 "+" { return ADD; }
 "-" { return SUB; }
@@ -97,6 +93,5 @@ any_character [A-Za-z0-9_!@#\$%\^&\*\(\)-+=\|\\:;\"'<>,\.\?/~`\[\]\{\} ]
 {class_ID} { yylval.sval = strdup(yytext); return CLASS_ID; }
 {id} { yylval.sval = strdup(yytext); return ID; }
 {const} { yylval.ival = atoi(yytext); return CONST; }
-{any_character} { yylval.cval = strdup(yytext); return ANY_CHARACTER; }
 . { fprintf(stderr, "Error at line %d: Unexpected character '%s'\n", yylineno, yytext); }
 %%

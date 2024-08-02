@@ -379,7 +379,6 @@ assignment_list_int_declared: ID ASSIGN exp_int {
     char* type = getType($1);
     if (type == NULL || strcmp(type, "int") != 0) {
         yyerror("Type mismatch");
-        exit(1);
     } else {
         char valueStr[32];
         sprintf(valueStr, "%d", $3);
@@ -391,7 +390,6 @@ assignment_list_int_declared: ID ASSIGN exp_int {
     char* type = getType($1);
     if (type == NULL || strcmp(type, "int") != 0) {
         yyerror("Type mismatch");
-        exit(1);
     } else {
         char valueStr[32];
         sprintf(valueStr, "%d", valueStr);
@@ -404,7 +402,6 @@ assignment_list_string_declared: ID ASSIGN DQ_STRING_DQ {
     char* type = getType($1);
     if (type == NULL || strcmp(type, "string") != 0) {
         yyerror("Type mismatch");
-        exit(1);
     } else {
         setInitialized($1, $3);
     }
@@ -413,7 +410,6 @@ assignment_list_string_declared: ID ASSIGN DQ_STRING_DQ {
     char* type = getType($1);
     if (type == NULL || strcmp(type, "string") != 0) {
         yyerror("Type mismatch");
-        exit(1);
     } else {
         setInitialized($1, $3);
     }
@@ -423,7 +419,6 @@ assignment_list_char_declared: ID ASSIGN SQ_ANYCHAR_SQ {
     char* type = getType($1);
     if (type == NULL || strcmp(type, "char") != 0) {
         yyerror("Type mismatch");
-        exit(1);
     } else {
         setInitialized($1, $3);
     }
@@ -432,7 +427,6 @@ assignment_list_char_declared: ID ASSIGN SQ_ANYCHAR_SQ {
     char* type = getType($1);
     if (type == NULL || strcmp(type, "char") != 0) {
         yyerror("Type mismatch");
-        exit(1);
     } else {
         setInitialized($1, $3);
     }
@@ -442,7 +436,6 @@ assignment_list_double_declared: ID ASSIGN exp_double {
     char* type = getType($1);
     if (type == NULL || strcmp(type, "double") != 0) {
         yyerror("Type mismatch");
-        exit(1);
     } else {
         char valueStr[64];
         sprintf(valueStr, "%f", $3);
@@ -454,7 +447,6 @@ assignment_list_double_declared: ID ASSIGN exp_double {
     char* type = getType($1);
     if (type == NULL || strcmp(type, "double") != 0) {
         yyerror("Type mismatch");
-        exit(1);
     } else {
         char valueStr[64];
         sprintf(valueStr, "%f", $3);
@@ -467,7 +459,6 @@ assignment_list_boolean_declared: ID ASSIGN boolean {
     char* type = getType($1);
     if (type == NULL || strcmp(type, "boolean") != 0) {
         yyerror("Type mismatch");
-        exit(1);
     } else {
         setInitialized($1, $3);
     }
@@ -476,7 +467,6 @@ assignment_list_boolean_declared: ID ASSIGN boolean {
     char* type = getType($1);
     if (type == NULL || strcmp(type, "boolean") != 0) {
         yyerror("Type mismatch");
-        exit(1);
     } else {
         setInitialized($1, $3);
     }
@@ -487,7 +477,6 @@ assignment_list_variable_declared: ID ASSIGN variable_reference {
     char* value = getValue($3);
     if (type == NULL || strcmp(type, getType($3)) != 0) {
         yyerror("Type mismatch");
-        exit(1);
     } else {
         setInitialized($1, value);
     }
@@ -497,7 +486,6 @@ assignment_list_variable_declared: ID ASSIGN variable_reference {
     char* value = getValue($3);
     if (type == NULL || strcmp(type, getType($3)) != 0) {
         yyerror("Type mismatch");
-        exit(1);
     } else {
         setInitialized($1, value);
     }
@@ -507,7 +495,6 @@ assignment_list_method_declared: ID ASSIGN method_call {
     char* type = getType($1);
     if (type == NULL || strcmp(type, getType($3)) != 0) {
         yyerror("Type mismatch");
-        exit(1);
     } else {
         setInitialized($1, NULL);
     }
@@ -516,7 +503,6 @@ assignment_list_method_declared: ID ASSIGN method_call {
     char* type = getType($1);
     if (type == NULL || strcmp(type, getType($3)) != 0) {
         yyerror("Type mismatch");
-        exit(1);
     } else {
         setInitialized($1, NULL);
     }
@@ -526,7 +512,6 @@ assignment_list_object_declared: ID ASSIGN NEW CLASS_ID {
     char* type = getType($1);
     if (type == NULL || strcmp(type, $4) != 0) {
         yyerror("Type mismatch");
-        exit(1);
     } else {
         setInitialized($1, NULL);
     }
@@ -535,7 +520,6 @@ assignment_list_object_declared: ID ASSIGN NEW CLASS_ID {
     char* type = getType($1);
     if (type == NULL || strcmp(type, $4) != 0) {
         yyerror("Type mismatch");
-        exit(1);
     } else {
         setInitialized($1, NULL);
     }
@@ -879,7 +863,7 @@ none_or_newlines: /* nothing */
 
 void yyerror(const char *s) {
     fprintf(stderr, "Error on line %d: %s recognised at the token '%s'\n", yylineno, s, yytext);
-    YYABORT;
+    exit(1);
 }
 
 int main(int argc, char **argv) {

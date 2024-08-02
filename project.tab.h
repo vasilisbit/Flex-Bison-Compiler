@@ -57,65 +57,61 @@ extern int yydebug;
     CONST = 258,                   /* CONST  */
     ID = 259,                      /* ID  */
     CLASS_ID = 260,                /* CLASS_ID  */
-    ANY_CHARACTER = 261,           /* ANY_CHARACTER  */
-    DOUBLE_CONST = 262,            /* DOUBLE_CONST  */
-    SQ_ANYCHAR_SQ = 263,           /* SQ_ANYCHAR_SQ  */
-    DQ_STRING_DQ = 264,            /* DQ_STRING_DQ  */
-    VAR = 265,                     /* VAR  */
-    NEWLINE = 266,                 /* NEWLINE  */
-    CLASS = 267,                   /* CLASS  */
-    PUBLIC = 268,                  /* PUBLIC  */
-    PRIVATE = 269,                 /* PRIVATE  */
-    INTEGER = 270,                 /* INTEGER  */
-    CHAR = 271,                    /* CHAR  */
-    DOUBLE = 272,                  /* DOUBLE  */
-    BOOLEAN = 273,                 /* BOOLEAN  */
-    STRING = 274,                  /* STRING  */
-    VOID = 275,                    /* VOID  */
-    NEW = 276,                     /* NEW  */
-    RETURN = 277,                  /* RETURN  */
-    IF = 278,                      /* IF  */
-    ELIF = 279,                    /* ELIF  */
-    ELSE = 280,                    /* ELSE  */
-    SWITCH = 281,                  /* SWITCH  */
-    CASE = 282,                    /* CASE  */
-    DEFAULT = 283,                 /* DEFAULT  */
-    WHILE = 284,                   /* WHILE  */
-    DO = 285,                      /* DO  */
-    FOR = 286,                     /* FOR  */
-    BREAK = 287,                   /* BREAK  */
-    TRUE = 288,                    /* TRUE  */
-    FALSE = 289,                   /* FALSE  */
-    PRINT = 290,                   /* PRINT  */
-    SEMICOLON = 291,               /* SEMICOLON  */
-    COMMA = 292,                   /* COMMA  */
-    DOT = 293,                     /* DOT  */
-    QUESTION = 294,                /* QUESTION  */
-    COLON = 295,                   /* COLON  */
-    DQ = 296,                      /* DQ  */
-    SQ = 297,                      /* SQ  */
-    LP = 298,                      /* LP  */
-    RP = 299,                      /* RP  */
-    LSB = 300,                     /* LSB  */
-    RSB = 301,                     /* RSB  */
-    LCB = 302,                     /* LCB  */
-    RCB = 303,                     /* RCB  */
-    ASSIGN = 304,                  /* ASSIGN  */
-    OR = 305,                      /* OR  */
-    AND = 306,                     /* AND  */
-    EQ = 307,                      /* EQ  */
-    NEQ = 308,                     /* NEQ  */
-    LT = 309,                      /* LT  */
-    LE = 310,                      /* LE  */
-    GT = 311,                      /* GT  */
-    GE = 312,                      /* GE  */
-    ADD = 313,                     /* ADD  */
-    SUB = 314,                     /* SUB  */
-    MUL = 315,                     /* MUL  */
-    DIV = 316,                     /* DIV  */
-    MOD = 317,                     /* MOD  */
-    POW = 318,                     /* POW  */
-    NOT = 319                      /* NOT  */
+    DOUBLE_CONST = 261,            /* DOUBLE_CONST  */
+    SQ_ANYCHAR_SQ = 262,           /* SQ_ANYCHAR_SQ  */
+    DQ_STRING_DQ = 263,            /* DQ_STRING_DQ  */
+    VAR = 264,                     /* VAR  */
+    NEWLINE = 265,                 /* NEWLINE  */
+    CLASS = 266,                   /* CLASS  */
+    PUBLIC = 267,                  /* PUBLIC  */
+    PRIVATE = 268,                 /* PRIVATE  */
+    INTEGER = 269,                 /* INTEGER  */
+    CHAR = 270,                    /* CHAR  */
+    DOUBLE = 271,                  /* DOUBLE  */
+    BOOLEAN = 272,                 /* BOOLEAN  */
+    STRING = 273,                  /* STRING  */
+    VOID = 274,                    /* VOID  */
+    NEW = 275,                     /* NEW  */
+    RETURN = 276,                  /* RETURN  */
+    IF = 277,                      /* IF  */
+    ELIF = 278,                    /* ELIF  */
+    ELSE = 279,                    /* ELSE  */
+    SWITCH = 280,                  /* SWITCH  */
+    CASE = 281,                    /* CASE  */
+    DEFAULT = 282,                 /* DEFAULT  */
+    WHILE = 283,                   /* WHILE  */
+    DO = 284,                      /* DO  */
+    FOR = 285,                     /* FOR  */
+    BREAK = 286,                   /* BREAK  */
+    TRUE = 287,                    /* TRUE  */
+    FALSE = 288,                   /* FALSE  */
+    PRINT = 289,                   /* PRINT  */
+    SEMICOLON = 290,               /* SEMICOLON  */
+    COMMA = 291,                   /* COMMA  */
+    DOT = 292,                     /* DOT  */
+    COLON = 293,                   /* COLON  */
+    LP = 294,                      /* LP  */
+    RP = 295,                      /* RP  */
+    LSB = 296,                     /* LSB  */
+    RSB = 297,                     /* RSB  */
+    LCB = 298,                     /* LCB  */
+    RCB = 299,                     /* RCB  */
+    ASSIGN = 300,                  /* ASSIGN  */
+    OR = 301,                      /* OR  */
+    AND = 302,                     /* AND  */
+    EQ = 303,                      /* EQ  */
+    NEQ = 304,                     /* NEQ  */
+    LT = 305,                      /* LT  */
+    LE = 306,                      /* LE  */
+    GT = 307,                      /* GT  */
+    GE = 308,                      /* GE  */
+    ADD = 309,                     /* ADD  */
+    SUB = 310,                     /* SUB  */
+    MUL = 311,                     /* MUL  */
+    DIV = 312,                     /* DIV  */
+    MOD = 313,                     /* MOD  */
+    POW = 314,                     /* POW  */
+    NOT = 315                      /* NOT  */
   };
   typedef enum yytokentype yytoken_kind_t;
 #endif
@@ -131,7 +127,7 @@ union YYSTYPE
     char   *sval;
     double dval;
 
-#line 135 "project.tab.h"
+#line 131 "project.tab.h"
 
 };
 typedef union YYSTYPE YYSTYPE;

@@ -1,9 +1,5 @@
 Terminals unused in grammar
 
-    ANY_CHARACTER
-    QUESTION
-    DQ
-    SQ
     LSB
     RSB
 
@@ -387,327 +383,323 @@ Terminals, with rules where they appear
     CONST <ival> (258) 148 195
     ID <sval> (259) 17 18 19 20 21 22 23 24 25 26 27 28 37 38 39 40 41 42 43 44 45 46 47 48 49 50 51 52 61 62 63 64 65 66 67 68 69 70 71 72 73 74 75 76 82 83 84 86 88 93 113 114 115 156 200 202 203
     CLASS_ID <sval> (260) 5 7 51 52 75 76 200
-    ANY_CHARACTER <cval> (261)
-    DOUBLE_CONST <dval> (262) 197
-    SQ_ANYCHAR_SQ <cval> (263) 41 42 65 66 141 149
-    DQ_STRING_DQ <sval> (264) 39 40 63 64 107 154
-    VAR (265) 16 34 35 36
-    NEWLINE (266) 217
-    CLASS (267) 5 7
-    PUBLIC (268) 205
-    PRIVATE (269) 206
-    INTEGER (270) 11 29 210
-    CHAR (271) 13 31 211
-    DOUBLE (272) 14 32 212
-    BOOLEAN (273) 15 33 213
-    STRING (274) 12 30 214
-    VOID (275) 215
-    NEW (276) 51 52 75 76 200
-    RETURN (277) 150 151 152
-    IF (278) 122
-    ELIF (279) 129
-    ELSE (280) 131
-    SWITCH (281) 140 141
-    CASE (282) 147
-    DEFAULT (283) 143
-    WHILE (284) 132 133
-    DO (285) 132 133
-    FOR (286) 134
-    BREAK (287) 153
-    TRUE (288) 207
-    FALSE (289) 208
-    PRINT (290) 154
-    SEMICOLON (291) 105 106 107 108 111 115 132 133 134 150 151 152 153 154 200 203
-    COMMA (292) 18 20 22 24 26 28 38 40 42 44 46 48 50 52 62 64 66 68 70 72 74 76 92 120 121 156
-    DOT (293) 202
-    QUESTION (294)
-    COLON (295) 143 147
-    DQ (296)
-    SQ (297)
-    LP (298) 86 88 115 122 129 132 133 134 140 141 154 168 178 191 200
-    RP (299) 86 88 115 122 129 132 133 134 140 141 154 168 178 191 200
-    LSB (300)
-    RSB (301)
-    LCB (302) 5 7 86 88 122 129 131 132 133 134 140 141
-    RCB (303) 5 7 86 88 122 129 131 132 133 134 140 141
-    ASSIGN (304) 37 38 39 40 41 42 43 44 45 46 47 48 49 50 51 52 61 62 63 64 65 66 67 68 69 70 71 72 73 74 75 76 113 114 200
-    OR (305) 188
-    AND (306) 187
-    EQ (307) 180
-    NEQ (308) 181
-    LT (309) 182
-    LE (310) 184
-    GT (311) 183
-    GE (312) 185
-    ADD (313) 160 170 193
-    SUB (314) 161 171 194
-    MUL (315) 163 173
-    DIV (316) 164 174
-    MOD (317) 165 175
-    POW (318) 166 176
-    NOT (319) 190
+    DOUBLE_CONST <dval> (261) 197
+    SQ_ANYCHAR_SQ <cval> (262) 41 42 65 66 141 149
+    DQ_STRING_DQ <sval> (263) 39 40 63 64 107 154
+    VAR (264) 16 34 35 36
+    NEWLINE (265) 217
+    CLASS (266) 5 7
+    PUBLIC (267) 205
+    PRIVATE (268) 206
+    INTEGER (269) 11 29 210
+    CHAR (270) 13 31 211
+    DOUBLE (271) 14 32 212
+    BOOLEAN (272) 15 33 213
+    STRING (273) 12 30 214
+    VOID (274) 215
+    NEW (275) 51 52 75 76 200
+    RETURN (276) 150 151 152
+    IF (277) 122
+    ELIF (278) 129
+    ELSE (279) 131
+    SWITCH (280) 140 141
+    CASE (281) 147
+    DEFAULT (282) 143
+    WHILE (283) 132 133
+    DO (284) 132 133
+    FOR (285) 134
+    BREAK (286) 153
+    TRUE (287) 207
+    FALSE (288) 208
+    PRINT (289) 154
+    SEMICOLON (290) 105 106 107 108 111 115 132 133 134 150 151 152 153 154 200 203
+    COMMA (291) 18 20 22 24 26 28 38 40 42 44 46 48 50 52 62 64 66 68 70 72 74 76 92 120 121 156
+    DOT (292) 202
+    COLON (293) 143 147
+    LP (294) 86 88 115 122 129 132 133 134 140 141 154 168 178 191 200
+    RP (295) 86 88 115 122 129 132 133 134 140 141 154 168 178 191 200
+    LSB (296)
+    RSB (297)
+    LCB (298) 5 7 86 88 122 129 131 132 133 134 140 141
+    RCB (299) 5 7 86 88 122 129 131 132 133 134 140 141
+    ASSIGN (300) 37 38 39 40 41 42 43 44 45 46 47 48 49 50 51 52 61 62 63 64 65 66 67 68 69 70 71 72 73 74 75 76 113 114 200
+    OR (301) 188
+    AND (302) 187
+    EQ (303) 180
+    NEQ (304) 181
+    LT (305) 182
+    LE (306) 184
+    GT (307) 183
+    GE (308) 185
+    ADD (309) 160 170 193
+    SUB (310) 161 171 194
+    MUL (311) 163 173
+    DIV (312) 164 174
+    MOD (313) 165 175
+    POW (314) 166 176
+    NOT (315) 190
 
 
 Nonterminals, with rules where they appear
 
-    $accept (65)
+    $accept (61)
         on left: 0
-    program (66)
+    program (62)
         on left: 1 2 3
         on right: 0 2 3
-    class_declaration (67)
+    class_declaration (63)
         on left: 5 7
         on right: 2 9
-    $@1 (68)
+    $@1 (64)
         on left: 4
         on right: 5
-    $@2 (69)
+    $@2 (65)
         on left: 6
         on right: 7
-    class_body (70)
+    class_body (66)
         on left: 8 9 10
         on right: 5 7 9 10
-    identifier_list (71)
+    identifier_list (67)
         on left: 11 12 13 14 15 16
         on right: 77 78
-    identifier_list_int (72)
+    identifier_list_int (68)
         on left: 17 18
         on right: 11 18
-    identifier_list_string (73)
+    identifier_list_string (69)
         on left: 19 20
         on right: 12 20
-    identifier_list_char (74)
+    identifier_list_char (70)
         on left: 21 22
         on right: 13 22
-    identifier_list_double (75)
+    identifier_list_double (71)
         on left: 23 24
         on right: 14 24
-    identifier_list_boolean (76)
+    identifier_list_boolean (72)
         on left: 25 26
         on right: 15 26
-    identifier_list_variable (77)
+    identifier_list_variable (73)
         on left: 27 28
         on right: 16 28
-    assignment_list (78)
+    assignment_list (74)
         on left: 29 30 31 32 33 34 35 36
         on right: 79 80
-    assignment_list_int <sval> (79)
+    assignment_list_int <sval> (75)
         on left: 37 38
         on right: 29 38
-    assignment_list_string <sval> (80)
+    assignment_list_string <sval> (76)
         on left: 39 40
         on right: 30 40 64
-    assignment_list_char (81)
+    assignment_list_char (77)
         on left: 41 42
         on right: 31 42 66
-    assignment_list_double (82)
+    assignment_list_double (78)
         on left: 43 44
         on right: 32 44 68
-    assignment_list_boolean (83)
+    assignment_list_boolean (79)
         on left: 45 46
         on right: 33 46 70
-    assignment_list_variable <sval> (84)
+    assignment_list_variable <sval> (80)
         on left: 47 48
         on right: 34 48 72
-    assignment_list_method <sval> (85)
+    assignment_list_method <sval> (81)
         on left: 49 50
         on right: 35 50 74
-    assignment_list_object <sval> (86)
+    assignment_list_object <sval> (82)
         on left: 51 52
         on right: 36 52 76
-    assignment_list_declared (87)
+    assignment_list_declared (83)
         on left: 53 54 55 56 57 58 59 60
         on right: 81
-    assignment_list_int_declared (88)
+    assignment_list_int_declared (84)
         on left: 61 62
         on right: 53 62
-    assignment_list_string_declared (89)
+    assignment_list_string_declared (85)
         on left: 63 64
         on right: 54
-    assignment_list_char_declared (90)
+    assignment_list_char_declared (86)
         on left: 65 66
         on right: 55
-    assignment_list_double_declared (91)
+    assignment_list_double_declared (87)
         on left: 67 68
         on right: 56
-    assignment_list_boolean_declared (92)
+    assignment_list_boolean_declared (88)
         on left: 69 70
         on right: 57
-    assignment_list_variable_declared (93)
+    assignment_list_variable_declared (89)
         on left: 71 72
         on right: 58
-    assignment_list_method_declared (94)
+    assignment_list_method_declared (90)
         on left: 73 74
         on right: 59
-    assignment_list_object_declared (95)
+    assignment_list_object_declared (91)
         on left: 75 76
         on right: 60
-    variable_declaration (96)
+    variable_declaration (92)
         on left: 77 78 79 80 81
         on right: 108 137
-    variable_reference <sval> (97)
+    variable_reference <sval> (93)
         on left: 82
         on right: 47 48 71 72 111 114 118 121 125 133 151
-    variable_reference_int <ival> (98)
+    variable_reference_int <ival> (94)
         on left: 83
         on right: 196
-    variable_reference_double <dval> (99)
+    variable_reference_double <dval> (95)
         on left: 84
         on right: 198
-    method_declaration (100)
+    method_declaration (96)
         on left: 86 88
         on right: 109
-    $@3 (101)
+    $@3 (97)
         on left: 85
         on right: 86
-    $@4 (102)
+    $@4 (98)
         on left: 87
         on right: 88
-    none_or_multiple_parameters (103)
+    none_or_multiple_parameters (99)
         on left: 89 90
         on right: 86 88
-    parameters (104)
+    parameters (100)
         on left: 91 92
         on right: 90 92
-    parameter (105)
+    parameter (101)
         on left: 93
         on right: 90 92 117 120
-    method_body (106)
+    method_body (102)
         on left: 94 95
         on right: 86 88 95
-    statement (107)
+    statement (103)
         on left: 96 97 98 99 100 101 102 103 104 105 106 107 108 109 110 111 112
         on right: 3 10 95 122 129 131 132 133 134 143 147
-    assignment_statement (108)
+    assignment_statement (104)
         on left: 113 114
         on right: 136
-    method_call <sval> (109)
+    method_call <sval> (105)
         on left: 115
         on right: 49 50 73 74 97 126 152 204
-    none_or_multiple_arguments (110)
+    none_or_multiple_arguments (106)
         on left: 116 117 118
         on right: 115
-    arguments (111)
+    arguments (107)
         on left: 119 120 121
         on right: 117 118 120 121
-    if_statement (112)
+    if_statement (108)
         on left: 122
         on right: 98
-    if_elif_parenthesis_statement (113)
+    if_elif_parenthesis_statement (109)
         on left: 123 124 125 126 127
         on right: 122 129
-    none_or_multiple_elif (114)
+    none_or_multiple_elif (110)
         on left: 128 129
         on right: 122 129
-    none_or_one_else (115)
+    none_or_one_else (111)
         on left: 130 131
         on right: 122
-    do_while_statement (116)
+    do_while_statement (112)
         on left: 132 133
         on right: 99
-    for_statement (117)
+    for_statement (113)
         on left: 134
         on right: 100
-    first_and_third_loop_statement (118)
+    first_and_third_loop_statement (114)
         on left: 135 136 137
         on right: 134
-    second_loop_statement (119)
+    second_loop_statement (115)
         on left: 138 139
         on right: 134
-    switch_statement (120)
+    switch_statement (116)
         on left: 140 141
         on right: 101
-    default_case (121)
+    default_case (117)
         on left: 142 143
         on right: 140 141
-    one_or_more_cases (122)
+    one_or_more_cases (118)
         on left: 144
         on right: 140 141
-    multiple_cases (123)
+    multiple_cases (119)
         on left: 145 146
         on right: 144 146
-    cases (124)
+    cases (120)
         on left: 147
         on right: 144 146
-    case_expression (125)
+    case_expression (121)
         on left: 148 149
         on right: 147
-    return_statement (126)
+    return_statement (122)
         on left: 150 151 152
         on right: 102
-    break_statement (127)
+    break_statement (123)
         on left: 153
         on right: 103
-    print_statement (128)
+    print_statement (124)
         on left: 154
         on right: 104
-    single_or_multiple_variables (129)
+    single_or_multiple_variables (125)
         on left: 155 156
         on right: 154 156
-    exp (130)
+    exp (126)
         on left: 157 158
         on right: 105 113 123 140 150
-    exp_int <ival> (131)
+    exp_int <ival> (127)
         on left: 159 160 161
         on right: 37 38 61 62 157 160 161 168
-    term_int <ival> (132)
+    term_int <ival> (128)
         on left: 162 163 164 165 166
         on right: 159 160 161 163 164 165 166
-    factor_int <ival> (133)
+    factor_int <ival> (129)
         on left: 167 168
         on right: 162 163 164 165 166
-    exp_double <dval> (134)
+    exp_double <dval> (130)
         on left: 169 170 171
         on right: 43 44 67 68 158 170 171 178
-    term_double <dval> (135)
+    term_double <dval> (131)
         on left: 172 173 174 175 176
         on right: 169 170 171 173 174 175 176
-    factor_double <dval> (136)
+    factor_double <dval> (132)
         on left: 177 178
         on right: 172 173 174 175 176
-    relational_exp (137)
+    relational_exp (133)
         on left: 179 180 181 182 183 184 185
         on right: 106 124 132 139 180 181 182 183 184 185 191
-    relational_factor (138)
+    relational_factor (134)
         on left: 186 187 188
         on right: 179 180 181 182 183 184 185 187 188
-    logical_term (139)
+    logical_term (135)
         on left: 189 190 191
         on right: 186 187 188
-    unary <ival> (140)
+    unary <ival> (136)
         on left: 192 193 194
         on right: 189 190
-    primary_int <ival> (141)
+    primary_int <ival> (137)
         on left: 195 196
         on right: 167 192 193 194
-    primary_double <dval> (142)
+    primary_double <dval> (138)
         on left: 197 198
         on right: 177
-    object_creation (143)
+    object_creation (139)
         on left: 200
         on right: 110
-    $@5 (144)
+    $@5 (140)
         on left: 199
         on right: 200
-    member_access <sval> (145)
+    member_access <sval> (141)
         on left: 202
         on right: 112
-    $@6 (146)
+    $@6 (142)
         on left: 201
         on right: 202
-    member_access_body <sval> (147)
+    member_access_body <sval> (143)
         on left: 203 204
         on right: 202
-    access_modifier (148)
+    access_modifier (144)
         on left: 205 206
         on right: 5 78 79 86
-    boolean <sval> (149)
+    boolean <sval> (145)
         on left: 207 208
         on right: 45 46 69 70 127
-    data_type <sval> (150)
+    data_type <sval> (146)
         on left: 209 210 211 212 213 214 215
         on right: 86 88 93 113 114
-    none_or_newlines (151)
+    none_or_newlines (147)
         on left: 216 217
         on right: 2 3 5 7 9 10 86 88 92 95 115 120 121 122 129 131 132 133 134 140 141 143 144 146 147 202 217
 
