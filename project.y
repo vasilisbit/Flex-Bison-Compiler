@@ -406,7 +406,7 @@ assignment_list_string_declared: ID ASSIGN DQ_STRING_DQ {
         setInitialized($1, $3);
     }
 }
-    | ID ASSIGN DQ_STRING_DQ COMMA assignment_list_string {
+    | ID ASSIGN DQ_STRING_DQ COMMA assignment_list_string_declared {
     char* type = getType($1);
     if (type == NULL || strcmp(type, "string") != 0) {
         yyerror("Type mismatch");
@@ -423,7 +423,7 @@ assignment_list_char_declared: ID ASSIGN SQ_ANYCHAR_SQ {
         setInitialized($1, $3);
     }
 }
-    | ID ASSIGN SQ_ANYCHAR_SQ COMMA assignment_list_char {
+    | ID ASSIGN SQ_ANYCHAR_SQ COMMA assignment_list_char_declared {
     char* type = getType($1);
     if (type == NULL || strcmp(type, "char") != 0) {
         yyerror("Type mismatch");
@@ -443,7 +443,7 @@ assignment_list_double_declared: ID ASSIGN exp_double {
         printf("Variable %s assigned with value %f\n\n", $1, $3);
     }
 }
-    | ID ASSIGN exp_double COMMA assignment_list_double {
+    | ID ASSIGN exp_double COMMA assignment_list_double_declared {
     char* type = getType($1);
     if (type == NULL || strcmp(type, "double") != 0) {
         yyerror("Type mismatch");
@@ -463,7 +463,7 @@ assignment_list_boolean_declared: ID ASSIGN boolean {
         setInitialized($1, $3);
     }
 }
-    | ID ASSIGN boolean COMMA assignment_list_boolean {
+    | ID ASSIGN boolean COMMA assignment_list_boolean_declared {
     char* type = getType($1);
     if (type == NULL || strcmp(type, "boolean") != 0) {
         yyerror("Type mismatch");
@@ -481,7 +481,7 @@ assignment_list_variable_declared: ID ASSIGN variable_reference {
         setInitialized($1, value);
     }
 }
-    | ID ASSIGN variable_reference COMMA assignment_list_variable {
+    | ID ASSIGN variable_reference COMMA assignment_list_variable_declared {
     char* type = getType($1);
     char* value = getValue($3);
     if (type == NULL || strcmp(type, getType($3)) != 0) {
@@ -499,7 +499,7 @@ assignment_list_method_declared: ID ASSIGN method_call {
         setInitialized($1, NULL);
     }
 }
-    | ID ASSIGN method_call COMMA assignment_list_method {
+    | ID ASSIGN method_call COMMA assignment_list_method_declared {
     char* type = getType($1);
     if (type == NULL || strcmp(type, getType($3)) != 0) {
         yyerror("Type mismatch");
@@ -516,7 +516,7 @@ assignment_list_object_declared: ID ASSIGN NEW CLASS_ID {
         setInitialized($1, NULL);
     }
 }
-    | ID ASSIGN NEW CLASS_ID COMMA assignment_list_object {
+    | ID ASSIGN NEW CLASS_ID COMMA assignment_list_object_declared {
     char* type = getType($1);
     if (type == NULL || strcmp(type, $4) != 0) {
         yyerror("Type mismatch");
