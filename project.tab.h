@@ -92,26 +92,24 @@ extern int yydebug;
     COLON = 293,                   /* COLON  */
     LP = 294,                      /* LP  */
     RP = 295,                      /* RP  */
-    LSB = 296,                     /* LSB  */
-    RSB = 297,                     /* RSB  */
-    LCB = 298,                     /* LCB  */
-    RCB = 299,                     /* RCB  */
-    ASSIGN = 300,                  /* ASSIGN  */
-    OR = 301,                      /* OR  */
-    AND = 302,                     /* AND  */
-    EQ = 303,                      /* EQ  */
-    NEQ = 304,                     /* NEQ  */
-    LT = 305,                      /* LT  */
-    LE = 306,                      /* LE  */
-    GT = 307,                      /* GT  */
-    GE = 308,                      /* GE  */
-    ADD = 309,                     /* ADD  */
-    SUB = 310,                     /* SUB  */
-    MUL = 311,                     /* MUL  */
-    DIV = 312,                     /* DIV  */
-    MOD = 313,                     /* MOD  */
-    POW = 314,                     /* POW  */
-    NOT = 315                      /* NOT  */
+    LCB = 296,                     /* LCB  */
+    RCB = 297,                     /* RCB  */
+    ASSIGN = 298,                  /* ASSIGN  */
+    OR = 299,                      /* OR  */
+    AND = 300,                     /* AND  */
+    EQ = 301,                      /* EQ  */
+    NEQ = 302,                     /* NEQ  */
+    LT = 303,                      /* LT  */
+    LE = 304,                      /* LE  */
+    GT = 305,                      /* GT  */
+    GE = 306,                      /* GE  */
+    ADD = 307,                     /* ADD  */
+    SUB = 308,                     /* SUB  */
+    MUL = 309,                     /* MUL  */
+    DIV = 310,                     /* DIV  */
+    MOD = 311,                     /* MOD  */
+    POW = 312,                     /* POW  */
+    NOT = 313                      /* NOT  */
   };
   typedef enum yytokentype yytoken_kind_t;
 #endif
@@ -120,14 +118,14 @@ extern int yydebug;
 #if ! defined YYSTYPE && ! defined YYSTYPE_IS_DECLARED
 union YYSTYPE
 {
-#line 181 "project.y"
+#line 190 "project.y"
 
     int    ival;
     char   *cval;
     char   *sval;
     double dval;
 
-#line 131 "project.tab.h"
+#line 129 "project.tab.h"
 
 };
 typedef union YYSTYPE YYSTYPE;

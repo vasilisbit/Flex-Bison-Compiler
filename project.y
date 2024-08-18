@@ -16,6 +16,15 @@ struct symbol {
     char *value;
 };
 
+struct error {
+    int line;
+    char *message;
+    char *token;
+};
+
+struct error errorTable[1000];
+int errorCount = 0;
+
 struct symbol symbolTable[1000];
 int symbolCount = 0;
 int scope = 0;
@@ -211,7 +220,6 @@ char* getValue(char *name) {
 %token DOT
 %token COLON
 %token LP RP
-%token LSB RSB
 %token LCB RCB
 %token ASSIGN
 %left OR
@@ -862,8 +870,16 @@ none_or_newlines: /* nothing */
 %%
 
 void yyerror(const char *s) {
-    fprintf(stderr, "Error on line %d: %s recognised at the token '%s'\n", yylineno, s, yytext);
-    exit(1);
+    if (errorCount < 1000) {
+        errorTable[errorCount].line = yylineno;
+        errorTable[errorCount].message = strdup(s);
+        errorTable[errorCount].token = strdup(yytext);
+        errorCount++;
+    }
+    else {
+        fprintf(stderr, "Error: Too many errors\n");
+        exit(1);
+    }
 }
 
 int main(int argc, char **argv) {
@@ -880,7 +896,7 @@ int main(int argc, char **argv) {
 
     yyin = f;
     yyout = fopen("output.txt", "w");
-
+    
     if (yyparse() == 0) {
         printf("Program is syntactically correct.\n\n");
         char ch;
@@ -896,6 +912,10 @@ int main(int argc, char **argv) {
         printf("Name: %s, Type: %s, isMethod: %d, isInitialized: %d, Scope: %d, isClass: %d, Value: %s\n",
                symbolTable[i].name, symbolTable[i].type, symbolTable[i].isMethod,
                symbolTable[i].isInitialized, symbolTable[i].scope, symbolTable[i].isClass, symbolTable[i].value);
+    }
+
+    for (int i=0; i < errorCount; i++) {
+        fprintf(stderr, "\nError %d at line %d: %s recognised at the token '%s'\n", i+1, errorTable[i].line, errorTable[i].message, errorTable[i].token);
     }
 
     fclose(f);

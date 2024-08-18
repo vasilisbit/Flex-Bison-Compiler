@@ -36,8 +36,6 @@ const [0-9]+
 "." { return DOT; }
 "(" { return LP; }
 ")" { return RP; }
-"[" { return LSB; }
-"]" { return RSB; }
 "{" { return LCB; }
 "}" { return RCB; }
 ":" { return COLON; }

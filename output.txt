@@ -1,4 +1,0 @@
-double x = 2.0d;
-int y = 4;
-double z;
-z = 23.4d + y + x + 1.0d;
