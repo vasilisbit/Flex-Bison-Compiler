@@ -2851,15 +2851,15 @@ int main(int argc, char **argv) {
 
     yyin = f;
     yyout = fopen("output.txt", "w");
-    
-    if (yyparse() == 0) {
-        printf("Program is syntactically correct.\n\n");
-        char ch;
-        rewind(f); // Reset the file pointer to the beginning for reading
-        while ((ch = fgetc(f)) != EOF) {
-            putchar(ch);
-            fputc(ch, yyout);
-        }
+
+    yyparse();
+
+    printf("Program is syntactically correct.\n\n");
+    char ch;
+    rewind(f); // Reset the file pointer to the beginning for reading
+    while ((ch = fgetc(f)) != EOF) {
+        putchar(ch);
+        fputc(ch, yyout);
     }
 
     printf("\n\nSymbol table:\n");
