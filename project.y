@@ -899,8 +899,7 @@ int main(int argc, char **argv) {
 
     yyparse();
 
-    printf("Program is syntactically correct.\n\n");
-    printf("Program input:\n");
+    printf("Input Program:\n\n");
     char ch;
     rewind(f); // Reset the file pointer to the beginning for reading
     while ((ch = fgetc(f)) != EOF) {
@@ -915,8 +914,12 @@ int main(int argc, char **argv) {
                symbolTable[i].isInitialized, symbolTable[i].scope, symbolTable[i].isClass, symbolTable[i].value);
     }
 
-    for (int i=0; i < errorCount; i++) {
-        fprintf(stderr, "\nError %d at line %d: %s recognised at the token '%s'\n", i+1, errorTable[i].line, errorTable[i].message, errorTable[i].token);
+    if (errorCount == 0) {
+        printf("Program is syntactically correct.\n\n");
+    } else {
+        for (int i=0; i < errorCount; i++) {
+            fprintf(stderr, "\nError %d at line %d: %s recognised at the token '%s'\n", i+1, errorTable[i].line, errorTable[i].message, errorTable[i].token);
+        }   
     }
 
     fclose(f);
