@@ -1180,7 +1180,7 @@ YY_RULE_SETUP
 case 60:
 YY_RULE_SETUP
 #line 90 "project.l"
-{ yylval.dval = atof(yytext); return DOUBLE_CONST; }
+{ yytext[yyleng - 1] = '\0'; yylval.dval = atof(yytext); return DOUBLE_CONST; }
 	YY_BREAK
 case 61:
 YY_RULE_SETUP

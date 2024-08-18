@@ -1,4 +1,4 @@
 double x = 2.0d;
-double y = 4.0d;
+int y = 4;
 double z;
-z = y % x;
+z = 23.4d + y + x + 1.0d;
