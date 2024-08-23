@@ -92,4 +92,9 @@ const [0-9]+
 {id} { yylval.sval = strdup(yytext); return ID; }
 {const} { yylval.ival = atoi(yytext); return CONST; }
 . { fprintf(stderr, "Error at line %d: Unexpected character '%s'\n", yylineno, yytext); }
+
 %%
+
+int yywrap(){
+    return 1;
+}

@@ -39,15 +39,13 @@ extern char *yytext;
 // Function to add a symbol to the symbol table
 void addSymbol(char *name, char *type, bool isMethod, bool isInitialized, bool isClass, char *value) {
     if (name == NULL || type == NULL) {
-        fprintf(stderr, "Error: Null pointer in addSymbol function\n");
-        exit(1);
+        yyerror("Null pointer in addSymbol function\n");
     }
 
     // Check for duplicate symbol in the current scope
     for (int i = 0; i < symbolCount; i++) {
         if (strcmp(symbolTable[i].name, name) == 0 && symbolTable[i].scope == scope) {
-            fprintf(stderr, "Error: Duplicate symbol '%s' declared in the current scope\n", name);
-            exit(1);
+            yyerror("Duplicate symbol declared in the current scope\n");
         }
     }
 
@@ -59,21 +57,12 @@ void addSymbol(char *name, char *type, bool isMethod, bool isInitialized, bool i
     symbolTable[symbolCount].scope = scope;
     symbolTable[symbolCount].value = value ? strdup(value) : strdup("UNINITIALIZED"); // Use placeholder for uninitialized variables
     symbolCount++;
-
-    // Print the symbol table
-    printf("Symbol table:\n");
-    for (int i = 0; i < symbolCount; i++) {
-        printf("Name: %s, Type: %s, isMethod: %d, isInitialized: %d, Scope: %d, isClass: %d, Value: %s\n\n",
-               symbolTable[i].name, symbolTable[i].type, symbolTable[i].isMethod,
-               symbolTable[i].isInitialized, symbolTable[i].scope, symbolTable[i].isClass, symbolTable[i].value);
-    }
 }
 
 // Function to check if a symbol is in the symbol table
 bool symbolExists(char *name, bool isMethod, bool isClass) {
     if (name == NULL) {
-        fprintf(stderr, "Error: Null pointer in symbolExists function\n");
-        exit(1);
+        yyerror("Null pointer in symbolExists function\n");
     }
     for (int i = 0; i < symbolCount; i++) {
         if (symbolTable[i].name != NULL && strcmp(symbolTable[i].name, name) == 0 && symbolTable[i].isMethod == isMethod && symbolTable[i].isClass == isClass && symbolTable[i].scope <= scope) {
@@ -83,10 +72,11 @@ bool symbolExists(char *name, bool isMethod, bool isClass) {
     return false;
 }
 
+
+// Function to check if a class is defined
 bool classExists(char *name) {
     if (name == NULL) {
-        fprintf(stderr, "Error: Null pointer in classExists function\n");
-        exit(1);
+        yyerror("Null pointer in classExists function\n");
     }
     for (int i = 0; i < symbolCount; i++) {
         if (symbolTable[i].name != NULL && strcmp(symbolTable[i].name, name) == 0 && symbolTable[i].isClass) {
@@ -99,8 +89,7 @@ bool classExists(char *name) {
 // Function to check if a variable has been initialized
 bool isInitialized(char *name) {
     if (name == NULL) {
-        fprintf(stderr, "Error: Null pointer in isInitialized function\n");
-        exit(1);
+        yyerror("Null pointer in isInitialized function\n");
     }
     for (int i = 0; i < symbolCount; i++) {
         if (symbolTable[i].name != NULL && strcmp(symbolTable[i].name, name) == 0 && symbolTable[i].scope <= scope) {
@@ -113,8 +102,7 @@ bool isInitialized(char *name) {
 // Function to set a variable as initialized
 void setInitialized(char *name, char *value) {
     if (name == NULL) {
-        fprintf(stderr, "Error: Null pointer in setInitialized function\n");
-        exit(1);
+        yyerror("Null pointer in setInitialized function\n");
     }
     for (int i = 0; i < symbolCount; i++) {
         if (symbolTable[i].name != NULL && strcmp(symbolTable[i].name, name) == 0 && symbolTable[i].scope == scope) {
@@ -160,8 +148,7 @@ void decreaseScope() {
 // Function to get the type of a variable
 char* getType(char *name) {
     if (name == NULL) {
-        fprintf(stderr, "Error: Null pointer in getType function\n");
-        exit(1);
+        yyerror("Null pointer in getType function\n");
     }
     for (int i = 0; i < symbolCount; i++) {
         if (symbolTable[i].name != NULL && strcmp(symbolTable[i].name, name) == 0 && symbolTable[i].scope == scope) {
@@ -174,8 +161,7 @@ char* getType(char *name) {
 // Function to get the value of a variable
 char* getValue(char *name) {
     if (name == NULL) {
-        fprintf(stderr, "Error: Null pointer in getValue function\n");
-        exit(1);
+        yyerror("Null pointer in getValue function\n");
     }
     for (int i = 0; i < symbolCount; i++) {
         if (symbolTable[i].name != NULL && strcmp(symbolTable[i].name, name) == 0 && symbolTable[i].scope <= scope) {
@@ -252,6 +238,7 @@ char* getValue(char *name) {
 program: /* nothing */
     | class_declaration none_or_newlines program
     | statement none_or_newlines program
+    | error NEWLINE program { yyerrok; }
     ;
 
 class_declaration: access_modifier CLASS CLASS_ID LCB {
@@ -301,7 +288,6 @@ identifier_list_variable: ID { addSymbol($1, "var", false, false, false, NULL); 
     | ID COMMA identifier_list_variable { addSymbol($1, "var", false, false, false, NULL); }
     ;
 
-// Modify your assignment_list rule to check the type of the variable and the expression
 assignment_list: INTEGER assignment_list_int
     | STRING assignment_list_string
     | CHAR assignment_list_char
@@ -533,7 +519,6 @@ assignment_list_object_declared: ID ASSIGN NEW CLASS_ID {
     }
 };
 
-// Modify your variable_declaration rule to add symbols to the symbol table
 variable_declaration: identifier_list
     | access_modifier identifier_list
     | access_modifier assignment_list
@@ -541,7 +526,6 @@ variable_declaration: identifier_list
     | assignment_list_declared
     ;
 
-// Modify your variable_reference rule to check symbols against the symbol table
 variable_reference: ID {
     if (!symbolExists($1, false, false)) {
         yyerror("Variable not declared");
@@ -572,7 +556,6 @@ variable_reference_double: ID {
     }
 };
 
-// Modify your method_declaration rule to add symbols to the symbol table
 method_declaration: access_modifier data_type ID LP { increaseScope(); } none_or_newlines none_or_multiple_parameters none_or_newlines RP LCB none_or_newlines method_body none_or_newlines RCB {
     addSymbol("sum", $2, true, true, false, NULL);
     decreaseScope();
@@ -620,7 +603,6 @@ assignment_statement: data_type ID ASSIGN exp
     | data_type ID ASSIGN variable_reference
     ;
 
-// Modify your method_call rule to check symbols against the symbol table
 method_call: ID LP none_or_newlines none_or_multiple_arguments none_or_newlines RP SEMICOLON {
     if (!symbolExists($1, true, false)) {
         yyerror("Method not declared");
@@ -723,7 +705,7 @@ exp_int: term_int { $$ = $1; }
     | exp_int SUB term_int { $$ = $1 - $3; }
     ;
 
-term_int: factor_int { $$ = $1;}
+term_int: factor_int { $$ = $1; }
     | term_int MUL factor_int { $$ = $1 * $3; }
     | term_int DIV factor_int {
     if ($3 == 0) {
@@ -740,7 +722,7 @@ term_int: factor_int { $$ = $1;}
     }
 }
     | term_int POW factor_int {
-    if ($3 == 0) {
+    if ($1 == 0 && $3 == 0) {
         yyerror("Exponentiation by zero");
     } else {
         $$ = pow($1, $3);
@@ -774,7 +756,7 @@ term_double: factor_double { $$ = $1; }
     }
 }
     | term_double POW factor_double {
-    if ($3 == 0) {
+    if ($1 == 0 && $3 == 0) {
         yyerror("Exponentiation by zero");
     } else {
         $$ = pow($1, $3);
@@ -785,6 +767,7 @@ factor_double: primary_double { $$ = $1; }
     | LP exp_double RP { $$ = $2; }
     ;
 
+// Relationanl expressions
 relational_exp: relational_factor
     | relational_exp EQ relational_factor
     | relational_exp NEQ relational_factor
@@ -809,10 +792,13 @@ unary: primary_int { $$ = $1; }
     | SUB primary_int { $$ = -$2; }
     ;
 
+// Primary integer
 primary_int: CONST { $$ = $1; }
     | variable_reference_int { $$ = $1; }
     ;
 
+
+// Primary double
 primary_double: DOUBLE_CONST { $$ = $1; }
     | variable_reference_double { $$ = $1; }
     ;
@@ -877,7 +863,7 @@ void yyerror(const char *s) {
         errorCount++;
     }
     else {
-        fprintf(stderr, "Error: Too many errors\n");
+        fprintf(stderr, "Error:\n\nToo many errors\n");
         exit(1);
     }
 }
@@ -901,25 +887,19 @@ int main(int argc, char **argv) {
 
     printf("Input Program:\n\n");
     char ch;
-    rewind(f); // Reset the file pointer to the beginning for reading
+    rewind(f);
     while ((ch = fgetc(f)) != EOF) {
         putchar(ch);
         fputc(ch, yyout);
     }
 
-    printf("\n\nSymbol table:\n");
-    for (int i = 0; i < symbolCount; i++) {
-        printf("Name: %s, Type: %s, isMethod: %d, isInitialized: %d, Scope: %d, isClass: %d, Value: %s\n",
-               symbolTable[i].name, symbolTable[i].type, symbolTable[i].isMethod,
-               symbolTable[i].isInitialized, symbolTable[i].scope, symbolTable[i].isClass, symbolTable[i].value);
-    }
-
     if (errorCount == 0) {
-        printf("Program is syntactically correct.\n\n");
+        printf("\n\nProgram is syntactically correct.");
     } else {
-        for (int i=0; i < errorCount; i++) {
-            fprintf(stderr, "\nError %d at line %d: %s recognised at the token '%s'\n", i+1, errorTable[i].line, errorTable[i].message, errorTable[i].token);
-        }   
+        printf("\n\nErrors:\n\n");
+        for (int i = 0; i < errorCount; i++) {
+            fprintf(stderr, "Error %d at line %d: %s recognised at the token '%s'\n", i+1, errorTable[i].line, errorTable[i].message, errorTable[i].token);
+        }
     }
 
     fclose(f);
