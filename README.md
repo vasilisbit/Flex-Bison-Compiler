@@ -106,7 +106,7 @@ This will process the `input.txt` file and generate an output in `output.txt`.
   encounters any syntax or semantic errors.
 - Example error message:
     ```text
-    Error at line 6: Unexpected character '!')
+    Error at line 6: Unexpected character '!'
     ```
 
 ## License
