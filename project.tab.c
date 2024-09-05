@@ -216,7 +216,7 @@ char* getType(char *name) {
         yyerror("Null pointer in getType function\n");
     }
     for (int i = 0; i < symbolCount; i++) {
-        if (symbolTable[i].name != NULL && strcmp(symbolTable[i].name, name) == 0 && symbolTable[i].scope == scope) {
+        if (symbolTable[i].name != NULL && strcmp(symbolTable[i].name, name) == 0 && symbolTable[i].scope <= scope) {
             return symbolTable[i].type;
         }
     }
