@@ -49,6 +49,7 @@ void addSymbol(char *name, char *type, bool isMethod, bool isInitialized, bool i
         }
     }
 
+    printf("Adding symbol: %s, type: %s, scope: %d\n", name, type, scope);
     symbolTable[symbolCount].name = strdup(name);
     symbolTable[symbolCount].type = strdup(type);
     symbolTable[symbolCount].isMethod = isMethod;
@@ -117,11 +118,13 @@ void setInitialized(char *name, char *value) {
 
 // Function to increase the scope
 void increaseScope() {
+    printf("Increasing scope from %d to %d\n", scope, scope + 1);
     scope++;
 }
 
 // Function to decrease the scope
 void decreaseScope() {
+    printf("Decreasing scope from %d to %d\n", scope, scope - 1);
     scope--;
     // Remove all symbols in the symbol table that are out of scope
     int i = 0;
@@ -244,11 +247,11 @@ program: /* nothing */
 class_declaration: access_modifier CLASS CLASS_ID LCB {
     addSymbol($3, "class", false, true, true, NULL);
     increaseScope();
-} none_or_newlines class_body none_or_newlines RCB { decreaseScope(); }
+    } none_or_newlines class_body none_or_newlines RCB { decreaseScope(); }
     | CLASS CLASS_ID LCB {
     addSymbol($2, "class", false, true, true, NULL);
     increaseScope();
-} none_or_newlines class_body none_or_newlines RCB { decreaseScope(); }
+    } none_or_newlines class_body none_or_newlines RCB { decreaseScope(); }
     ;
 
 class_body: /* nothing */
@@ -303,12 +306,12 @@ assignment_list_int: ID ASSIGN exp_int {
     sprintf(valueStr, "%d", $3);
     addSymbol($1, "int", false, true, false, valueStr);
     printf("Variable %s assigned with value %d\n\n", $1, $3);
-}
+    }
     | ID ASSIGN exp_int COMMA assignment_list_int {
     char valueStr[32]; sprintf(valueStr, "%d", $3);
     addSymbol($1, "int", false, true, false, valueStr);
     printf("Variable %s assigned with value %d\n\n", $1, $3);
-};
+    };
 
 assignment_list_string: ID ASSIGN DQ_STRING_DQ { addSymbol($1, "string", false, true, false, $3); }
     | ID ASSIGN DQ_STRING_DQ COMMA assignment_list_string { addSymbol($1, "string", false, true, false, $3); }
@@ -323,13 +326,13 @@ assignment_list_double: ID ASSIGN exp_double {
     sprintf(valueStr, "%f", $3);
     addSymbol($1, "double", false, true, false, valueStr);
     printf("Variable %s assigned with value %f\n\n", $1, $3);
-}
+    }
     | ID ASSIGN exp_double COMMA assignment_list_double {
     char valueStr[64];
     sprintf(valueStr, "%f", $3);
     addSymbol($1, "double", false, true, false, valueStr);
     printf("Variable %s assigned with value %f\n\n", $1, $3);
-};
+    };
 
 assignment_list_boolean: ID ASSIGN boolean { addSymbol($1, "boolean", false, true, false, $3); }
     | ID ASSIGN boolean COMMA assignment_list_boolean { addSymbol($1, "boolean", false, true, false, $3); }
@@ -339,21 +342,21 @@ assignment_list_variable: ID ASSIGN variable_reference {
     char* type = getType($3);
     char* value = getValue($3);
     addSymbol($1, type, false, true, false, value);
-}
+    }
     | ID ASSIGN variable_reference COMMA assignment_list_variable {
     char* type = getType($3);
     char* value = getValue($3);
     addSymbol($1, type, false, true, false, value);
-};
+    };
 
 assignment_list_method: ID ASSIGN method_call {
     char* type = getType($3);
     addSymbol($1, type, false, true, false, NULL);
-}
+    }
     | ID ASSIGN method_call COMMA assignment_list_method {
     char* type = getType($3);
     addSymbol($1, type, false, true, false, NULL);
-};
+    };
 
 assignment_list_object: ID ASSIGN NEW CLASS_ID { addSymbol($1, "class", false, true, false, NULL); }
     | ID ASSIGN NEW CLASS_ID COMMA assignment_list_object { addSymbol($1, "class", false, true, false, NULL); }
@@ -379,18 +382,18 @@ assignment_list_int_declared: ID ASSIGN exp_int {
         setInitialized($1, valueStr);
         printf("Variable %s assigned with value %d\n\n", $1, $3);
     }
-}
+    }
     | ID ASSIGN exp_int COMMA assignment_list_int_declared {
     char* type = getType($1);
     if (type == NULL || strcmp(type, "int") != 0) {
         yyerror("Type mismatch");
     } else {
         char valueStr[32];
-        sprintf(valueStr, "%d", valueStr);
+        sprintf(valueStr, "%d", $3);
         setInitialized($1, valueStr);
         printf("Variable %s assigned with value %d\n\n", $1, $3);
     }
-};
+    };
 
 assignment_list_string_declared: ID ASSIGN DQ_STRING_DQ {
     char* type = getType($1);
@@ -399,7 +402,7 @@ assignment_list_string_declared: ID ASSIGN DQ_STRING_DQ {
     } else {
         setInitialized($1, $3);
     }
-}
+    }
     | ID ASSIGN DQ_STRING_DQ COMMA assignment_list_string_declared {
     char* type = getType($1);
     if (type == NULL || strcmp(type, "string") != 0) {
@@ -407,7 +410,7 @@ assignment_list_string_declared: ID ASSIGN DQ_STRING_DQ {
     } else {
         setInitialized($1, $3);
     }
-};
+    };
 
 assignment_list_char_declared: ID ASSIGN SQ_ANYCHAR_SQ {
     char* type = getType($1);
@@ -416,7 +419,7 @@ assignment_list_char_declared: ID ASSIGN SQ_ANYCHAR_SQ {
     } else {
         setInitialized($1, $3);
     }
-}
+    }
     | ID ASSIGN SQ_ANYCHAR_SQ COMMA assignment_list_char_declared {
     char* type = getType($1);
     if (type == NULL || strcmp(type, "char") != 0) {
@@ -424,7 +427,7 @@ assignment_list_char_declared: ID ASSIGN SQ_ANYCHAR_SQ {
     } else {
         setInitialized($1, $3);
     }
-};
+    };
 
 assignment_list_double_declared: ID ASSIGN exp_double {
     char* type = getType($1);
@@ -436,7 +439,7 @@ assignment_list_double_declared: ID ASSIGN exp_double {
         setInitialized($1, valueStr);
         printf("Variable %s assigned with value %f\n\n", $1, $3);
     }
-}
+    }
     | ID ASSIGN exp_double COMMA assignment_list_double_declared {
     char* type = getType($1);
     if (type == NULL || strcmp(type, "double") != 0) {
@@ -447,7 +450,7 @@ assignment_list_double_declared: ID ASSIGN exp_double {
         setInitialized($1, valueStr);
         printf("Variable %s assigned with value %f\n\n", $1, $3);
     }
-};
+    };
 
 assignment_list_boolean_declared: ID ASSIGN boolean {
     char* type = getType($1);
@@ -456,7 +459,7 @@ assignment_list_boolean_declared: ID ASSIGN boolean {
     } else {
         setInitialized($1, $3);
     }
-}
+    }
     | ID ASSIGN boolean COMMA assignment_list_boolean_declared {
     char* type = getType($1);
     if (type == NULL || strcmp(type, "boolean") != 0) {
@@ -464,7 +467,7 @@ assignment_list_boolean_declared: ID ASSIGN boolean {
     } else {
         setInitialized($1, $3);
     }
-};
+    };
 
 assignment_list_variable_declared: ID ASSIGN variable_reference {
     char* type = getType($1);
@@ -474,7 +477,7 @@ assignment_list_variable_declared: ID ASSIGN variable_reference {
     } else {
         setInitialized($1, value);
     }
-}
+    }
     | ID ASSIGN variable_reference COMMA assignment_list_variable_declared {
     char* type = getType($1);
     char* value = getValue($3);
@@ -483,7 +486,7 @@ assignment_list_variable_declared: ID ASSIGN variable_reference {
     } else {
         setInitialized($1, value);
     }
-};
+    };
 
 assignment_list_method_declared: ID ASSIGN method_call {
     char* type = getType($1);
@@ -492,7 +495,7 @@ assignment_list_method_declared: ID ASSIGN method_call {
     } else {
         setInitialized($1, NULL);
     }
-}
+    }
     | ID ASSIGN method_call COMMA assignment_list_method_declared {
     char* type = getType($1);
     if (type == NULL || strcmp(type, getType($3)) != 0) {
@@ -500,7 +503,7 @@ assignment_list_method_declared: ID ASSIGN method_call {
     } else {
         setInitialized($1, NULL);
     }
-};
+    };
 
 assignment_list_object_declared: ID ASSIGN NEW CLASS_ID {
     char* type = getType($1);
@@ -509,7 +512,7 @@ assignment_list_object_declared: ID ASSIGN NEW CLASS_ID {
     } else {
         setInitialized($1, NULL);
     }
-}
+    }
     | ID ASSIGN NEW CLASS_ID COMMA assignment_list_object_declared {
     char* type = getType($1);
     if (type == NULL || strcmp(type, $4) != 0) {
@@ -517,7 +520,7 @@ assignment_list_object_declared: ID ASSIGN NEW CLASS_ID {
     } else {
         setInitialized($1, NULL);
     }
-};
+    };
 
 variable_declaration: identifier_list
     | access_modifier identifier_list
@@ -534,7 +537,7 @@ variable_reference: ID {
     } else {
         $$ = getValue($1);
     }
-};
+    };
 
 variable_reference_int: ID {
     if (!symbolExists($1, false, false)) {
@@ -544,7 +547,7 @@ variable_reference_int: ID {
     } else {
         $$ = atoi(getValue($1));
     }
-};
+    };
 
 variable_reference_double: ID {
     if (!symbolExists($1, false, false)) {
@@ -554,16 +557,28 @@ variable_reference_double: ID {
     } else {
         $$ = atof(getValue($1));
     }
-};
+    };
 
-method_declaration: access_modifier data_type ID LP { increaseScope(); } none_or_newlines none_or_multiple_parameters none_or_newlines RP LCB none_or_newlines method_body none_or_newlines RCB {
-    addSymbol("sum", $2, true, true, false, NULL);
+method_declaration: access_modifier data_type ID LP {
+    increaseScope();
+    if (!symbolExists($3, false, false)) {
+        addSymbol($3, $2, true, true, false, NULL);
+    } else {
+        yyerror("Method already declared");
+    }
+    } none_or_newlines none_or_multiple_parameters none_or_newlines RP LCB none_or_newlines method_body none_or_newlines RCB {
     decreaseScope();
-}
-    | data_type ID LP { increaseScope(); } none_or_newlines none_or_multiple_parameters none_or_newlines RP LCB none_or_newlines method_body none_or_newlines RCB {
-    addSymbol($2, $1, true, true, false, NULL);
+    }
+    | data_type ID LP {
+    increaseScope();
+    if (!symbolExists($2, false, false)) {
+        addSymbol($2, $1, true, true, false, NULL);
+    } else {
+        yyerror("Method already declared");
+    }
+    } none_or_newlines none_or_multiple_parameters none_or_newlines RP LCB none_or_newlines method_body none_or_newlines RCB {
     decreaseScope();
-};
+    };
 
 none_or_multiple_parameters: /* nothing */
     | parameter parameters
@@ -607,7 +622,7 @@ method_call: ID LP none_or_newlines none_or_multiple_arguments none_or_newlines 
     if (!symbolExists($1, true, false)) {
         yyerror("Method not declared");
     }
-};
+    };
 
 none_or_multiple_arguments: /* nothing */
     | parameter arguments
@@ -619,7 +634,7 @@ arguments: /* nothing */
     | COMMA none_or_newlines variable_reference arguments
     ;
 
-if_statement: IF LP  none_or_newlines if_elif_parenthesis_statement none_or_newlines RP LCB none_or_newlines statement none_or_newlines RCB none_or_newlines none_or_multiple_elif none_or_newlines none_or_one_else
+if_statement: IF LP none_or_newlines if_elif_parenthesis_statement none_or_newlines RP LCB none_or_newlines statement none_or_newlines RCB none_or_newlines none_or_multiple_elif none_or_newlines none_or_one_else
     ;
 
 if_elif_parenthesis_statement: exp
@@ -693,7 +708,7 @@ single_or_multiple_variables: /* nothing */
     } else if (!isInitialized($2)) {
         yyerror("Variable not initialized");
     }
-};
+    };
 
 exp: exp_int
     | exp_double
@@ -713,21 +728,21 @@ term_int: factor_int { $$ = $1; }
     } else {
         $$ = $1 / $3;
     }
-}
+    }
     | term_int MOD factor_int {
     if ($3 == 0) {
         yyerror("Division by zero");
     } else {
         $$ = fmod($1, $3);
     }
-}
+    }
     | term_int POW factor_int {
     if ($1 == 0 && $3 == 0) {
         yyerror("Exponentiation by zero");
     } else {
         $$ = pow($1, $3);
     }
-};
+    };
 
 factor_int: primary_int { $$ = $1; }
     | LP exp_int RP { $$ = $2; }
@@ -747,21 +762,21 @@ term_double: factor_double { $$ = $1; }
     } else {
         $$ = $1 / $3;
     }
-}
+    }
     | term_double MOD factor_double {
     if ($3 == 0) {
         yyerror("Division by zero");
     } else {
         $$ = fmod($1, $3);
     }
-}
+    }
     | term_double POW factor_double {
     if ($1 == 0 && $3 == 0) {
         yyerror("Exponentiation by zero");
     } else {
         $$ = pow($1, $3);
     }
-};
+    };
 
 factor_double: primary_double { $$ = $1; }
     | LP exp_double RP { $$ = $2; }
@@ -809,28 +824,28 @@ object_creation: CLASS_ID ID ASSIGN NEW CLASS_ID {
     } else {
         addSymbol($2, $1, false, true, false, $5);
     }
-} LP RP SEMICOLON
+    } LP RP SEMICOLON
     ;
 
-member_access: ID DOT member_access_body {
+member_access: ID DOT member_access_body none_or_newlines {
     if (!symbolExists($1, false, true)) {
         yyerror("Class not declared");
     } else if (!symbolExists($3, false, false)) {
         yyerror("Member not declared");
     }
-} none_or_newlines
+    }
     ;
 
 member_access_body: ID SEMICOLON {
     if (!symbolExists($1, false, false)) {
         yyerror("Variable not declared");
     }
-}
+    }
     | method_call {
     if (!symbolExists($1, true, false)) {
         yyerror("Method not declared");
     }
-};
+    };
 
 access_modifier: PUBLIC
     | PRIVATE
@@ -887,10 +902,18 @@ int main(int argc, char **argv) {
 
     printf("Input Program:\n\n");
     char ch;
+    int line_number = 1;
     rewind(f);
+    printf("%4d  | ", line_number);
+    fprintf(yyout, "%4d  | ", line_number);
     while ((ch = fgetc(f)) != EOF) {
         putchar(ch);
         fputc(ch, yyout);
+        if (ch == '\n' && !feof(f)) {
+            line_number++;
+            printf("%4d  | ", line_number);
+            fprintf(yyout, "%4d  | ", line_number);
+        }
     }
 
     if (errorCount == 0) {

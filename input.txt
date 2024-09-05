@@ -1,5 +1,5 @@
-double x = 2.0d;
-int y = 4;
-double z;
-z = 23.4 + y + x + 1.0d;
-INT q;
+public class Test(){
+    public void main(int x, int y){
+        x = 0;
+    }
+}
