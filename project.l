@@ -10,6 +10,7 @@
 %option yylineno
 
 id [A-Za-z_][A-Za-z0-9_]*
+methodID [A-Za-z_][A-Za-z0-9_]*[(]
 class_ID [A-Z_][A-Za-z0-9_]*
 const [0-9]+
 
@@ -90,6 +91,7 @@ const [0-9]+
 "\""[^"\n]*"\"" { yylval.sval = strdup(yytext); return DQ_STRING_DQ; }
 {class_ID} { yylval.sval = strdup(yytext); return CLASS_ID; }
 {id} { yylval.sval = strdup(yytext); return ID; }
+{methodID} { yylval.sval = strdup(yytext); return METHOD_ID; }
 {const} { yylval.ival = atoi(yytext); return CONST; }
 . { fprintf(stderr, "Error at line %d: Unexpected character '%s'\n", yylineno, yytext); }
 

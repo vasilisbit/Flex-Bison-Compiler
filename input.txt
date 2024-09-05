@@ -1,9 +1,9 @@
-public class Test {
-    public void method1() {
-        out.print("Hello world!");
-    }
-
-    public void method2() {
-        method1();
-    }
+double x;
+int w;
+public int main(){
+    x = 4.0d;
 }
+w = 8;
+int y = 7;
+int z;
+z = (x + y) ^ 2 % 2 - w;

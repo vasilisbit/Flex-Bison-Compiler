@@ -161,7 +161,7 @@ char* getValue(char *name) {
 }
 
 %token <ival> CONST
-%token <sval> ID CLASS_ID
+%token <sval> ID CLASS_ID METHOD_ID
 %token <dval> DOUBLE_CONST
 %token <cval> SQ_ANYCHAR_SQ
 %token <sval> DQ_STRING_DQ
@@ -209,9 +209,9 @@ char* getValue(char *name) {
 %type <sval> variable_reference
 %type <sval> method_call
 %type identifier_list
-%type <ival> exp_int factor_int term_int unary primary_int variable_reference_int
+%type <ival> exp_int factor_int term_int unary primary_int
 %type <sval> boolean
-%type <dval> exp_double factor_double term_double primary_double variable_reference_double
+%type <dval> exp_double factor_double term_double primary_double
 
 %%
 
@@ -512,31 +512,11 @@ variable_reference: ID {
     } else if (!isInitialized($1)) {
         yyerror("Variable not initialized");
     } else {
-        $$ = getValue($1);
+        $$ = $1;
     }
     };
 
-variable_reference_int: ID {
-    if (!symbolExists($1, false, false)) {
-        yyerror("Variable not declared");
-    } else if (!isInitialized($1)) {
-        yyerror("Variable not initialized");
-    } else {
-        $$ = atoi(getValue($1));
-    }
-    };
-
-variable_reference_double: ID {
-    if (!symbolExists($1, false, false)) {
-        yyerror("Variable not declared");
-    } else if (!isInitialized($1)) {
-        yyerror("Variable not initialized");
-    } else {
-        $$ = atof(getValue($1));
-    }
-    };
-
-method_declaration: access_modifier data_type ID LP {
+method_declaration: access_modifier data_type METHOD_ID {
     if (!symbolExists($3, false, false)) {
         addSymbol($3, $2, true, true, false, NULL);
     } else {
@@ -546,7 +526,7 @@ method_declaration: access_modifier data_type ID LP {
     } none_or_newlines none_or_multiple_parameters none_or_newlines RP LCB none_or_newlines method_body none_or_newlines RCB {
     decreaseScope();
     }
-    | data_type ID LP {
+    | data_type METHOD_ID {
     if (!symbolExists($2, false, false)) {
         addSymbol($2, $1, true, true, false, NULL);
     } else {
@@ -595,7 +575,7 @@ assignment_statement: data_type ID ASSIGN exp
     | data_type ID ASSIGN variable_reference
     ;
 
-method_call: ID LP none_or_newlines none_or_multiple_arguments none_or_newlines RP SEMICOLON {
+method_call: METHOD_ID none_or_newlines none_or_multiple_arguments none_or_newlines RP SEMICOLON {
     if (!symbolExists($1, true, false)) {
         yyerror("Method not declared");
     }
@@ -786,13 +766,13 @@ unary: primary_int { $$ = $1; }
 
 // Primary integer
 primary_int: CONST { $$ = $1; }
-    | variable_reference_int { $$ = $1; }
+    | variable_reference { $$ = atoi(getValue($1)); }
     ;
 
 
 // Primary double
 primary_double: DOUBLE_CONST { $$ = $1; }
-    | variable_reference_double { $$ = $1; }
+    | variable_reference { $$ = atof(getValue($1)); }
     ;
 
 object_creation: CLASS_ID ID ASSIGN NEW CLASS_ID {
