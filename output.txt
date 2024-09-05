@@ -1,4 +1,4 @@
-   1  | public class Test(){
+   1  | public class Test{
    2  |     public void main(int x, int y){
    3  |         x = 0;
    4  |     }

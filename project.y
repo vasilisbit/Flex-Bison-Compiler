@@ -49,7 +49,6 @@ void addSymbol(char *name, char *type, bool isMethod, bool isInitialized, bool i
         }
     }
 
-    printf("Adding symbol: %s, type: %s, scope: %d\n", name, type, scope);
     symbolTable[symbolCount].name = strdup(name);
     symbolTable[symbolCount].type = strdup(type);
     symbolTable[symbolCount].isMethod = isMethod;
@@ -118,13 +117,11 @@ void setInitialized(char *name, char *value) {
 
 // Function to increase the scope
 void increaseScope() {
-    printf("Increasing scope from %d to %d\n", scope, scope + 1);
     scope++;
 }
 
 // Function to decrease the scope
 void decreaseScope() {
-    printf("Decreasing scope from %d to %d\n", scope, scope - 1);
     scope--;
     // Remove all symbols in the symbol table that are out of scope
     int i = 0;
@@ -140,11 +137,6 @@ void decreaseScope() {
         } else {
             i++;
         }
-    }
-    // Free the memory allocated for the name and type of the last symbol
-    if (symbolCount > 0) {
-        free(symbolTable[symbolCount - 1].name);
-        free(symbolTable[symbolCount - 1].type);
     }
 }
 
@@ -900,7 +892,7 @@ int main(int argc, char **argv) {
 
     yyparse();
 
-    printf("Input Program:\n\n");
+    printf("Input Program:\n");
     char ch;
     int line_number = 1;
     rewind(f);
