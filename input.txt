@@ -1,5 +1,9 @@
-public class Test{
-    public void main(int x, int y){
-        x = 0;
+public class Test {
+    public void method1() {
+        out.print("Hello world!");
+    }
+
+    public void method2() {
+        method1();
     }
 }

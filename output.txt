@@ -1,5 +1,9 @@
-   1  | public class Test{
-   2  |     public void main(int x, int y){
-   3  |         x = 0;
+   1  | public class Test {
+   2  |     public void method1() {
+   3  |         out.print("Hello world!");
    4  |     }
-   5  | }
+   5  | 
+   6  |     public void method2() {
+   7  |         method1();
+   8  |     }
+   9  | }

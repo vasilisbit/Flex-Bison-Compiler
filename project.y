@@ -123,21 +123,6 @@ void increaseScope() {
 // Function to decrease the scope
 void decreaseScope() {
     scope--;
-    // Remove all symbols in the symbol table that are out of scope
-    int i = 0;
-    while (i < symbolCount) {
-        if (symbolTable[i].scope > scope && !symbolTable[i].isClass) {
-            free(symbolTable[i].name);
-            free(symbolTable[i].type);
-            // Shift all elements to the left
-            for (int j = i; j < symbolCount - 1; j++) {
-                symbolTable[j] = symbolTable[j + 1];
-            }
-            symbolCount--;
-        } else {
-            i++;
-        }
-    }
 }
 
 // Function to get the type of a variable
@@ -552,22 +537,22 @@ variable_reference_double: ID {
     };
 
 method_declaration: access_modifier data_type ID LP {
-    increaseScope();
     if (!symbolExists($3, false, false)) {
         addSymbol($3, $2, true, true, false, NULL);
     } else {
         yyerror("Method already declared");
     }
+    increaseScope();
     } none_or_newlines none_or_multiple_parameters none_or_newlines RP LCB none_or_newlines method_body none_or_newlines RCB {
     decreaseScope();
     }
     | data_type ID LP {
-    increaseScope();
     if (!symbolExists($2, false, false)) {
         addSymbol($2, $1, true, true, false, NULL);
     } else {
         yyerror("Method already declared");
     }
+    increaseScope();
     } none_or_newlines none_or_multiple_parameters none_or_newlines RP LCB none_or_newlines method_body none_or_newlines RCB {
     decreaseScope();
     };
