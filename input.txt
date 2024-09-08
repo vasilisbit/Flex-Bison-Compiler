@@ -1,6 +1,6 @@
 double x = 2.0d;
 double y = 4.3d;
 public void main(){
-    double a = x, z = y;
+    double a = x, z = y; /* dfskjhdskjfhkdshfkdshfkjdskfjdskjfdsfdsfsdfdfghdfglfjkdhglkjfdshglkjhfdsjlkghfdslkjhgfdslkjhgflkdsjhglkdsjhkhkdsjfskdjfksdjhfkjshf */
     a = y, z = x;
 }

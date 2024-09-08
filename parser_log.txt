@@ -1,3 +1,6 @@
+[get_terminal_width] Debug: Calling ioctl to get terminal size...
+[get_terminal_width] Debug: ioctl succeeded, terminal width is 80.
+
 [main] Starting parser
 [main] Starting yyparse
 

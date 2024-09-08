@@ -1,6 +1,6 @@
    1  | double x = 2.0d;
    2  | double y = 4.3d;
    3  | public void main(){
-   4  |     double a = x, z = y;
+   4  |     double a = x, z = y; /* dfskjhdskjfhkdshfkdshfkjdskfjdskjfdsfdsfsdfdfghdfglfjkdhglkjfdshglkjhfdsjlkghfdslkjhgfdslkjhgflkdsjhglkdsjhkhkdsjfskdjfksdjhfkjshf */
    5  |     a = y, z = x;
    6  | }

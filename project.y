@@ -6,6 +6,8 @@
 #include <stdbool.h>
 #include "error.h"
 #include <errno.h>
+#include <unistd.h>
+#include <sys/ioctl.h>
 
 // Define a symbol table
 struct symbol {
@@ -46,6 +48,20 @@ void log_message(const char* function_name, const char* message) {
     }
     fprintf(log_file, "[%s] %s\n", function_name, message);
     fclose(log_file);
+}
+
+int get_terminal_width() {
+    struct winsize w;
+    log_message("get_terminal_width", "Debug: Calling ioctl to get terminal size...");
+    if (ioctl(STDOUT_FILENO, TIOCGWINSZ, &w) == -1) {
+        perror("ioctl");
+        log_message("get_terminal_width", "Debug: ioctl failed, returning default width 80.\n");
+        return 80; // Default width if ioctl fails
+    }
+    char message[50];
+    snprintf(message, sizeof(message), "Debug: ioctl succeeded, terminal width is %d.\n", w.ws_col);
+    log_message("get_terminal_width", message);
+    return w.ws_col;
 }
 
 // Function to add an assignment to the list
@@ -1003,6 +1019,8 @@ int main(int argc, char **argv) {
         fclose(log_file);
     }
 
+    int width = get_terminal_width();
+
     log_message("main", "Starting parser");
 
     if (argc < 2) {
@@ -1038,13 +1056,19 @@ int main(int argc, char **argv) {
     rewind(f);
     printf("%4d  | ", line_number);
     fprintf(yyout, "%4d  | ", line_number);
+    int char_count = 0;
     while ((ch = fgetc(f)) != EOF) {
         putchar(ch);
         fputc(ch, yyout);
+        char_count++;
         if (ch == '\n' && !feof(f)) {
             line_number++;
+            char_count = 0;
             printf("%4d  | ", line_number);
             fprintf(yyout, "%4d  | ", line_number);
+        } else if (char_count >= width - 8) {
+            char_count = 0;
+            printf("\n%4d  | ", line_number);
         }
     }
 
