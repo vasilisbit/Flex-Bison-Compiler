@@ -4,6 +4,7 @@
 #include "stdlib.h"
 #include "string.h"
 #include "math.h"
+#include "error.h"
 #define YYLTYPE int
 %}
 
@@ -23,10 +24,10 @@ const [0-9]+
 <COMMENT>[^*\r\n] { }
 <COMMENT>"*/" { BEGIN(INITIAL); }
 <COMMENT><<EOF>> {
-    printf("Error: Unterminated comment\n");
-    exit(1);
+    addError(yylineno, "Unterminated comment", "/*");
+    yyterminate(); // Terminate the lexer to stop further processing
 }
-"//".*"\r\n" { /* Ignore single line comment */ }
+"//".* { yylineno++; }
 
 "\r\n" { return NEWLINE; }
 "\t" { /* return TAB; */ }
@@ -88,12 +89,14 @@ const [0-9]+
 
 [0-9]+\.[0-9]+[d] { yytext[yyleng - 1] = '\0'; yylval.dval = atof(yytext); return DOUBLE_CONST; }
 "\'"[^'\n]"\'" { yylval.sval = strdup(yytext); return SQ_ANYCHAR_SQ; }
+"\'"[^'\n]*"\'" { addError(yylineno, "Invalid character literal", yytext); }
 "\""[^"\n]*"\"" { yylval.sval = strdup(yytext); return DQ_STRING_DQ; }
+"\""[^"\n]* { addError(yylineno, "Unterminated string", yytext); }
 {class_ID} { yylval.sval = strdup(yytext); return CLASS_ID; }
 {id} { yylval.sval = strdup(yytext); return ID; }
 {methodID} { yylval.sval = strdup(yytext); return METHOD_ID; }
 {const} { yylval.ival = atoi(yytext); return CONST; }
-. { fprintf(stderr, "Error at line %d: Unexpected character '%s'\n", yylineno, yytext); }
+. { addError(yylineno, "Unexpected character", yytext); }
 
 %%
 
