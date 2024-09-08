@@ -1,9 +1,6 @@
-   1  | double x;
-   2  | int w;
-   3  | public int main(){
-   4  |     x = 4.0d;
-   5  | }
-   6  | w = 8;
-   7  | int y = 7;
-   8  | int z;
-   9  | z = (x + y) ^ 2 % 2 - w;
+   1  | double x = 2.0d;
+   2  | double y = 4.3d;
+   3  | public void main(){
+   4  |     double a = x, z = y;
+   5  |     a = y, z = x;
+   6  | }

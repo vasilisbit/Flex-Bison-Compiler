@@ -1,9 +1,6 @@
-double x;
-int w;
-public int main(){
-    x = 4.0d;
+double x = 2.0d;
+double y = 4.3d;
+public void main(){
+    double a = x, z = y;
+    a = y, z = x;
 }
-w = 8;
-int y = 7;
-int z;
-z = (x + y) ^ 2 % 2 - w;

@@ -4,6 +4,8 @@
 #include <math.h>
 #include <string.h>
 #include <stdbool.h>
+#include "error.h"
+#include <errno.h>
 
 // Define a symbol table
 struct symbol {
@@ -16,16 +18,16 @@ struct symbol {
     char *value;
 };
 
-struct error {
-    int line;
-    char *message;
-    char *token;
+// Define a structure to store assignment information
+struct assignment {
+    char *variable;
+    char *value;
 };
 
-struct error errorTable[1000];
-int errorCount = 0;
+struct assignment assignments[5000];
+int assignmentCount = 0;
 
-struct symbol symbolTable[1000];
+struct symbol symbolTable[5000];
 int symbolCount = 0;
 int scope = 0;
 
@@ -36,118 +38,255 @@ extern int yylex();
 extern int yylineno;
 extern char *yytext;
 
+void log_message(const char* function_name, const char* message) {
+    FILE* log_file = fopen("parser_log.txt", "a");
+    if (log_file == NULL) {
+        fprintf(stderr, "Error opening log file: %s\n", strerror(errno));
+        return;
+    }
+    fprintf(log_file, "[%s] %s\n", function_name, message);
+    fclose(log_file);
+}
+
+// Function to add an assignment to the list
+void addAssignment(char *variable, char *value) {
+    if (assignmentCount < 5000) {
+        assignments[assignmentCount].variable = strdup(variable);
+        assignments[assignmentCount].value = strdup(value);
+        assignmentCount++;
+    } else {
+        fprintf(stderr, "Error: Too many assignments\n");
+        exit(1);
+    }
+}
+
+// Function to print all assignments
+void printAssignments() {
+    printf("Collected Assignments:\n");
+    for (int i = 0; i < assignmentCount; i++) {
+        printf("%d) Variable %s assigned with value %s\n", i + 1, assignments[i].variable, assignments[i].value);
+    }
+}
+
 // Function to add a symbol to the symbol table
 void addSymbol(char *name, char *type, bool isMethod, bool isInitialized, bool isClass, char *value) {
+    log_message("addSymbol", "Entering addSymbol function");
+
     if (name == NULL || type == NULL) {
-        yyerror("Null pointer in addSymbol function\n");
+        log_message("addSymbol", "Null pointer in addSymbol function\n");
+        yyerror("Null pointer in addSymbol function");
+        return;
+    }
+
+    if (symbolCount >= 5000) {
+        log_message("addSymbol", "Symbol table full\n");
+        yyerror("Symbol table full");
+        return;
     }
 
     // Check for duplicate symbol in the current scope
     for (int i = 0; i < symbolCount; i++) {
         if (strcmp(symbolTable[i].name, name) == 0 && symbolTable[i].scope == scope) {
-            yyerror("Duplicate symbol declared in the current scope\n");
+            char error_msg[100];
+            snprintf(error_msg, sizeof(error_msg), "Duplicate symbol declared: %s\n", name);
+            log_message("addSymbol", error_msg);
+            yyerror(error_msg);
+            return;
         }
     }
 
     symbolTable[symbolCount].name = strdup(name);
+    if (symbolTable[symbolCount].name == NULL) {
+        log_message("addSymbol", "Memory allocation failed for symbol name\n");
+        yyerror("Memory allocation failed");
+        return;
+    }
+
     symbolTable[symbolCount].type = strdup(type);
+    if (symbolTable[symbolCount].type == NULL) {
+        log_message("addSymbol", "Memory allocation failed for symbol type\n");
+        yyerror("Memory allocation failed");
+        free(symbolTable[symbolCount].name);
+        return;
+    }
+
     symbolTable[symbolCount].isMethod = isMethod;
     symbolTable[symbolCount].isInitialized = isInitialized;
     symbolTable[symbolCount].isClass = isClass;
     symbolTable[symbolCount].scope = scope;
-    symbolTable[symbolCount].value = value ? strdup(value) : strdup("UNINITIALIZED"); // Use placeholder for uninitialized variables
+
+    if (value) {
+        symbolTable[symbolCount].value = strdup(value);
+        if (symbolTable[symbolCount].value == NULL) {
+            log_message("addSymbol", "Memory allocation failed for symbol value\n");
+            yyerror("Memory allocation failed");
+            free(symbolTable[symbolCount].name);
+            free(symbolTable[symbolCount].type);
+            return;
+        }
+    } else {
+        symbolTable[symbolCount].value = strdup("UNINITIALIZED");
+        if (symbolTable[symbolCount].value == NULL) {
+            log_message("addSymbol", "Memory allocation failed for symbol value\n");
+            yyerror("Memory allocation failed");
+            free(symbolTable[symbolCount].name);
+            free(symbolTable[symbolCount].type);
+            return;
+        }
+    }
+
     symbolCount++;
+
+    char log_msg[200];
+    snprintf(log_msg, sizeof(log_msg), "Added symbol: name=%s, type=%s, isMethod=%d, isInitialized=%d, isClass=%d, scope=%d, value=%s\n",
+             name, type, isMethod, isInitialized, isClass, scope, value ? value : "UNINITIALIZED");
+    log_message("addSymbol", log_msg);
 }
 
 // Function to check if a symbol is in the symbol table
 bool symbolExists(char *name, bool isMethod, bool isClass) {
+    log_message("symbolExists", "Entering symbolExists function");
     if (name == NULL) {
-        yyerror("Null pointer in symbolExists function\n");
+        log_message("symbolExists", "Null pointer in function\n");
+        yyerror("Null pointer in symbolExists function");
+        return false;
     }
     for (int i = 0; i < symbolCount; i++) {
-        if (symbolTable[i].name != NULL && strcmp(symbolTable[i].name, name) == 0 && symbolTable[i].isMethod == isMethod && symbolTable[i].isClass == isClass && symbolTable[i].scope <= scope) {
+        if (symbolTable[i].name != NULL && strcmp(symbolTable[i].name, name) == 0 &&
+            symbolTable[i].isMethod == isMethod && symbolTable[i].isClass == isClass &&
+            symbolTable[i].scope <= scope) {
+            log_message("symbolExists", "Symbol found\n");
             return true;
         }
     }
+    log_message("symbolExists", "Symbol not found\n");
     return false;
 }
 
 
 // Function to check if a class is defined
 bool classExists(char *name) {
+    log_message("classExists", "Entering classExists function");
     if (name == NULL) {
+        log_message("classExists", "Null pointer in function\n");
         yyerror("Null pointer in classExists function\n");
+        return false;
     }
     for (int i = 0; i < symbolCount; i++) {
         if (symbolTable[i].name != NULL && strcmp(symbolTable[i].name, name) == 0 && symbolTable[i].isClass) {
+            log_message("classExists", "Class found\n");
             return true;
         }
     }
+    log_message("classExists", "Class not found\n");
     return false;
 }
 
 // Function to check if a variable has been initialized
 bool isInitialized(char *name) {
+    log_message("isInitialized", "Entering isInitialized function");
     if (name == NULL) {
+        log_message("isInitialized", "Null pointer in function\n");
         yyerror("Null pointer in isInitialized function\n");
+        return false;
     }
     for (int i = 0; i < symbolCount; i++) {
         if (symbolTable[i].name != NULL && strcmp(symbolTable[i].name, name) == 0 && symbolTable[i].scope <= scope) {
+            log_message("isInitialized", name);
+            log_message("isInitialized", "\n");
             return symbolTable[i].isInitialized;
         }
     }
+    log_message("isInitialized", "Variable not found\n");
     return false;
 }
 
 // Function to set a variable as initialized
 void setInitialized(char *name, char *value) {
+    log_message("setInitialized", "Entering setInitialized function");
     if (name == NULL) {
+        log_message("setInitialized", "Null pointer in function\n");
         yyerror("Null pointer in setInitialized function\n");
+        return;
     }
     for (int i = 0; i < symbolCount; i++) {
         if (symbolTable[i].name != NULL && strcmp(symbolTable[i].name, name) == 0 && symbolTable[i].scope == scope) {
             symbolTable[i].isInitialized = true;
             if (value != NULL) {
-                free(symbolTable[i].value); // Free the old value
-                symbolTable[i].value = strdup(value); // Set the new value
+                if (symbolTable[i].value != NULL){
+                    free(symbolTable[i].value);
+                }
+                symbolTable[i].value = strdup(value);
+                if (symbolTable[i].value == NULL) {
+                    log_message("setInitialized", "Memory allocation failed for value\n");
+                    yyerror("Memory allocation failed in setInitialized");
+                    return;
+                }
             }
+            char log_msg[100];
+            snprintf(log_msg, sizeof(log_msg), "Variable %s initialized with value %s\n", name, value ? value : "NULL");
+            log_message("setInitialized", log_msg);
+            return;
         }
     }
+    log_message("setInitialized", "Variable not found\n");
 }
 
 // Function to increase the scope
 void increaseScope() {
     scope++;
+    char log_msg[50];
+    snprintf(log_msg, sizeof(log_msg), "Scope increased to %d\n", scope);
+    log_message("increaseScope", log_msg);
 }
 
 // Function to decrease the scope
 void decreaseScope() {
     scope--;
+    char log_msg[50];
+    snprintf(log_msg, sizeof(log_msg), "Scope decreased to %d\n", scope);
+    log_message("decreaseScope", log_msg);
 }
 
 // Function to get the type of a variable
 char* getType(char *name) {
+    log_message("getType", "Entering getType function");
     if (name == NULL) {
+        log_message("getType", "Null pointer in function\n");
         yyerror("Null pointer in getType function\n");
+        return NULL;
     }
     for (int i = 0; i < symbolCount; i++) {
         if (symbolTable[i].name != NULL && strcmp(symbolTable[i].name, name) == 0 && symbolTable[i].scope <= scope) {
+            char log_msg[100];
+            snprintf(log_msg, sizeof(log_msg), "Type of %s is %s\n", name, symbolTable[i].type);
+            log_message("getType", log_msg);
             return symbolTable[i].type;
         }
     }
+    log_message("getType", "Variable not found\n");
+    yyerror("Variable not declared");
     return NULL;
 }
 
 // Function to get the value of a variable
 char* getValue(char *name) {
+    log_message("getValue", "Entering getValue function");
     if (name == NULL) {
+        log_message("getValue", "Null pointer in function\n");
         yyerror("Null pointer in getValue function\n");
+        return NULL;
     }
     for (int i = 0; i < symbolCount; i++) {
         if (symbolTable[i].name != NULL && strcmp(symbolTable[i].name, name) == 0 && symbolTable[i].scope <= scope) {
+            char log_msg[100];
+            snprintf(log_msg, sizeof(log_msg), "Value of %s is %s\n", name, symbolTable[i].value);
+            log_message("getValue", log_msg);
             return symbolTable[i].value;
         }
     }
+    log_message("getValue", "Variable not found\n");
+    yyerror("Variable not declared");
     return NULL;
 }
 
@@ -200,7 +339,6 @@ char* getValue(char *name) {
 %type <sval> data_type
 %type <sval> assignment_list_int
 %type <sval> assignment_list_string
-%type <sval> assignment_list_variable
 %type <sval> assignment_list_method
 %type <sval> assignment_list_object
 %type variable_declaration
@@ -216,19 +354,21 @@ char* getValue(char *name) {
 %%
 
 program: /* nothing */
-    | class_declaration none_or_newlines program
-    | statement none_or_newlines program
-    | error NEWLINE program { yyerrok; }
+    | class_declaration none_or_newlines { log_message("program", "Entering program\n"); } program { log_message("program", "Exiting program\n"); }
+    | statement none_or_newlines { log_message("program", "Entering program\n"); } program { log_message("program", "Exiting program\n"); }
+    | error { log_message("program", "Entering program\n"); } program { log_message("program", "Exiting program\n"); yyerrok; }
     ;
 
 class_declaration: access_modifier CLASS CLASS_ID LCB {
+    log_message("class_declaration", "Entering class_declaration\n");
     addSymbol($3, "class", false, true, true, NULL);
     increaseScope();
-    } none_or_newlines class_body none_or_newlines RCB { decreaseScope(); }
+    } none_or_newlines class_body none_or_newlines RCB { decreaseScope(); log_message("class_declaration", "Exiting class_declaration\n"); }
     | CLASS CLASS_ID LCB {
+    log_message("class_declaration", "Entering class_declaration\n");
     addSymbol($2, "class", false, true, true, NULL);
     increaseScope();
-    } none_or_newlines class_body none_or_newlines RCB { decreaseScope(); }
+    } none_or_newlines class_body none_or_newlines RCB { decreaseScope(); log_message("class_declaration", "Exiting class_declaration\n"); }
     ;
 
 class_body: /* nothing */
@@ -273,7 +413,6 @@ assignment_list: INTEGER assignment_list_int
     | CHAR assignment_list_char
     | DOUBLE assignment_list_double
     | BOOLEAN assignment_list_boolean
-    | VAR assignment_list_variable
     | VAR assignment_list_method
     | VAR assignment_list_object
     ;
@@ -282,12 +421,12 @@ assignment_list_int: ID ASSIGN exp_int {
     char valueStr[32];
     sprintf(valueStr, "%d", $3);
     addSymbol($1, "int", false, true, false, valueStr);
-    printf("Variable %s assigned with value %d\n\n", $1, $3);
+    addAssignment($1, valueStr);
     }
     | ID ASSIGN exp_int COMMA assignment_list_int {
     char valueStr[32]; sprintf(valueStr, "%d", $3);
     addSymbol($1, "int", false, true, false, valueStr);
-    printf("Variable %s assigned with value %d\n\n", $1, $3);
+    addAssignment($1, valueStr);
     };
 
 assignment_list_string: ID ASSIGN DQ_STRING_DQ { addSymbol($1, "string", false, true, false, $3); }
@@ -302,29 +441,18 @@ assignment_list_double: ID ASSIGN exp_double {
     char valueStr[64];
     sprintf(valueStr, "%f", $3);
     addSymbol($1, "double", false, true, false, valueStr);
-    printf("Variable %s assigned with value %f\n\n", $1, $3);
+    addAssignment($1, valueStr);
     }
     | ID ASSIGN exp_double COMMA assignment_list_double {
     char valueStr[64];
     sprintf(valueStr, "%f", $3);
     addSymbol($1, "double", false, true, false, valueStr);
-    printf("Variable %s assigned with value %f\n\n", $1, $3);
+    addAssignment($1, valueStr);
     };
 
 assignment_list_boolean: ID ASSIGN boolean { addSymbol($1, "boolean", false, true, false, $3); }
     | ID ASSIGN boolean COMMA assignment_list_boolean { addSymbol($1, "boolean", false, true, false, $3); }
     ;
-
-assignment_list_variable: ID ASSIGN variable_reference {
-    char* type = getType($3);
-    char* value = getValue($3);
-    addSymbol($1, type, false, true, false, value);
-    }
-    | ID ASSIGN variable_reference COMMA assignment_list_variable {
-    char* type = getType($3);
-    char* value = getValue($3);
-    addSymbol($1, type, false, true, false, value);
-    };
 
 assignment_list_method: ID ASSIGN method_call {
     char* type = getType($3);
@@ -357,7 +485,7 @@ assignment_list_int_declared: ID ASSIGN exp_int {
         char valueStr[32];
         sprintf(valueStr, "%d", $3);
         setInitialized($1, valueStr);
-        printf("Variable %s assigned with value %d\n\n", $1, $3);
+        addAssignment($1, valueStr);
     }
     }
     | ID ASSIGN exp_int COMMA assignment_list_int_declared {
@@ -368,7 +496,7 @@ assignment_list_int_declared: ID ASSIGN exp_int {
         char valueStr[32];
         sprintf(valueStr, "%d", $3);
         setInitialized($1, valueStr);
-        printf("Variable %s assigned with value %d\n\n", $1, $3);
+        addAssignment($1, valueStr);
     }
     };
 
@@ -414,7 +542,7 @@ assignment_list_double_declared: ID ASSIGN exp_double {
         char valueStr[64];
         sprintf(valueStr, "%f", $3);
         setInitialized($1, valueStr);
-        printf("Variable %s assigned with value %f\n\n", $1, $3);
+        addAssignment($1, valueStr);
     }
     }
     | ID ASSIGN exp_double COMMA assignment_list_double_declared {
@@ -425,7 +553,7 @@ assignment_list_double_declared: ID ASSIGN exp_double {
         char valueStr[64];
         sprintf(valueStr, "%f", $3);
         setInitialized($1, valueStr);
-        printf("Variable %s assigned with value %f\n\n", $1, $3);
+        addAssignment($1, valueStr);
     }
     };
 
@@ -447,21 +575,31 @@ assignment_list_boolean_declared: ID ASSIGN boolean {
     };
 
 assignment_list_variable_declared: ID ASSIGN variable_reference {
-    char* type = getType($1);
-    char* value = getValue($3);
-    if (type == NULL || strcmp(type, getType($3)) != 0) {
-        yyerror("Type mismatch");
+    if (strcmp($3, "ERROR") == 0) {
+        yyerror("Variable not declared");
     } else {
-        setInitialized($1, value);
+        char* type = getType($1);
+        char* value = getValue($3);
+        if (type == NULL || strcmp(type, getType($3)) != 0) {
+            yyerror("Type mismatch");
+        } else {
+            setInitialized($1, value);
+            addAssignment($1, value);
+        }
     }
     }
     | ID ASSIGN variable_reference COMMA assignment_list_variable_declared {
-    char* type = getType($1);
-    char* value = getValue($3);
-    if (type == NULL || strcmp(type, getType($3)) != 0) {
-        yyerror("Type mismatch");
+    if (strcmp($3, "ERROR") == 0) {
+        yyerror("Variable not declared");
     } else {
-        setInitialized($1, value);
+        char* type = getType($1);
+        char* value = getValue($3);
+        if (type == NULL || strcmp(type, getType($3)) != 0) {
+            yyerror("Type mismatch");
+        } else {
+            setInitialized($1, value);
+            addAssignment($1, value);
+        }
     }
     };
 
@@ -509,14 +647,17 @@ variable_declaration: identifier_list
 variable_reference: ID {
     if (!symbolExists($1, false, false)) {
         yyerror("Variable not declared");
+        $$ = strdup("ERROR");
     } else if (!isInitialized($1)) {
         yyerror("Variable not initialized");
+        $$ = strdup("ERROR");
     } else {
         $$ = $1;
     }
     };
 
 method_declaration: access_modifier data_type METHOD_ID {
+    log_message("method_declaration", "Entering method_declaration\n");
     if (!symbolExists($3, false, false)) {
         addSymbol($3, $2, true, true, false, NULL);
     } else {
@@ -525,8 +666,10 @@ method_declaration: access_modifier data_type METHOD_ID {
     increaseScope();
     } none_or_newlines none_or_multiple_parameters none_or_newlines RP LCB none_or_newlines method_body none_or_newlines RCB {
     decreaseScope();
+    log_message("method_declaration", "Exiting method_declaration\n");
     }
     | data_type METHOD_ID {
+    log_message("method_declaration", "Entering method_declaration\n");
     if (!symbolExists($2, false, false)) {
         addSymbol($2, $1, true, true, false, NULL);
     } else {
@@ -535,6 +678,7 @@ method_declaration: access_modifier data_type METHOD_ID {
     increaseScope();
     } none_or_newlines none_or_multiple_parameters none_or_newlines RP LCB none_or_newlines method_body none_or_newlines RCB {
     decreaseScope();
+    log_message("method_declaration", "Exiting method_declaration\n");
     };
 
 none_or_multiple_parameters: /* nothing */
@@ -675,6 +819,7 @@ exp: exp_int
 exp_int: term_int { $$ = $1; }
     | exp_int ADD term_int { $$ = $1 + $3; }
     | exp_int SUB term_int { $$ = $1 - $3; }
+    | error { $$ = 0; yyerrok; }  // Handle error cases
     ;
 
 term_int: factor_int { $$ = $1; }
@@ -709,6 +854,7 @@ factor_int: primary_int { $$ = $1; }
 exp_double: term_double { $$ = $1; }
     | exp_double ADD term_double { $$ = $1 + $3; }
     | exp_double SUB term_double { $$ = $1 - $3; }
+    | error { $$ = 0.0; yyerrok; }  // Handle error cases
     ;
 
 term_double: factor_double { $$ = $1; }
@@ -766,13 +912,24 @@ unary: primary_int { $$ = $1; }
 
 // Primary integer
 primary_int: CONST { $$ = $1; }
-    | variable_reference { $$ = atoi(getValue($1)); }
+    | variable_reference {
+    if (strcmp($1, "ERROR") == 0) {
+        $$ = 0;
+    } else {
+        $$ = atoi(getValue($1));
+    }
+    }
     ;
-
 
 // Primary double
 primary_double: DOUBLE_CONST { $$ = $1; }
-    | variable_reference { $$ = atof(getValue($1)); }
+    | variable_reference {
+    if (strcmp($1, "ERROR") == 0) {
+        $$ = 0.0;
+    } else {
+        $$ = atof(getValue($1));
+    }
+    }
     ;
 
 object_creation: CLASS_ID ID ASSIGN NEW CLASS_ID {
@@ -828,36 +985,54 @@ none_or_newlines: /* nothing */
 %%
 
 void yyerror(const char *s) {
-    if (errorCount < 1000) {
-        errorTable[errorCount].line = yylineno;
-        errorTable[errorCount].message = strdup(s);
-        errorTable[errorCount].token = strdup(yytext);
-        errorCount++;
-    }
-    else {
-        fprintf(stderr, "Error:\n\nToo many errors\n");
-        exit(1);
+    char error_msg[200];
+    snprintf(error_msg, sizeof(error_msg), "Error at line %d: %s\n", yylineno, s);
+    log_message("yyerror", error_msg);
+
+    if (yytext != NULL) {
+        addError(yylineno, s, yytext);
+    } else {
+        addError(yylineno, s, "Unknown token");
     }
 }
 
 int main(int argc, char **argv) {
+    // Clear the log file at the start
+    FILE *log_file = fopen("parser_log.txt", "w");
+    if (log_file != NULL) {
+        fclose(log_file);
+    }
+
+    log_message("main", "Starting parser");
+
     if (argc < 2) {
-        fprintf(stderr, "Usage: %s <filename>\n", argv[0]);
+        fprintf(stderr, "Usage: %s <input_filename> [output_filename]\n", argv[0]);
         return 1;
     }
 
     FILE *f = fopen(argv[1], "r");
     if (!f) {
-        fprintf(stderr, "Cannot open file %s\n", argv[1]);
+        fprintf(stderr, "Cannot open file %s: %s\n", argv[1], strerror(errno));
         return 1;
     }
 
     yyin = f;
-    yyout = fopen("output.txt", "w");
+    // Determine the output file
+    const char *output_filename = (argc > 2) ? argv[2] : "output.txt";
+    FILE *yyout = fopen(output_filename, "w");
+    if (!yyout) {
+        fprintf(stderr, "Cannot open output file: %s\n", strerror(errno));
+        fclose(f);
+        return 1;
+    }
 
-    yyparse();
+    log_message("main", "Starting yyparse\n");
+    int parse_result = yyparse();
+    log_message("main", "yyparse completed");
 
-    printf("Input Program:\n");
+    printAssignments();
+
+    printf("\nInput Program:\n");
     char ch;
     int line_number = 1;
     rewind(f);
@@ -873,16 +1048,34 @@ int main(int argc, char **argv) {
         }
     }
 
+    FILE *error_file = fopen("errors.txt", "w");
+    if (!error_file) {
+        fprintf(stderr, "Cannot open error file: %s\n", strerror(errno));
+        fclose(f);
+        fclose(yyout);
+        return 1;
+    }
+
     if (errorCount == 0) {
+        log_message("main", "Program is syntactically correct");
         printf("\n\nProgram is syntactically correct.");
     } else {
+        log_message("main", "Errors found in the program");
         printf("\n\nErrors:\n\n");
         for (int i = 0; i < errorCount; i++) {
-            fprintf(stderr, "Error %d at line %d: %s recognised at the token '%s'\n", i+1, errorTable[i].line, errorTable[i].message, errorTable[i].token);
+            char error_msg[200];
+            snprintf(error_msg, sizeof(error_msg), "Error %d at line %d: %s recognised at the token '%s'",
+                     i+1, errorTable[i].line, errorTable[i].message, errorTable[i].token);
+            log_message("main", error_msg);
+            fprintf(stderr, "%s\n", error_msg);
+            fprintf(error_file, "%s\n", error_msg); // Write error to the file
         }
     }
 
     fclose(f);
+    fclose(yyout);
+    fclose(error_file);
+    log_message("main", "Parser completed");
 
-    return 0;
+    return parse_result;
 }

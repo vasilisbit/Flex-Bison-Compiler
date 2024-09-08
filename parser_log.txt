@@ -1,0 +1,102 @@
+[main] Starting parser
+[main] Starting yyparse
+
+[addSymbol] Entering addSymbol function
+[addSymbol] Added symbol: name=x, type=double, isMethod=0, isInitialized=1, isClass=0, scope=0, value=2.000000
+
+[program] Entering program
+
+[addSymbol] Entering addSymbol function
+[addSymbol] Added symbol: name=y, type=double, isMethod=0, isInitialized=1, isClass=0, scope=0, value=4.300000
+
+[program] Entering program
+
+[method_declaration] Entering method_declaration
+
+[symbolExists] Entering symbolExists function
+[symbolExists] Symbol not found
+
+[addSymbol] Entering addSymbol function
+[addSymbol] Added symbol: name=main(, type=void, isMethod=1, isInitialized=1, isClass=0, scope=0, value=UNINITIALIZED
+
+[increaseScope] Scope increased to 1
+
+[symbolExists] Entering symbolExists function
+[symbolExists] Symbol found
+
+[isInitialized] Entering isInitialized function
+[isInitialized] x
+[isInitialized] 
+
+[getValue] Entering getValue function
+[getValue] Value of x is 2.000000
+
+[symbolExists] Entering symbolExists function
+[symbolExists] Symbol found
+
+[isInitialized] Entering isInitialized function
+[isInitialized] y
+[isInitialized] 
+
+[getValue] Entering getValue function
+[getValue] Value of y is 4.300000
+
+[addSymbol] Entering addSymbol function
+[addSymbol] Added symbol: name=z, type=double, isMethod=0, isInitialized=1, isClass=0, scope=1, value=4.300000
+
+[addSymbol] Entering addSymbol function
+[addSymbol] Added symbol: name=a, type=double, isMethod=0, isInitialized=1, isClass=0, scope=1, value=2.000000
+
+[symbolExists] Entering symbolExists function
+[symbolExists] Symbol found
+
+[isInitialized] Entering isInitialized function
+[isInitialized] y
+[isInitialized] 
+
+[symbolExists] Entering symbolExists function
+[symbolExists] Symbol found
+
+[isInitialized] Entering isInitialized function
+[isInitialized] x
+[isInitialized] 
+
+[getType] Entering getType function
+[getType] Type of z is double
+
+[getValue] Entering getValue function
+[getValue] Value of x is 2.000000
+
+[getType] Entering getType function
+[getType] Type of x is double
+
+[setInitialized] Entering setInitialized function
+[setInitialized] Variable z initialized with value 2.000000
+
+[getType] Entering getType function
+[getType] Type of a is double
+
+[getValue] Entering getValue function
+[getValue] Value of y is 4.300000
+
+[getType] Entering getType function
+[getType] Type of y is double
+
+[setInitialized] Entering setInitialized function
+[setInitialized] Variable a initialized with value 4.300000
+
+[decreaseScope] Scope decreased to 0
+
+[method_declaration] Exiting method_declaration
+
+[program] Entering program
+
+[program] Exiting program
+
+[program] Exiting program
+
+[program] Exiting program
+
+[main] yyparse completed
+[main] Program is syntactically correct
+[main] Parser completed
