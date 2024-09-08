@@ -353,21 +353,19 @@ char* getValue(char *name) {
 %%
 
 program: /* nothing */
-    | class_declaration none_or_newlines { log_message("program", "Entering program\n"); } program { log_message("program", "Exiting program\n"); }
-    | statement none_or_newlines { log_message("program", "Entering program\n"); } program { log_message("program", "Exiting program\n"); }
-    | error { log_message("program", "Entering program\n"); } program { log_message("program", "Exiting program\n"); yyerrok; }
+    | class_declaration none_or_newlines program
+    | statement none_or_newlines program
+    | error program { yyerrok; }
     ;
 
 class_declaration: access_modifier CLASS CLASS_ID LCB {
-    log_message("class_declaration", "Entering class_declaration\n");
     addSymbol($3, "class", false, true, true, NULL);
     increaseScope();
-    } none_or_newlines class_body none_or_newlines RCB { decreaseScope(); log_message("class_declaration", "Exiting class_declaration\n"); }
+    } none_or_newlines class_body none_or_newlines RCB { decreaseScope(); }
     | CLASS CLASS_ID LCB {
-    log_message("class_declaration", "Entering class_declaration\n");
     addSymbol($2, "class", false, true, true, NULL);
     increaseScope();
-    } none_or_newlines class_body none_or_newlines RCB { decreaseScope(); log_message("class_declaration", "Exiting class_declaration\n"); }
+    } none_or_newlines class_body none_or_newlines RCB { decreaseScope(); }
     ;
 
 class_body: /* nothing */
@@ -656,7 +654,6 @@ variable_reference: ID {
     };
 
 method_declaration: access_modifier data_type METHOD_ID {
-    log_message("method_declaration", "Entering method_declaration\n");
     if (!symbolExists($3, false, false)) {
         addSymbol($3, $2, true, true, false, NULL);
     } else {
@@ -665,10 +662,8 @@ method_declaration: access_modifier data_type METHOD_ID {
     increaseScope();
     } none_or_newlines none_or_multiple_parameters none_or_newlines RP LCB none_or_newlines method_body none_or_newlines RCB {
     decreaseScope();
-    log_message("method_declaration", "Exiting method_declaration\n");
     }
     | data_type METHOD_ID {
-    log_message("method_declaration", "Entering method_declaration\n");
     if (!symbolExists($2, false, false)) {
         addSymbol($2, $1, true, true, false, NULL);
     } else {
@@ -677,7 +672,6 @@ method_declaration: access_modifier data_type METHOD_ID {
     increaseScope();
     } none_or_newlines none_or_multiple_parameters none_or_newlines RP LCB none_or_newlines method_body none_or_newlines RCB {
     decreaseScope();
-    log_message("method_declaration", "Exiting method_declaration\n");
     };
 
 none_or_multiple_parameters: /* nothing */

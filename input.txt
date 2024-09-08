@@ -1,6 +1,15 @@
-double x = 2.0d;
-double y = 4.3d;
-public void main(){
-    double a = x, z = y; /* dfskjhdskjfhkdshfkdshfkjdskfjdskjfdsfdsfsdfdfghdfglfjkdhglkjfdshglkjhfdsjlkghfdslkjhgfdslkjhgflkdsjhglkdsjhkhkdsjfskdjfksdjhfkjshf */
-    a = y, z = x;
-}
+int x = 10;
+double y = 20.5d;
+char z = 'A';
+boolean flag = true;
+String str = "Hello, World!";
+x = 15;
+y = 25.5d;
+z = 'B';
+flag = false;
+str = "Goodbye!";
+out.print("Value of x:",x);
+out.print("Value of y:",y);
+out.print("Value of z:",z);
+out.print("Value of flag:",flag);
+out.print("Value of str:",str);
