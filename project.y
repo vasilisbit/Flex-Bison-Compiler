@@ -181,25 +181,6 @@ bool symbolExists(char *name, bool isMethod, bool isClass) {
     return false;
 }
 
-
-// Function to check if a class is defined
-bool classExists(char *name) {
-    log_message("classExists", "Entering classExists function");
-    if (name == NULL) {
-        log_message("classExists", "Null pointer in function\n");
-        yyerror("Null pointer in classExists function\n");
-        return false;
-    }
-    for (int i = 0; i < symbolCount; i++) {
-        if (symbolTable[i].name != NULL && strcmp(symbolTable[i].name, name) == 0 && symbolTable[i].isClass) {
-            log_message("classExists", "Class found\n");
-            return true;
-        }
-    }
-    log_message("classExists", "Class not found\n");
-    return false;
-}
-
 // Function to check if a variable has been initialized
 bool isInitialized(char *name) {
     log_message("isInitialized", "Entering isInitialized function");
