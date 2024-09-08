@@ -2,13 +2,3 @@
 να ξεκιναμε με αριθμο και μετα μπορουμε να εχουμε οτι θελουμε  
 
 2. double στρογγυλοποιηση στο 6ο ψηφιο μετα κομμα
-
-// Debugging output
-printf("Error: %s at line %d, token: %s\n", s, yylineno, yytext);
-printf("Current scope: %d\n", scope);
-printf("Symbol table contents:\n");
-for (int i = 0; i < symbolCount; i++) {
-    printf("Name: %s, Type: %s, IsMethod: %d, IsInitialized: %d, IsClass: %d, Scope: %d, Value: %s\n",
-        symbolTable[i].name, symbolTable[i].type, symbolTable[i].isMethod, symbolTable[i].isInitialized,
-        symbolTable[i].isClass, symbolTable[i].scope, symbolTable[i].value);
-}
