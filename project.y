@@ -78,9 +78,11 @@ void addAssignment(char *variable, char *value) {
 
 // Function to print all assignments
 void printAssignments() {
-    printf("Collected Assignments:\n");
-    for (int i = 0; i < assignmentCount; i++) {
-        printf("%d) Variable %s assigned with value %s\n", i + 1, assignments[i].variable, assignments[i].value);
+    if (assignmentCount > 0) {
+        printf("Collected Assignments:\n");
+        for (int i = 0; i < assignmentCount; i++) {
+            printf("%d) Variable %s assigned with value %s\n", i + 1, assignments[i].variable, assignments[i].value);
+        }
     }
 }
 
