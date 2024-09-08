@@ -95,12 +95,17 @@ This will process the `input.txt` file and generate an output in `output.txt`.
 
 ## Example Output
 ```text
- 1  | public class Test{
- 2  |     public void main(int x, int y){
- 3  |         x = 0;
- 4  |     }
- 5  | }
- Program is syntactically correct.
+Collected Assignments:
+1) Variable x assigned with value 0
+
+Input Program:
+   1  | public class Test {
+   2  |     public void main(int x, int y) {
+   3  |         x = 0;
+   4  |     }
+   5  | }
+
+Program is syntactically correct.
  ```
 
 ## Error Handling
