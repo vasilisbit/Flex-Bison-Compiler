@@ -36,13 +36,15 @@ Flex-Bison-Compiler/
 ├── Licence
 ├── Makefile
 ├── README.md
-├── exercise.txt
+├── error.cpp
+├── error.h
+├── errors.txt
 ├── input.txt
 ├── lex.yy.c
 ├── myParser.exe
 ├── output.txt
+├── parser_log.txt
 ├── project.l
-├── project.output
 ├── project.tab.c
 ├── project.tab.h
 ├── project.y
