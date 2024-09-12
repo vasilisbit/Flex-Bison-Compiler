@@ -1,24 +1,19 @@
-   1  | public class SwitchCaseExample {
+   1  | public class MyClass {
    2  |     public void main() {
-   3  |         int day = 3;
-   4  |         switch (day) {
-   5  |             case 1:
-   6  |                 out.print("Monday");
-   7  |                 break;
-   8  |             case 2:
-   9  |                 out.print("Tuesday");
-  10  |                 break;
-  11  |             case 3:
-  12  |                 out.print("Wednesday");
-  13  |                 break;
-  14  |             case 4:
-  15  |                 out.print("Thursday");
-  16  |                 break;
-  17  |             case 5:
-  18  |                 out.print("Friday");
-  19  |                 break;
-  20  |             default:
-  21  |                 out.print("Weekend");
-  22  |         }
-  23  |     }
-  24  | }
+   3  |         int x = 10;
+   4  |         double y = 20.5;
+   5  |         char z = 'A';
+   6  |         boolean flag = true;
+   7  |         String str = "Hello, World!";
+   8  |         x = 15;
+   9  |         y = 25.5;
+  10  |         z = 'B';
+  11  |         flag = false;
+  12  |         str = "Goodbye!";
+  13  |         out.print(x);
+  14  |         out.print(y);
+  15  |         out.print(z);
+  16  |         out.print(flag);
+  17  |         out.print(str);
+  18  |     }
+  19  | }

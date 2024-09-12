@@ -5,7 +5,7 @@
 [main] Starting yyparse
 
 [addSymbol] Entering addSymbol function
-[addSymbol] Added symbol: name=SwitchCaseExample, type=class, isMethod=0, isInitialized=1, isClass=1, scope=0, value=UNINITIALIZED
+[addSymbol] Added symbol: name=MyClass, type=class, isMethod=0, isInitialized=1, isClass=1, scope=0, value=UNINITIALIZED
 
 [increaseScope] Scope increased to 1
 
@@ -18,22 +18,67 @@
 [increaseScope] Scope increased to 2
 
 [addSymbol] Entering addSymbol function
-[addSymbol] Added symbol: name=day, type=int, isMethod=0, isInitialized=1, isClass=0, scope=2, value=3
+[addSymbol] Added symbol: name=x, type=int, isMethod=0, isInitialized=1, isClass=0, scope=2, value=10
 
-[symbolExists] Entering symbolExists function
-[symbolExists] Symbol found
+[yyerror] Error at line 4: syntax error
 
-[isInitialized] Entering isInitialized function
-[isInitialized] day
-[isInitialized] 
+[addSymbol] Entering addSymbol function
+[addSymbol] Added symbol: name=y, type=double, isMethod=0, isInitialized=1, isClass=0, scope=2, value=0.000000
 
-[getValue] Entering getValue function
-[getValue] Value of day is 3
+[addSymbol] Entering addSymbol function
+[addSymbol] Added symbol: name=z, type=char, isMethod=0, isInitialized=1, isClass=0, scope=2, value='A'
+
+[addSymbol] Entering addSymbol function
+[addSymbol] Added symbol: name=flag, type=boolean, isMethod=0, isInitialized=1, isClass=0, scope=2, value=true
+
+[addSymbol] Entering addSymbol function
+[addSymbol] Added symbol: name=str, type=string, isMethod=0, isInitialized=1, isClass=0, scope=2, value="Hello, World!"
+
+[getType] Entering getType function
+[getType] Type of x is int
+
+[setInitialized] Entering setInitialized function
+[setInitialized] Variable x initialized with value 15
+
+[yyerror] Error at line 9: syntax error
+
+[getType] Entering getType function
+[getType] Type of y is double
+
+[yyerror] Error at line 9: Type mismatch
+
+[getType] Entering getType function
+[getType] Type of z is char
+
+[setInitialized] Entering setInitialized function
+[setInitialized] Variable z initialized with value 'B'
+
+[getType] Entering getType function
+[getType] Type of flag is boolean
+
+[setInitialized] Entering setInitialized function
+[setInitialized] Variable flag initialized with value false
+
+[getType] Entering getType function
+[getType] Type of str is string
+
+[setInitialized] Entering setInitialized function
+[setInitialized] Variable str initialized with value "Goodbye!"
 
 [decreaseScope] Scope decreased to 1
 
 [decreaseScope] Scope decreased to 0
 
 [main] yyparse completed
-[main] Program is syntactically correct
+[main] Errors found in the program
+[main] Error 1 at line 4: Invalid double literal recognised at the token '20.5'
+[main] Error 2 at line 4: syntax error recognised at the token ';'
+[main] Error 3 at line 9: Invalid double literal recognised at the token '25.5'
+[main] Error 4 at line 9: syntax error recognised at the token ';'
+[main] Error 5 at line 9: Type mismatch recognised at the token ';'
+[main] Error 6 at line 13: Invalid print statement recognised at the token 'out.print(x);'
+[main] Error 7 at line 14: Invalid print statement recognised at the token 'out.print(y);'
+[main] Error 8 at line 15: Invalid print statement recognised at the token 'out.print(z);'
+[main] Error 9 at line 16: Invalid print statement recognised at the token 'out.print(flag);'
+[main] Error 10 at line 17: Invalid print statement recognised at the token 'out.print(str);'
 [main] Parser completed

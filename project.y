@@ -354,7 +354,7 @@ char* getValue(char *name) {
 
 program: /* nothing */
     | class_declaration none_or_newlines program
-    | statement none_or_newlines program
+    | statement_list
     | error program { yyerrok; }
     ;
 
@@ -370,7 +370,7 @@ class_declaration: access_modifier CLASS CLASS_ID LCB {
 
 class_body: /* nothing */
     | class_declaration none_or_newlines class_body
-    | statement none_or_newlines class_body
+    | statement_list
     ;
 
 identifier_list: INTEGER identifier_list_int
@@ -686,7 +686,11 @@ parameter: data_type ID { addSymbol($2, $1, false, true, false, NULL); }
     ;
 
 method_body: /* nothing */
-    | statement none_or_newlines method_body
+    | statement_list
+    ;
+
+statement_list: statement
+    | statement none_or_newlines statement_list
     ;
 
 statement: /* nothing */
@@ -706,6 +710,7 @@ statement: /* nothing */
     | object_creation
     | variable_reference SEMICOLON
     | member_access
+    | error { yyerrok; }
     ;
 
 assignment_statement: data_type ID ASSIGN exp
@@ -728,7 +733,7 @@ arguments: /* nothing */
     | COMMA none_or_newlines variable_reference arguments
     ;
 
-if_statement: IF LP none_or_newlines if_elif_parenthesis_statement none_or_newlines RP LCB none_or_newlines statement none_or_newlines RCB none_or_newlines none_or_multiple_elif none_or_newlines none_or_one_else
+if_statement: IF LP none_or_newlines if_elif_parenthesis_statement none_or_newlines RP LCB none_or_newlines statement_list none_or_newlines RCB none_or_newlines none_or_multiple_elif none_or_newlines none_or_one_else
     ;
 
 if_elif_parenthesis_statement: exp
@@ -739,23 +744,23 @@ if_elif_parenthesis_statement: exp
     ;
 
 none_or_multiple_elif: /* nothing */
-    | ELIF LP if_elif_parenthesis_statement RP LCB none_or_newlines statement none_or_newlines RCB none_or_multiple_elif
+    | ELIF LP if_elif_parenthesis_statement RP LCB none_or_newlines statement_list none_or_newlines RCB none_or_multiple_elif
     ;
 
 none_or_one_else: /* nothing */
-    | ELSE LCB none_or_newlines statement none_or_newlines RCB
+    | ELSE LCB none_or_newlines statement_list none_or_newlines RCB
     ;
 
-do_while_statement: DO LCB none_or_newlines statement none_or_newlines RCB WHILE LP none_or_newlines relational_exp none_or_newlines RP SEMICOLON
-    | DO LCB none_or_newlines statement none_or_newlines RCB WHILE LP none_or_newlines variable_reference none_or_newlines RP SEMICOLON
+do_while_statement: DO LCB none_or_newlines statement_list none_or_newlines RCB WHILE LP none_or_newlines relational_exp none_or_newlines RP SEMICOLON
+    | DO LCB none_or_newlines statement_list none_or_newlines RCB WHILE LP none_or_newlines variable_reference none_or_newlines RP SEMICOLON
     ;
 
-for_statement: FOR LP none_or_newlines first_and_third_loop_statement SEMICOLON none_or_newlines second_loop_statement SEMICOLON none_or_newlines first_and_third_loop_statement none_or_newlines RP LCB none_or_newlines statement none_or_newlines RCB
+for_statement: FOR LP none_or_newlines first_and_third_loop_statement SEMICOLON none_or_newlines second_loop_statement SEMICOLON none_or_newlines first_and_third_loop_statement none_or_newlines RP LCB none_or_newlines statement_list none_or_newlines RCB
     ;
 
 first_and_third_loop_statement: /* nothing */
-    | assignment_statement
     | variable_declaration
+    | assignment_statement
     ;
 
 second_loop_statement: /* nothing */
@@ -767,7 +772,7 @@ switch_statement: SWITCH LP none_or_newlines exp none_or_newlines RP LCB none_or
     ;
 
 default_case: /* nothing */
-    | DEFAULT COLON none_or_newlines statement
+    | DEFAULT COLON none_or_newlines statement_list
     ;
 
 one_or_more_cases: cases none_or_newlines multiple_cases
@@ -777,7 +782,7 @@ multiple_cases: /* nothing */
     | cases none_or_newlines multiple_cases
     ;
 
-cases: CASE case_expression COLON none_or_newlines statement none_or_newlines statement
+cases: CASE case_expression COLON none_or_newlines statement_list
     ;
 
 case_expression: CONST

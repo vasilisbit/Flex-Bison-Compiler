@@ -88,10 +88,12 @@ const [0-9]+
 "out.print" { return PRINT; }
 
 [0-9]+\.[0-9]+[d] { yytext[yyleng - 1] = '\0'; yylval.dval = atof(yytext); return DOUBLE_CONST; }
+[0-9]+\.[0-9]+ { addError(yylineno, "Invalid double literal", yytext); }
 "\'"[^'\n]"\'" { yylval.sval = strdup(yytext); return SQ_ANYCHAR_SQ; }
 "\'"[^'\n]*"\'" { addError(yylineno, "Invalid character literal", yytext); }
 "\""[^"\n]*"\"" { yylval.sval = strdup(yytext); return DQ_STRING_DQ; }
 "\""[^"\n]* { addError(yylineno, "Unterminated string", yytext); }
+"out.print"[(][^"\n]*[);] { addError(yylineno, "Invalid print statement", yytext); }
 {class_ID} { yylval.sval = strdup(yytext); return CLASS_ID; }
 {id} { yylval.sval = strdup(yytext); return ID; }
 {methodID} { yylval.sval = strdup(yytext); return METHOD_ID; }
