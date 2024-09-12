@@ -109,6 +109,8 @@ Program is syntactically correct.
  ```
 
 ## Error Handling
+- Created files error.cpp and error.h to handle errors from both lex
+  and bison files
 - The compiler will print error messages with the line number if it
   encounters any syntax or semantic errors.
 - Example error message:
