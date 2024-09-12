@@ -93,7 +93,9 @@ const [0-9]+
 "\'"[^'\n]*"\'" { addError(yylineno, "Invalid character literal", yytext); }
 "\""[^"\n]*"\"" { yylval.sval = strdup(yytext); return DQ_STRING_DQ; }
 "\""[^"\n]* { addError(yylineno, "Unterminated string", yytext); }
-"out.print"[(][^"\n]*[);] { addError(yylineno, "Invalid print statement", yytext); }
+"out.print"[(][^"\n]*[);] { addError(yylineno, "Invalid print statement", ";"); }
+"do"[^\{]*\{[^\}]*\}[ \t]*while[ \t]*\([^\)]*\)[ \t]* { addError(yylineno, "Invalid do-while statement", ")"); }
+"do"[^\{]*\{[^\}]*\}[ \t]*while[ \t]*\([^\)]*\)[ \t]*; {}
 {class_ID} { yylval.sval = strdup(yytext); return CLASS_ID; }
 {id} { yylval.sval = strdup(yytext); return ID; }
 {methodID} { yylval.sval = strdup(yytext); return METHOD_ID; }

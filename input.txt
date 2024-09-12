@@ -1,19 +1,13 @@
-public class MyClass {
+public class ForDoWhile {
     public void main() {
-        int x = 10;
-        double y = 20.5;
-        char z = 'A';
-        boolean flag = true;
-        String str = "Hello, World!";
-        x = 15;
-        y = 25.5;
-        z = 'B';
-        flag = false;
-        str = "Goodbye!";
-        out.print(x);
-        out.print(y);
-        out.print(z);
-        out.print(flag);
-        out.print(str);
+        for (int i = 0; i < 5; i = i + 1) {
+            for (int j = 0; j < 5; j = j + 1) {
+                do{
+                    out.print("i, j = ", i, j);
+                } while(i < 10);
+            }
+            i = j + i;
+        }
+        return i;
     }
 }
