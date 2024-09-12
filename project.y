@@ -1051,6 +1051,7 @@ int main(int argc, char **argv) {
         } else if (char_count >= width - 8) {
             char_count = 0;
             printf("\n%4d  | ", line_number);
+            fprintf(yyout, "\n%4d  | ", line_number);
         }
     }
 
