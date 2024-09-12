@@ -1,15 +1,24 @@
-int x = 10;
-double y = 20.5d;
-char z = 'A';
-boolean flag = true;
-String str = "Hello, World!";
-x = 15;
-y = 25.5d;
-z = 'B';
-flag = false;
-str = "Goodbye!";
-out.print("Value of x:",x);
-out.print("Value of y:",y);
-out.print("Value of z:",z);
-out.print("Value of flag:",flag);
-out.print("Value of str:",str);
+public class SwitchCaseExample {
+    public void main() {
+        int day = 3;
+        switch (day) {
+            case 1:
+                out.print("Monday");
+                break;
+            case 2:
+                out.print("Tuesday");
+                break;
+            case 3:
+                out.print("Wednesday");
+                break;
+            case 4:
+                out.print("Thursday");
+                break;
+            case 5:
+                out.print("Friday");
+                break;
+            default:
+                out.print("Weekend");
+        }
+    }
+}

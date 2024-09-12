@@ -5,84 +5,34 @@
 [main] Starting yyparse
 
 [addSymbol] Entering addSymbol function
-[addSymbol] Added symbol: name=x, type=int, isMethod=0, isInitialized=1, isClass=0, scope=0, value=10
+[addSymbol] Added symbol: name=SwitchCaseExample, type=class, isMethod=0, isInitialized=1, isClass=1, scope=0, value=UNINITIALIZED
+
+[increaseScope] Scope increased to 1
+
+[symbolExists] Entering symbolExists function
+[symbolExists] Symbol not found
 
 [addSymbol] Entering addSymbol function
-[addSymbol] Added symbol: name=y, type=double, isMethod=0, isInitialized=1, isClass=0, scope=0, value=20.500000
+[addSymbol] Added symbol: name=main(, type=void, isMethod=1, isInitialized=1, isClass=0, scope=1, value=UNINITIALIZED
+
+[increaseScope] Scope increased to 2
 
 [addSymbol] Entering addSymbol function
-[addSymbol] Added symbol: name=z, type=char, isMethod=0, isInitialized=1, isClass=0, scope=0, value='A'
-
-[addSymbol] Entering addSymbol function
-[addSymbol] Added symbol: name=flag, type=boolean, isMethod=0, isInitialized=1, isClass=0, scope=0, value=true
-
-[addSymbol] Entering addSymbol function
-[addSymbol] Added symbol: name=str, type=string, isMethod=0, isInitialized=1, isClass=0, scope=0, value="Hello, World!"
-
-[getType] Entering getType function
-[getType] Type of x is int
-
-[setInitialized] Entering setInitialized function
-[setInitialized] Variable x initialized with value 15
-
-[getType] Entering getType function
-[getType] Type of y is double
-
-[setInitialized] Entering setInitialized function
-[setInitialized] Variable y initialized with value 25.500000
-
-[getType] Entering getType function
-[getType] Type of z is char
-
-[setInitialized] Entering setInitialized function
-[setInitialized] Variable z initialized with value 'B'
-
-[getType] Entering getType function
-[getType] Type of flag is boolean
-
-[setInitialized] Entering setInitialized function
-[setInitialized] Variable flag initialized with value false
-
-[getType] Entering getType function
-[getType] Type of str is string
-
-[setInitialized] Entering setInitialized function
-[setInitialized] Variable str initialized with value "Goodbye!"
+[addSymbol] Added symbol: name=day, type=int, isMethod=0, isInitialized=1, isClass=0, scope=2, value=3
 
 [symbolExists] Entering symbolExists function
 [symbolExists] Symbol found
 
 [isInitialized] Entering isInitialized function
-[isInitialized] x
+[isInitialized] day
 [isInitialized] 
 
-[symbolExists] Entering symbolExists function
-[symbolExists] Symbol found
+[getValue] Entering getValue function
+[getValue] Value of day is 3
 
-[isInitialized] Entering isInitialized function
-[isInitialized] y
-[isInitialized] 
+[decreaseScope] Scope decreased to 1
 
-[symbolExists] Entering symbolExists function
-[symbolExists] Symbol found
-
-[isInitialized] Entering isInitialized function
-[isInitialized] z
-[isInitialized] 
-
-[symbolExists] Entering symbolExists function
-[symbolExists] Symbol found
-
-[isInitialized] Entering isInitialized function
-[isInitialized] flag
-[isInitialized] 
-
-[symbolExists] Entering symbolExists function
-[symbolExists] Symbol found
-
-[isInitialized] Entering isInitialized function
-[isInitialized] str
-[isInitialized] 
+[decreaseScope] Scope decreased to 0
 
 [main] yyparse completed
 [main] Program is syntactically correct

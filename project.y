@@ -777,7 +777,7 @@ multiple_cases: /* nothing */
     | cases none_or_newlines multiple_cases
     ;
 
-cases: CASE case_expression COLON none_or_newlines statement
+cases: CASE case_expression COLON none_or_newlines statement none_or_newlines statement
     ;
 
 case_expression: CONST
