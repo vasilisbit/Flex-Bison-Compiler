@@ -11,7 +11,7 @@
 %option yylineno
 
 id [A-Za-z_][A-Za-z0-9_]*
-methodID [A-Za-z_][A-Za-z0-9_]*[(]
+methodID [a-z_][A-Za-z0-9_]*[(]
 class_ID [A-Z_][A-Za-z0-9_]*
 const [0-9]+
 

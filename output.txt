@@ -1,13 +1,4 @@
-   1  | public class ForDoWhile {
-   2  |     public void main() {
-   3  |         for (int i = 0; i < 5; i = i + 1) {
-   4  |             for (int j = 0; j < 5; j = j + 1) {
-   5  |                 do{
-   6  |                     out.print("i, j = ", i, j);
-   7  |                 } while(i < 10);
-   8  |             }
-   9  |             i = j + i;
-  10  |         }
-  11  |         return i;
-  12  |     }
-  13  | }
+   1  | public class MyClass {
+   2  | 
+   3  | }
+   4  | MyClass myObject = new MyClass();

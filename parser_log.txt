@@ -5,112 +5,17 @@
 [main] Starting yyparse
 
 [addSymbol] Entering addSymbol function
-[addSymbol] Added symbol: name=ForDoWhile, type=class, isMethod=0, isInitialized=1, isClass=1, scope=0, value=UNINITIALIZED
+[addSymbol] Added symbol: name=MyClass, type=class, isMethod=0, isInitialized=1, isClass=1, scope=0, value=UNINITIALIZED
 
 [increaseScope] Scope increased to 1
 
-[symbolExists] Entering symbolExists function
-[symbolExists] Symbol not found
-
-[addSymbol] Entering addSymbol function
-[addSymbol] Added symbol: name=main(, type=void, isMethod=1, isInitialized=1, isClass=0, scope=1, value=UNINITIALIZED
-
-[increaseScope] Scope increased to 2
-
-[addSymbol] Entering addSymbol function
-[addSymbol] Added symbol: name=i, type=int, isMethod=0, isInitialized=1, isClass=0, scope=2, value=0
-
-[symbolExists] Entering symbolExists function
-[symbolExists] Symbol found
-
-[isInitialized] Entering isInitialized function
-[isInitialized] i
-[isInitialized] 
-
-[getValue] Entering getValue function
-[getValue] Value of i is 0
-
-[symbolExists] Entering symbolExists function
-[symbolExists] Symbol found
-
-[isInitialized] Entering isInitialized function
-[isInitialized] i
-[isInitialized] 
-
-[getValue] Entering getValue function
-[getValue] Value of i is 0
-
-[getType] Entering getType function
-[getType] Type of i is int
-
-[setInitialized] Entering setInitialized function
-[setInitialized] Variable i initialized with value 1
-
-[addSymbol] Entering addSymbol function
-[addSymbol] Added symbol: name=j, type=int, isMethod=0, isInitialized=1, isClass=0, scope=2, value=0
-
-[symbolExists] Entering symbolExists function
-[symbolExists] Symbol found
-
-[isInitialized] Entering isInitialized function
-[isInitialized] j
-[isInitialized] 
-
-[getValue] Entering getValue function
-[getValue] Value of j is 0
-
-[symbolExists] Entering symbolExists function
-[symbolExists] Symbol found
-
-[isInitialized] Entering isInitialized function
-[isInitialized] j
-[isInitialized] 
-
-[getValue] Entering getValue function
-[getValue] Value of j is 0
-
-[getType] Entering getType function
-[getType] Type of j is int
-
-[setInitialized] Entering setInitialized function
-[setInitialized] Variable j initialized with value 1
-
-[symbolExists] Entering symbolExists function
-[symbolExists] Symbol found
-
-[isInitialized] Entering isInitialized function
-[isInitialized] j
-[isInitialized] 
-
-[getValue] Entering getValue function
-[getValue] Value of j is 1
-
-[symbolExists] Entering symbolExists function
-[symbolExists] Symbol found
-
-[isInitialized] Entering isInitialized function
-[isInitialized] i
-[isInitialized] 
-
-[getValue] Entering getValue function
-[getValue] Value of i is 1
-
-[getType] Entering getType function
-[getType] Type of i is int
-
-[setInitialized] Entering setInitialized function
-[setInitialized] Variable i initialized with value 2
-
-[symbolExists] Entering symbolExists function
-[symbolExists] Symbol found
-
-[isInitialized] Entering isInitialized function
-[isInitialized] i
-[isInitialized] 
-
-[decreaseScope] Scope decreased to 1
-
 [decreaseScope] Scope decreased to 0
+
+[symbolExists] Entering symbolExists function
+[symbolExists] Symbol found
+
+[addSymbol] Entering addSymbol function
+[addSymbol] Added symbol: name=myObject, type=MyClass, isMethod=0, isInitialized=1, isClass=0, scope=0, value=MyClass
 
 [main] yyparse completed
 [main] Program is syntactically correct
